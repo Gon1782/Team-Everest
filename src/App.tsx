@@ -1,8 +1,9 @@
 import Router from './shared/Router';
 import { RecoilRoot } from 'recoil';
 import { QueryClient, QueryClientProvider } from 'react-query';
+const queryClient = new QueryClient();
+
 const App = () => {
-  const queryClient = new QueryClient();
   return (
     <QueryClientProvider client={queryClient}>
       <RecoilRoot>
