@@ -3,6 +3,10 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const path = require('path'); //path라는 전역모듈을 가져와 path에 할당
 const webpack = require('webpack');
 
+// webpack 환경변수 지정
+const dotenv = require('dotenv'); // dotenv 패키지를 가져와 dotenv에 할당
+dotenv.config(); // dotenv.config 실행
+
 module.exports = (env, argv) => {
   const prod = argv.mode === 'production';
 
@@ -59,6 +63,10 @@ module.exports = (env, argv) => {
             : false,
       }),
       new CleanWebpackPlugin(), // 번들링을 할 때마다 이전 번들링 결과를 제거
+      // process.env를 전역에서 접근 가능하게 지정
+      new webpack.DefinePlugin({
+        'process.env': JSON.stringify(process.env),
+      }),
     ],
   };
 };

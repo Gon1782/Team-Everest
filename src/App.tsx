@@ -1,5 +1,7 @@
+import Router from './shared/Router';
+
 const App = () => {
-  return <div style={{ backgroundColor: 'red' }}>hello world!!</div>;
+  return <Router />;
 };
 
 export default App;
