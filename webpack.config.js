@@ -27,6 +27,9 @@ module.exports = (env, argv) => {
     },
     resolve: {
       extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      alias: {
+        '@': path.resolve(__dirname, './src/'),
+      },
     },
     //모듈에 적용할 여러가지 로더들과 그 옵션들을 추가하는 부분.
     // jsx,tsx,ts,js 해석을 위한 babel로더 설정
