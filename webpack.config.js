@@ -19,11 +19,13 @@ module.exports = (env, argv) => {
     output: {
       path: path.join(__dirname, '/dist'),
       filename: '[name].js',
+      publicPath: '/',
     },
     // 개발환경서버 포트 3000으로 변경.
     devServer: {
       port: 3000,
       hot: true,
+      historyApiFallback: true,
     },
     resolve: {
       extensions: ['.js', '.jsx', '.ts', '.tsx'],
