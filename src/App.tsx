@@ -1,6 +1,6 @@
 import Router from './shared/Router';
 
-const App = () => {
+const App = () => { 
   return <Router />;
 };
 
