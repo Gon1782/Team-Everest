@@ -6,7 +6,9 @@ const Header = () => {
   return (
     <HeaderContainer>
       <Nav>
-        <HeaderLogo>logo</HeaderLogo>
+        <HeaderLogo>
+          <NavBarLink to="">Landing</NavBarLink>
+        </HeaderLogo>
         <RightSection>
           <NavBarLink to="">Main</NavBarLink>
           <NavBarLink to="">Map</NavBarLink>
