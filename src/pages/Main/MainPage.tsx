@@ -1,4 +1,4 @@
-import Banner from '@/components/banner/banner';
+import Banner from '@/components/banner/Banner';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
