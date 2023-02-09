@@ -1,6 +1,6 @@
 import useImageInputs from '@/hooks/useImageInputs';
 import useInput from '@/hooks/useInput';
-import { modalState } from '@/recoil/modal';
+import { modalState } from '@/recoil/atom/modal';
 import { useCallback, useRef, useState, useEffect } from 'react';
 import { FaStar, FaCamera } from 'react-icons/fa';
 import { useRecoilState, useRecoilValue } from 'recoil';
@@ -12,9 +12,9 @@ import {
   getDoc,
   setDoc,
   updateDoc,
-} from 'firebase/firestore';
+} from 'firebase/firestore/lite';
 import { db } from '@/common/api/firebase';
-import { DetailList } from '@/recoil/Detail';
+import { DetailList } from '@/recoil/atom/Detail';
 import { Reviews } from '@/types/DetailType';
 
 interface Props {

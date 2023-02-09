@@ -1,5 +1,5 @@
 import * as S from '@/pages/Detail/DetailStyled';
-import { DetailList } from '@/recoil/Detail';
+import { DetailList } from '@/recoil/atom/Detail';
 import { Item } from '@/types/DetailType';
 import { useRecoilValue } from 'recoil';
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { nowSchedule } from '@/atom/calender/scheduleState';
+import { nowSchedule } from '@/recoil/atom/scheduleState';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import CalenderView from './CalenderView';
 import ScheduleItem from './ScheduleItem';
