@@ -1,21 +1,20 @@
 import useImageInputs from '@/hooks/useImageInputs';
 import useInput from '@/hooks/useInput';
-import { modalState } from '@/recoil/modal';
+import { modalState } from '@/recoil/atom/modal';
 import { useCallback, useRef, useState, useEffect } from 'react';
 import { FaStar, FaCamera } from 'react-icons/fa';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import * as S from './ReviewStyled';
 import { uuidv4 } from '@firebase/util';
 import {
+  getDoc,
   doc,
   DocumentData,
-  getDoc,
   setDoc,
   updateDoc,
 } from 'firebase/firestore';
 import { db } from '@/common/api/firebase';
-import { DetailList } from '@/recoil/Detail';
-import { Reviews } from '@/types/DetailType';
+import { DetailList } from '@/recoil/atom/Detail';
 
 interface Props {
   title: string;
@@ -87,14 +86,14 @@ const ReviewModal = ({ title, id }: Props) => {
       title,
       uid: 'firebaseUid',
     };
-    const newReviewData: Reviews = {
+    const newReviewData = {
       ratingCount: list.ratingCount + 1,
       review: [...list.review, newReview],
       totalRating: list.totalRating + rating,
     };
     // 첫 리뷰 일때 setDoc 두번째 리뷰부터 업데이트
     if (!list.review) await setDoc(doc(db, 'reviews', id), newReviewData);
-    else await updateDoc(doc(db, 'reviews', id), { ...newReviewData });
+    else await updateDoc(doc(db, 'reviews', id), newReviewData);
 
     // USERDB POST
     await updateDoc(doc(db, 'users', `firebaseUid`), {

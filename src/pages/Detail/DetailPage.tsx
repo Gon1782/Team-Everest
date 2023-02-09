@@ -8,8 +8,8 @@ import { db } from '@/common/api/firebase';
 import { doc, onSnapshot } from 'firebase/firestore';
 import ReviewModal from '@/components/Detail/ReviewModal';
 import { useRecoilState } from 'recoil';
-import { modalState } from '@/recoil/modal';
-import { DetailList } from '@/recoil/Detail';
+import { modalState } from '@/recoil/atom/modal';
+import { DetailList } from '@/recoil/atom/Detail';
 import * as S from './DetailStyled';
 import { DetailResponse } from '@/types/DetailType';
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { nowSchedule } from '@/atom/calender/scheduleState';
+import { nowSchedule } from '@/recoil/atom/scheduleState';
 import { useRecoilState, useRecoilValue } from 'recoil';
 
 const ScheduleItem = ({ folder }: { folder: string }) => {
