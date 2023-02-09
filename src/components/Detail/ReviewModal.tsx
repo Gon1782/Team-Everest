@@ -1,7 +1,7 @@
 import useImageInputs from '@/hooks/useImageInputs';
 import useInput from '@/hooks/useInput';
 import { modalState } from '@/recoil/modal';
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useRef, useState, useEffect } from 'react';
 import { FaStar, FaCamera } from 'react-icons/fa';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import * as S from './ReviewStyled';
@@ -92,15 +92,20 @@ const ReviewModal = ({ title, id }: Props) => {
       review: [...list.review, newReview],
       totalRating: list.totalRating + rating,
     };
-    await getUser();
     // 첫 리뷰 일때 setDoc 두번째 리뷰부터 업데이트
     if (!list.review) await setDoc(doc(db, 'reviews', id), newReviewData);
     else await updateDoc(doc(db, 'reviews', id), { ...newReviewData });
+
+    // USERDB POST
     await updateDoc(doc(db, 'users', `firebaseUid`), {
       myReview: [...user?.myReview, newReview],
     });
     reset();
   };
+
+  useEffect(() => {
+    getUser();
+  }, []);
 
   return (
     <S.ModalContainer onClick={(e) => closeModalIfClickOutside(e)}>
