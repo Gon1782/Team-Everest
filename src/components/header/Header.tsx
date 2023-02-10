@@ -10,7 +10,7 @@ const Header = () => {
           <NavBarLink to="">Landing</NavBarLink>
         </HeaderLogo>
         <RightSection>
-          <NavBarLink to="">Main</NavBarLink>
+          <NavBarLink to="/main">Main</NavBarLink>
           <NavBarLink to="">Map</NavBarLink>
           <NavBarLink to="">Calendar</NavBarLink>
           <NavBarLink to="">Detail</NavBarLink>
