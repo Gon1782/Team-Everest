@@ -4,6 +4,7 @@ import Landing from '@/pages/Landing';
 import DetailPage from '@/pages/Detail/DetailPage';
 import MainPage from '@/pages/Main/MainPage';
 import ScheduleList from '@/components/calender/ScheduleList';
+import Mypage from '@/pages/Mypage/Mypage';
 const Router = () => {
   return (
     <BrowserRouter>
@@ -13,6 +14,7 @@ const Router = () => {
         <Route path="/" element={<Landing />}></Route>
         <Route path="/main" element={<MainPage />}></Route>
         <Route path="/detail/:id" element={<DetailPage />}></Route>
+        <Route path="/my" element={<Mypage />}></Route>
       </Routes>
     </BrowserRouter>
   );

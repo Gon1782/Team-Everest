@@ -1,12 +1,12 @@
 import DetailInfo from '@/components/Detail/DetailInfo';
-import Review from '@/components/Detail/Review';
+import Review from '@/components/Detail/Review/Review';
 import { useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { getDetail } from '@/common/api/detailApi';
 import { useEffect } from 'react';
 import { db } from '@/common/api/firebase';
 import { doc, onSnapshot } from 'firebase/firestore';
-import ReviewModal from '@/components/Detail/ReviewModal';
+import ReviewModal from '@/components/Detail/Review/ReviewModal';
 import { useRecoilState } from 'recoil';
 import { modalState } from '@/recoil/atom/modal';
 import { DetailList } from '@/recoil/atom/Detail';
