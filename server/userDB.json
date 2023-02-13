@@ -1,0 +1,14 @@
+{
+  "users": [
+    {
+      "firebaseUid": {
+        "uid": "",
+        "displayName": "",
+        "photoURL": "",
+        "e-mail": "",
+        "myPlanner": [{}],
+        "MyReview": [{}]
+      }
+    }
+  ]
+}

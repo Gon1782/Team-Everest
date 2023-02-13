@@ -1,29 +1,29 @@
-import * as Style from './CityMapStyled';
+import * as Style from './CityMapPageStyled';
 import { useRecoilState } from 'recoil';
 import { useQuery } from 'react-query';
 import { useEffect } from 'react';
+import Sidebar from '@/components/Sidebar/Sidebar';
+import Citymap from '@/components/Citymap/Citymap';
+import { locationData, themeData } from '@/common/api/categoryApi';
 
-// 우상님 지도api 사용시에 상의 후 따로 type파일 만들예정
-declare global {
-  interface Window {
-    kakao: any;
-  }
+interface StatusType {
+  isLoading: boolean;
+  isError: boolean;
 }
 
-const { kakao } = window;
+type ErrorType<T> = {
+  error: T | unknown;
+};
 
 const CityMapPage = () => {
-  useEffect(() => {
-    const container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
-    const options = {
-      center: new kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
-      level: 3, //지도의 레벨(확대, 축소 정도)
-    };
+  const { data, isLoading, refetch } = useQuery('locationData', locationData);
 
-    const map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
-  }, []);
-
-  return <div id="map" style={{ width: '100%', height: '100vh' }}></div>;
+  return (
+    <Style.Wrap>
+      <Sidebar />
+      <Citymap />
+    </Style.Wrap>
+  );
 };
 
 export default CityMapPage;

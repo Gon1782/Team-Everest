@@ -1,0 +1,22 @@
+{
+  "reviews": [
+    {
+      "contentid": {
+        "totalRating": 0,
+        "ratingCount": 0,
+        "review": [
+          {
+            "uid": "",
+            "id": "",
+            "rating": 0,
+            "image": ["", ""],
+            "title": "",
+            "content": "",
+            "createdAt": "",
+            "isDelete": "N"
+          }
+        ]
+      }
+    }
+  ]
+}

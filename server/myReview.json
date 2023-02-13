@@ -1,0 +1,12 @@
+{
+  "myReview": [
+    {
+      "id": "",
+      "image": ["",""],
+      "rating": 0,
+      "content": "",
+      "contentId": "",
+      "createdAt": ""
+    }
+  ]
+}

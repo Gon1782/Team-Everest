@@ -4,12 +4,13 @@ import Landing from '@/pages/Landing';
 import DetailPage from '@/pages/Detail/DetailPage';
 import MainPage from '@/pages/Main/MainPage';
 import ScheduleList from '@/components/calender/ScheduleList';
+import Mypage from '@/pages/Mypage/Mypage';
 import CityMapPage from '@/pages/CityMap/CityMapPage';
 
 const Router = () => {
   return (
     <BrowserRouter>
-      <Header />
+      {/* <Header /> */}
       <Routes>
         {/* <Route path="/" element={<ScheduleList />}></Route> */}
         <Route path="/" element={<Landing />}></Route>
