@@ -7,44 +7,69 @@ const MainPage = () => {
     <MainContainer>
       {/* 상단 배너 */}
       <Banner />
-      {/* 지역별 카테고리 */}
-      <RegionCategoryContainer>
-        <CategoriesTitle>지역별 카테고리</CategoriesTitle>
-        <RegionCategories>
-          <button>&lt;</button>
-          <RegionCategory>도시</RegionCategory>
-          <RegionCategory>도시</RegionCategory>
-          <RegionCategory>도시</RegionCategory>
-          <RegionCategory>도시</RegionCategory>
-          <RegionCategory>도시</RegionCategory>
-          <RegionCategory>도시</RegionCategory>
-          <RegionCategory>도시</RegionCategory>
-          <RegionCategory>도시</RegionCategory>
-          <button>&gt;</button>
-        </RegionCategories>
-      </RegionCategoryContainer>
-      {/* 테마 카테고리 */}
-      <ThemeCategories>
-        <ThemeCategory>&#35; 테마</ThemeCategory>
-        <ThemeCategory>&#35; 테마</ThemeCategory>
-        <ThemeCategory>&#35; 테마테마테</ThemeCategory>
-        <ThemeCategory>&#35; 테마</ThemeCategory>
-        <ThemeCategory>&#35; 테마테마테마</ThemeCategory>
-      </ThemeCategories>
-      {/* 구별 카테고리 */}
+      {/* 검색창 */}
+      <SearchContainer>
+        <SearchForm>
+          <SearchInput></SearchInput>
+          <SearchButton>검색</SearchButton>
+        </SearchForm>
+        <SearchOnMap>지도에서 검색</SearchOnMap>
+      </SearchContainer>
+      {/* 인기도시 카테고리 */}
+      <TopCityCategoryContainer>
+        <CategoriesTitle>인기 도시</CategoriesTitle>
+        <TopCityCategories>
+          <TopCityCategory>도시</TopCityCategory>
+          <TopCityCategory>도시</TopCityCategory>
+          <TopCityCategory>도시</TopCityCategory>
+          <TopCityCategory>도시</TopCityCategory>
+          <TopCityCategory>도시</TopCityCategory>
+          <TopCityCategory>도시</TopCityCategory>
+        </TopCityCategories>
+      </TopCityCategoryContainer>
 
-      <SubRegionCategories>
-        <SubRegionCategoryCard>
-          <SubRegionCategoryCardImg
-            src={require('@/assets/banner_bg.jpg').default}
-            alt=""
-          />
-        </SubRegionCategoryCard>
-        <SubRegionCategoryCard></SubRegionCategoryCard>
-        <SubRegionCategoryCard></SubRegionCategoryCard>
-        <SubRegionCategoryCard></SubRegionCategoryCard>
-        <SubRegionCategoryCard></SubRegionCategoryCard>
-      </SubRegionCategories>
+      {/* 추천 플레이스 리스트 */}
+      <RecommendedContainer>
+        <RecommendedPlacesTitle>추천 플레이스</RecommendedPlacesTitle>
+        <RecommendedPlaces>
+          <RecommendedPlaceCard>
+            <RecommendedPlaceCardImg
+              src={require('@/assets/banner_bg.jpg').default}
+              alt=""
+            />
+          </RecommendedPlaceCard>
+          <RecommendedPlaceCard>
+            <RecommendedPlaceCardImg
+              src={require('@/assets/banner_bg.jpg').default}
+              alt=""
+            />
+          </RecommendedPlaceCard>
+          <RecommendedPlaceCard>
+            <RecommendedPlaceCardImg
+              src={require('@/assets/banner_bg.jpg').default}
+              alt=""
+            />
+          </RecommendedPlaceCard>
+          <RecommendedPlaceCard>
+            <RecommendedPlaceCardImg
+              src={require('@/assets/banner_bg.jpg').default}
+              alt=""
+            />
+          </RecommendedPlaceCard>
+          <RecommendedPlaceCard>
+            <RecommendedPlaceCardImg
+              src={require('@/assets/banner_bg.jpg').default}
+              alt=""
+            />
+          </RecommendedPlaceCard>
+          <RecommendedPlaceCard>
+            <RecommendedPlaceCardImg
+              src={require('@/assets/banner_bg.jpg').default}
+              alt=""
+            />
+          </RecommendedPlaceCard>
+        </RecommendedPlaces>
+      </RecommendedContainer>
     </MainContainer>
   );
 };
@@ -57,9 +82,50 @@ const MainContainer = styled.div`
   overflow: hidden;
 `;
 
-// 지역별 카테고리
-const RegionCategoryContainer = styled.section`
-  width: 60%;
+// 검색창
+const SearchContainer = styled.div`
+  width: 25%;
+  height: 100px;
+  background-color: #d7d7d7;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  margin: 0 auto;
+`;
+
+const SearchForm = styled.form`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+`;
+
+const SearchInput = styled.input`
+  width: 100%;
+  height: 40px;
+  border-radius: 100px;
+  border: none;
+  outline: none;
+  padding: 1rem;
+  margin-right: 8px;
+`;
+
+const SearchButton = styled.button`
+  width: 65px;
+  height: 40px;
+  border-radius: 100px;
+`;
+
+const SearchOnMap = styled.div`
+  margin-top: 10px;
+  width: 100%;
+  text-align: right;
+`;
+
+// 인기도시 카테고리
+const TopCityCategoryContainer = styled.section`
+  width: 30%;
   height: 120px;
   padding: 1rem;
   background-color: grey;
@@ -67,70 +133,70 @@ const RegionCategoryContainer = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: left;
   gap: 1rem;
 `;
 
 const CategoriesTitle = styled.h2`
   font-size: 1.5rem;
-  color: white;
+  color: #0c0c0c;
 `;
 
-const RegionCategories = styled.div`
+const TopCityCategories = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 0.5rem;
+  gap: 0.7rem;
 `;
 
-const RegionCategory = styled.div`
-  width: 60px;
-  height: 60px;
-  border-radius: 100px;
+const TopCityCategory = styled.div`
+  min-width: 80px;
+  height: 28px;
+  border-radius: 30px;
   background-color: lightgrey;
   text-align: center;
-  line-height: 60px;
+  line-height: 28px;
+  font-size: 0.9rem;
 `;
 
-// 테마 카테고리
+// 추천 플레이스 리스트
 
-const ThemeCategories = styled.div`
-  background-color: lightgrey;
-  width: 60%;
-  height: 60px;
-  padding: 1rem;
+const RecommendedContainer = styled.div`
+  width: 58rem;
   margin: 0 auto;
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
+  background-color: grey;
 `;
 
-const ThemeCategory = styled.div`
-  padding: 0.3rem;
-  background-color: white;
-  border-radius: 5px;
+const RecommendedPlacesTitle = styled.h2`
+  font-size: 1.6rem;
+  width: 100%;
+  padding: 10px;
 `;
 
-// 시군구별 카테고리
-
-const SubRegionCategories = styled.div`
+const RecommendedPlaces = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   grid-gap: 40px;
-  width: 60%;
+  width: 100%;
   height: 500px;
   background-color: #bfbfbf;
   margin: 0 auto;
   padding: 2rem;
 `;
 
-const SubRegionCategoryCard = styled.div`
+const RecommendedPlaceCard = styled.div`
+  width: 20%;
+  height: 200px;
   background-color: white;
   border-radius: 10px;
+  position: relative;
 `;
 
-const SubRegionCategoryCardImg = styled.img`
-  width: 80px;
-  height: 100px;
+const RecommendedPlaceCardImg = styled.img`
+  width: 100%;
+  height: 200px;
+  /* overflow: hidden; */
+  position: absolute;
   object-fit: cover;
+  border-radius: 10px;
 `;

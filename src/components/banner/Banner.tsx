@@ -15,7 +15,7 @@ export default Banner;
 
 const BannerContainer = styled.div`
   width: 100%;
-  height: 350px;
+  height: 300px;
   position: relative;
 `;
 
@@ -35,7 +35,7 @@ const BannerBgWrapper = styled.div`
 
 const BannerBg = styled.img`
   width: 100%;
-  height: 350px;
+  height: 300px;
   overflow: hidden;
   position: absolute;
   object-fit: cover;
