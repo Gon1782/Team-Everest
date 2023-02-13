@@ -98,6 +98,50 @@ const Mypage = () => {
               </ImageBox>
             </MyReviewInfoBox>
           </MyReviewBox>
+          <MyReviewBox>
+            <MyReviewHeader>
+              <MyReviewProfile
+                src={
+                  'https://images.unsplash.com/photo-1675845626595-a50d669f26cb?ixl'
+                }
+              />
+              <span>김치워리어</span>
+            </MyReviewHeader>
+            <MyReviewInfoBox>
+              <span>장소명</span>
+              <div
+                style={{
+                  display: 'flex',
+                  width: '100%',
+                  justifyContent: 'center',
+                  backgroundColor: 'white',
+                  paddingTop: '.5rem',
+                  paddingBottom: '.5rem',
+                }}
+              >
+                ⭐⭐⭐⭐⭐
+              </div>
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  backgroundColor: 'white',
+                  fontSize: '1rem',
+                  padding: '1rem',
+                }}
+              >
+                내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용
+              </div>
+              <ImageBox
+                style={{
+                  display: 'flex',
+                  gap: '1rem',
+                  margin: 0,
+                  width: '100%',
+                }}
+              ></ImageBox>
+            </MyReviewInfoBox>
+          </MyReviewBox>
         </MyReviewContainer>
       </MyReviewSection>
     </MyPageContainer>
@@ -115,12 +159,12 @@ const MyPageContainer = styled.main`
 const ProfileSection = styled.section`
   position: relative;
   width: 100%;
-  height: 725px;
+  height: 675px;
 `;
 const MyBackImage = styled.img`
   position: absolute;
   width: 100%;
-  height: 500px;
+  height: 450px;
   background-color: green;
   border: none;
 `;
@@ -178,7 +222,6 @@ const MyText = styled.span`
 `;
 const MyReviewSection = styled.section`
   max-width: 1344px;
-  background-color: white;
   margin: 3rem auto 0;
   padding: 0 0 1rem;
   border-radius: 20px;
@@ -198,7 +241,7 @@ const MyReviewContainer = styled.div`
 const MyReviewBox = styled.div`
   width: 388px;
   height: 420px;
-  background-color: gray;
+  background-color: white;
   padding: 1rem;
   border-radius: 20px;
 `;

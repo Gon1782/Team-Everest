@@ -12,5 +12,7 @@ export const getDate = () => {
   let minute: time = now.getMinutes();
   if (minute < 10) minute = "0" + minute;
 
+  // const [date, time] = getDate()
+  // date = YYYY-MM-DD time = HH:MM
   return [`${year}-${month}-${day}`, `${hour}:${minute}`];
 };

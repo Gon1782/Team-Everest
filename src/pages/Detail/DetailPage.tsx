@@ -47,7 +47,7 @@ const DetailPage = () => {
         <span>별점과 후기를 남겨주세요</span>
         <S.ReviewBtn onClick={() => setModal(true)}>후기작성하기</S.ReviewBtn>
       </S.WriteReview>
-      <Review review={list?.review} />
+      <Review review={list?.review.filter((x: any) => x.isDelete === 'N')} />
     </S.DetailContainer>
   );
 };

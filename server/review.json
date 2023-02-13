@@ -12,7 +12,8 @@
             "image": ["", ""],
             "title": "",
             "content": "",
-            "date": ""
+            "createdAt": "",
+            "isDelete": "N"
           }
         ]
       }
