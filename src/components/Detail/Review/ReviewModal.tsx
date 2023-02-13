@@ -87,9 +87,9 @@ const ReviewModal = ({ title, id }: Props) => {
       uid: 'firebaseUid',
     };
     const newReviewData = {
-      ratingCount: list.ratingCount + 1,
-      review: [...list.review, newReview],
-      totalRating: list.totalRating + rating,
+      ratingCount: !!list.ratingCount ? list.ratingCount + 1 : 1,
+      review: !!list.review ? [...list?.review, newReview] : [newReview],
+      totalRating: !!list.totalRating ? list.totalRating + rating : rating,
     };
     // 첫 리뷰 일때 setDoc 두번째 리뷰부터 업데이트
     if (!list.review) await setDoc(doc(db, 'reviews', id), newReviewData);
