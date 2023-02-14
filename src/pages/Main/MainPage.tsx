@@ -12,69 +12,109 @@ const MainPage = () => {
       <TopBanner>
         <TopSlideBanner />
       </TopBanner>
-      {/* 검색창 */}
-      <SearchContainer>
-        <SearchForm>
-          <SearchInput></SearchInput>
-          <SearchButton>검색</SearchButton>
-        </SearchForm>
-        <SearchOnMap>지도에서 검색</SearchOnMap>
-      </SearchContainer>
-      {/* 인기도시 카테고리 */}
+      {/* 인기도시 */}
       <TopCityCategoryContainer>
         <CategoriesTitle>인기 도시</CategoriesTitle>
         <TopCityCategories>
-          <TopCityCategory>도시</TopCityCategory>
-          <TopCityCategory>도시</TopCityCategory>
-          <TopCityCategory>도시</TopCityCategory>
-          <TopCityCategory>도시</TopCityCategory>
-          <TopCityCategory>도시</TopCityCategory>
-          <TopCityCategory>도시</TopCityCategory>
+          <TopCityCategory
+            src={require('@/assets/banner_02.jpg').default}
+            alt="slide banner2"
+          />
+          <TopCityCategory
+            src={require('@/assets/banner_02.jpg').default}
+            alt="slide banner2"
+          />
+          <TopCityCategory
+            src={require('@/assets/banner_02.jpg').default}
+            alt="slide banner2"
+          />
         </TopCityCategories>
       </TopCityCategoryContainer>
 
-      {/* 추천 플레이스 리스트 */}
-      <RecommendedContainer>
-        <RecommendedPlacesTitle>추천 플레이스</RecommendedPlacesTitle>
-        <RecommendedPlaces>
-          <RecommendedPlaceCard>
-            <RecommendedPlaceCardImg
+      {/* 테마 명소 */}
+      <ThemePlaceContainer>
+        <ThemePlaceTitle>테마가 있는 명소</ThemePlaceTitle>
+        <HashTagList>
+          <HashTag>#해쉬태그1</HashTag>
+          <HashTag>#해쉬태그2</HashTag>
+          <HashTag>#해쉬태그3</HashTag>
+        </HashTagList>
+        <ThemePlaces>
+          <ThemePlaceList>
+            <ThemePlace>해쉬태그1 명소1</ThemePlace>
+            <ThemePlace>해쉬태그1 명소2</ThemePlace>
+            <ThemePlace>해쉬태그1 명소3</ThemePlace>
+            <ThemePlace>해쉬태그1 명소4</ThemePlace>
+            <ThemePlace>해쉬태그1 명소5</ThemePlace>
+            <ThemePlace>해쉬태그1 명소6</ThemePlace>
+          </ThemePlaceList>
+          <ThemePlaceCard>
+            <Link to="">
+              <ThemePlaceCardImg
+                src={require('@/assets/banner_01.jpg').default}
+                alt=""
+              />
+            </Link>
+
+            <Link to="">
+              <ThemePlaceCardImg
+                src={require('@/assets/banner_01.jpg').default}
+                alt=""
+              />
+            </Link>
+            <Link to="">
+              <ThemePlaceCardImg
+                src={require('@/assets/banner_01.jpg').default}
+                alt=""
+              />
+            </Link>
+            <Link to="">
+              <ThemePlaceCardImg
+                src={require('@/assets/banner_01.jpg').default}
+                alt=""
+              />
+            </Link>
+            <Link to="">
+              <ThemePlaceCardImg
+                src={require('@/assets/banner_01.jpg').default}
+                alt=""
+              />
+            </Link>
+            <Link to="">
+              <ThemePlaceCardImg
+                src={require('@/assets/banner_01.jpg').default}
+                alt=""
+              />
+            </Link>
+          </ThemePlaceCard>
+        </ThemePlaces>
+      </ThemePlaceContainer>
+      {/* 베스트 여행 일정 */}
+      <BestTravelRouteContainer>
+        <BestTravelRouteCard>
+          <TravelPlaceMainImgWrapper>
+            <TravelPlaceMainImg
               src={require('@/assets/banner_01.jpg').default}
               alt=""
             />
-          </RecommendedPlaceCard>
-          <RecommendedPlaceCard>
-            <RecommendedPlaceCardImg
-              src={require('@/assets/banner_01.jpg').default}
+          </TravelPlaceMainImgWrapper>
+          <Wrapper>
+            <TravelPlaceReviewerImgWrapper>
+              <TravelPlaceReviewerImg
+                src={require('@/assets/blankProfiles.png').default}
+                alt=""
+              />
+            </TravelPlaceReviewerImgWrapper>
+            <TravelPlaceName>관광지 이름</TravelPlaceName>
+          </Wrapper>
+          <TravelPlaceSubImgWrapper>
+            <TravelPlaceSubImg
+              src={require('@/assets/banner_03.jpg').default}
               alt=""
             />
-          </RecommendedPlaceCard>
-          <RecommendedPlaceCard>
-            <RecommendedPlaceCardImg
-              src={require('@/assets/banner_01.jpg').default}
-              alt=""
-            />
-          </RecommendedPlaceCard>
-          <RecommendedPlaceCard>
-            <RecommendedPlaceCardImg
-              src={require('@/assets/banner_01.jpg').default}
-              alt=""
-            />
-          </RecommendedPlaceCard>
-          <RecommendedPlaceCard>
-            <RecommendedPlaceCardImg
-              src={require('@/assets/banner_01.jpg').default}
-              alt=""
-            />
-          </RecommendedPlaceCard>
-          <RecommendedPlaceCard>
-            <RecommendedPlaceCardImg
-              src={require('@/assets/banner_01.jpg').default}
-              alt=""
-            />
-          </RecommendedPlaceCard>
-        </RecommendedPlaces>
-      </RecommendedContainer>
+          </TravelPlaceSubImgWrapper>
+        </BestTravelRouteCard>
+      </BestTravelRouteContainer>
     </MainContainer>
   );
 };
@@ -87,47 +127,6 @@ const MainContainer = styled.div`
   overflow: hidden;
 `;
 
-// 검색창
-const SearchContainer = styled.div`
-  width: 25%;
-  height: 100px;
-  background-color: #d7d7d7;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-end;
-  margin: 0 auto;
-`;
-
-const SearchForm = styled.form`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-`;
-
-const SearchInput = styled.input`
-  width: 100%;
-  height: 40px;
-  border-radius: 100px;
-  border: none;
-  outline: none;
-  padding: 1rem;
-  margin-right: 8px;
-`;
-
-const SearchButton = styled.button`
-  width: 65px;
-  height: 40px;
-  border-radius: 100px;
-`;
-
-const SearchOnMap = styled.div`
-  margin-top: 10px;
-  width: 100%;
-  text-align: right;
-`;
-
 // 상단 슬라이더 배너
 const TopBanner = styled.div`
   background-color: #e3e3e3;
@@ -138,80 +137,203 @@ const TopBanner = styled.div`
   } */
 `;
 
-// 인기도시 카테고리
+// 인기도시
 const TopCityCategoryContainer = styled.section`
-  width: 30%;
-  height: 120px;
-  padding: 1rem;
+  width: 60%;
+  height: 350px;
+  padding: 2rem;
   background-color: grey;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: left;
+  align-items: center;
   gap: 1rem;
 `;
 
 const CategoriesTitle = styled.h2`
-  font-size: 1.5rem;
+  font-size: 2.2rem;
+  font-weight: 900;
   color: #0c0c0c;
+  margin-bottom: 30px;
 `;
 
 const TopCityCategories = styled.div`
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: row;
   gap: 0.7rem;
+  width: 100%;
+  height: 100%;
 `;
 
-const TopCityCategory = styled.div`
-  min-width: 80px;
-  height: 28px;
-  border-radius: 30px;
-  background-color: lightgrey;
+const TopCityCategory = styled.img`
+  width: 30%;
+  height: 100%;
+  border-radius: 15px;
   text-align: center;
   line-height: 28px;
   font-size: 0.9rem;
+  object-fit: cover;
 `;
 
-// 추천 플레이스 리스트
+// 테마 명소
 
-const RecommendedContainer = styled.div`
-  width: 58rem;
+const ThemePlaceContainer = styled.div`
+  width: 100%;
+  height: 1000px;
   margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
   background-color: grey;
 `;
 
-const RecommendedPlacesTitle = styled.h2`
-  font-size: 1.6rem;
+const ThemePlaceTitle = styled.h2`
+  font-size: 2.4rem;
+  font-weight: 900;
   width: 100%;
   padding: 10px;
+  margin-bottom: 30px;
 `;
 
-const RecommendedPlaces = styled.div`
+const HashTagList = styled.ul`
+  font-weight: 900;
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  grid-gap: 40px;
+  margin-bottom: 20px;
+  gap: 40px;
+  font-size: 1.2rem;
+`;
+
+const HashTag = styled.li`
+  font-size: 1.8rem;
+`;
+
+const ThemePlaces = styled.div`
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
   width: 100%;
-  height: 500px;
-  background-color: #bfbfbf;
+  height: 600px;
   margin: 0 auto;
   padding: 2rem;
-`;
-
-const RecommendedPlaceCard = styled.div`
-  width: 20%;
-  height: 200px;
-  background-color: white;
-  border-radius: 10px;
+  background-color: #902f2f;
   position: relative;
+  margin-top: 20px;
 `;
 
-const RecommendedPlaceCardImg = styled.img`
-  width: 100%;
-  height: 200px;
-  /* overflow: hidden; */
+const ThemePlaceList = styled.ul`
   position: absolute;
+  left: 0;
+  width: 25%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #e0e0db;
+`;
+
+const ThemePlace = styled.li`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: calc(100% / 6);
+  font-size: 1.2rem;
+  padding: 20px;
+  border-bottom: 1px solid #000;
+`;
+
+const ThemePlaceCard = styled.div`
+  display: flex;
+  width: 75%;
+  height: 600px;
+  background-color: white;
+  position: absolute;
+  right: 0;
+`;
+
+const ThemePlaceCardImg = styled.img`
+  width: 400px;
+  height: 100%;
   object-fit: cover;
   border-radius: 10px;
+  margin-right: 10px;
+`;
+
+// 베스트 여행 일정
+
+const BestTravelRouteContainer = styled.div`
+  width: 100%;
+  height: auto;
+  background-color: #d68989;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 70px 50px;
+`;
+
+const BestTravelRouteCard = styled.div`
+  background-color: #dadada;
+  border-radius: 10px;
+  width: 250px;
+  height: 350px;
+  margin: 0 10px 20px 10px;
+  position: relative;
+  overflow: hidden;
+`;
+
+const TravelPlaceMainImgWrapper = styled.div`
+  background-color: #b6b6b6;
+  height: 40%;
+`;
+
+const TravelPlaceMainImg = styled.img`
+  width: 100%;
+  height: 100%;
+`;
+
+const Wrapper = styled.div`
+  position: absolute;
+  /* bottom: 35%; */
+  top: 33%;
+  left: 0;
+  right: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const TravelPlaceReviewerImgWrapper = styled.div`
+  width: 50px;
+  height: 50px;
+  background-color: #383838;
+  margin: auto;
+  border-radius: 50%;
+  overflow: hidden;
+`;
+
+const TravelPlaceReviewerImg = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
+
+const TravelPlaceName = styled.h4`
+  margin-top: 20px;
+`;
+
+const TravelPlaceSubImgWrapper = styled.div`
+  background-color: #9b6969;
+  height: 60%;
+`;
+
+const TravelPlaceSubImg = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 `;
