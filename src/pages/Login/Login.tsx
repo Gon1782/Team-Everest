@@ -1,16 +1,15 @@
 import LoginTab from '@/components/Login/LoginTab';
 import RegisterTab from '@/components/Register/RegisterTab';
-import { useState } from 'react';
+import { LoginState } from '@/recoil/atom/LoginToggle';
+import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 
 const Login = () => {
-  const [checkLogin, setCheck] = useState(true);
+  const [checkLogin, setCheck] = useRecoilState(LoginState);
 
   const toggleCheck = () => {
     setCheck(!checkLogin);
   };
-
-  console.log(checkLogin);
 
   return (
     <>
