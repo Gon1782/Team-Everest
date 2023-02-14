@@ -1,7 +1,7 @@
-import * as S from '@/pages/Detail/DetailStyled';
+import { useRecoilValue } from 'recoil';
 import { DetailList } from '@/recoil/atom/Detail';
 import { Item } from '@/types/DetailType';
-import { useRecoilValue } from 'recoil';
+import * as S from '@/pages/Detail/style/DetailStyled';
 
 interface Props {
   item: Item | undefined;

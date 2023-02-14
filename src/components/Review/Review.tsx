@@ -1,6 +1,6 @@
 import { EachReview } from '@/types/DetailType';
 import ReviewBox from './ReviewBox';
-import * as S from './ReviewStyled';
+import * as S from './style/ReviewStyled';
 
 interface Props {
   review: EachReview[];

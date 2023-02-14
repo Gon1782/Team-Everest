@@ -3,7 +3,7 @@ import { EachReview } from './DetailType';
 export interface UserData {
   displayName: string;
   email: string;
-  myReview: EachReview[];
+  MyReview: EachReview[];
   photoURL: string;
   uid: string;
 }

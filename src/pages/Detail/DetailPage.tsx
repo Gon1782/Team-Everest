@@ -1,22 +1,36 @@
-import DetailInfo from '@/components/Detail/DetailInfo';
-import Review from '@/components/Detail/Review/Review';
-import { useParams } from 'react-router-dom';
-import { useQuery } from 'react-query';
-import { getDetail } from '@/common/api/detailApi';
 import { useEffect } from 'react';
-import { db } from '@/common/api/firebase';
-import { doc, onSnapshot } from 'firebase/firestore';
-import ReviewModal from '@/components/Detail/Review/ReviewModal';
+import { useQuery } from 'react-query';
 import { useRecoilState } from 'recoil';
-import { modalState } from '@/recoil/atom/modal';
+import { useNavigate, useParams } from 'react-router-dom';
+import { doc, onSnapshot } from 'firebase/firestore';
+import { getDetail } from '@/common/api/detailApi';
+import { db } from '@/common/api/firebase';
+import DetailInfo from '@/components/Detail/DetailInfo';
+import Review from '@/components/Review/Review';
+import ReviewModal from '@/components/Review/ReviewModal';
 import { DetailList } from '@/recoil/atom/Detail';
-import * as S from './DetailStyled';
-import { DetailResponse } from '@/types/DetailType';
+import { reviewModalState } from '@/recoil/atom/ReviewModal';
+import { DetailResponse, Document, EachReview } from '@/types/DetailType';
+import * as S from './style/DetailStyled';
 
 const DetailPage = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
-  const [list, setList] = useRecoilState<any>(DetailList);
-  const [modal, setModal] = useRecoilState(modalState);
+  const sessionKey = `firebase:authUser:${process.env.FIREBASE_API_KEY}:[DEFAULT]`;
+  const uid = !!sessionStorage.getItem(sessionKey)
+    ? JSON.parse(sessionStorage.getItem(sessionKey)).uid
+    : '';
+  const [list, setList] = useRecoilState<Document>(DetailList);
+  const [modal, setModal] = useRecoilState(reviewModalState);
+
+  const modalOpen = () => {
+    if (!uid) {
+      alert('로그인 후 이용해주세요');
+      navigate('/login');
+      return;
+    }
+    setModal(true);
+  };
 
   useEffect(() => {
     onSnapshot(doc(db, 'reviews', `${id}`), (doc) => {
@@ -45,9 +59,11 @@ const DetailPage = () => {
       <DetailInfo item={data?.response.body.items.item[0]} />
       <S.WriteReview>
         <span>별점과 후기를 남겨주세요</span>
-        <S.ReviewBtn onClick={() => setModal(true)}>후기작성하기</S.ReviewBtn>
+        <S.ReviewBtn onClick={() => modalOpen()}>후기작성하기</S.ReviewBtn>
       </S.WriteReview>
-      <Review review={list?.review.filter((x: any) => x.isDelete === 'N')} />
+      <Review
+        review={list?.review?.filter((x: EachReview) => x.isDelete === 'N')}
+      />
     </S.DetailContainer>
   );
 };
