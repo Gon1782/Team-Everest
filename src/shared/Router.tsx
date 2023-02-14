@@ -11,9 +11,9 @@ const Router = () => {
     <BrowserRouter>
       <Header />
       <Routes>
-        {/* <Route path="/" element={<ScheduleList />}></Route> */}
         <Route path="/" element={<Landing />}></Route>
         <Route path="/main" element={<MainPage />}></Route>
+        <Route path="/schedule" element={<ScheduleList />}></Route>
         <Route path="/detail/:id" element={<DetailPage />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/my" element={<Mypage />}></Route>

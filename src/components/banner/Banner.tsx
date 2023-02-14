@@ -5,7 +5,7 @@ const Banner = () => {
   return (
     <BannerContainer>
       <BannerBgWrapper>
-        <BannerBg src={require('@/assets/banner_bg.jpg').default} alt=" " />
+        <BannerBg src={require('@/assets/banner_01.jpg').default} alt=" " />
       </BannerBgWrapper>
     </BannerContainer>
   );

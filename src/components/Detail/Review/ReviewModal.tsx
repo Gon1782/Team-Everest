@@ -85,6 +85,7 @@ const ReviewModal = ({ title, id }: Props) => {
       image,
       title,
       uid: 'firebaseUid',
+      isDelete: 'N',
     };
     const newReviewData = {
       ratingCount: !!list.ratingCount ? list.ratingCount + 1 : 1,

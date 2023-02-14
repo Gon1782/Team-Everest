@@ -1,12 +1,17 @@
+import { auth } from '@/common/api/firebase';
 import Banner from '@/components/banner/Banner';
+import TopSlideBanner from '@/components/banner/TopSlideBanner';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import Swiper from 'swiper';
 
 const MainPage = () => {
   return (
     <MainContainer>
-      {/* 상단 배너 */}
-      <Banner />
+      {/* 상단 슬라이드 배너 */}
+      <TopBanner>
+        <TopSlideBanner />
+      </TopBanner>
       {/* 검색창 */}
       <SearchContainer>
         <SearchForm>
@@ -34,37 +39,37 @@ const MainPage = () => {
         <RecommendedPlaces>
           <RecommendedPlaceCard>
             <RecommendedPlaceCardImg
-              src={require('@/assets/banner_bg.jpg').default}
+              src={require('@/assets/banner_01.jpg').default}
               alt=""
             />
           </RecommendedPlaceCard>
           <RecommendedPlaceCard>
             <RecommendedPlaceCardImg
-              src={require('@/assets/banner_bg.jpg').default}
+              src={require('@/assets/banner_01.jpg').default}
               alt=""
             />
           </RecommendedPlaceCard>
           <RecommendedPlaceCard>
             <RecommendedPlaceCardImg
-              src={require('@/assets/banner_bg.jpg').default}
+              src={require('@/assets/banner_01.jpg').default}
               alt=""
             />
           </RecommendedPlaceCard>
           <RecommendedPlaceCard>
             <RecommendedPlaceCardImg
-              src={require('@/assets/banner_bg.jpg').default}
+              src={require('@/assets/banner_01.jpg').default}
               alt=""
             />
           </RecommendedPlaceCard>
           <RecommendedPlaceCard>
             <RecommendedPlaceCardImg
-              src={require('@/assets/banner_bg.jpg').default}
+              src={require('@/assets/banner_01.jpg').default}
               alt=""
             />
           </RecommendedPlaceCard>
           <RecommendedPlaceCard>
             <RecommendedPlaceCardImg
-              src={require('@/assets/banner_bg.jpg').default}
+              src={require('@/assets/banner_01.jpg').default}
               alt=""
             />
           </RecommendedPlaceCard>
@@ -121,6 +126,16 @@ const SearchOnMap = styled.div`
   margin-top: 10px;
   width: 100%;
   text-align: right;
+`;
+
+// 상단 슬라이더 배너
+const TopBanner = styled.div`
+  background-color: #e3e3e3;
+  align-items: center;
+  display: flex;
+  /* @media screen and (max-width: 768px) {
+    display: none;
+  } */
 `;
 
 // 인기도시 카테고리

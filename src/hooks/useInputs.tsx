@@ -1,6 +1,6 @@
 import { useReducer, useCallback } from 'react';
 
-export interface Magic {
+export interface State {
   [key: string]: string | number | boolean | undefined;
 }
 
@@ -10,8 +10,9 @@ interface ActionType {
   value?: string;
 }
 
-const useInputs = (initialState: Magic) => {
-  const reducer = (state: Magic, action: ActionType): Magic => {
+// 객체일때 커스텀훅 initialState는 객체
+const useInputs = (initialState: State) => {
+  const reducer = (state: State, action: ActionType): State => {
     switch (action.type) {
       case 'CHANGE_INPUT':
         return {
