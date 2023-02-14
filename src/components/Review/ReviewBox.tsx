@@ -1,15 +1,19 @@
 import { useEffect, useState } from 'react';
+import { doc, getDoc } from 'firebase/firestore';
 import { db } from '@/common/api/firebase';
-import { doc, DocumentData, getDoc } from 'firebase/firestore';
-import * as S from './ReviewStyled';
-import { EachReview } from '@/types/DetailType';
+import { Document, EachReview } from '@/types/DetailType';
+import * as S from './style/ReviewStyled';
 
 interface Props {
   review: EachReview;
 }
 
 const ReviewBox = ({ review }: Props) => {
-  const [user, setUser] = useState<DocumentData>();
+  const sessionKey = `firebase:authUser:${process.env.FIREBASE_API_KEY}:[DEFAULT]`;
+  const uid = !!sessionStorage.getItem(sessionKey)
+    ? JSON.parse(sessionStorage.getItem(sessionKey)).uid
+    : '';
+  const [user, setUser] = useState<Document>();
 
   const getUser = async () => {
     const docRef = doc(db, 'users', `${review.uid}`);
@@ -27,7 +31,7 @@ const ReviewBox = ({ review }: Props) => {
         src={
           !!user?.photoURL
             ? user?.photoURL
-            : require('@/assets/Detail/default.png').default
+            : require('@/assets/MyPage/defaultProfile.jpg').default
         }
       />
       <S.ReviewContent>
@@ -41,13 +45,9 @@ const ReviewBox = ({ review }: Props) => {
         >
           <div>
             <span>{user?.displayName}&nbsp;</span>
-            <span>
-              | {review.createdAt.slice(0, 4)}-{review.createdAt.slice(4, 6)}-
-              {review.createdAt.slice(6, 8)}&nbsp;
-              {review.createdAt.slice(8, 10)}:{review.createdAt.slice(10, 12)}
-            </span>
+            <span>{review.createdAt}</span>
           </div>
-          <div>
+          <div style={{ display: review.uid === uid ? 'flex' : 'none' }}>
             <button>수정</button>
             <button>삭제</button>
           </div>
