@@ -10,7 +10,7 @@ export const DetailList = atom({
         content: '',
         createdAt: '',
         id: '',
-        image: [""],
+        image: [''],
         title: '',
         uid: '',
       },
