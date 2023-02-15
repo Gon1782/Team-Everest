@@ -25,6 +25,8 @@ import { atom } from 'recoil';
 
 export interface PlanType {
   name: string;
+  startDate: Date;
+  endDate: Date;
   schedule: { [key: string]: [] };
 }
 
@@ -38,7 +40,8 @@ export const MyPlanRecoil = atom({
   key: 'MyPlan',
   default: <PlanType>{
     name: '',
-
+    startDate: new Date(),
+    endDate: new Date(),
     schedule: { schedule: [] },
   },
 });

@@ -21,7 +21,12 @@ const TourList = () => {
       const newPlanEvents = [...clonePrev[pickSchedule.schedule], item];
       const newPlan: any = {};
       newPlan[pickSchedule.schedule] = newPlanEvents;
-      return { name: prev.name, schedule: { ...prev.schedule, ...newPlan } };
+      return {
+        name: prev.name,
+        schedule: { ...prev.schedule, ...newPlan },
+        startDate: { ...prev.startDate },
+        endDate: { ...prev.endDate },
+      };
     });
   };
   return (

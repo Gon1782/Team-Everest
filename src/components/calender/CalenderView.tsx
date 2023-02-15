@@ -8,24 +8,24 @@ import {
   MyPlanRecoil,
   PlanType,
 } from '@/recoil/atom/MyPlan';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 
 const CalenderView = () => {
-  // props는 선택한 관광지 정보, 총 일정 데이터, 일정이름(폴더)를 받을 예정
-
-  // 캘린더                                           // 시작날   ,   마지막날
-  const [calenderDate, setCalenderDate] = useState([new Date(), new Date()]);
-
-  //
-  const [showSideSection, setShowSideSection] = useState(false); // 사이드창 display
-
-  // 리코일로 저장할 데이터
-  // 1. 선택한 년도,월,일
   const [newPlan, setNewPlan] = useRecoilState<PlanType>(MyPlanRecoil);
   const planSchedule = Object.keys(newPlan.schedule); //['날짜','날짜',...]
+
+  // 캘린더                                           // 시작날   ,   마지막날
+  const [calenderDate, setCalenderDate] = useState([
+    new Date(newPlan.startDate),
+    new Date(newPlan.endDate),
+  ]);
+
+  // 사이드창 display
+  const [showSideSection, setShowSideSection] = useState(false);
+
   //
-  const [pickSchedule, setPickSchedule] =
-    useRecoilState<PickScheduleType>(PickScheduleRecoil);
+  const setPickSchedule =
+    useSetRecoilState<PickScheduleType>(PickScheduleRecoil);
 
   useEffect(() => {
     // schedule 초기화
@@ -40,7 +40,12 @@ const CalenderView = () => {
         planSchedule[scheduleKey] = [];
       });
 
-      return { name: prev.name, schedule: planSchedule };
+      return {
+        name: prev.name,
+        schedule: planSchedule,
+        startDate: calenderDate[0],
+        endDate: calenderDate[1],
+      };
     });
   }, [calenderDate]);
 
@@ -48,8 +53,8 @@ const CalenderView = () => {
     //ex)
     // 시작날 : 20220103 , 마지막날 : 20220110
     // 일정 카드(day1 , day2, day3 , ...)를 만들기 위해서는
-    // 시작날부터 마지막날까지의 기간 배열이 필요함
-    // [20220103,20220104,20220105,20220106,....,20220110]
+    // 시작날부터 마지막날까지의 기간 데이터들이 필요함
+    // [20220103(시작),20220104,20220105,20220106,....,20220110(끝)]
 
     let isBreak = true;
     let date = 0;

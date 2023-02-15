@@ -13,6 +13,8 @@ import StartEndDate from './StartEndDate';
 // user DB
   'plan' : {
     'name' : '' // 플랜 제목
+    'startDate': Date,
+    'endDate':Date,
     'schedule' :  // 플래너 이름  <- MyPlan 컴포넌트에서 처리
       {
         'yyyymmdd' :  // 일정 <- MyPlan 컴포넌트에서 처리
@@ -39,11 +41,13 @@ import StartEndDate from './StartEndDate';
     'like' : 0,
     'location' : '',
     'planName': '',
+    'startDate': Date,
+    'endDate':Date,
     'schedule' :  // 플래너 이름  <- MyPlan 컴포넌트에서 처리
       {
         'yyyymmdd' :  // 일정 <- MyPlan 컴포넌트에서 처리
         [
-          { // event <- 검색 사이드창에서 처리
+          { // event // 선택한 관광지
             'time':'12' , 'name':'장소이름' , 'contentId' : '장소번호',
             '위도':'위도값','경도':'경도값','memo':'메모값' , 'index' : 1
           }
@@ -70,7 +74,12 @@ const MyPlan = () => {
   // 플랜 이름 생성하기
   const makeNewPlanName = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPlan((prev: PlanType): PlanType => {
-      return { name: event.target.value, schedule: { ...prev.schedule } };
+      return {
+        name: event.target.value,
+        schedule: { ...prev.schedule },
+        startDate: { ...prev.startDate },
+        endDate: { ...prev.endDate },
+      };
     });
   };
 
