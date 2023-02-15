@@ -3,9 +3,10 @@ import Header from '@/components/header/Header';
 import Landing from '@/pages/Landing';
 import DetailPage from '@/pages/Detail/DetailPage';
 import MainPage from '@/pages/Main/MainPage';
-import ScheduleList from '@/components/calender/ScheduleList';
+import MyPlan from '@/components/calender/Main';
 import Mypage from '@/pages/Mypage/Mypage';
 import Login from '@/pages/Login/Login';
+import SearchArea from '@/pages/SearchArea';
 import CityMapPage from '@/pages/CityMap/CityMapPage';
 
 const Router = () => {
@@ -13,12 +14,13 @@ const Router = () => {
     <BrowserRouter>
       {/* <Header /> */}
       <Routes>
-        {/* <Route path="/" element={<ScheduleList />}></Route> */}
         <Route path="/" element={<Landing />}></Route>
         <Route path="/main" element={<MainPage />}></Route>
+        <Route path="/myPlan" element={<MyPlan />}></Route>
         <Route path="/detail/:id" element={<DetailPage />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/my" element={<Mypage />}></Route>
+        <Route path="/searcharea" element={<SearchArea />}></Route>
         <Route path="/citymap" element={<CityMapPage />}></Route>
       </Routes>
     </BrowserRouter>

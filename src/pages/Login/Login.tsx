@@ -1,23 +1,22 @@
 import LoginTab from '@/components/Login/LoginTab';
 import RegisterTab from '@/components/Register/RegisterTab';
-import { useState } from 'react';
-import styled from 'styled-components';
+import { LoginState } from '@/recoil/atom/LoginToggle';
+import { useRecoilState } from 'recoil';
+import * as S from './style/LoginStyled';
 
 const Login = () => {
-  const [checkLogin, setCheck] = useState(true);
+  const [checkLogin, setCheck] = useRecoilState(LoginState);
 
   const toggleCheck = () => {
     setCheck(!checkLogin);
   };
 
-  console.log(checkLogin);
-
   return (
     <>
-      <LoginContainer>
-        <LoginBox>
-          <LoginHeader>
-            <LoginHeaderBtn
+      <S.LoginContainer>
+        <S.LoginBox>
+          <S.LoginHeader>
+            <S.LoginHeaderBtn
               style={
                 checkLogin
                   ? {
@@ -30,8 +29,8 @@ const Login = () => {
               disabled={checkLogin ? true : false}
             >
               Log in
-            </LoginHeaderBtn>
-            <LoginHeaderBtn
+            </S.LoginHeaderBtn>
+            <S.LoginHeaderBtn
               style={
                 !checkLogin
                   ? {
@@ -44,40 +43,13 @@ const Login = () => {
               disabled={checkLogin ? false : true}
             >
               Register
-            </LoginHeaderBtn>
-          </LoginHeader>
+            </S.LoginHeaderBtn>
+          </S.LoginHeader>
           {checkLogin ? <LoginTab /> : <RegisterTab />}
-        </LoginBox>
-      </LoginContainer>
+        </S.LoginBox>
+      </S.LoginContainer>
     </>
   );
 };
 
 export default Login;
-
-const LoginContainer = styled.main`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  background-color: lightgray;
-  overflow-y: hidden;
-`;
-const LoginBox = styled.section`
-  width: 440px;
-  height: 635px;
-  background-color: white;
-`;
-const LoginHeader = styled.header`
-  display: flex;
-  padding: 1.5rem 2rem;
-  gap: 2rem;
-`;
-const LoginHeaderBtn = styled.button`
-  background-color: white;
-  border: none;
-  font-size: 24px;
-  color: lightgray;
-`;
