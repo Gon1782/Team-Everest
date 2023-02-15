@@ -7,10 +7,12 @@ import MyPlan from '@/components/calender/Main';
 import Mypage from '@/pages/Mypage/Mypage';
 import Login from '@/pages/Login/Login';
 import SearchArea from '@/pages/SearchArea';
+import CityMapPage from '@/pages/CityMap/CityMapPage';
+
 const Router = () => {
   return (
     <BrowserRouter>
-      <Header />
+      {/* <Header /> */}
       <Routes>
         <Route path="/" element={<Landing />}></Route>
         <Route path="/main" element={<MainPage />}></Route>
@@ -19,6 +21,7 @@ const Router = () => {
         <Route path="/login" element={<Login />}></Route>
         <Route path="/my" element={<Mypage />}></Route>
         <Route path="/searcharea" element={<SearchArea />}></Route>
+        <Route path="/citymap" element={<CityMapPage />}></Route>
       </Routes>
     </BrowserRouter>
   );
