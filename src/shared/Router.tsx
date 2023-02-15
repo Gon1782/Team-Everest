@@ -6,6 +6,7 @@ import MainPage from '@/pages/Main/MainPage';
 import MyPlan from '@/components/calender/Main';
 import Mypage from '@/pages/Mypage/Mypage';
 import Login from '@/pages/Login/Login';
+import SearchArea from '@/pages/SearchArea';
 const Router = () => {
   return (
     <BrowserRouter>
@@ -17,6 +18,7 @@ const Router = () => {
         <Route path="/detail/:id" element={<DetailPage />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/my" element={<Mypage />}></Route>
+        <Route path="/searcharea" element={<SearchArea />}></Route>
       </Routes>
     </BrowserRouter>
   );

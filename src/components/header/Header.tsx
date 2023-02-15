@@ -1,11 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 const Header = () => {
+  // 검색창 토글
   const [isMenuToggled, setIsMenuToggled] = useState<boolean>(false);
-
   const menuRef = useRef<HTMLDivElement>(null);
+  // 검색창 키워드
+  const [searcharea, setSearcharea] = useState('');
+  const navigate = useNavigate();
 
   // 검색창 토글 외부 영역 클릭시 창 닫기
   useEffect(() => {
@@ -21,6 +24,19 @@ const Header = () => {
       document.removeEventListener('mousedown', handleOutsideClick);
     };
   }, []);
+
+  // 검색창 키워드 입력시 검색 결과 페이지 이동
+  const handleSubmit = (event: any) => {
+    event.preventDefault();
+    if (searcharea.trim() === '') {
+      alert('내용을 입력해주세요.');
+      return;
+    } else {
+      console.log(searcharea);
+      navigate(`/searcharea?name=${searcharea}`);
+      setSearcharea('');
+    }
+  };
 
   return (
     <>
@@ -47,8 +63,13 @@ const Header = () => {
       {isMenuToggled && (
         <div ref={menuRef}>
           <SearchScreen>
-            <SearchForm>
-              <SearchInput></SearchInput>
+            <SearchForm onSubmit={handleSubmit}>
+              <SearchInput
+                type="text"
+                placeholder="지역명 검색"
+                onChange={(event) => setSearcharea(event.target.value)}
+                value={searcharea}
+              ></SearchInput>
               <SearchButton>검색</SearchButton>
             </SearchForm>
           </SearchScreen>
