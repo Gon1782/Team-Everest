@@ -5,7 +5,16 @@ import { cityInfo } from '@/common/utils/cityInfo';
 const Sidebar = () => {
   return (
     <Style.Wrap>
-      <Style.ItemWrap></Style.ItemWrap>
+      {cityInfo.map((data: any) => {
+        return (
+          <Style.ItemWrap>
+            <Style.ImageWrap>
+              <img src={data.image}></img>
+            </Style.ImageWrap>
+            {data.spec}
+          </Style.ItemWrap>
+        );
+      })}
     </Style.Wrap>
   );
 };

@@ -12,3 +12,5 @@ export const ItemWrap = styled.div`
   background-color: blue;
   margin-bottom: 1rem;
 `;
+
+export const ImageWrap = styled.div``;

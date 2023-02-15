@@ -11,7 +11,7 @@ export const cityInfo: any = [
     spec: '수라배,허브',
     mapy: 37.5661493343976,
     mapx: 127.015755985001,
-    image: '1',
+    image: '@/src/assets/CityImage/1.jpg',
   },
   {
     areacode: '2',
@@ -25,7 +25,7 @@ export const cityInfo: any = [
     spec: '쌀,잣,한우',
     mapy: 37.4630042168901,
     mapx: 126.739298900951,
-    image: '2',
+    image: '@/src/assets/CityImage/2.jpg',
   },
   {
     areacode: '3',
@@ -39,7 +39,7 @@ export const cityInfo: any = [
     spec: '버섯,포도,배,오이',
     mapy: 36.343298432692,
     mapx: 127.383284268094,
-    image: '3',
+    image: '@/src/assets/CityImage/3.jpg',
   },
   {
     areacode: '4',
@@ -53,7 +53,7 @@ export const cityInfo: any = [
     spec: '미나리,취나물,연근',
     mapy: 35.8770755096707,
     mapx: 128.638937348633,
-    image: '4',
+    image: '@/src/assets/CityImage/4.jpg',
   },
   {
     areacode: '5',
@@ -67,7 +67,7 @@ export const cityInfo: any = [
     spec: '토마토,새싹채소',
     mapy: 35.1567803088748,
     mapx: 126.889456830903,
-    image: '5',
+    image: '@/src/assets/CityImage/5.jpg',
   },
   {
     areacode: '6',
@@ -81,7 +81,7 @@ export const cityInfo: any = [
     spec: '어묵,다시마,미역',
     mapy: 35.1807118497826,
     mapx: 129.101127779282,
-    image: '6',
+    image: '@/src/assets/CityImage/6.jpg',
   },
   {
     areacode: '7',
@@ -95,7 +95,7 @@ export const cityInfo: any = [
     spec: '미나리,배,돌미역,멸치액젓',
     mapy: 35.5387010197949,
     mapx: 129.345498927795,
-    image: '7',
+    image: '@/src/assets/CityImage/7.jpg',
   },
   {
     areacode: '8',
@@ -109,7 +109,7 @@ export const cityInfo: any = [
     spec: '복숭아',
     mapy: 36.4655606366068,
     mapx: 127.294039299336,
-    image: '8',
+    image: '@/src/assets/CityImage/8.jpg',
   },
   {
     areacode: '31',
@@ -123,7 +123,7 @@ export const cityInfo: any = [
     spec: '쌀,복숭아,밤고구마',
     mapy: 37.4131273667866,
     mapx: 127.458193841515,
-    image: '31',
+    image: '@/src/assets/CityImage/31.jpg',
   },
   {
     areacode: '32',
@@ -137,7 +137,7 @@ export const cityInfo: any = [
     spec: '한우,감자,옥수수',
     mapy: 37.7506186089186,
     mapx: 128.291022098053,
-    image: '32',
+    image: '@/src/assets/CityImage/32.jpg',
   },
   {
     areacode: '33',
@@ -151,7 +151,7 @@ export const cityInfo: any = [
     spec: '천안호두빵,꿀,마늘',
     mapy: 36.7973236901721,
     mapx: 127.858940539376,
-    image: '33',
+    image: '@/src/assets/CityImage/33.jpg',
   },
   {
     areacode: '34',
@@ -165,7 +165,7 @@ export const cityInfo: any = [
     spec: '청양고추,금산딸기,인삼',
     mapy: 36.1821524135376,
     mapx: 126.964282493725,
-    image: '34',
+    image: '@/src/assets/CityImage/34.jpg',
   },
   {
     areacode: '35',
@@ -179,7 +179,7 @@ export const cityInfo: any = [
     spec: '참외,곶감,능금사과,경주 빵',
     mapy: 36.4204848849369,
     mapx: 128.608308980617,
-    image: '35',
+    image: '@/src/assets/CityImage/35.jpg',
   },
   {
     areacode: '36',
@@ -193,7 +193,7 @@ export const cityInfo: any = [
     spec: '사과,굴,한과',
     mapy: 35.49899056118,
     mapx: 128.510735006334,
-    image: '36',
+    image: '@/src/assets/CityImage/36.png',
   },
   {
     areacode: '37',
@@ -207,7 +207,7 @@ export const cityInfo: any = [
     spec: '순창 고추장, 수박',
     mapy: 35.729595311835,
     mapx: 127.292724899242,
-    image: '37',
+    image: '@/src/assets/CityImage/37.jpg',
   },
   {
     areacode: '38',
@@ -221,7 +221,7 @@ export const cityInfo: any = [
     spec: '홍어,굴비,갓김치,배',
     mapy: 34.8623446302737,
     mapx: 126.942465502333,
-    image: '38',
+    image: '@/src/assets/CityImage/38.jpg',
   },
   {
     areacode: '39',
@@ -235,6 +235,6 @@ export const cityInfo: any = [
     spec: '한라봉,옥돔,은갈치,고등어',
     mapy: 33.4029981024613,
     mapx: 126.558179265688,
-    image: '39',
+    image: '@/src/assets/CityImage/39.jpg',
   },
 ];
