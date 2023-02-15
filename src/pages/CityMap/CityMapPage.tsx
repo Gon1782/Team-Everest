@@ -5,10 +5,11 @@ import { useEffect } from 'react';
 import Sidebar from '@/components/Sidebar/Sidebar';
 import Citymap from '@/components/Citymap/Citymap';
 import { locationData, themeData } from '@/common/api/categoryApi';
+import { cityInfo } from '@/common/utils/cityInfo';
 
-interface StatusType {
-  isLoading: boolean;
-  isError: boolean;
+interface Data {
+  code: string;
+  name: string;
 }
 
 type ErrorType<T> = {
@@ -16,6 +17,7 @@ type ErrorType<T> = {
 };
 
 const CityMapPage = () => {
+  console.log(cityInfo);
   const { data, isLoading, refetch } = useQuery('locationData', locationData);
 
   return (
