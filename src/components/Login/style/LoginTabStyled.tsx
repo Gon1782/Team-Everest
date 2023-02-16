@@ -84,7 +84,7 @@ export const MoreInfo = styled.div`
 `;
 
 export const Warning = styled.div`
-  color: 'red';
+  color: red;
   margin: 0.5rem;
 `;
 

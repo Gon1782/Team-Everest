@@ -116,7 +116,7 @@ const LoginTab = () => {
     <>
       <S.LoginInputContainer>
         <S.LoginInputBox>
-          <div style={{ fontSize: 24, marginBottom: '1rem' }}>E-Mail</div>
+          <S.InputTitle style={{ marginBottom: '1rem' }}>E-Mail</S.InputTitle>
           <S.LoginInput
             tabIndex={1}
             type="text"
@@ -126,17 +126,15 @@ const LoginTab = () => {
           />
           <S.InputBtn onClick={() => resetEmail()}>X</S.InputBtn>
         </S.LoginInputBox>
-        <div
+        <S.Warning
           style={{
-            visibility: emailCheck ? 'hidden' : 'visible',
-            color: 'red',
-            margin: '.5rem',
+            visibility: emailCheck ? 'hidden' : 'visible'
           }}
         >
           ※이메일 형식에 맞게 입력해주세요
-        </div>
+        </S.Warning>
         <S.LoginInputBox>
-          <div style={{ fontSize: 24, marginBottom: '1rem' }}>Password</div>
+          <S.InputTitle style={{ marginBottom: '1rem' }}>Password</S.InputTitle>
           <S.LoginInput
             tabIndex={2}
             type={visible ? 'text' : 'password'}
@@ -157,15 +155,13 @@ const LoginTab = () => {
             <AiFillEyeInvisible size={22} />
           </S.InputBtn>
         </S.LoginInputBox>
-        <div
+        <S.Warning
           style={{
             visibility: pwCheck ? 'hidden' : 'visible',
-            color: 'red',
-            margin: '.5rem',
           }}
         >
           ※비밀번호를 확인해주세요
-        </div>
+        </S.Warning>
       </S.LoginInputContainer>
       <S.LoginBtnConatiner>
         <S.LoginBtn tabIndex={3} onClick={() => emailLogin()}>

@@ -107,6 +107,7 @@ const RegisterTab = () => {
           <S.InputTitle style={{ margin: '1rem 0 .5rem' }}>E-Mail</S.InputTitle>
           <S.MoreInfo>영문, 숫자로 이루어진 이메일을 입력해주세요.</S.MoreInfo>
           <S.LoginInput
+            tabIndex={1}
             type="text"
             name="email"
             value={state.email}
@@ -139,6 +140,7 @@ const RegisterTab = () => {
             특수문자가 포함된 8자 이상의 비밀번호로 설정해 주세요.
           </S.MoreInfo>
           <S.LoginInput
+            tabIndex={2}
             type={pwVisible ? 'text' : 'password'}
             name="password"
             placeholder="비밀번호"
@@ -167,6 +169,7 @@ const RegisterTab = () => {
         </S.Warning>
         <S.PasswordCheckBox>
           <S.PasswordCheckInput
+            tabIndex={3}
             type={checkPwVisible ? 'text' : 'password'}
             name="checkPassword"
             placeholder="비밀번호 확인"
@@ -200,6 +203,7 @@ const RegisterTab = () => {
             특수문자를 제외한 9글자 미만의 닉네임을 설정해 주세요.
           </S.MoreInfo>
           <S.LoginInput
+            tabIndex={4}
             type="text"
             name="nickname"
             value={state.nickname}
@@ -227,6 +231,7 @@ const RegisterTab = () => {
       </S.RegisterInputContainer>
       <S.LoginBtnConatiner>
         <S.LoginBtn
+          tabIndex={5}
           onClick={() => {
             emailSignup();
           }}
