@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { MyPlanRecoil } from '@/recoil/atom/MyPlan';
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 import { db } from '@/common/api/firebase';
 import CalenderView from './CalenderView';
-import Event from './Event';
 import { PlanType } from '@/recoil/atom/MyPlan';
-import { doc, DocumentData, getDoc, updateDoc } from 'firebase/firestore';
+import { doc, DocumentData, getDoc } from 'firebase/firestore';
 import StartEndDate from './StartEndDate';
 
 /*
@@ -30,17 +29,17 @@ import StartEndDate from './StartEndDate';
             '위도':'위도값','경도':'경도값','memo':'메모값'
           }
         ],
-        location : '',
+        
    } },{},{},...
   
 
   // planner DB
   list : [{
-    'id' : 1
+    
     'uid' : '',
     'like' : 0,
-    'location' : '',
-    'planName': '',
+   
+    'name': '',
     'startDate': Date,
     'endDate':Date,
     'schedule' :  // 플래너 이름  <- MyPlan 컴포넌트에서 처리
@@ -84,6 +83,8 @@ const MyPlan = () => {
   };
 
   // //추가한 일정들 디비에 저장하기
+
+  // !!!!!! 꼭 좋아요 키값 추가하기!!!!!
   // const addPlanToDB = async () => {
   //   await updateDoc(doc(db, 'users', `firebaseUid`), {
   //     myPlanner: { ...myPlannerFromDB, ...MyPlanRecoil },
@@ -103,28 +104,15 @@ const MyPlan = () => {
     setMyPlannerFromDB(data.data()?.['myPlanner']);
   };
 
-  useEffect(() => {
-    // 페이지 이동시에 리코일 데이터가 유지 되겠지만
-    // 페이지를 나갔다가 다시 들어온 경우를 생각해야함
-    // 먼저 db 데이터랑 로컬스토리지 데이터를 비교
-    // 같다면 데이터를 그대로 보여주고 다르다면 '작성중인 일정이 있었다' 고 알려주고 복구 시킬껀지 물어보기
-    // 리코일에 작업중인 일정 폴더가 있었는지로 조건을 줌
-    //디비에서 데이터 가져오기
-    //getUser();
-    // if (!!!Object.keys(useRecoilValue(nowPlan)).length) {
-    //   // 페이지에 다시 들어온 경우
-    //   // 로컬 스토리지 데이터와 디비 데이터 비교
-    //   const getNowPlan = JSON.parse(localStorage.getItem('nowPlan') ?? '{}');
-    //   // setSchedule(getScheduleList);
-    //   // setFolder(Object.keys(getScheduleList).length);
-    // } else {
-    //   setPlan(useRecoilValue(nowPlan));
-    // }
-  });
   return (
     <div>
-      <input type="text" onChange={makeNewPlanName} />
+      <input
+        type="text"
+        onChange={makeNewPlanName}
+        placeholder="일정 제목을 입력해주세요"
+      />
       <StartEndDate />
+      <button>저장</button>
       <CalenderView />
     </div>
   );

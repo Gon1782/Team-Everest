@@ -1,5 +1,6 @@
 import React from 'react';
 
+// 지역, 테마 셀렉트박스
 const SelectBox = ({
   onChangeHandler,
   dataList,
@@ -9,13 +10,11 @@ const SelectBox = ({
   dataList: any;
   valueKey: string;
 }) => {
-  console.log(valueKey);
   return (
     <select onChange={onChangeHandler}>
       <option defaultValue="선택">선택</option>
       {dataList.length &&
         dataList.map((item: any, index: number) => {
-          console.log(item);
           return (
             <>
               <option value={item[valueKey]} key={index}>

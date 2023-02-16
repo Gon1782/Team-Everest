@@ -5,6 +5,7 @@ import {
   PickScheduleRecoil,
   TourListRecoil,
 } from '@/recoil/atom/MyPlan';
+import { useMemo } from 'react';
 
 const TourList = () => {
   const setNewPlan = useSetRecoilState<PlanType>(MyPlanRecoil);
@@ -17,10 +18,15 @@ const TourList = () => {
   // 추가한 관광지 데이터를 선택한 일정 리스트에 담기
   const eventHandler = (item: any) => {
     setNewPlan((prev: PlanType) => {
-      const clonePrev = { ...prev.schedule };
-      const newPlanEvents = [...clonePrev[pickSchedule.schedule], item];
+      const clonePrev = { ...prev.schedule }; // 기존 데이터 복사
+      const cloneItem = { ...item };
+      /* 선택한 관광지 데이터에 사용자가 추가 할 수 있는 시간과 메모 데이터를 초기화*/
+      cloneItem['time'] = '--:--'; // 시간
+      cloneItem['memo'] = ''; // 메모
+      /*----------------------------------------------------------*/
+      const newEvents = [...clonePrev[pickSchedule.schedule], cloneItem];
       const newPlan: any = {};
-      newPlan[pickSchedule.schedule] = newPlanEvents;
+      newPlan[pickSchedule.schedule] = newEvents;
       return {
         name: prev.name,
         schedule: { ...prev.schedule, ...newPlan },
@@ -35,7 +41,7 @@ const TourList = () => {
         tourDataList.map((item: any, index: number) => {
           return (
             <div key={index}>
-              <img src={item.fisrtImage} width="50" height="50"></img>
+              {/* <img src={item.fisrtImage} width="50" height="50"></img> */}
               <div>{item.title}</div>
               <div>{item.tel}</div>
               <div>{item.mapx}</div>

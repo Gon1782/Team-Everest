@@ -25,6 +25,11 @@ module.exports = (env, argv) => {
       port: 3000,
       hot: true,
       historyApiFallback: true,
+      client: {
+        overlay: true,
+        // 웹소켓용 url 지정
+        webSocketURL: 'ws://0.0.0.0:80/ws',
+      },
     },
     resolve: {
       extensions: ['.js', '.jsx', '.ts', '.tsx'],

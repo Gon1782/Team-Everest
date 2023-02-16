@@ -58,6 +58,12 @@ export const PickScheduleRecoil = atom({
   default: <PickScheduleType>{},
 });
 
+// 지정할 시간,메모 데이터
+export const MemoAndTime = atom({
+  key: 'memoAndTime',
+  default: { memo: '', time: {} },
+});
+
 // 생성한 일정 폴더 이름
 export const planName = atom({
   key: 'planName',
