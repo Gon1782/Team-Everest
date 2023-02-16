@@ -8,10 +8,11 @@ import * as S from './style/ProfileStyled';
 
 interface Props {
   user: Document;
-  getUser: () => Promise<void>;
+  checkMy: boolean;
+  getUser: (uid: string) => Promise<void>;
 }
 
-const Profile = ({ user, getUser }: Props) => {
+const Profile = ({ user, checkMy, getUser }: Props) => {
   // 프로필 이미지
   const [img, setImage] = useState(user?.photoURL);
   const [profileImg, changeProfileImg, resetImg] = useImageInput('');
@@ -34,7 +35,7 @@ const Profile = ({ user, getUser }: Props) => {
       displayName: myInfo.nickname,
       introduce: myInfo.intro,
     });
-    getUser();
+    getUser(user.uid);
     resetMyInfo();
     setEdit(false);
   }, [myInfo]);
@@ -75,7 +76,7 @@ const Profile = ({ user, getUser }: Props) => {
                 : require('@/assets/MyPage/defaultProfile.jpg').default
             }
           />
-          <S.BtnBox>
+          <S.BtnBox style={{ visibility: checkMy ? 'visible' : 'hidden' }}>
             <S.ProfileLabel>
               Change
               <input
@@ -96,7 +97,11 @@ const Profile = ({ user, getUser }: Props) => {
             <RiBallPenFill
               size={24}
               onClick={() => setEdit(true)}
-              style={{ cursor: 'pointer', display: edit ? 'none' : 'flex' }}
+              style={{
+                cursor: 'pointer',
+                display: edit ? 'none' : 'flex',
+                visibility: checkMy ? 'visible' : 'hidden',
+              }}
             />
             <S.NickNameInput
               type="text"

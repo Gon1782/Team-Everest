@@ -2,12 +2,14 @@ import { useEffect, useState } from 'react';
 import { Document, EachReview } from '@/types/DetailType';
 import * as S from './style/ReviewStyled';
 import { getUserDB } from '@/common/api/userApi';
+import { useNavigate } from 'react-router-dom';
 
 interface Props {
   review: EachReview;
 }
 
 const ReviewBox = ({ review }: Props) => {
+  const navigate = useNavigate();
   // uid 체크
   const sessionKey = `firebase:authUser:${process.env.FIREBASE_API_KEY}:[DEFAULT]`;
   const uid = !!sessionStorage.getItem(sessionKey)
@@ -44,7 +46,12 @@ const ReviewBox = ({ review }: Props) => {
           }}
         >
           <div>
-            <span>{user?.displayName}&nbsp;</span>
+            <span
+              onClick={() => navigate('/my', { state: review.uid })}
+              style={{ cursor: 'pointer' }}
+            >
+              {user?.displayName}&nbsp;
+            </span>
             <span>{review.createdAt}</span>
           </div>
           <div style={{ display: review.uid === uid ? 'flex' : 'none' }}>
