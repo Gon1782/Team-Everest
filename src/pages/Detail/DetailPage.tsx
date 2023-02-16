@@ -12,6 +12,7 @@ import { DetailList } from '@/recoil/atom/Detail';
 import { reviewModalState } from '@/recoil/atom/ReviewModal';
 import { DetailResponse, Document, EachReview } from '@/types/DetailType';
 import * as S from './style/DetailStyled';
+import SimilarLandmark from '@/components/Detail/SimilarLandmark';
 
 const DetailPage = () => {
   const navigate = useNavigate();
@@ -63,8 +64,6 @@ const DetailPage = () => {
   if (isLoading) return <div>로딩중...</div>;
   if (isError) return <div>에러: {error}</div>;
 
-  console.log(data[1]);
-
   return (
     <S.DetailContainer>
       {modal && (
@@ -77,6 +76,18 @@ const DetailPage = () => {
         item={data[0]?.response.body.items.item[0]}
         intro={data[1]?.response.body.items.item[0]}
       />
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          width: '100%',
+          margin: '2rem',
+          fontSize: '3rem',
+          fontWeight: 'bold',
+        }}
+      >
+        관광지 후기 모음
+      </div>
       <S.WriteReview>
         <span>별점과 후기를 남겨주세요</span>
         <S.ReviewBtn onClick={() => modalOpen()}>후기작성하기</S.ReviewBtn>
@@ -84,6 +95,19 @@ const DetailPage = () => {
       <Review
         review={list?.review?.filter((x: EachReview) => x.isDelete === 'N')}
       />
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          width: '100%',
+          margin: '2rem',
+          fontSize: '3rem',
+          fontWeight: 'bold',
+        }}
+      >
+        유사한 관광지 추천
+      </div>
+      <SimilarLandmark />
     </S.DetailContainer>
   );
 };

@@ -8,11 +8,13 @@ import * as S from './style/ProfileStyled';
 
 interface Props {
   user: Document;
+  LoginCheck: boolean;
   checkMy: boolean;
   getUser: (uid: string) => Promise<void>;
 }
 
-const Profile = ({ user, checkMy, getUser }: Props) => {
+const Profile = ({ user, LoginCheck, checkMy, getUser }: Props) => {
+  const check = LoginCheck || checkMy;
   // 프로필 이미지
   const [img, setImage] = useState(user?.photoURL);
   const [profileImg, changeProfileImg, resetImg] = useImageInput('');
@@ -76,7 +78,7 @@ const Profile = ({ user, checkMy, getUser }: Props) => {
                 : require('@/assets/MyPage/defaultProfile.jpg').default
             }
           />
-          <S.BtnBox style={{ visibility: checkMy ? 'visible' : 'hidden' }}>
+          <S.BtnBox style={{ visibility: check ? 'visible' : 'hidden' }}>
             <S.ProfileLabel>
               Change
               <input
@@ -100,7 +102,7 @@ const Profile = ({ user, checkMy, getUser }: Props) => {
               style={{
                 cursor: 'pointer',
                 display: edit ? 'none' : 'flex',
-                visibility: checkMy ? 'visible' : 'hidden',
+                visibility: check ? 'visible' : 'hidden',
               }}
             />
             <S.NickNameInput

@@ -49,6 +49,7 @@ export const InfoBox = styled.div`
 
 export const DetailTitle = styled.h1`
   font-size: 3rem;
+  font-weight: bold;
 `;
 
 export const DetailScore = styled.div`

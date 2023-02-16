@@ -15,6 +15,7 @@ const Mypage = () => {
     ? JSON.parse(sessionStorage.getItem(sessionKey)).uid
     : '';
   const checkMy = state === uid;
+  const LoginCheck = !state && !!uid;
 
   // Get UserDB
   const [userDB, setUserDB] = useState<Document>();
@@ -34,11 +35,10 @@ const Mypage = () => {
       navigate('/login');
     }
     if (!!state) {
-      console.log("state로 실행")
+      console.log('state로 실행');
       getUser(state);
-    }
-    else if (!!uid) {
-      console.log("uid로 실행")
+    } else if (!!uid) {
+      console.log('uid로 실행');
       getUser(uid);
     }
   }, []);
@@ -47,7 +47,12 @@ const Mypage = () => {
 
   return (
     <S.MyPageContainer>
-      <Profile checkMy={checkMy} user={userDB} getUser={getUser} />
+      <Profile
+        LoginCheck={LoginCheck}
+        checkMy={checkMy}
+        user={userDB}
+        getUser={getUser}
+      />
       {/* 나의 위시리스트 섹션 아마도? */}
       {/* 나의 플래너 섹션 */}
       <MyReview user={userDB} />

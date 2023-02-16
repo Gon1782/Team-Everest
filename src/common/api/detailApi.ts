@@ -17,9 +17,17 @@ export const getDetail = async (id?: string) => {
 };
 
 export const getDetailIntro = async (id?: string) => {
-  console.log(id.slice(0,2))
   const { data } = await axios.get<DetailResponse>(
     `${BASE_URL('detailIntro', 1, 1)}&contentId=${id}&contentTypeId=${id.slice(
+      0,
+      2,
+    )}`,
+  );
+  return data;
+};
+export const getSimilar = async (id?: string) => {
+  const { data } = await axios.get<DetailResponse>(
+    `${BASE_URL('areaBasedList', 4, 1)}&contentId=${id}&contentTypeId=${id.slice(
       0,
       2,
     )}`,
