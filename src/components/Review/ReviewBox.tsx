@@ -42,7 +42,8 @@ const ReviewBox = ({ review }: Props) => {
             display: 'flex',
             justifyContent: 'space-between',
             width: '100%',
-            fontSize: '1.5rem',
+            fontSize: '1rem',
+            fontWeight: 'bold',
           }}
         >
           <div>
@@ -52,20 +53,25 @@ const ReviewBox = ({ review }: Props) => {
             >
               {user?.displayName}&nbsp;
             </span>
-            <span>{review.createdAt}</span>
           </div>
-          <div style={{ display: review.uid === uid ? 'flex' : 'none' }}>
+          <div
+            style={{
+              display: review.uid === uid ? 'flex' : 'none',
+              gap: '1rem',
+            }}
+          >
             <button>수정</button>
             <button>삭제</button>
           </div>
         </div>
         <div>{'⭐'.repeat(Number(review.rating))}</div>
-        <div>{review.content}</div>
+        <div style={{ fontSize: '1.25rem' }}>{review.content}</div>
         <div style={{ display: 'flex', gap: '1rem' }}>
           {review.image.map((x: string, i: number) => {
             return <S.Image src={x} key={i} />;
           })}
         </div>
+        <span style={{ color: 'gray' }}>{review.createdAt}</span>
       </S.ReviewContent>
     </S.Review>
   );

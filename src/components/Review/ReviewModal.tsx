@@ -58,6 +58,7 @@ const ReviewModal = ({ title, id }: Props) => {
   const closeModalIfClickOutside = useCallback(
     (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
       if (e.target === e.currentTarget) {
+        setModal(false);
         reset();
       }
     },
@@ -108,7 +109,15 @@ const ReviewModal = ({ title, id }: Props) => {
     <S.ModalContainer onClick={(e) => closeModalIfClickOutside(e)}>
       <S.ModalBox ref={modalref} onSubmit={(e) => addReview(e)}>
         <S.ModalHeader>
-          <button onClick={() => reset()}>닫기</button>
+          <div
+            style={{ cursor: 'pointer' }}
+            onClick={() => {
+              reset();
+              setModal(false);
+            }}
+          >
+            닫기
+          </div>
           <span>{title}</span>
         </S.ModalHeader>
         <S.StarBox>

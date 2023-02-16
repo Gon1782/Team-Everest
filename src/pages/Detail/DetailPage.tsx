@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
-import { useQuery } from 'react-query';
+import { useQueries } from 'react-query';
 import { useRecoilState } from 'recoil';
 import { useNavigate, useParams } from 'react-router-dom';
 import { doc, onSnapshot } from 'firebase/firestore';
-import { getDetail } from '@/common/api/detailApi';
+import { getDetail, getDetailIntro } from '@/common/api/detailApi';
 import { db } from '@/common/api/firebase';
 import DetailInfo from '@/components/Detail/DetailInfo';
 import Review from '@/components/Review/Review';
@@ -41,22 +41,42 @@ const DetailPage = () => {
     });
   }, []);
 
-  const { isLoading, isError, data, error } = useQuery<DetailResponse, Error>(
-    `${id}`,
-    () => getDetail(id),
-  );
+  const results = useQueries([
+    {
+      queryKey: `${id}`,
+      queryFn: () => getDetail(id),
+    },
+    {
+      queryKey: `${id}intro`,
+      queryFn: () => getDetailIntro(id),
+    },
+  ]);
+
+  const isLoading = results.some((result) => result.isLoading);
+
+  const isError = results.some((result) => result.isError);
+
+  const error = results.some((result) => result.error);
+
+  const data = results.map((result) => result.data);
+
   if (isLoading) return <div>로딩중...</div>;
-  if (isError) return <div>에러: {error.message}</div>;
+  if (isError) return <div>에러: {error}</div>;
+
+  console.log(data[1]);
 
   return (
     <S.DetailContainer>
       {modal && (
         <ReviewModal
-          title={data?.response.body.items.item[0].title ?? ''}
+          title={data[0]?.response.body.items.item[0].title ?? ''}
           id={id ?? ''}
         />
       )}
-      <DetailInfo item={data?.response.body.items.item[0]} />
+      <DetailInfo
+        item={data[0]?.response.body.items.item[0]}
+        intro={data[1]?.response.body.items.item[0]}
+      />
       <S.WriteReview>
         <span>별점과 후기를 남겨주세요</span>
         <S.ReviewBtn onClick={() => modalOpen()}>후기작성하기</S.ReviewBtn>
