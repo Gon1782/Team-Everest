@@ -110,6 +110,7 @@ const LoginTab = () => {
 
   const logOut = () => {
     F.signOut(auth);
+    navigate('/main');
   };
 
   return (
@@ -128,7 +129,7 @@ const LoginTab = () => {
         </S.LoginInputBox>
         <S.Warning
           style={{
-            visibility: emailCheck ? 'hidden' : 'visible'
+            visibility: emailCheck ? 'hidden' : 'visible',
           }}
         >
           ※이메일 형식에 맞게 입력해주세요
