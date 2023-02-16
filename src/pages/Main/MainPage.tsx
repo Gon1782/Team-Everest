@@ -1,9 +1,8 @@
 import { auth } from '@/common/api/firebase';
-import Banner from '@/components/banner/Banner';
-import TopSlideBanner from '@/components/banner/TopSlideBanner';
+import TopSlideBanner from '@/components/eventBanner/TopSlideBanner';
+import ThemeSlideBanner from '@/components/themeBanner/ThemeSlideBanner';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import Swiper from 'swiper';
 
 const MainPage = () => {
   return (
@@ -32,63 +31,7 @@ const MainPage = () => {
       </TopCityCategoryContainer>
 
       {/* 테마 명소 */}
-      <ThemePlaceContainer>
-        <ThemePlaceTitle>테마가 있는 명소</ThemePlaceTitle>
-        <HashTagList>
-          <HashTag>#해쉬태그1</HashTag>
-          <HashTag>#해쉬태그2</HashTag>
-          <HashTag>#해쉬태그3</HashTag>
-        </HashTagList>
-        <ThemePlaces>
-          <ThemePlaceList>
-            <ThemePlace>해쉬태그1 명소1</ThemePlace>
-            <ThemePlace>해쉬태그1 명소2</ThemePlace>
-            <ThemePlace>해쉬태그1 명소3</ThemePlace>
-            <ThemePlace>해쉬태그1 명소4</ThemePlace>
-            <ThemePlace>해쉬태그1 명소5</ThemePlace>
-            <ThemePlace>해쉬태그1 명소6</ThemePlace>
-          </ThemePlaceList>
-          <ThemePlaceCard>
-            <Link to="">
-              <ThemePlaceCardImg
-                src={require('@/assets/banner_01.jpg').default}
-                alt=""
-              />
-            </Link>
-
-            <Link to="">
-              <ThemePlaceCardImg
-                src={require('@/assets/banner_01.jpg').default}
-                alt=""
-              />
-            </Link>
-            <Link to="">
-              <ThemePlaceCardImg
-                src={require('@/assets/banner_01.jpg').default}
-                alt=""
-              />
-            </Link>
-            <Link to="">
-              <ThemePlaceCardImg
-                src={require('@/assets/banner_01.jpg').default}
-                alt=""
-              />
-            </Link>
-            <Link to="">
-              <ThemePlaceCardImg
-                src={require('@/assets/banner_01.jpg').default}
-                alt=""
-              />
-            </Link>
-            <Link to="">
-              <ThemePlaceCardImg
-                src={require('@/assets/banner_01.jpg').default}
-                alt=""
-              />
-            </Link>
-          </ThemePlaceCard>
-        </ThemePlaces>
-      </ThemePlaceContainer>
+      <ThemeSlideBanner />
       {/* 베스트 여행 일정 */}
       <BestTravelRouteContainer>
         <BestTravelRouteCard>
@@ -180,89 +123,89 @@ const TopCityCategory = styled.img`
 
 // 테마 명소
 
-const ThemePlaceContainer = styled.div`
-  width: 100%;
-  height: 1000px;
-  margin: 0 auto;
-  padding: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  text-align: center;
-  background-color: grey;
-`;
+// const ThemePlaceContainer = styled.div`
+//   width: 100%;
+//   height: 1000px;
+//   margin: 0 auto;
+//   padding: 20px;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   flex-direction: column;
+//   text-align: center;
+//   background-color: grey;
+// `;
 
-const ThemePlaceTitle = styled.h2`
-  font-size: 2.4rem;
-  font-weight: 900;
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 30px;
-`;
+// const ThemePlaceTitle = styled.h2`
+//   font-size: 2.4rem;
+//   font-weight: 900;
+//   width: 100%;
+//   padding: 10px;
+//   margin-bottom: 30px;
+// `;
 
-const HashTagList = styled.ul`
-  font-weight: 900;
-  display: flex;
-  margin-bottom: 20px;
-  gap: 40px;
-  font-size: 1.2rem;
-`;
+// const HashTagList = styled.ul`
+//   font-weight: 900;
+//   display: flex;
+//   margin-bottom: 20px;
+//   gap: 40px;
+//   font-size: 1.2rem;
+// `;
 
-const HashTag = styled.li`
-  font-size: 1.8rem;
-`;
+// const HashTag = styled.li`
+//   font-size: 1.8rem;
+// `;
 
-const ThemePlaces = styled.div`
-  display: flex;
-  /* justify-content: center; */
-  align-items: center;
-  width: 100%;
-  height: 600px;
-  margin: 0 auto;
-  padding: 2rem;
-  background-color: #902f2f;
-  position: relative;
-  margin-top: 20px;
-`;
+// const ThemePlaces = styled.div`
+//   display: flex;
+//   /* justify-content: center; */
+//   align-items: center;
+//   width: 100%;
+//   height: 600px;
+//   margin: 0 auto;
+//   padding: 2rem;
+//   background-color: #902f2f;
+//   position: relative;
+//   margin-top: 20px;
+// `;
 
-const ThemePlaceList = styled.ul`
-  position: absolute;
-  left: 0;
-  width: 25%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  background-color: #e0e0db;
-`;
+// const ThemePlaceList = styled.ul`
+//   position: absolute;
+//   left: 0;
+//   width: 25%;
+//   height: 100%;
+//   display: flex;
+//   flex-direction: column;
+//   background-color: #e0e0db;
+// `;
 
-const ThemePlace = styled.li`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: calc(100% / 6);
-  font-size: 1.2rem;
-  padding: 20px;
-  border-bottom: 1px solid #000;
-`;
+// const ThemePlace = styled.li`
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   width: 100%;
+//   height: calc(100% / 6);
+//   font-size: 1.2rem;
+//   padding: 20px;
+//   border-bottom: 1px solid #000;
+// `;
 
-const ThemePlaceCard = styled.div`
-  display: flex;
-  width: 75%;
-  height: 600px;
-  background-color: white;
-  position: absolute;
-  right: 0;
-`;
+// const ThemePlaceCard = styled.div`
+//   display: flex;
+//   width: 75%;
+//   height: 600px;
+//   background-color: white;
+//   position: absolute;
+//   right: 0;
+// `;
 
-const ThemePlaceCardImg = styled.img`
-  width: 400px;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 10px;
-  margin-right: 10px;
-`;
+// const ThemePlaceCardImg = styled.img`
+//   width: 400px;
+//   height: 100%;
+//   object-fit: cover;
+//   border-radius: 10px;
+//   margin-right: 10px;
+// `;
 
 // 베스트 여행 일정
 
