@@ -14,7 +14,7 @@ const MyReview = ({ user }: Props) => {
         {!!user?.MyReview.length ? (
           user.MyReview.filter((x: EachReview) => x.isDelete === 'N').map(
             (x: EachReview) => {
-              return <MyReviewBox user={user} review={x} key={x.id} />;
+              return <MyReviewBox review={x} key={x.id} />;
             },
           )
         ) : (

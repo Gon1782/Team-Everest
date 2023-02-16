@@ -1,7 +1,7 @@
 import { useReducer, useCallback } from 'react';
 
 export interface State {
-  [key: string]: string | number | boolean | undefined;
+  [key: string]: string;
 }
 
 interface ActionType {

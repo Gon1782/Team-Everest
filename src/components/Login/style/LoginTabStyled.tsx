@@ -13,16 +13,15 @@ export const LoginInputBox = styled.div`
   display: flex;
   flex-direction: column;
   width: 85%;
-  margin: auto;
+  margin: 0 auto;
 `;
 
 export const LoginInput = styled.input`
-  height: 1.5rem;
+  height: 2.5rem;
   padding: 0.5rem;
-  margin-top: 1rem;
   border: none;
   border-bottom: 1px solid black;
-  font-size: 22px;
+  font-size: 1rem;
 `;
 export const InputBtn = styled.button`
   display: flex;
@@ -65,4 +64,41 @@ export const SocialLoginBtnBox = styled.div`
   cursor: pointer;
   display: flex;
   gap: 2rem;
+`;
+
+export const RegisterInputContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const InputTitle = styled.div`
+  font-size: 24px;
+`;
+
+export const MoreInfo = styled.div`
+  color: 'gray';
+  font-size: 14px;
+  margin-bottom: 0.5rem;
+`;
+
+export const Warning = styled.div`
+  color: 'red';
+  margin: 0.5rem;
+`;
+
+export const PasswordCheckBox = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 85%;
+  margin: 0 auto;
+`;
+export const PasswordCheckInput = styled.input`
+  height: 2.5rem;
+  padding: 0.5rem;
+  border: none;
+  border-bottom: 1px solid black;
+  font-size: 1rem;
 `;

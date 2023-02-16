@@ -1,33 +1,30 @@
 import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import { getDetail } from '@/common/api/detailApi';
-import { DetailResponse, Document, EachReview } from '@/types/DetailType';
+import { DetailResponse, EachReview } from '@/types/DetailType';
 import { Image } from '../Review/style/ReviewStyled';
 import * as S from './style/MyReviewStyled';
 
 interface Props {
-  user: Document;
-  review?: EachReview;
+  review: EachReview;
 }
 
-const MyReviewBox = ({ user, review }: Props) => {
+const MyReviewBox = ({ review }: Props) => {
   const navigate = useNavigate();
 
   const goToDetail = () => {
     navigate(`/detail/${review.contentId}`);
   };
 
+  // GET 관광지
   const { isLoading, isError, data, error } = useQuery<DetailResponse, Error>(
     `${review.contentId}`,
     () => getDetail(review.contentId),
   );
+  // 스켈레톤 UI
   if (isLoading)
     return (
       <S.MyReview>
-        <S.MyReviewHeader>
-          <S.MyReviewProfile src={user?.photoURL} />
-          <span>{user?.displayName}</span>
-        </S.MyReviewHeader>
         <S.MyReviewInfoBox>
           <span>장소명</span>
           <S.MyReviewRatingBox>⭐⭐⭐⭐⭐</S.MyReviewRatingBox>
@@ -50,10 +47,6 @@ const MyReviewBox = ({ user, review }: Props) => {
 
   return (
     <S.MyReview onClick={() => goToDetail()}>
-      <S.MyReviewHeader>
-        <S.MyReviewProfile src={user?.photoURL} />
-        <span>{user?.displayName}</span>
-      </S.MyReviewHeader>
       <S.MyReviewInfoBox>
         <span>{title}</span>
         <S.MyReviewRatingBox>

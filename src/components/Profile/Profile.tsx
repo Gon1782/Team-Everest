@@ -1,20 +1,21 @@
 import { useCallback, useEffect, useState } from 'react';
 import { RiBallPenFill, RiCheckboxFill } from 'react-icons/ri';
-import { doc, updateDoc } from 'firebase/firestore';
-import { db } from '@/common/api/firebase';
-import { Document } from '@/types/DetailType';
+import { updateUserDB } from '@/common/api/userApi';
 import useInputs from '@/hooks/useInputs';
 import useImageInput from '@/hooks/useImageInput';
+import { Document } from '@/types/DetailType';
 import * as S from './style/ProfileStyled';
 
 interface Props {
   user: Document;
-  getUserDB: () => Promise<void>;
+  getUser: () => Promise<void>;
 }
 
-const Profile = ({ user, getUserDB }: Props) => {
-  const [profileImg, changeProfileImg, resetImg] = useImageInput('');
+const Profile = ({ user, getUser }: Props) => {
+  // 프로필 이미지
   const [img, setImage] = useState(user?.photoURL);
+  const [profileImg, changeProfileImg, resetImg] = useImageInput('');
+  // 프로필 닉네임 한줄소개 수정
   const [edit, setEdit] = useState(false);
   const form = {
     nickname: user?.displayName,
@@ -22,42 +23,38 @@ const Profile = ({ user, getUserDB }: Props) => {
   };
   const [myInfo, onChangeMyInfo, resetMyInfo] = useInputs(form);
 
+  // Update UserDB 프로필 이름/소개
   const updateProfile = useCallback(async () => {
-    try {
-      await updateDoc(doc(db, 'users', `${user?.uid}`), {
-        displayName: myInfo.nickname,
-        introduce: myInfo.intro,
-      });
-      getUserDB();
-      resetMyInfo();
-      setEdit(false);
-    } catch (error) {
-      console.log(error);
-    }
+    if (!myInfo.nickname) return alert('닉네임을 입력해주세요.');
+    if (myInfo.nickname.length > 8)
+      return alert('닉네임이 너무 길어요\n닉네임은 9글자 미만까지 가능합니다.');
+    if (myInfo.intro.length > 25)
+      return alert('한줄 소개는 25자 까지 가능합니다.');
+    await updateUserDB(user.uid, {
+      displayName: myInfo.nickname,
+      introduce: myInfo.intro,
+    });
+    getUser();
+    resetMyInfo();
+    setEdit(false);
   }, [myInfo]);
 
+  // Update UserDB 프로필 사진
   const updateProfileImage = useCallback(async () => {
     setImage(profileImg);
-    try {
-      await updateDoc(doc(db, 'users', `${user?.uid}`), {
-        photoURL: profileImg,
-      });
-      resetImg();
-    } catch (error) {
-      console.log(error);
-    }
+    await updateUserDB(user.uid, {
+      photoURL: profileImg,
+    });
+    resetImg();
   }, [profileImg]);
 
+  // Update UserDB 프로필 사진 제거
   const removeImage = useCallback(async () => {
     setImage('');
-    try {
-      await updateDoc(doc(db, 'users', `${user?.uid}`), {
-        photoURL: '',
-      });
-      resetImg();
-    } catch (error) {
-      console.log(error);
-    }
+    await updateUserDB(user.uid, {
+      photoURL: '',
+    });
+    resetImg();
   }, []);
 
   useEffect(() => {
@@ -115,7 +112,9 @@ const Profile = ({ user, getUserDB }: Props) => {
             />
           </S.NicknameBox>
           <S.MyText style={{ display: edit ? 'none' : 'block' }}>
-            {user?.introduce}
+            {!!user?.introduce
+              ? user.introduce
+              : '소개가 없습니다 작성해주세요'}
           </S.MyText>
           <S.ProfileInput
             type="text"

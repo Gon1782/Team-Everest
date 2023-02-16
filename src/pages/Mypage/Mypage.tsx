@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { doc, getDoc } from 'firebase/firestore';
-import { db } from '@/common/api/firebase';
 import Profile from '@/components/Profile/Profile';
 import MyReview from '@/components/MyReview/MyReview';
 import { Document } from '@/types/DetailType';
 import * as S from './style/MyPageStyled';
+import { getUserDB } from '@/common/api/userApi';
 
 const Mypage = () => {
   const navigate = useNavigate();
@@ -20,11 +19,10 @@ const Mypage = () => {
   // isLoading
   const [isLoading, setIsLoading] = useState(false);
 
-  const getUserDB = async () => {
+  const getUser = async () => {
     setIsLoading(true);
-    const docRef = doc(db, 'users', `${uid}`);
-    const data = await getDoc(docRef);
-    setUserDB(data.data());
+    const data = await getUserDB(uid);
+    setUserDB(data);
     setIsLoading(false);
   };
 
@@ -34,15 +32,17 @@ const Mypage = () => {
       navigate('/login');
     }
     if (!!uid) {
-      getUserDB();
+      getUser();
     }
   }, []);
+
+  console.log(isLoading);
 
   if (isLoading) return <S.Loading>로딩중...</S.Loading>;
 
   return (
     <S.MyPageContainer>
-      <Profile user={userDB} getUserDB={getUserDB} />
+      <Profile user={userDB} getUser={getUser} />
       {/* 나의 위시리스트 섹션 아마도? */}
       {/* 나의 플래너 섹션 */}
       <MyReview user={userDB} />

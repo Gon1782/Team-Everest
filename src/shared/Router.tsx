@@ -12,7 +12,7 @@ import CityMapPage from '@/pages/CityMap/CityMapPage';
 const Router = () => {
   return (
     <BrowserRouter>
-      {/* <Header /> */}
+      <Header />
       <Routes>
         <Route path="/" element={<Landing />}></Route>
         <Route path="/main" element={<MainPage />}></Route>

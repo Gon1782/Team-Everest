@@ -1,43 +1,71 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { useNavigate } from 'react-router-dom';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 import { FcGoogle } from 'react-icons/fc';
 import { GrFacebook, GrTwitter } from 'react-icons/gr';
 import * as F from 'firebase/auth';
-import { doc, getDoc, setDoc } from 'firebase/firestore';
-import { auth, db } from '@/common/api/firebase';
+import { auth } from '@/common/api/firebase';
+import { getUserDB, postUserDB } from '@/common/api/userApi';
+import {
+  emailRegex,
+  firebaseLoginValidation,
+  pwRegex,
+} from '@/common/utils/validations';
 import useInput from '@/hooks/useInput';
-import { LoginState } from '@/recoil/atom/LoginToggle';
+import { LoginState } from '@/recoil/atom/Login';
 import * as S from './style/LoginTabStyled';
-
-const googleProvider = new F.GoogleAuthProvider();
-const facebookProvider = new F.FacebookAuthProvider();
-const twitterProvider = new F.TwitterAuthProvider();
 
 type Provider =
   | F.GoogleAuthProvider
   | F.FacebookAuthProvider
   | F.TwitterAuthProvider;
 
+const googleProvider = new F.GoogleAuthProvider();
+const facebookProvider = new F.FacebookAuthProvider();
+const twitterProvider = new F.TwitterAuthProvider();
+
 const LoginTab = () => {
   const navigate = useNavigate();
+  // 로그인 회원가입 토글
   const [_, setCheck] = useRecoilState(LoginState);
 
-  // 이메일 로그인 해야함 귀찮아서 나중에
+  // 이메일 로그인
   const [email, emailChange, resetEmail] = useInput('');
   const [password, passwordChange, resetPassword] = useInput('');
   const [visible, setVisible] = useState(false);
 
-  const reset = () => {
+  // 값 초기화
+  const reset = useCallback(() => {
     resetEmail();
     resetPassword();
+    setVisible(false);
+  }, []);
+
+  // 유효성검사
+  const emailCheck = !email || email.match(emailRegex);
+  const pwCheck = !password || password.match(pwRegex);
+
+  // 파이어베이스 로그인
+  const login = () => {
+    F.signInWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        navigate('/main');
+        reset();
+      })
+      .catch((error) => {
+        // 에러 alert
+        firebaseLoginValidation(error);
+      });
   };
 
   const emailLogin = () => {
+    if (!emailCheck) return;
+    if (!pwCheck) return;
+    // 세션 스토리지로 로그인
     F.setPersistence(auth, F.browserSessionPersistence)
       .then(() => {
-        return F.signInWithEmailAndPassword(auth, email, password);
+        login();
       })
       .catch((error) => {
         console.log(error.message);
@@ -45,33 +73,32 @@ const LoginTab = () => {
   };
 
   // 소셜 로그인
-  const social = (provider: Provider) => {
-    F.signInWithPopup(auth, provider).then(async (res) => {
-      navigate('/main');
-      //userDB 생성
-      const docRef = doc(db, 'users', `${res.user.uid}`);
-      const data = await getDoc(docRef);
-      const newData = {
-        uid: res.user.uid,
-        introduce: '',
-        backImage: '',
-        displayName: res.user.displayName,
-        photoURL: res.user.photoURL,
-        email: res.user.email,
-        myPlanner: [],
-        MyReview: [],
-      };
-      if (!data.data()) {
-        try {
-          await setDoc(docRef, newData);
-        } catch (error) {
-          console.log(error);
-        }
-      }
-    });
-  };
+  const social = useCallback((provider: Provider) => {
+    F.signInWithPopup(auth, provider)
+      .then(async (res) => {
+        navigate('/main');
+        //userDB 생성
+        const data = await getUserDB(res.user.uid);
+        const newData = {
+          uid: res.user.uid,
+          introduce: '',
+          backImage:
+            'https://images.unsplash.com/photo-1444723121867-7a241cacace9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80',
+          displayName: res.user.displayName,
+          photoURL: res.user.photoURL,
+          email: res.user.email,
+          myPlanner: [],
+          MyReview: [],
+          myWishPlace: [],
+        };
+        if (!data) postUserDB(res.user.uid, newData);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  }, []);
 
-  const socialLogin = (provider: Provider) => {
+  const socialLogin = useCallback((provider: Provider) => {
     F.setPersistence(auth, F.browserSessionPersistence)
       .then(() => {
         social(provider);
@@ -79,7 +106,7 @@ const LoginTab = () => {
       .catch((error) => {
         console.log(error.message);
       });
-  };
+  }, []);
 
   const logOut = () => {
     F.signOut(auth);
@@ -89,8 +116,9 @@ const LoginTab = () => {
     <>
       <S.LoginInputContainer>
         <S.LoginInputBox>
-          <div style={{ fontSize: 24 }}>E-Mail</div>
+          <div style={{ fontSize: 24, marginBottom: '1rem' }}>E-Mail</div>
           <S.LoginInput
+            tabIndex={1}
             type="text"
             name="email"
             value={email}
@@ -98,9 +126,19 @@ const LoginTab = () => {
           />
           <S.InputBtn onClick={() => resetEmail()}>X</S.InputBtn>
         </S.LoginInputBox>
+        <div
+          style={{
+            visibility: emailCheck ? 'hidden' : 'visible',
+            color: 'red',
+            margin: '.5rem',
+          }}
+        >
+          ※이메일 형식에 맞게 입력해주세요
+        </div>
         <S.LoginInputBox>
-          <div style={{ fontSize: 24 }}>Password</div>
+          <div style={{ fontSize: 24, marginBottom: '1rem' }}>Password</div>
           <S.LoginInput
+            tabIndex={2}
             type={visible ? 'text' : 'password'}
             name="password"
             value={password}
@@ -119,10 +157,19 @@ const LoginTab = () => {
             <AiFillEyeInvisible size={22} />
           </S.InputBtn>
         </S.LoginInputBox>
+        <div
+          style={{
+            visibility: pwCheck ? 'hidden' : 'visible',
+            color: 'red',
+            margin: '.5rem',
+          }}
+        >
+          ※비밀번호를 확인해주세요
+        </div>
       </S.LoginInputContainer>
       <S.LoginBtnConatiner>
-        <S.LoginBtn onClick={() => logOut()}>
-          임시 로그아웃(이메일로그인안됨)
+        <S.LoginBtn tabIndex={3} onClick={() => emailLogin()}>
+          Log in
         </S.LoginBtn>
         <S.RegisterBtn onClick={() => setCheck(false)}>
           회원가입하러가기
@@ -140,6 +187,7 @@ const LoginTab = () => {
             onClick={() => socialLogin(twitterProvider)}
           />
         </S.SocialLoginBtnBox>
+        <S.LoginBtn onClick={() => logOut()}>임시 로그아웃</S.LoginBtn>
       </S.LoginBtnConatiner>
     </>
   );
