@@ -29,7 +29,7 @@ export const MyReview = styled.div`
   cursor: pointer;
   width: 388px;
   height: 420px;
-  background-color: white;
+  background-color: gray;
   padding: 1rem;
   border-radius: 20px;
 `;
@@ -66,10 +66,9 @@ export const MyReviewContentBox = styled.div`
   display: flex;
   justify-content: center;
   background-color: white;
-  width: 90%;
-  height: 2rem;
-  font-size: 1rem;
+  width: 100%;
   padding: 1rem;
+  font-size: 1rem;
   word-break: break-all;
 `;
 export const MyImageBox = styled.div`
@@ -78,4 +77,7 @@ export const MyImageBox = styled.div`
   margin: 0;
   width: 100%;
   overflow-x: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;

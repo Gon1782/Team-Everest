@@ -1,6 +1,6 @@
 import LoginTab from '@/components/Login/LoginTab';
 import RegisterTab from '@/components/Register/RegisterTab';
-import { LoginState } from '@/recoil/atom/LoginToggle';
+import { LoginState } from '@/recoil/atom/Login';
 import { useRecoilState } from 'recoil';
 import * as S from './style/LoginStyled';
 

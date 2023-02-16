@@ -1,24 +1,24 @@
 import { useEffect, useState } from 'react';
-import { doc, getDoc } from 'firebase/firestore';
-import { db } from '@/common/api/firebase';
 import { Document, EachReview } from '@/types/DetailType';
 import * as S from './style/ReviewStyled';
+import { getUserDB } from '@/common/api/userApi';
 
 interface Props {
   review: EachReview;
 }
 
 const ReviewBox = ({ review }: Props) => {
+  // uid 체크
   const sessionKey = `firebase:authUser:${process.env.FIREBASE_API_KEY}:[DEFAULT]`;
   const uid = !!sessionStorage.getItem(sessionKey)
     ? JSON.parse(sessionStorage.getItem(sessionKey)).uid
     : '';
+  // GET UserDB
   const [user, setUser] = useState<Document>();
 
   const getUser = async () => {
-    const docRef = doc(db, 'users', `${review.uid}`);
-    const data = await getDoc(docRef);
-    setUser(data.data());
+    const data = await getUserDB(review.uid);
+    setUser(data);
   };
 
   useEffect(() => {

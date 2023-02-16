@@ -1,9 +1,7 @@
 import { useCallback, useRef, useState, useEffect } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { FaStar, FaCamera } from 'react-icons/fa';
-import { getDoc, doc, setDoc, updateDoc } from 'firebase/firestore';
 import { uuidv4 } from '@firebase/util';
-import { db } from '@/common/api/firebase';
 import { getDate } from '@/common/utils/getDate';
 import useInput from '@/hooks/useInput';
 import useImageInputs from '@/hooks/useImageInputs';
@@ -11,6 +9,8 @@ import { reviewModalState } from '@/recoil/atom/ReviewModal';
 import { DetailList } from '@/recoil/atom/Detail';
 import { Document } from '@/types/DetailType';
 import * as S from './style/ReviewStyled';
+import { getUserDB, updateUserDB } from '@/common/api/userApi';
+import { postReview, updateReview } from '@/common/api/reviewApi';
 
 interface Props {
   title: string;
@@ -66,13 +66,8 @@ const ReviewModal = ({ title, id }: Props) => {
 
   // GET USER DB
   const getUser = async () => {
-    try {
-      const docRef = doc(db, 'users', `${uid}`);
-      const data = await getDoc(docRef);
-      setUser(data.data());
-    } catch (error) {
-      console.log(error);
-    }
+    const data = await getUserDB(uid);
+    setUser(data);
   };
 
   // POST Review
@@ -94,12 +89,12 @@ const ReviewModal = ({ title, id }: Props) => {
       totalRating: !!list.totalRating ? list.totalRating + rating : rating,
     };
     // 첫 리뷰 일때 setDoc 두번째 리뷰부터 업데이트
-    if (!list.review) await setDoc(doc(db, 'reviews', id), newReviewData);
-    else await updateDoc(doc(db, 'reviews', id), newReviewData);
+    if (!list.review) await postReview(id, newReviewData);
+    else await updateReview(id, newReviewData);
     setModal(false);
 
-    // USERDB POST
-    await updateDoc(doc(db, 'users', `${uid}`), {
+    // USERDB update
+    await updateUserDB(uid, {
       MyReview: !!user.MyReview ? [...user?.MyReview, newReview] : [newReview],
     });
     reset();
