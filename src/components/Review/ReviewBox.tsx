@@ -3,6 +3,7 @@ import { Document, EachReview } from '@/types/DetailType';
 import * as S from './style/ReviewStyled';
 import { getUserDB } from '@/common/api/userApi';
 import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
 
 interface Props {
   review: EachReview;
@@ -37,23 +38,13 @@ const ReviewBox = ({ review }: Props) => {
         }
       />
       <S.ReviewContent>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            width: '100%',
-            fontSize: '1rem',
-            fontWeight: 'bold',
-          }}
-        >
-          <div>
-            <span
-              onClick={() => navigate('/my', { state: review.uid })}
-              style={{ cursor: 'pointer' }}
-            >
-              {user?.displayName}&nbsp;
-            </span>
-          </div>
+        <ReviewSpace>
+          <span
+            style={{ cursor: 'pointer' }}
+            onClick={() => navigate('/my', { state: review.uid })}
+          >
+            {user?.displayName}&nbsp;
+          </span>
           <div
             style={{
               display: review.uid === uid ? 'flex' : 'none',
@@ -63,7 +54,7 @@ const ReviewBox = ({ review }: Props) => {
             <button>수정</button>
             <button>삭제</button>
           </div>
-        </div>
+        </ReviewSpace>
         <div>{'⭐'.repeat(Number(review.rating))}</div>
         <div style={{ fontSize: '1.25rem' }}>{review.content}</div>
         <div style={{ display: 'flex', gap: '1rem' }}>
@@ -78,3 +69,11 @@ const ReviewBox = ({ review }: Props) => {
 };
 
 export default ReviewBox;
+
+const ReviewSpace = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 1rem;
+  font-weight: bold;
+`;

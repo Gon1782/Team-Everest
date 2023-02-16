@@ -5,6 +5,7 @@ import { FaBookmark, FaRegBookmark } from 'react-icons/fa';
 import * as S from '@/pages/Detail/style/DetailStyled';
 import { useState } from 'react';
 import DetailMap from './DetailMap';
+import styled from 'styled-components';
 interface Props {
   item: Item | undefined;
   intro: Item | undefined;
@@ -44,12 +45,11 @@ const DetailInfo = ({ item, intro }: Props) => {
             : 'https://images.unsplash.com/photo-1675845626595-a50d669f26cb?ixl'
         }
       />
-      <div
-        style={{ width: 1024, lineHeight: '1.5rem', textAlign: 'center' }}
+      <DetailOverview
         dangerouslySetInnerHTML={{
           __html: !!item?.overview ? item.overview : '',
         }}
-      ></div>
+      ></DetailOverview>
       <DetailMap x={item.mapx} y={item.mapy} />
       <S.LocationInfo>
         <S.SmallTitle>
@@ -77,3 +77,9 @@ const DetailInfo = ({ item, intro }: Props) => {
 };
 
 export default DetailInfo;
+
+const DetailOverview = styled.div`
+  width: 1024px;
+  line-height: 1.5rem;
+  text-align: center;
+`;
