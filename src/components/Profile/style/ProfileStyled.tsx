@@ -9,7 +9,7 @@ export const MyBackImage = styled.img`
   position: absolute;
   width: 100%;
   height: 450px;
-  background-color: green;
+  background-color: gray;
   border: none;
   object-fit: cover;
 `;
@@ -73,6 +73,9 @@ export const NicknameBox = styled.div`
   gap: 3rem;
   line-height: 1.5rem;
   padding: 1rem 2rem;
+  & svg {
+    cursor: pointer;
+  }
 `;
 export const MyText = styled.span`
   width: 100%;

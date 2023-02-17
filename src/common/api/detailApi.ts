@@ -17,12 +17,18 @@ export const getDetail = async (id?: string) => {
 };
 
 export const getDetailIntro = async (id?: string) => {
-  console.log(id.slice(0,2))
+  const contentTypeId = id?.slice(0,2)
   const { data } = await axios.get<DetailResponse>(
-    `${BASE_URL('detailIntro', 1, 1)}&contentId=${id}&contentTypeId=${id.slice(
-      0,
-      2,
-    )}`,
+    `${BASE_URL('detailIntro', 1, 1)}&contentId=${id}&contentTypeId=${contentTypeId}`,
+  );
+  return data;
+};
+
+export const getSimilar = async (pageNo:number, cat:string) => {
+  const cat1 = cat.slice(0,3)
+  const cat2 = cat.slice(0,5)
+  const { data } = await axios.get<DetailResponse>(
+    `${BASE_URL('areaBasedList', 4, pageNo)}&listYN=Y&arrange=A&contentTypeId=&areaCode=&sigunguCode=&cat1=${cat1}&cat2=${cat2}&cat3=${cat}`,
   );
   return data;
 };

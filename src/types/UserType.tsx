@@ -1,11 +1,15 @@
-import { EachReview } from './DetailType';
+import { EachReview, Item } from './DetailType';
 
 export interface UserData {
-  displayName: string;
-  email: string;
-  MyReview: EachReview[];
-  photoURL: string;
   uid: string;
+  email: string;
+  photoURL: string;
+  displayName: string;
+  introduce: string;
+  backImage: string;
+  myWishPlace: Item[];
+  myPlanner: Item[];
+  MyReview: EachReview[];
 }
 
 export interface MyPlanner {

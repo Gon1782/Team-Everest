@@ -28,9 +28,25 @@ export const ReviewContent = styled.div`
   gap: 0.5rem;
 `;
 
-export const Image = styled.img`
+export const ReviewImage = styled.img`
   width: 10rem;
   height: 6rem;
+`;
+
+export const ReviewSpace = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 1rem;
+  font-weight: bold;
+`;
+
+export const ReviewNickname = styled.span`
+  cursor: pointer;
+`;
+
+export const ReviewBtnBox = styled.div`
+  gap: 1rem;
 `;
 
 export const ModalContainer = styled.div`

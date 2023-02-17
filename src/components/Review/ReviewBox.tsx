@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { getUserDB } from '@/common/api/userApi';
+import { defaults } from '@/common/utils/defaults';
 import { Document, EachReview } from '@/types/DetailType';
 import * as S from './style/ReviewStyled';
-import { getUserDB } from '@/common/api/userApi';
-import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
 
 interface Props {
   review: EachReview;
@@ -11,11 +11,13 @@ interface Props {
 
 const ReviewBox = ({ review }: Props) => {
   const navigate = useNavigate();
-  // uid 체크
+
+  // 내 리뷰인지 체크
   const sessionKey = `firebase:authUser:${process.env.FIREBASE_API_KEY}:[DEFAULT]`;
-  const uid = !!sessionStorage.getItem(sessionKey)
-    ? JSON.parse(sessionStorage.getItem(sessionKey)).uid
-    : '';
+  const userItem = sessionStorage.getItem(sessionKey);
+  const uid = !!userItem ? JSON.parse(userItem).uid : '';
+  const checkMine = review.uid === uid;
+
   // GET UserDB
   const [user, setUser] = useState<Document>();
 
@@ -24,42 +26,39 @@ const ReviewBox = ({ review }: Props) => {
     setUser(data);
   };
 
+  // 프로필 사진
+  const { defaultProfile } = defaults();
+  const profileImg = !!user?.photoURL ? user?.photoURL : defaultProfile;
+
   useEffect(() => {
     getUser();
   }, []);
 
   return (
     <S.Review>
-      <S.Profile
-        src={
-          !!user?.photoURL
-            ? user?.photoURL
-            : require('@/assets/MyPage/defaultProfile.jpg').default
-        }
-      />
+      <S.Profile src={profileImg} />
       <S.ReviewContent>
-        <ReviewSpace>
-          <span
+        <S.ReviewSpace>
+          <S.ReviewNickname
             style={{ cursor: 'pointer' }}
             onClick={() => navigate('/my', { state: review.uid })}
           >
             {user?.displayName}&nbsp;
-          </span>
-          <div
+          </S.ReviewNickname>
+          <S.ReviewBtnBox
             style={{
-              display: review.uid === uid ? 'flex' : 'none',
-              gap: '1rem',
+              display: checkMine ? 'flex' : 'none',
             }}
           >
             <button>수정</button>
             <button>삭제</button>
-          </div>
-        </ReviewSpace>
+          </S.ReviewBtnBox>
+        </S.ReviewSpace>
         <div>{'⭐'.repeat(Number(review.rating))}</div>
         <div style={{ fontSize: '1.25rem' }}>{review.content}</div>
         <div style={{ display: 'flex', gap: '1rem' }}>
           {review.image.map((x: string, i: number) => {
-            return <S.Image src={x} key={i} />;
+            return <S.ReviewImage src={x} key={i} />;
           })}
         </div>
         <span style={{ color: 'gray' }}>{review.createdAt}</span>
@@ -69,11 +68,3 @@ const ReviewBox = ({ review }: Props) => {
 };
 
 export default ReviewBox;
-
-const ReviewSpace = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  font-size: 1rem;
-  font-weight: bold;
-`;

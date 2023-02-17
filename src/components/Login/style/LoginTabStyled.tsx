@@ -72,8 +72,12 @@ export const RegisterInputContainer = styled.div`
   align-items: center;
   justify-content: center;
 `;
-
-export const InputTitle = styled.div`
+export const LoginTitle = styled.div`
+  margin-bottom: 1rem;
+  font-size: 24px;
+`;
+export const RegisterTitle = styled.div`
+  margin: 0.5rem 0;
   font-size: 24px;
 `;
 
