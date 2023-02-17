@@ -1,42 +1,40 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { NavLink, useNavigate } from 'react-router-dom';
+import { FaSearch } from 'react-icons/fa';
+import SearchModal from './SearchModal';
+import { auth } from '../../common/api/firebase';
+import { onAuthStateChanged } from '@firebase/auth';
 
 const Header = () => {
   // 검색창 토글
   const [isMenuToggled, setIsMenuToggled] = useState<boolean>(false);
-  const menuRef = useRef<HTMLDivElement>(null);
-  // 검색창 키워드
-  const [searcharea, setSearcharea] = useState('');
+  const [logoutText, setLogoutText] = useState(true);
   const navigate = useNavigate();
 
-  // 검색창 토글 외부 영역 클릭시 창 닫기
-  useEffect(() => {
-    const handleOutsideClick = (event: MouseEvent) => {
-      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
-        setIsMenuToggled(false);
+  // 로그인 상태 체크 후 연결 페이지 설정
+  const LoginOutHandler = () => {
+    if (logoutText === false) {
+      if (window.confirm('로그아웃 하시겠습니까?')) {
+        auth.signOut();
+        alert('로그아웃 되셨습니다.');
       }
-    };
-
-    document.addEventListener('mousedown', handleOutsideClick);
-
-    return () => {
-      document.removeEventListener('mousedown', handleOutsideClick);
-    };
-  }, []);
-
-  // 검색창 키워드 입력시 검색 결과 페이지 이동
-  const handleSubmit = (event: any) => {
-    event.preventDefault();
-    if (searcharea.trim() === '') {
-      alert('내용을 입력해주세요.');
       return;
     } else {
-      console.log(searcharea);
-      navigate(`/searcharea?name=${searcharea}`);
-      setSearcharea('');
+      navigate('login');
     }
   };
+
+  // 로그인 상태 체크 후 텍스트 state 변경
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setLogoutText(false);
+      } else if (!user) {
+        setLogoutText(true);
+      }
+    });
+  }, []);
 
   return (
     <>
@@ -52,29 +50,18 @@ const Header = () => {
             <NavBarLink to="/myPlan">일정 만들기</NavBarLink>
             <NavBarLink to="">지도로 이동하기</NavBarLink>
             <NavBarLink to="my">마이페이지</NavBarLink>
-            <button onClick={() => setIsMenuToggled(!isMenuToggled)}>
-              돋보기
-            </button>
-            <NavBarLink to="/login">로그인</NavBarLink>
+            <SearchIcon onClick={() => setIsMenuToggled(!isMenuToggled)} />
+            <LogInButton onClick={LoginOutHandler}>
+              <LogoutText>{logoutText ? '로그인' : '로그아웃'}</LogoutText>
+            </LogInButton>
           </RightSection>
         </Nav>
       </HeaderContainer>
       {/* 검색창 토글 */}
-      {isMenuToggled && (
-        <div ref={menuRef}>
-          <SearchScreen>
-            <SearchForm onSubmit={handleSubmit}>
-              <SearchInput
-                type="text"
-                placeholder="지역명 검색"
-                onChange={(event) => setSearcharea(event.target.value)}
-                value={searcharea}
-              ></SearchInput>
-              <SearchButton>검색</SearchButton>
-            </SearchForm>
-          </SearchScreen>
-        </div>
-      )}
+      <SearchModal
+        isMenuToggled={isMenuToggled}
+        setIsMenuToggled={setIsMenuToggled}
+      />
     </>
   );
 };
@@ -88,6 +75,8 @@ const HeaderContainer = styled.header`
   height: 50px;
   display: flex;
   align-items: center;
+  position: fixed;
+  z-index: 999;
 `;
 
 const Nav = styled.nav`
@@ -112,17 +101,19 @@ const NavBarLink = styled(NavLink)`
   color: white;
 `;
 
-const SearchScreen = styled.div`
-  width: 100%;
-  height: 200px;
-  background-color: #d6d6d6;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const SearchIcon = styled(FaSearch)``;
+
+// 로그인 버튼
+
+const LogInButton = styled.button`
+  width: 80px;
+  height: 30px;
+  border: none;
+  border-radius: 100px;
+  background-color: #d0d0d0;
+  color: #5b5b5b;
+  font-size: 0.8rem;
+  cursor: pointer;
 `;
 
-const SearchForm = styled.form``;
-
-const SearchInput = styled.input``;
-
-const SearchButton = styled.button``;
+const LogoutText = styled.p``;
