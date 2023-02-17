@@ -2,8 +2,8 @@ import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import { getDetail } from '@/common/api/detailApi';
 import { DetailResponse, EachReview } from '@/types/DetailType';
-import { Image } from '../Review/style/ReviewStyled';
 import * as S from './style/MyReviewStyled';
+import { ReviewImage } from '../Review/style/ReviewStyled';
 
 interface Props {
   review: EachReview;
@@ -21,6 +21,7 @@ const MyReviewBox = ({ review }: Props) => {
     `${review.contentId}`,
     () => getDetail(review.contentId),
   );
+
   // 스켈레톤 UI
   if (isLoading)
     return (
@@ -32,7 +33,7 @@ const MyReviewBox = ({ review }: Props) => {
             내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용
           </S.MyReviewContentBox>
           <S.MyImageBox>
-            <Image
+            <ReviewImage
               src={
                 'https://images.unsplash.com/photo-1675845626595-a50d669f26cb?ixl'
               }
@@ -43,7 +44,7 @@ const MyReviewBox = ({ review }: Props) => {
     );
   if (isError) return <div>에러: {error.message}</div>;
 
-  const title = data.response.body.items.item[0].title;
+  const title = data?.response.body.items.item[0].title;
 
   return (
     <S.MyReview onClick={() => goToDetail()}>
@@ -59,7 +60,7 @@ const MyReviewBox = ({ review }: Props) => {
         </S.MyReviewContentBox>
         <S.MyImageBox>
           {review.image.map((x: string, i: number) => {
-            return <Image src={x} key={i} />;
+            return <ReviewImage src={x} key={i} />;
           })}
         </S.MyImageBox>
       </S.MyReviewInfoBox>

@@ -32,12 +32,12 @@ const SidePage = () => {
       <>{pickSchedule.day} | </>
       <>{pickSchedule.schedule}</>
       <SelectBox
-        onChangeHandler={(event) => setPickLocation(event.target.value)}
+        onChangeHandler={(event: any) => setPickLocation(event.target.value)}
         dataList={location}
         valueKey="code"
       />
       <SelectBox
-        onChangeHandler={(event) => setPickTheme(event.target.value)}
+        onChangeHandler={(event: any) => setPickTheme(event.target.value)}
         dataList={theme}
         valueKey="contentTypeId"
       />

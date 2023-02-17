@@ -1,40 +1,24 @@
-import { useCallback, useRef, useState, useEffect } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useCallback, useRef, useState } from 'react';
+import { useSetRecoilState } from 'recoil';
 import { FaStar, FaCamera } from 'react-icons/fa';
-import { uuidv4 } from '@firebase/util';
-import { getDate } from '@/common/utils/getDate';
+import useAddReview from '@/hooks/useAddReview';
 import useInput from '@/hooks/useInput';
 import useImageInputs from '@/hooks/useImageInputs';
 import { reviewModalState } from '@/recoil/atom/ReviewModal';
-import { DetailList } from '@/recoil/atom/Detail';
-import { Document } from '@/types/DetailType';
 import * as S from './style/ReviewStyled';
-import { getUserDB, updateUserDB } from '@/common/api/userApi';
-import { postReview, updateReview } from '@/common/api/reviewApi';
 
 interface Props {
-  title: string;
-  id: string;
+  title?: string;
+  id?: string;
 }
 
 const ReviewModal = ({ title, id }: Props) => {
+  const contentId = !!id ? id : '';
+
+  // 로그인 여부 확인
   const sessionKey = `firebase:authUser:${process.env.FIREBASE_API_KEY}:[DEFAULT]`;
-  const uid = !!sessionStorage.getItem(sessionKey)
-    ? JSON.parse(sessionStorage.getItem(sessionKey)).uid
-    : '';
-
-  const [text, onChangeText, resetTest] = useInput('');
-  const [image, onImageChange, resetImage] = useImageInputs();
-  const [user, setUser] = useState<Document>();
-  const list = useRecoilValue(DetailList);
-  const [date, time] = getDate();
-
-  // 리셋 + 모달 종료
-  const reset = () => {
-    setRating(0);
-    resetTest();
-    resetImage();
-  };
+  const userItem = sessionStorage.getItem(sessionKey);
+  const uid = !!userItem ? JSON.parse(userItem).uid : '';
 
   // 별점 관련
   const [rating, setRating] = useState(0);
@@ -51,9 +35,23 @@ const ReviewModal = ({ title, id }: Props) => {
     setClicked(clickStates);
   }, []);
 
+  // 인풋
+  const [text, onChangeText, resetTest] = useInput('');
+  const [image, onImageChange, resetImage] = useImageInputs();
+
+  // 리셋
+  const reset = () => {
+    setRating(0);
+    resetTest();
+    resetImage();
+  };
+
+  // POST Review
+  const addReview = useAddReview(text, rating, image, contentId, uid, reset);
+
   // 모달 영역 밖 클릭시 닫기
   const modalref = useRef<HTMLFormElement>(null);
-  const [_, setModal] = useRecoilState(reviewModalState);
+  const setModal = useSetRecoilState(reviewModalState);
 
   const closeModalIfClickOutside = useCallback(
     (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -64,46 +62,6 @@ const ReviewModal = ({ title, id }: Props) => {
     },
     [],
   );
-
-  // GET USER DB
-  const getUser = async () => {
-    const data = await getUserDB(uid);
-    setUser(data);
-  };
-
-  // POST Review
-  const addReview = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const newReview = {
-      rating,
-      content: text,
-      createdAt: `${date} ${time}`,
-      id: uuidv4(),
-      image,
-      contentId: id,
-      uid,
-      isDelete: 'N',
-    };
-    const newReviewData = {
-      ratingCount: !!list.ratingCount ? list.ratingCount + 1 : 1,
-      review: !!list.review ? [...list?.review, newReview] : [newReview],
-      totalRating: !!list.totalRating ? list.totalRating + rating : rating,
-    };
-    // 첫 리뷰 일때 setDoc 두번째 리뷰부터 업데이트
-    if (!list.review) await postReview(id, newReviewData);
-    else await updateReview(id, newReviewData);
-    setModal(false);
-
-    // USERDB update
-    await updateUserDB(uid, {
-      MyReview: !!user.MyReview ? [...user?.MyReview, newReview] : [newReview],
-    });
-    reset();
-  };
-
-  useEffect(() => {
-    getUser();
-  }, []);
 
   return (
     <S.ModalContainer onClick={(e) => closeModalIfClickOutside(e)}>

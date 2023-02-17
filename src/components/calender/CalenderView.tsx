@@ -100,7 +100,7 @@ const CalenderView = () => {
   ) => {
     setNewPlan((prev) => {
       const updateEventList = eventList.reduce(
-        (sum, item: any, idx: number) => {
+        (sum: any, item: any, idx: number) => {
           if (updateIndex === idx) {
             const cloneItem: any = { ...item };
             cloneItem['memo'] = memoAndTime.memo;
@@ -115,7 +115,7 @@ const CalenderView = () => {
         [],
       );
 
-      const newData = {};
+      const newData: any = {};
       newData[date] = [...updateEventList];
       showDropDownPage(date, updateIndex);
       return {

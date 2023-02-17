@@ -14,6 +14,7 @@ export const WriteReview = styled.div`
   margin-bottom: 3rem;
   border: 1px solid black;
 `;
+
 export const ReviewBtn = styled.button`
   cursor: pointer;
   width: 10rem;
@@ -37,7 +38,7 @@ export const LandmarkImg = styled.img`
 
 export const InfoBox = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   justify-content: center;
   justify-items: center;
   align-items: center;
@@ -59,11 +60,14 @@ export const DetailScore = styled.div`
   width: 100%;
   font-size: 1.5rem;
   gap: 1rem;
+  & svg {
+    cursor: pointer;
+  }
 `;
 
 export const SmallTitle = styled.h4`
   display: flex;
-  width: 40%;
+  width: 100%;
   gap: 1rem;
   margin: 1rem auto 1rem 0;
   font-size: 1rem;
@@ -71,14 +75,22 @@ export const SmallTitle = styled.h4`
 `;
 
 export const LocationInfo = styled.div`
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, minmax(2rem, auto));
   width: 100%;
-  margin: 1rem;
+  height: 100%;
+  gap: 1rem;
   font-size: 1rem;
   line-height: 2rem;
 `;
 
 export const LandMarkInfo = styled.span`
   font-weight: normal;
+`;
+
+export const DetailOverview = styled.div`
+  width: 1024px;
+  line-height: 1.5rem;
+  text-align: center;
 `;

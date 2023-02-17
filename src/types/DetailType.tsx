@@ -35,5 +35,5 @@ export interface EachReview {
 }
 
 export interface Document {
-  [x: string]: any;
+  [x: string]: any
 }

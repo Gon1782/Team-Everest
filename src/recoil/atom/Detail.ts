@@ -1,6 +1,6 @@
 import { atom } from 'recoil';
 
-export const DetailList = atom({
+export const DetailList= atom({
   key: 'detail',
   default: {
     ratingCount: 0,
@@ -11,8 +11,9 @@ export const DetailList = atom({
         createdAt: '',
         id: '',
         image: [''],
-        title: '',
         uid: '',
+        isDelete: "",
+        contentId: "",
       },
     ],
     totalRating: 0,
