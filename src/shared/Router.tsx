@@ -8,7 +8,6 @@ import Mypage from '@/pages/Mypage/Mypage';
 import Login from '@/pages/Login/Login';
 import SearchArea from '@/pages/SearchArea';
 import CityMapPage from '@/pages/CityMap/CityMapPage';
-import ThemeSlideBanner from '@/components/themeBanner/ThemeSlideBanner';
 
 const Router = () => {
   return (

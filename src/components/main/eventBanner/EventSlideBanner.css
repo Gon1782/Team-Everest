@@ -1,0 +1,35 @@
+/* 슬라이드 CSS */
+
+.swiper-slide {
+  height: 280px;
+}
+
+.swiper-button-next {
+  width: 50px;
+  opacity: 0.5;
+  background-size: 50% auto;
+  background-position: center;
+}
+
+.swiper-button-next:hover {
+  opacity: 1;
+}
+
+.swiper-button-prev {
+  width: 50px;
+  background-size: 50% auto;
+  background-position: center;
+  opacity: 0.5;
+}
+.swiper-button-prev:hover {
+  opacity: 1;
+}
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  /* display: none; */
+  color: #797979;
+}
+
+.swiper-pagination-bullet {
+  background-color: #797979;
+}
