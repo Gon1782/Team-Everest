@@ -15,7 +15,7 @@ const TopSlideBanner = () => {
         modules={[Navigation, Pagination, Autoplay]}
         pagination={{ clickable: true }}
         navigation
-        spaceBetween={0}
+        // spaceBetween={0}
         slidesPerView={1}
         autoplay={{
           delay: 3000,
@@ -23,8 +23,8 @@ const TopSlideBanner = () => {
           pauseOnMouseEnter: true,
         }}
         loop={true}
-        // observer={true}
-        // observeParents={true}
+        observer={true}
+        observeParents={true}
         // autoHeight={true}
         // 자동 높이 조절 -> 배너 사이즈 따라 체크하기
         resistance={false}

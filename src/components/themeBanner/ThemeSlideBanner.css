@@ -1,11 +1,21 @@
 /* 슬라이드 CSS */
 
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
 .swiper-slide {
-  height: 280px;
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .swiper-button-next {
-  width: 50px;
+  width: 30px;
   opacity: 0.5;
   background-size: 50% auto;
   background-position: center;
