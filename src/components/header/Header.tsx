@@ -10,6 +10,7 @@ const Header = () => {
   // 검색창 토글
   const [isMenuToggled, setIsMenuToggled] = useState<boolean>(false);
   const [logoutText, setLogoutText] = useState(true);
+  const [uid, setUid] = useState('');
   const navigate = useNavigate();
 
   // 로그인 상태 체크 후 연결 페이지 설정
@@ -30,6 +31,7 @@ const Header = () => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         setLogoutText(false);
+        setUid(user.uid);
       } else if (!user) {
         setLogoutText(true);
       }
@@ -47,7 +49,7 @@ const Header = () => {
           </HeaderLogo>
           <RightSection>
             <NavBarLink to="/main">여행 시작하기</NavBarLink>
-            <NavBarLink to="/planner/my/false">일정 만들기</NavBarLink>
+            <NavBarLink to="/planner/my/write">일정 만들기</NavBarLink>
             <NavBarLink to="">지도로 이동하기</NavBarLink>
             <NavBarLink to="my">마이페이지</NavBarLink>
             <SearchIcon onClick={() => setIsMenuToggled(!isMenuToggled)} />

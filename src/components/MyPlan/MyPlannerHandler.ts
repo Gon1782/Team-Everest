@@ -8,8 +8,7 @@ interface ScheduleInfo {
 }
 
 // Date 정보를 문자열로 처리하는 메소드
-export const stringConvert = (calenderDate: Date): any => {
-  console.log('calenderDate', calenderDate);
+export const dateToString = (calenderDate: Date): any => {
   const year = calenderDate.getFullYear().toString();
   const month =
     calenderDate.getMonth() + 1 < 10 // 1~9월 앞에 0 붙이기
@@ -19,18 +18,12 @@ export const stringConvert = (calenderDate: Date): any => {
     calenderDate.getDate() < 10 // 1~9일 앞에 0 붙이기
       ? '0' + calenderDate.getDate().toString()
       : calenderDate.getDate().toString();
-
-  // const dateObj = {
-  //   year: calenderDate.getFullYear(),
-  //   month: calenderDate.getMonth() + 1,
-  //   date: calenderDate.getDate(),
-  //   yyyymmdd : `${year}-${month}-${date}`
-  // };
   return `${year}-${month}-${date}`;
 };
 
 // Date 정보를 문자열로 처리하는 메소드
-export const stringConvert2 = (calenderDate: Date): any => {
+export const dateToObject = (calenderDate: Date): any => {
+  // 캘린더 데이트값 초기화 해야해서 object 타입으로 만듦
   const year = calenderDate.getFullYear().toString();
   const month =
     calenderDate.getMonth() + 1 < 10 // 1~9월 앞에 0 붙이기

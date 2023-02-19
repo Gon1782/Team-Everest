@@ -1,33 +1,56 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { FaBookmark } from 'react-icons/fa';
+import { useQuery } from 'react-query';
+import { getAllPlanner } from '@/common/api/plannerApi';
 
 const BestTravelPlan = () => {
+  const navigate = useNavigate();
+  const { isLoading, data, isError } = useQuery('getAllPlanner', getAllPlanner);
+
+  if (!!isLoading) return <>잠시만뇽</>;
+  if (!!isError) return <>?? 에러누</>;
+
+  const moveToMyPlan = (item: any, index: number) => {
+    navigate(`/planner/${item.uid}/${index}`);
+  };
   return (
     <BestTravelPlanContainer>
-      <BestTravelPlanCard>
-        <TravelPlaceMainImgWrapper>
-          <TravelPlaceMainImg
-            src={require('@/assets/banner_01.jpg').default}
-            alt=""
-          />
-        </TravelPlaceMainImgWrapper>
-        <Wrapper>
-          <TravelPlaceReviewerImgWrapper>
-            <TravelPlaceReviewerImg
-              src={require('@/assets/MyPage/defaultProfile.jpg').default}
-              alt=""
-            />
-          </TravelPlaceReviewerImgWrapper>
-        </Wrapper>
-        <TravelPlanInfo>
-          <TravelPlaceName>일정 이름</TravelPlaceName>
-          <BookMarkCount>
-            <BookMarkIcon />
-            <BookMarkCountNumber>00</BookMarkCountNumber>
-          </BookMarkCount>
-        </TravelPlanInfo>
-      </BestTravelPlanCard>
+      {!!data && !!data['items'].length ? (
+        <>
+          {data['items'].map((item: any, index: number) => {
+            return (
+              <BestTravelPlanCard onClick={() => moveToMyPlan(item, index)}>
+                <TravelPlaceMainImgWrapper>
+                  <TravelPlaceMainImg
+                    src={require('@/assets/banner_01.jpg').default}
+                    alt=""
+                  />
+                </TravelPlaceMainImgWrapper>
+                <Wrapper>
+                  <TravelPlaceReviewerImgWrapper>
+                    <TravelPlaceReviewerImg
+                      src={
+                        require('@/assets/MyPage/defaultProfile.jpg').default
+                      }
+                      alt=""
+                    />
+                  </TravelPlaceReviewerImgWrapper>
+                </Wrapper>
+                <TravelPlanInfo>
+                  <TravelPlaceName>{item.name}</TravelPlaceName>
+                  <BookMarkCount>
+                    <BookMarkIcon />
+                    <BookMarkCountNumber>{item.like}</BookMarkCountNumber>
+                  </BookMarkCount>
+                </TravelPlanInfo>
+              </BestTravelPlanCard>
+            );
+          })}
+        </>
+      ) : (
+        <>베스트 일정이 아직 없어요!</>
+      )}
     </BestTravelPlanContainer>
   );
 };

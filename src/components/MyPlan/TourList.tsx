@@ -33,6 +33,7 @@ const TourList = () => {
         schedule: { ...prev.schedule, ...newPlan },
         startDate: prev.startDate,
         endDate: prev.endDate,
+        contentId: prev.contentId,
       };
     });
   };

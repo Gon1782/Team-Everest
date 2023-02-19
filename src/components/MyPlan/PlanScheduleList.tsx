@@ -1,5 +1,4 @@
 import {
-  DropDownRef,
   InitLocation,
   IsSidePageView,
   MemoAndTime,
@@ -15,8 +14,7 @@ import {
   useResetRecoilState,
   useSetRecoilState,
 } from 'recoil';
-import { stringConvert, timeHandler } from './MyPlannerHandler';
-import SidePage from './SidePage';
+import { timeHandler } from './MyPlannerHandler';
 import EventTime from './EventTime';
 import EventMemo from './EventMemo';
 import styled from 'styled-components';
@@ -64,6 +62,7 @@ const PlanScheduleList = ({
         schedule: { ...prev.schedule, ...updateSchedule },
         startDate: prev.startDate,
         endDate: prev.endDate,
+        contentId: prev.contentId,
       };
     });
   };
@@ -84,6 +83,7 @@ const PlanScheduleList = ({
             const cloneItem: any = { ...item };
             cloneItem['memo'] = memoAndTime.memo;
             cloneItem['time'] = memoAndTime.time;
+
             sum.push(cloneItem);
             return sum;
           } else {
@@ -102,6 +102,7 @@ const PlanScheduleList = ({
         schedule: { ...prev.schedule, ...newData },
         startDate: prev.startDate,
         endDate: prev.endDate,
+        contentId: prev.contentId,
       };
     });
   };

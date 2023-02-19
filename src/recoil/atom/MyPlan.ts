@@ -1,5 +1,5 @@
 import { db } from '@/common/api/firebase';
-import { stringConvert } from '@/components/MyPlan/MyPlannerHandler';
+import { dateToString } from '@/components/MyPlan/MyPlannerHandler';
 import { Item } from '@/types/DetailType';
 import { async } from '@firebase/util';
 import { doc, getDoc } from 'firebase/firestore';
@@ -34,6 +34,7 @@ export interface PlanType {
   startDate: {};
   endDate: {};
   schedule: { [key: string]: [] };
+  contentId: 0;
 }
 
 export interface PickScheduleType {
@@ -50,16 +51,17 @@ export const NewPlanRecoil = atom({
       year: new Date().getFullYear(),
       month: new Date().getMonth(),
       date: new Date().getDate(),
-      yyyymmdd: stringConvert(new Date()),
+      yyyymmdd: dateToString(new Date()),
     },
     endDate: {
       year: new Date().getFullYear(),
       month: new Date().getMonth(),
       date: new Date().getDate(),
-      yyyymmdd: stringConvert(new Date()),
+      yyyymmdd: dateToString(new Date()),
     },
     schedule: {},
     isDelete: false,
+    contentId: 0,
   },
 });
 
@@ -72,7 +74,7 @@ export const TourListRecoil = atom({
 // 현재 관광지 추가 작업중인 일정 카드
 export const PickScheduleRecoil = atom({
   key: 'PickScheduleRecoil',
-  default: <PickScheduleType>{},
+  default: <PickScheduleType>{ schedule: '', day: '' },
 });
 
 // 지정할 시간,메모 데이터

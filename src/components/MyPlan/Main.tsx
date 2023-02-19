@@ -4,7 +4,7 @@ import {
   IsSidePageView,
   NewPlanRecoil,
 } from '@/recoil/atom/MyPlan';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
 import { db } from '@/common/api/firebase';
 import CalenderView from './CalenderView';
 import { PlanType } from '@/recoil/atom/MyPlan';
@@ -12,11 +12,14 @@ import { doc, DocumentData, getDoc, updateDoc } from 'firebase/firestore';
 import StartEndDate from './StartEndDate';
 
 import { useNavigate, useParams } from 'react-router-dom';
-import { stringConvert } from './MyPlannerHandler';
+
 import styled from 'styled-components';
 import SidePage from './SidePage';
 import Citymap from '../Citymap/Citymap';
 import PlanScheduleList from './PlanScheduleList';
+import { getAllPlanner, getUserPlanList } from '@/common/api/plannerApi';
+import { getUserDB } from '@/common/api/userApi';
+import { dateToString } from './MyPlannerHandler';
 
 /*
 
@@ -78,64 +81,34 @@ const MyPlan = () => {
   const userItem = sessionStorage.getItem(sessionKey);
   const uid = !!userItem ? JSON.parse(userItem).uid : '';
 
-  const [allPlanner, setAllPlanner] = useState<DocumentData>({});
   // 드롭 다운 레퍼런스 객체, useEffect에서 초기화함
   const [dropDownRef, setDropDownRef] = useState<any>({});
   const [loading, setLoading] = useState(true);
-  const { planIndex } = useParams<string>();
+  //
+  const { planIndex, userId } = useParams() as {
+    planIndex: string;
+    userId: string;
+  };
 
   const isSidePageView = useRecoilValue(IsSidePageView);
+  const resetPlan = useResetRecoilState(NewPlanRecoil);
 
   // 이 페이지에서 생성한 플랜
-  const [myPlan, setMyPlan] = useRecoilState<PlanType>(NewPlanRecoil);
-  const [myPlanList, setMyPlanList] = useState([]);
+  const [plan, setPlan] = useRecoilState<PlanType>(NewPlanRecoil);
+  // const [planList, setPlanList] = useState([]);
 
-  const [myPlanName, setMyPlanName] = useState('');
-  const [isChangePlanName, setIsChangePlanName] = useState(true);
+  const [planName, setPlanName] = useState('');
+  const [isShowPlanNameInput, setIsShowPlanNameInput] = useState(true);
 
-  const getUserDB = async () => {
-    setLoading(true);
-    const userRef = doc(db, 'users', `${uid}`);
-    const userDB: any = await getDoc(userRef);
-
-    const allPlannerRef = doc(db, 'planners', 'list');
-    const allPlannerDB: any = await getDoc(allPlannerRef);
-
-    const userPlanList = userDB.data()['myPlanner'];
-    const allPlanner = allPlannerDB.data();
-
-    setMyPlanList(userPlanList);
-    setAllPlanner(allPlanner);
-
-    if (planIndex !== 'false' && typeof planIndex !== 'undefined') {
-      setMyPlan(userPlanList[parseInt(planIndex)]);
-      setMyPlanName(userPlanList[parseInt(planIndex)]['name']);
-      setIsChangePlanName(false);
-    } else {
-      // 다른페이지로 넘어갈때 해주면 될듯
-      const newSchedule: any = {};
-      const initSchedule = stringConvert(new Date());
-      newSchedule[initSchedule] = [];
-      setMyPlan({
-        name: '',
-        startDate: {
-          year: new Date().getFullYear(),
-          month: new Date().getMonth(),
-          date: new Date().getDate(),
-          yyyymmdd: stringConvert(new Date()),
-        },
-        endDate: {
-          year: new Date().getFullYear(),
-          month: new Date().getMonth(),
-          date: new Date().getDate() + 3,
-          yyyymmdd: stringConvert(new Date()),
-        },
-        schedule: { ...newSchedule },
-      });
-      setMyPlanName('');
-      setIsChangePlanName(true);
+  const getPlan = async (userUid: string) => {
+    if (!!planIndex) {
+      setLoading(true);
+      const userDB: any = await getUserDB(userUid);
+      setPlan(userDB['myPlanner'][parseInt(planIndex)]);
+      setPlanName(userDB['myPlanner'][parseInt(planIndex)]['name']);
+      setIsShowPlanNameInput(false);
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   useEffect(() => {
@@ -144,88 +117,167 @@ const MyPlan = () => {
       navigate('/login');
     }
     if (!!uid) {
-      getUserDB();
+      if (planIndex !== 'write') {
+        getPlan(userId); // 해당 일정 가져오기
+      } else {
+        setLoading(true);
+        const newSchedule: any = {};
+        const initSchedule = dateToString(new Date());
+        newSchedule[initSchedule] = [];
+
+        setPlan({
+          name: '',
+          startDate: {
+            year: new Date().getFullYear(),
+            month: new Date().getMonth(),
+            date: new Date().getDate(),
+            yyyymmdd: dateToString(new Date()),
+          },
+          endDate: {
+            year: new Date().getFullYear(),
+            month: new Date().getMonth(),
+            date: new Date().getDate(),
+            yyyymmdd: dateToString(new Date()),
+          },
+          schedule: { ...newSchedule },
+          contentId: 0,
+        });
+        //resetPlan();
+        setPlanName('');
+        setIsShowPlanNameInput(true);
+        setLoading(false);
+      }
     }
   }, [planIndex]);
   if (loading) return <>로딩즁</>;
 
   //추가한 일정들 디비에 저장하기
   const addPlan = async () => {
-    if (!!!myPlanName) return alert('일정 제목을 입력해주세요');
-    console.log('newMyPlanner', myPlanList);
-    const newMyPlan = {
-      name: myPlanName,
-      schedule: { ...myPlan.schedule },
-      startDate: myPlan.startDate,
-      endDate: myPlan.endDate,
-    };
-    const newMyPlanner = [...myPlanList, { ...newMyPlan }];
+    if (!!!planName) return alert('일정 제목을 입력해주세요');
+    const planList: any = await getUserPlanList(uid);
+    const allPlanner: any = await getAllPlanner();
 
-    updateDB(newMyPlanner, newMyPlan);
-  };
-  const updatePlan = async () => {
-    const newUserPlan: any = {
-      name: myPlanName,
-      schedule: { ...myPlan.schedule },
-      startDate: myPlan.startDate,
-      endDate: myPlan.endDate,
+    const newPlan: any = {
+      name: planName,
+      schedule: { ...plan.schedule },
+      startDate: plan.startDate,
+      endDate: plan.endDate,
+      contentId: planList['myPlanner'].length,
     };
-    const newUserPlanList = myPlanList.reduce(
+    const newMyPlanner = [...planList['myPlanner'], { ...newPlan }];
+
+    try {
+      // 유저 디비에 저장
+      await updateDoc(doc(db, 'users', uid), {
+        myPlanner: [...newMyPlanner],
+      });
+
+      //모든 플래너 디비에 저장
+      newPlan['uid'] = uid;
+      newPlan['like'] = 0;
+      newPlan['contentId'] = planList['myPlanner'].length;
+
+      await updateDoc(doc(db, 'planners', 'list'), {
+        items: [
+          ...allPlanner['items'],
+          {
+            ...newPlan,
+          },
+        ],
+      });
+      alert('저장 성공 하였습니다!');
+    } catch (e) {
+      alert('잠시후 다시 시도해주세요!');
+    }
+  };
+
+  const updatePlan = async () => {
+    const planList: any = await getUserPlanList(uid);
+    const contentId = planList['myPlanner'][planIndex]['contentId'];
+    const allPlanner: any = await getAllPlanner();
+
+    const newUserPlan: any = {
+      name: planName,
+      schedule: { ...plan.schedule },
+      startDate: plan.startDate,
+      endDate: plan.endDate,
+      contentId: plan.contentId,
+    };
+
+    const newUserPlanList = planList['myPlanner'].reduce(
       (sum: any, item: any, index: number) => {
-        if (typeof planIndex !== 'undefined') {
-          if (parseInt(planIndex) === index) {
-            sum.push(newUserPlan);
-          } else {
-            sum.push(item);
-          }
+        if (parseInt(planIndex) === index) {
+          sum.push(newUserPlan);
+        } else {
+          sum.push(item);
         }
         return sum;
       },
       [],
     );
 
-    updateDB(newUserPlanList, newUserPlan);
-  };
-
-  const updateDB = async (newUserPlanList: any, newUserPlan: any) => {
-    await updateDoc(doc(db, 'users', uid), {
-      myPlanner: [...newUserPlanList],
-    });
-    await updateDoc(doc(db, 'planners', 'list'), {
-      items: [...allPlanner['items'], { ...newUserPlan, uid: uid, like: 0 }],
-    });
-    alert('저장 성공 하였습니다');
+    try {
+      //유저 디비에 업데이트
+      await updateDoc(doc(db, 'users', uid), {
+        myPlanner: [...newUserPlanList],
+      });
+      //모든 플래너 디비에 업데이트
+      const newAllPlanner = allPlanner['items'].reduce(
+        (sum: any, item: any) => {
+          if (contentId === parseInt(planIndex) && item.uid === uid) {
+            // planner 디비에만 필요한 데이터
+            newUserPlan['uid'] = uid;
+            newUserPlan['like'] = item.like;
+            newUserPlan['contentId'] = contentId;
+            sum.push(newUserPlan);
+          } else {
+            sum.push(item);
+          }
+          return sum;
+        },
+        [],
+      );
+      await updateDoc(doc(db, 'planners', 'list'), {
+        items: newAllPlanner,
+      });
+      alert('저장 성공 하였습니다');
+    } catch (e) {
+      alert('잠시후 다시 시도해주세요!');
+    }
   };
 
   return (
     <>
       <MyPlanContainer>
-        {isChangePlanName ? ( // 일정 만들때
+        {isShowPlanNameInput ? ( // 일정 만들때
           <PlanTitleSection>
             <PlanTitleInput
               type="text"
-              onChange={(e) => setMyPlanName(e.target.value)}
+              onChange={(e) => setPlanName(e.target.value)}
               placeholder="일정 제목을 입력해주세요"
             />
-            {planIndex !== 'false' && ( // 프로필에서 자기가 만든 일정 클릭 했을때
-              <>
-                <button onClick={() => setIsChangePlanName((prev) => !prev)}>
-                  완료
-                </button>
-                <button onClick={() => setIsChangePlanName((prev) => !prev)}>
-                  취소
-                </button>
-              </>
-            )}
           </PlanTitleSection>
         ) : (
           <PlanTitleSection>
             <PlanTitle>
-              {myPlanName}
-
-              <button onClick={() => setIsChangePlanName((prev) => !prev)}>
+              {planName}
+              <button onClick={() => setIsShowPlanNameInput((prev) => !prev)}>
                 제목수정
               </button>
+              {planIndex !== 'write' && isShowPlanNameInput && (
+                <>
+                  <button
+                    onClick={() => setIsShowPlanNameInput((prev) => !prev)}
+                  >
+                    완료
+                  </button>
+                  <button
+                    onClick={() => setIsShowPlanNameInput((prev) => !prev)}
+                  >
+                    취소
+                  </button>
+                </>
+              )}
             </PlanTitle>
           </PlanTitleSection>
         )}
@@ -239,7 +291,7 @@ const MyPlan = () => {
         <PlanScheduleList dropDownRef={dropDownRef} />
       </MyPlanContainer>
       <MyPlanButtonContainer>
-        {planIndex === 'false' ? (
+        {planIndex === 'write' ? (
           <button onClick={() => addPlan()}>저장</button>
         ) : (
           <button onClick={() => updatePlan()}>수정</button>
