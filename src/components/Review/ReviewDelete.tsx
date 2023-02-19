@@ -18,7 +18,7 @@ const CheckDelete = ({
   closeModalIfClickOutside,
 }: Props) => {
   // 삭제
-  const deleteReview = useDeleteReview(id, closeModal, user);
+  const deleteReview = useDeleteReview(id, closeModal);
 
   return (
     <S.ModalContainer onClick={(e) => closeModalIfClickOutside(e)}>

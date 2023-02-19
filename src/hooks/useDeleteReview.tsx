@@ -1,20 +1,18 @@
 import { useRecoilValue } from 'recoil';
 import { updateReview } from '@/common/api/reviewApi';
-import { updateUserDB } from '@/common/api/userApi';
+import { getUserDB, updateUserDB } from '@/common/api/userApi';
 import { DetailList } from '@/recoil/atom/Detail';
 import { Document, EachReview } from '@/types/DetailType';
 
-const useDeleteReview = (
-  id: string,
-  closeModal: () => void,
-  user?: Document,
-) => {
+const useDeleteReview = (id: string, closeModal: () => void) => {
   const list = useRecoilValue(DetailList);
   const reviews = list.review;
   const review = reviews.filter((review) => review.id === id)[0];
-  const myReviews = user?.MyReview;
 
   const deleteReview = async () => {
+    const user = await getUserDB(review.uid);
+    const myReviews = user?.MyReview;
+
     const ratingCount = list.ratingCount - 1;
     const totalRating = list.totalRating - review.rating;
     const newReviews = reviews.map((review) => {
