@@ -31,7 +31,7 @@ const useSignIn = (email: string, password: string, reset: () => void) => {
       });
   };
 
-  const emailLogin = useCallback(() => {
+  const emailLogin = () => {
     // 세션 스토리지로 로그인
     setPersistence(auth, browserSessionPersistence)
       .then(() => {
@@ -40,7 +40,7 @@ const useSignIn = (email: string, password: string, reset: () => void) => {
       .catch((error) => {
         console.log(error.message);
       });
-  }, []);
+  };
 
   // 소셜 로그인
   const social = useCallback((provider: Provider) => {

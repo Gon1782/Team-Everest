@@ -1,3 +1,4 @@
+// 기본값들
 export const defaults = () => {
   const defaultImage = require('@/assets/Detail/default.png').default;
   const defaultProfile = require('@/assets/MyPage/defaultProfile.jpg').default;

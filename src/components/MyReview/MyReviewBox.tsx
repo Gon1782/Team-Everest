@@ -59,8 +59,8 @@ const MyReviewBox = ({ review }: Props) => {
             : `${review.content.slice(0, 85)}...`}
         </S.MyReviewContentBox>
         <S.MyImageBox>
-          {review.image.map((x: string, i: number) => {
-            return <ReviewImage src={x} key={i} />;
+          {review.image.map((image: string, i: number) => {
+            return <ReviewImage src={image} key={i} />;
           })}
         </S.MyImageBox>
       </S.MyReviewInfoBox>

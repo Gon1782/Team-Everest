@@ -32,15 +32,15 @@ const SimilarLandmark = ({ id, pageNo, cat }: Props) => {
   if (isError) return <div>에러: {error.message}</div>;
 
   const Landmarks = data?.response.body.items.item.filter(
-    (x) => x.contentid !== id,
+    (list) => list.contentid !== id,
   );
 
   return (
     <S.LandmarkContainer
       style={{ display: !!Landmarks?.length ? 'grid' : 'none' }}
     >
-      {Landmarks?.map((x) => {
-        return <Landmark key={x.contentid} item={x} />;
+      {Landmarks?.map((landmark) => {
+        return <Landmark key={landmark.contentid} landmark={landmark} />;
       })}
       <S.SeeMore onClick={() => navigate('/myPlan')}>일정 만들기</S.SeeMore>
     </S.LandmarkContainer>
