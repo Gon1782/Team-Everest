@@ -47,8 +47,8 @@ const Header = () => {
           </HeaderLogo>
           <RightSection>
             <NavBarLink to="/main">여행 시작하기</NavBarLink>
-            <NavBarLink to="/myPlan">일정 만들기</NavBarLink>
-            <NavBarLink to="/citymap">지도로 이동하기</NavBarLink>
+            <NavBarLink to="/planner/my/false">일정 만들기</NavBarLink>
+            <NavBarLink to="">지도로 이동하기</NavBarLink>
             <NavBarLink to="my">마이페이지</NavBarLink>
             <SearchIcon onClick={() => setIsMenuToggled(!isMenuToggled)} />
             <LogInButton onClick={LoginOutHandler}>

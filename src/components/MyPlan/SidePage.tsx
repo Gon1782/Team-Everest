@@ -7,6 +7,7 @@ import { getTourList } from '@/common/api/detailApi';
 import SelectBox from './SelectBox';
 import TourList from './TourList';
 import { TourListRecoil, PickScheduleRecoil } from '@/recoil/atom/MyPlan';
+import styled from 'styled-components';
 
 // 검색 할 수 있는 사이드페이지, 일정 추가 버튼 클릭시 생김
 const SidePage = () => {
@@ -25,25 +26,41 @@ const SidePage = () => {
         setTourList(result?.response.body.items.item),
       );
     }
+    return () => {
+      setTourList([]);
+    };
   }, [pickLocation, pickTheme]);
 
   return (
-    <div>
-      <>{pickSchedule.day} | </>
-      <>{pickSchedule.schedule}</>
-      <SelectBox
-        onChangeHandler={(event: any) => setPickLocation(event.target.value)}
-        dataList={location}
-        valueKey="code"
-      />
-      <SelectBox
-        onChangeHandler={(event: any) => setPickTheme(event.target.value)}
-        dataList={theme}
-        valueKey="contentTypeId"
-      />
+    <SidePageContainer>
+      <>
+        {pickSchedule.day} | {pickSchedule.schedule}
+      </>
+      <SelectBoxList>
+        <SelectBox
+          onChangeHandler={(event: any) => setPickLocation(event.target.value)}
+          dataList={location}
+          valueKey="code"
+        />
+        <SelectBox
+          onChangeHandler={(event: any) => setPickTheme(event.target.value)}
+          dataList={theme}
+          valueKey="contentTypeId"
+        />
+      </SelectBoxList>
       <TourList />
-    </div>
+    </SidePageContainer>
   );
 };
 
 export default SidePage;
+
+const SidePageContainer = styled.div`
+  width: auto;
+  position: absolute;
+  left: 78%;
+  top: 10%;
+`;
+const SelectBoxList = styled.div`
+  display: flex;
+`;

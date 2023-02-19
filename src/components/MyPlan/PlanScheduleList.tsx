@@ -1,72 +1,47 @@
-import React, { useEffect, useRef, useState } from 'react';
-import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
-import SidePage from './SidePage';
-import { PickScheduleType } from '@/recoil/atom/MyPlan';
 import {
-  PickScheduleRecoil,
-  MyPlanRecoil,
-  PlanType,
+  DropDownRef,
+  InitLocation,
+  IsSidePageView,
   MemoAndTime,
+  NewPlanRecoil,
+  PickScheduleRecoil,
+  PickScheduleType,
+  PlanType,
 } from '@/recoil/atom/MyPlan';
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import React, { useEffect, useRef, useState } from 'react';
+import {
+  useRecoilState,
+  useRecoilValue,
+  useResetRecoilState,
+  useSetRecoilState,
+} from 'recoil';
+import { stringConvert, timeHandler } from './MyPlannerHandler';
+import SidePage from './SidePage';
 import EventTime from './EventTime';
 import EventMemo from './EventMemo';
-import { scheduleHandler } from './ScheduleHandler';
+import styled from 'styled-components';
 
-const CalenderView = () => {
-  /* -----------------리코일 데이터--------------*/
-  // 작업할 플래너 데이터
-  const [newPlan, setNewPlan] = useRecoilState<PlanType>(MyPlanRecoil);
-  // 자식 컴포넌트에서 가져올 메모,시간 데이터
-  const memoAndTime = useRecoilValue(MemoAndTime);
-  // 현재 작업중인 일정 데이터
+const PlanScheduleList = ({
+  dropDownRef,
+}: {
+  dropDownRef: React.MutableRefObject<any>;
+}) => {
+  const [newPlan, setNewPlan] = useRecoilState<PlanType>(NewPlanRecoil);
+  // planner에 있는 일정들 배열처리 , Day1 ,Day2 카드와 해당 날짜를 표현하기 위해 따로 처리함
+  //['날짜','날짜',...]
+  const [planSchedule, setPlanSchedule] = useState<any>([]);
+  const setInitLocation = useSetRecoilState(InitLocation);
+  const resetInitLocation = useResetRecoilState(InitLocation);
+
+  const memoAndTime: any = useRecoilValue(MemoAndTime);
   const setPickSchedule =
     useSetRecoilState<PickScheduleType>(PickScheduleRecoil);
-  /* ----------------------------------------*/
-
-  // planner에 있는 일정들 배열처리 , Day1 ,Day2 카드와 해당 날짜를 표현하기 위해 따로 처리함
-  const planSchedule = Object.keys(newPlan.schedule); //['날짜','날짜',...]
-
-  // 캘린더 날짜 초기화
-  const [calenderDate, setCalenderDate] = useState([
-    new Date(newPlan.startDate), // 시작
-    new Date(newPlan.endDate), // 마지막
-  ]);
-
-  // 드롭 다운 레퍼런스 객체, useEffect에서 초기화함
-  const dropDownRef = useRef<any>({});
 
   // 사이드창 display
-  const [showSideSection, setShowSideSection] = useState(false);
-
-  useEffect(() => {
-    // schedule 초기화
-
-    const newSchedule = scheduleHandler(calenderDate[0], calenderDate[1]);
-
-    setNewPlan((prev) => {
-      const planSchedule: any = {};
-      newSchedule.map((item: any) => {
-        const scheduleKey = `${item.getFullYear()}${
-          item.getMonth() + 1
-        }${item.getDate()}`;
-        planSchedule[scheduleKey] = [];
-      });
-
-      dropDownRef.current = { ...planSchedule };
-      return {
-        name: prev.name,
-        schedule: { ...planSchedule },
-        startDate: calenderDate[0],
-        endDate: calenderDate[1],
-      };
-    });
-  }, [calenderDate]);
-
+  const setShowSideSection = useSetRecoilState(IsSidePageView);
   // 일정 추가 버튼 누르면 사이드 창이 보임
   // 사이드 창에 필요한 해당 일정 데이터를 리코일에 저장
-  const onChangeSideSection = (index: number) => {
+  const onChangeSidePage = (index: number) => {
     setShowSideSection(true); // 사이드창 열고
     setPickSchedule((prev) => {
       const clonePrev = { ...prev };
@@ -75,10 +50,11 @@ const CalenderView = () => {
       return clonePrev;
     });
   };
-
   // 일정 삭제
-  const popEvent = (date: string, popIndex: number, eventList: []) => {
-    const newEventList = eventList.filter((item, index) => index !== popIndex);
+  const popEvent = (date: string, eventIndex: number, eventList: []) => {
+    const newEventList = eventList.filter(
+      (item, index) => index !== eventIndex,
+    );
     const updateSchedule: any = {};
     updateSchedule[date] = newEventList;
 
@@ -86,8 +62,8 @@ const CalenderView = () => {
       return {
         name: prev.name,
         schedule: { ...prev.schedule, ...updateSchedule },
-        startDate: calenderDate[0],
-        endDate: calenderDate[1],
+        startDate: prev.startDate,
+        endDate: prev.endDate,
       };
     });
   };
@@ -95,13 +71,16 @@ const CalenderView = () => {
   // 해당일정의 시간,메모 설정하고 완료 버튼 눌렀을때
   const updateEventContent = (
     date: string,
-    updateIndex: number,
+    eventIndex: number,
     eventList: [],
   ) => {
+    if (memoAndTime.time['minute'] > 59) {
+      return alert('시간을 다시 설정해주세요!');
+    }
     setNewPlan((prev) => {
       const updateEventList = eventList.reduce(
         (sum: any, item: any, idx: number) => {
-          if (updateIndex === idx) {
+          if (eventIndex === idx) {
             const cloneItem: any = { ...item };
             cloneItem['memo'] = memoAndTime.memo;
             cloneItem['time'] = memoAndTime.time;
@@ -117,7 +96,7 @@ const CalenderView = () => {
 
       const newData: any = {};
       newData[date] = [...updateEventList];
-      showDropDownPage(date, updateIndex);
+      showDropDownPage(date, eventIndex); // 해당 드롭다운 닫기
       return {
         name: prev.name,
         schedule: { ...prev.schedule, ...newData },
@@ -133,30 +112,50 @@ const CalenderView = () => {
       isDisplay === 'none' ? 'block' : 'none';
   };
 
+  // 작업중인 일정카드에서 다른일정카드를 클릭했을때 맵 을 초기화 해줘야함
+  const initMap = (scheduleInfo: string) => {
+    resetInitLocation();
+    setPickSchedule((prev) => {
+      return {
+        schedule: scheduleInfo,
+        day: prev.day,
+      };
+    });
+  };
+
+  useEffect(() => {
+    setPlanSchedule(Object.keys(newPlan.schedule));
+  }, [newPlan, dropDownRef]);
+
   return (
-    <div>
-      <Calendar
-        onChange={setCalenderDate}
-        value={[calenderDate[0], calenderDate[1]]}
-        selectRange={true}
-      />
+    <PlanItems>
       {!!planSchedule?.length &&
-        planSchedule.map((date, index) => {
+        planSchedule.map((date: any, index: number) => {
           return (
-            <div key={index}>
-              <div>
+            <PlanItem key={index}>
+              <div onClick={() => initMap(date)}>
                 Day{index + 1} |{date}
               </div>
-              {!!newPlan.schedule[date].length &&
+              <button onClick={() => onChangeSidePage(index)}>일정 추가</button>
+              {!!newPlan.schedule[date]?.length &&
                 newPlan.schedule[date].map((item: any, index) => {
-                  console.log('qweqwe', item);
                   return (
-                    <div style={{ display: 'block' }} key={index}>
-                      {item.time.amPm ?? ''}
-                      {item.time.hour ?? '--:'}
-                      {item.time.minute ?? '--'}
-                      {item.title}
-                      {item.memo}
+                    <>
+                      <div
+                        style={{ display: 'block' }}
+                        key={index}
+                        onClick={() =>
+                          setInitLocation({
+                            y: parseFloat(item.mapy),
+                            x: parseFloat(item.mapx),
+                            level: 3,
+                          })
+                        }
+                      >
+                        {timeHandler(item.time)}
+                        {item.title}
+                        {item.memo}
+                      </div>
                       <button onClick={() => showDropDownPage(date, index)}>
                         시간/메모 설정
                       </button>
@@ -171,7 +170,10 @@ const CalenderView = () => {
                         style={{ display: 'none' }}
                         ref={(el: any) => {
                           // 각 div에 ref 할당하기 : 드롭다운페이지의 display 때문에
-                          const clone = [...dropDownRef.current[date]];
+
+                          const clone = !!dropDownRef.current[date]
+                            ? [...dropDownRef?.current[date]]
+                            : [];
                           clone[index] = el;
                           dropDownRef.current[date] = clone;
                         }}
@@ -191,20 +193,25 @@ const CalenderView = () => {
                           저장
                         </button>
                       </div>
-                    </div>
+                    </>
                   );
                 })}
-
-              <button onClick={() => onChangeSideSection(index)}>
-                일정 추가
-              </button>
-            </div>
+            </PlanItem>
           );
         })}
-      <div className="text-gray-500 mt-4"></div>
-      {showSideSection && <SidePage />}
-    </div>
+    </PlanItems>
   );
 };
 
-export default CalenderView;
+export default PlanScheduleList;
+
+const PlanItems = styled.div`
+  display: flex;
+  margin: 60px 0;
+  width: 100%;
+  height: 100%;
+  /* overflow-x: scroll; */
+`;
+const PlanItem = styled.div`
+  width: 700px;
+`;

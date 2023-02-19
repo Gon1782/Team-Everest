@@ -4,12 +4,11 @@ import { useSetRecoilState } from 'recoil';
 
 const EventTime = () => {
   const setMemo = useSetRecoilState(MemoAndTime);
-  const [hour, setHour] = useState('01');
-  const [minute, setMinute] = useState('00');
+  const [hour, setHour] = useState(1);
+  const [minute, setMinute] = useState(0);
   const [amPm, setAmPm] = useState('오전');
 
   useEffect(() => {
-    // 유효성 검사 체크하기
     setMemo((prev) => {
       return {
         time: { hour: hour, minute: minute, amPm: amPm },
@@ -29,7 +28,7 @@ const EventTime = () => {
           오후
         </option>
       </select>
-      <select onChange={(event) => setHour(event.target.value)}>
+      <select onChange={(event) => setHour(Number(event.target.value))}>
         {hourList.map((item: number) => {
           return (
             <option key={item} value={item} defaultValue={hour}>
@@ -41,7 +40,7 @@ const EventTime = () => {
       시
       <input
         type="number"
-        onChange={(event) => setMinute(event.target.value)}
+        onChange={(event) => setMinute(Number(event.target.value))}
         placeholder="00"
       />
     </div>
