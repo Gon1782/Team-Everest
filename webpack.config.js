@@ -13,6 +13,7 @@ module.exports = (env, argv) => {
   return {
     mode: prod ? 'production' : 'development',
     devtool: prod ? 'hidden-source-map' : 'eval',
+
     // 파일을 읽어들이기 시작하는 진입점 설정 , webpack은 js를 진입점으로 사용
     entry: './src/index.tsx',
     // 결과물(번들)을 반환하는 설정
@@ -28,7 +29,7 @@ module.exports = (env, argv) => {
       client: {
         overlay: true,
         // 웹소켓용 url 지정
-        webSocketURL: 'ws://0.0.0.0:80/ws',
+        webSocketURL: 'ws://127.0.0.1:50151/ws',
       },
     },
     resolve: {

@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Landing from '@/pages/Landing';
 import DetailPage from '@/pages/Detail/DetailPage';
 import MainPage from '@/pages/Main/MainPage';
-import MyPlan from '@/components/calender/Main';
+import MyPlan from '@/components/MyPlan/Main';
 import Mypage from '@/pages/Mypage/Mypage';
 import Login from '@/pages/Login/Login';
 import SearchArea from '@/pages/SearchArea';
@@ -16,7 +16,7 @@ const Router = () => {
         <Route element={<Layout />}>
           <Route path="/" element={<Landing />} />
           <Route path="/main" element={<MainPage />} />
-          <Route path="/myPlan" element={<MyPlan />} />
+          <Route path="/planner/:user/:planIndex" element={<MyPlan />} />
           <Route path="/detail/:id" element={<DetailPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/my" element={<Mypage />} />

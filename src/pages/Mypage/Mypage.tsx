@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { getUserDB } from '@/common/api/userApi';
 import Profile from '@/components/Profile/Profile';
 import MyReview from '@/components/MyReview/MyReview';
+import MyPlanner from '@/components/Profile/MyPlanner';
 import { Document } from '@/types/DetailType';
 import * as S from './style/MyPageStyled';
 
@@ -54,6 +55,7 @@ const Mypage = () => {
         getUser={getUser}
       />
       {/* 나의 위시리스트 섹션 아마도? */}
+      <MyPlanner user={user} />
       {/* 나의 플래너 섹션 */}
       <MyReview user={user} />
     </S.MyPageContainer>
