@@ -1,6 +1,6 @@
 import { useRecoilValue } from 'recoil';
 import { updateReview } from '@/common/api/reviewApi';
-import { updateUserDB } from '@/common/api/userApi';
+import { getUserDB, updateUserDB } from '@/common/api/userApi';
 import { DetailList } from '@/recoil/atom/Detail';
 import { Document, EachReview } from '@/types/DetailType';
 
@@ -16,10 +16,13 @@ const useEditReview = (
   const list = useRecoilValue(DetailList);
   const reviews = list.review;
   const review = reviews.filter((review) => review.id === reviewId)[0];
-  const myReviews = user?.MyReview;
 
   const editReview = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    const user = await getUserDB(review.uid);
+    const myReviews = user?.MyReview;
+
     const ratingCount = list.ratingCount;
     const totalRating = list.totalRating - review.rating + rating;
     const newReviews = reviews.map((review) => {

@@ -7,10 +7,10 @@ interface Props {
 }
 
 const MyReview = ({ user }: Props) => {
-  const checkMyReview = !!user.MyReview?.length;
   const myReview = user.MyReview?.filter(
     (review: EachReview) => review.isDelete === 'N',
   );
+  const checkMyReview = !!myReview?.length;
 
   return (
     <S.MyReviewSection>

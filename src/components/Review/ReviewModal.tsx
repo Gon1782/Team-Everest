@@ -78,7 +78,6 @@ const ReviewModal = ({
     image,
     reset,
     closeModal,
-    user,
   );
 
   return (
