@@ -24,10 +24,10 @@ const RegisterTab = () => {
 
   // 유효성 검사
   const emailDupCheck = !userDB?.filter(
-    (x: UserData) => x.email === register.email,
+    (user: UserData) => user.email === register.email,
   ).length;
   const nicknameDupCheck = !userDB?.filter(
-    (x: UserData) => x.displayName === register.nickname,
+    (user: UserData) => user.displayName === register.nickname,
   ).length;
   const [emailCheck, pwCheck, pwDoubleCheck, nicknameCheck, valiDate] =
     registerValidation(register, emailDupCheck, nicknameDupCheck);

@@ -6,10 +6,10 @@ import { Item } from '@/types/DetailType';
 import * as S from './style/LandmarkStyled';
 
 interface Props {
-  item: Item;
+  landmark: Item;
 }
 
-const Landmark = ({ item }: Props) => {
+const Landmark = ({ landmark }: Props) => {
   const navigate = useNavigate();
   // 북마크 여부만 확인
   const [bookMark, setBookMark] = useState(false);
@@ -21,10 +21,15 @@ const Landmark = ({ item }: Props) => {
 
   // 이미지
   const { defaultImage } = defaults();
-  const img = !!item.firstimage ? item.firstimage : defaultImage;
+  const img = !!landmark.firstimage ? landmark.firstimage : defaultImage;
 
   return (
-    <S.LandmarkBox onClick={() => navigate(`/detail/${item.contentid}`)}>
+    <S.LandmarkBox
+      onClick={() => {
+        window.scrollTo(0, 0);
+        navigate(`/detail/${landmark.contentid}`);
+      }}
+    >
       <S.LandmarkImg style={{ width: '100%', height: '100%' }} src={img} />
       <S.LandmarkInfo>
         <S.LandmarkBookmarkBox
@@ -48,7 +53,7 @@ const Landmark = ({ item }: Props) => {
             />
           </S.LandmarkBookmarkBack>
         </S.LandmarkBookmarkBox>
-        <S.LandmarkTitle>{item.title}</S.LandmarkTitle>
+        <S.LandmarkTitle>{landmark.title}</S.LandmarkTitle>
       </S.LandmarkInfo>
     </S.LandmarkBox>
   );

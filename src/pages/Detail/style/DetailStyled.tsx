@@ -94,3 +94,12 @@ export const DetailOverview = styled.div`
   line-height: 1.5rem;
   text-align: center;
 `;
+
+export const DetailSubTitle = styled.h1`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 2rem 0;
+  font-size: 3rem;
+  font-weight: bold;
+`;

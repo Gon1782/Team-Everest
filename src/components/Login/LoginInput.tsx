@@ -15,58 +15,71 @@ interface Props {
 const LoginInput = ({ name, value, check, onChange, reset }: Props) => {
   const [visible, setVisible] = useState(false);
 
-  const lists = [
-    {
-      type: 'text',
-      name: 'email',
-      title: 'E-Mail',
-      warning: '※ 이메일 형식에 맞게 입력해주세요.',
-      button: <S.InputBtn onClick={() => reset()}>X</S.InputBtn>,
-    },
-    {
-      type: visible ? 'text' : 'password',
-      name: 'password',
-      title: 'Password',
-      warning: '※ 비밀번호를 확인해주세요',
-      button: (
-        <>
-          <S.InputBtn
-            onClick={() => setVisible(true)}
-            style={{ display: visible ? 'none' : 'flex' }}
-          >
-            <AiFillEye size={22} />
-          </S.InputBtn>
-          <S.InputBtn
-            onClick={() => setVisible(false)}
-            style={{ display: visible ? 'flex' : 'none' }}
-          >
-            <AiFillEyeInvisible size={22} />
-          </S.InputBtn>
-        </>
-      ),
-    },
-  ];
-  const list = lists.filter((x) => x.name === name)[0];
+  const selector = (name: string) => {
+    switch (true) {
+      case name === 'email':
+        return {
+          type: 'text',
+          name: 'email',
+          title: 'E-Mail',
+          warning: '※ 이메일 형식에 맞게 입력해주세요.',
+          button: <S.InputBtn onClick={() => reset()}>X</S.InputBtn>,
+        };
+      case name === 'password':
+        return {
+          type: visible ? 'text' : 'password',
+          name: 'password',
+          title: 'Password',
+          warning: '※ 비밀번호를 확인해주세요',
+          button: (
+            <>
+              <S.InputBtn
+                onClick={() => setVisible(true)}
+                style={{ display: visible ? 'none' : 'flex' }}
+              >
+                <AiFillEye size={22} />
+              </S.InputBtn>
+              <S.InputBtn
+                onClick={() => setVisible(false)}
+                style={{ display: visible ? 'flex' : 'none' }}
+              >
+                <AiFillEyeInvisible size={22} />
+              </S.InputBtn>
+            </>
+          ),
+        };
+      default:
+        return {
+          type: '',
+          name: '',
+          title: '',
+          warning: '',
+          button: <div></div>,
+        };
+    }
+  };
+
+  const chosen = selector(name);
 
   return (
     <>
       <S.LoginInputBox>
-        <S.LoginTitle>{list.title}</S.LoginTitle>
+        <S.LoginTitle>{chosen.title}</S.LoginTitle>
         <S.LoginInput
           tabIndex={1}
-          type={list.type}
+          type={chosen.type}
           name={name}
           value={value}
           onChange={(e) => onChange(e)}
         />
-        {list.button}
+        {chosen.button}
       </S.LoginInputBox>
       <S.Warning
         style={{
           visibility: check ? 'hidden' : 'visible',
         }}
       >
-        {list.warning}
+        {chosen.warning}
       </S.Warning>
     </>
   );

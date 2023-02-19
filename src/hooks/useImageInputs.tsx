@@ -1,8 +1,8 @@
 import { useCallback, useState } from 'react';
 
 // 이미지 여러개일때 인풋
-const useImageInputs = () => {
-  const [image, setImage] = useState<string[]>([]);
+const useImageInputs = (initialArray: string[]) => {
+  const [image, setImage] = useState(initialArray);
 
   const onImageChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {

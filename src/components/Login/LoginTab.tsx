@@ -1,15 +1,12 @@
 import { useCallback } from 'react';
 import { useSetRecoilState } from 'recoil';
-import { useNavigate } from 'react-router-dom';
 import { FcGoogle } from 'react-icons/fc';
 import { GrFacebook, GrTwitter } from 'react-icons/gr';
 import {
   FacebookAuthProvider,
   GoogleAuthProvider,
-  signOut,
   TwitterAuthProvider,
 } from 'firebase/auth';
-import { auth } from '@/common/api/firebase';
 import { LoginValidation } from '@/common/utils/validations';
 import useInput from '@/hooks/useInput';
 import useSignIn from '@/hooks/useSignIn';
@@ -22,8 +19,6 @@ const facebookProvider = new FacebookAuthProvider();
 const twitterProvider = new TwitterAuthProvider();
 
 const LoginTab = () => {
-  const navigate = useNavigate();
-
   // 로그인 회원가입 토글
   const setCheck = useSetRecoilState(LoginState);
 
@@ -48,11 +43,6 @@ const LoginTab = () => {
     if (validation) {
       login();
     }
-  };
-
-  const logOut = () => {
-    signOut(auth);
-    navigate('/');
   };
 
   return (
@@ -93,7 +83,6 @@ const LoginTab = () => {
             onClick={() => socialLogin(twitterProvider)}
           />
         </S.SocialLoginBtnBox>
-        <S.LoginBtn onClick={() => logOut()}>임시 로그아웃</S.LoginBtn>
       </S.LoginBtnConatiner>
     </>
   );
