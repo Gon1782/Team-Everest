@@ -1,4 +1,5 @@
 import {
+  Authority,
   InitLocation,
   IsSidePageView,
   MemoAndTime,
@@ -34,6 +35,7 @@ const PlanScheduleList = ({
   const memoAndTime: any = useRecoilValue(MemoAndTime);
   const setPickSchedule =
     useSetRecoilState<PickScheduleType>(PickScheduleRecoil);
+  const authority = useRecoilValue(Authority);
 
   // 사이드창 display
   const setShowSideSection = useSetRecoilState(IsSidePageView);
@@ -58,11 +60,14 @@ const PlanScheduleList = ({
 
     setNewPlan((prev) => {
       return {
-        name: prev.name,
+        ...prev,
         schedule: { ...prev.schedule, ...updateSchedule },
-        startDate: prev.startDate,
-        endDate: prev.endDate,
-        contentId: prev.contentId,
+        // name: prev.name,
+        // startDate: prev.startDate,
+        // endDate: prev.endDate,
+        // contentId: prev.contentId,
+        // isDelete: false,
+        // isShow: false,
       };
     });
   };
@@ -98,11 +103,14 @@ const PlanScheduleList = ({
       newData[date] = [...updateEventList];
       showDropDownPage(date, eventIndex); // 해당 드롭다운 닫기
       return {
-        name: prev.name,
+        ...prev,
         schedule: { ...prev.schedule, ...newData },
-        startDate: prev.startDate,
-        endDate: prev.endDate,
-        contentId: prev.contentId,
+        // name: prev.name,
+        // startDate: prev.startDate,
+        // endDate: prev.endDate,
+        // contentId: prev.contentId,
+        // isDelete: false,
+        // isShow: false,
       };
     });
   };
@@ -137,7 +145,11 @@ const PlanScheduleList = ({
               <div onClick={() => initMap(date)}>
                 Day{index + 1} |{date}
               </div>
-              <button onClick={() => onChangeSidePage(index)}>일정 추가</button>
+              {authority.write && (
+                <button onClick={() => onChangeSidePage(index)}>
+                  일정 추가
+                </button>
+              )}
               {!!newPlan.schedule[date]?.length &&
                 newPlan.schedule[date].map((item: any, index) => {
                   return (
@@ -157,16 +169,21 @@ const PlanScheduleList = ({
                         {item.title}
                         {item.memo}
                       </div>
-                      <button onClick={() => showDropDownPage(date, index)}>
-                        시간/메모 설정
-                      </button>
-                      <button
-                        onClick={() =>
-                          popEvent(date, index, newPlan.schedule[date])
-                        }
-                      >
-                        삭제
-                      </button>
+                      {authority.write && (
+                        <>
+                          <button onClick={() => showDropDownPage(date, index)}>
+                            시간/메모 설정
+                          </button>
+                          <button
+                            onClick={() =>
+                              popEvent(date, index, newPlan.schedule[date])
+                            }
+                          >
+                            삭제
+                          </button>
+                        </>
+                      )}
+
                       <div
                         style={{ display: 'none' }}
                         ref={(el: any) => {

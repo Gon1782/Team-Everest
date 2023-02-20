@@ -29,11 +29,14 @@ const TourList = () => {
       newPlan[pickSchedule.schedule] = newEvents;
 
       return {
-        name: prev.name,
+        ...prev,
         schedule: { ...prev.schedule, ...newPlan },
-        startDate: prev.startDate,
-        endDate: prev.endDate,
-        contentId: prev.contentId,
+        // name: prev.name,
+        // startDate: prev.startDate,
+        // endDate: prev.endDate,
+        // contentId: prev.contentId,
+        // isDelete: false,
+        // isShow: false,
       };
     });
   };
