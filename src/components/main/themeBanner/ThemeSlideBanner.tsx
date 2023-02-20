@@ -3,7 +3,8 @@ import { listItems } from '../../../common/utils/themeInfo';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Autoplay } from 'swiper';
+import SwiperCore, { Navigation, Pagination, Autoplay } from 'swiper';
+// SwiperCore - 타입 지정시 필요함
 import styled from 'styled-components';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
@@ -14,6 +15,9 @@ const ThemeSlideBanner = () => {
   // 선택 카테고리 state - 선택한 카테고리 없을 시 첫 번째 태그 리스트 보임
   const [selectedCategory, setSelectedCategory] =
     useState<HashTagCategory | null>('# 이색 체험');
+  // 리스트 선택시 해당 슬라이더 배너로 이동하기 위한 state
+  const [swiper, setSwiper] = useState<SwiperCore>();
+  const [value, setValue] = useState<any>();
 
   // 카테고리 선택시 state 업데이트
   const categorySelectHandler = (category: HashTagCategory) => {
@@ -24,7 +28,16 @@ const ThemeSlideBanner = () => {
   const filteredListItems = selectedCategory
     ? listItems.filter((item) => item.category === selectedCategory)
     : listItems;
-  console.log(filteredListItems);
+
+  //  선택한 리스트 항목에 해당하는 슬라이드 배너로 포커스 이동해주기
+  const listClickHandler = (index: any) => {
+    console.log(index);
+    const idx = index.id - 1; // realIndex로 쓸 지 체크할 것
+    if (swiper) {
+      swiper.slideTo(idx, 1000);
+    }
+  };
+
   return (
     <ThemeContainer>
       <ThemeHashtagCategoriesWrapper>
@@ -59,7 +72,10 @@ const ThemeSlideBanner = () => {
         <ThemelistItemsTitleWrapper>
           <ThemelistItemsTitles>
             {filteredListItems.map((item) => (
-              <ThemelistItemsTitle key={item.id}>
+              <ThemelistItemsTitle
+                key={item.id}
+                onClick={() => listClickHandler(item)}
+              >
                 {item.title}
               </ThemelistItemsTitle>
             ))}
@@ -70,12 +86,16 @@ const ThemeSlideBanner = () => {
           modules={[Navigation, Pagination, Autoplay]}
           pagination={{ clickable: true }}
           navigation
+          loop={true}
           spaceBetween={0}
           slidesPerView={3}
           observer={true}
           observeParents={true}
+          // observer - 스타일 변경/하위 요소 수정시 업데이트(초기화)됨
           resistance={false}
           watchOverflow={true}
+          onSwiper={setSwiper}
+          onSlideChange={(swiper) => setValue(swiper.realIndex)}
         >
           <ThemelistItemsImages>
             {filteredListItems.map((item) => (
