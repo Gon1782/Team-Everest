@@ -7,7 +7,7 @@ const TopCityBanner = () => {
       <CategoriesTitle>인기 도시</CategoriesTitle>
       <TopCityCategories>
         <TopCityCategory
-          src={require('@/assets/banner_02.jpg').default}
+          src={require('@/assets/CityImage/1.jpg').default}
           alt="slide banner2"
         />
         <TopCityCategory

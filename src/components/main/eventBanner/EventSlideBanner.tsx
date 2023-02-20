@@ -30,7 +30,7 @@ const EventSlideBanner = () => {
         resistance={false}
       >
         <SlideBanner>
-          <Link to="">
+          <Link to="http://www.koreaflowerpark.com/" target="_blank">
             <img
               src={require('@/assets/banner_01.jpg').default}
               alt="slide banner1"
@@ -39,7 +39,7 @@ const EventSlideBanner = () => {
           　
         </SlideBanner>
         <SlideBanner>
-          <Link to="">
+          <Link to="https://seoulland.co.kr/?p=11_view&idx=41" target="_blank">
             <img
               src={require('@/assets/banner_02.jpg').default}
               alt="slide banner2"
@@ -48,7 +48,7 @@ const EventSlideBanner = () => {
           　
         </SlideBanner>
         <SlideBanner>
-          <Link to="">
+          <Link to="" target="_blank">
             <img
               src={require('@/assets/banner_03.jpg').default}
               alt="slide banner3"
@@ -57,7 +57,7 @@ const EventSlideBanner = () => {
           　
         </SlideBanner>
         <SlideBanner>
-          <Link to="">
+          <Link to="" target="_blank">
             <img
               src={require('@/assets/banner_04.jpg').default}
               alt="slide banner4"
