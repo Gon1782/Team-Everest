@@ -2,7 +2,7 @@ import { useRecoilValue } from 'recoil';
 import { updateReview } from '@/common/api/reviewApi';
 import { getUserDB, updateUserDB } from '@/common/api/userApi';
 import { DetailList } from '@/recoil/atom/Detail';
-import { Document, EachReview } from '@/types/DetailType';
+import { EachReview } from '@/types/DetailType';
 
 const useDeleteReview = (id: string, closeModal: () => void) => {
   const list = useRecoilValue(DetailList);

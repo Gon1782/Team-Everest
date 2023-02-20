@@ -2,7 +2,8 @@ import { useRecoilValue } from 'recoil';
 import { updateReview } from '@/common/api/reviewApi';
 import { getUserDB, updateUserDB } from '@/common/api/userApi';
 import { DetailList } from '@/recoil/atom/Detail';
-import { Document, EachReview } from '@/types/DetailType';
+import { EachReview } from '@/types/DetailType';
+import { reviewForm } from '@/common/utils/forms';
 
 const useEditReview = (
   reviewId: string,
@@ -11,11 +12,12 @@ const useEditReview = (
   image: string[],
   reset: () => void,
   closeModal: () => void,
-  user?: Document,
 ) => {
   const list = useRecoilValue(DetailList);
   const reviews = list.review;
-  const review = reviews.filter((review) => review.id === reviewId)[0];
+  const review = !!reviews
+    ? reviews.filter((review) => review.id === reviewId)[0]
+    : reviewForm;
 
   const editReview = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

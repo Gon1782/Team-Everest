@@ -7,18 +7,18 @@ export const pwRegex =
   /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
 
 // 로그인 유효성 검사
-export const LoginValidation = (email:string, password:string) => {
+export const LoginValidation = (email: string, password: string) => {
   const emailCheck = !email || email.match(emailRegex);
   const pwCheck = !password || password.match(pwRegex);
 
   const valiDate = () => {
-    if (!emailCheck) return false
-    if (!pwCheck) return false
-    return true
-  }
+    if (!emailCheck) return false;
+    if (!pwCheck) return false;
+    return true;
+  };
 
-  return [emailCheck, pwCheck, valiDate] as const
-}
+  return [emailCheck, pwCheck, valiDate] as const;
+};
 
 export const firebaseLoginValidation = (error: ErrorData) => {
   switch (error.message) {
@@ -78,17 +78,17 @@ export const registerValidation = (
 };
 
 export const myPageValidation = (state: State) => {
-   switch (true) {
-    case (!state.nickname):
+  switch (true) {
+    case !state.nickname:
       alert('닉네임을 입력해주세요');
-      return false
-    case (state.nickname.length > 8):
-      alert('닉네임이 너무 길어요\n닉네임은 9글자 미만까지 가능합니다.')
-      return false
-    case (state.intro.length > 25):
+      return false;
+    case state.nickname.length > 8:
+      alert('닉네임이 너무 길어요\n닉네임은 9글자 미만까지 가능합니다.');
+      return false;
+    case state.intro.length > 25:
       alert('한줄 소개는 25자 까지 가능합니다.');
-      return false
+      return false;
     default:
-      return true
+      return true;
   }
 };

@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getUserDB } from '@/common/api/userApi';
-import { defaults } from '@/common/utils/defaults';
 import useModal from '@/hooks/useModal';
 import { Document, EachReview } from '@/types/DetailType';
 import ReviewDelete from './ReviewDelete';
 import ReviewModal from './ReviewModal';
 import * as S from './style/ReviewStyled';
+import useDefault from '@/hooks/useDefault';
 
 interface Props {
   review: EachReview;
@@ -50,6 +50,7 @@ const ReviewBox = ({ review }: Props) => {
   }, []);
 
   // 프로필 사진
+  const defaults = useDefault();
   const { defaultProfile } = defaults();
   const profileImg = !!user?.photoURL ? user?.photoURL : defaultProfile;
 
