@@ -13,8 +13,6 @@ declare global {
 const { kakao } = window;
 
 const Citymap = () => {
-  // city의 areacode로 useparam 연결
-
   useEffect(() => {
     kakao.maps.load(() => {
       const position = new kakao.maps.LatLng(
