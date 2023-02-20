@@ -1,13 +1,8 @@
-import React, { useState } from 'react';
-import { useEffect } from 'react';
+import React from 'react';
+import { useEffect, useRef } from 'react';
 import * as Style from './CitymapStyle';
 import { cityInfo } from '@/common/utils/cityInfo';
-import { useRecoilValue } from 'recoil';
-import {
-  InitLocation,
-  NewPlanRecoil,
-  PickScheduleRecoil,
-} from '@/recoil/atom/MyPlan';
+import { CityArea } from '@/recoil/atom/CityArea';
 
 declare global {
   interface Window {
@@ -18,34 +13,45 @@ declare global {
 const { kakao } = window;
 
 const Citymap = () => {
-  const myPlan = useRecoilValue(NewPlanRecoil);
-  const scheduleInfo = useRecoilValue(PickScheduleRecoil);
-  const locationInfo = useRecoilValue(InitLocation);
-
   useEffect(() => {
-    var normalImageSrc =
-      'https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678111-map-marker-128.png';
-    const container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+    kakao.maps.load(() => {
+      const position = new kakao.maps.LatLng(
+        37.56614933439768,
+        127.01575598500187,
+      );
 
-    const options = {
-      center: new kakao.maps.LatLng(locationInfo.y, locationInfo.x), //지도의 중심좌표.
-      level: locationInfo.level, //지도의 레벨(확대, 축소 정도)
-    };
+      let el = document.getElementById('map');
 
-    const map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
-    var imageSize = new kakao.maps.Size(35, 35);
+      const mapOptions = {
+        center: position, // 지도의 중심좌표
+        level: 13, // 지도의 확대 레벨
+      };
+      const map = new kakao.maps.Map(el, mapOptions); //current??
 
-    var markerImage = new kakao.maps.MarkerImage(normalImageSrc, imageSize);
+      // 마커 이미지의 이미지 주소
+      let imageSrc = '@/assets/MyPage/defaultProfile.jpg';
 
-    myPlan?.schedule[scheduleInfo.schedule]?.map((item: any) => {
-      const markers = new kakao.maps.Marker({
-        // 지도 중심좌표에 마커를 생성합니다.
-        map: map,
-        position: new kakao.maps.LatLng(item.mapy, item.mapx),
-        image: markerImage,
-      });
+      for (let i = 0; i < cityInfo.length; i++) {
+        // 마커 이미지의 이미지 크기 입니다
+        let imageSize = new kakao.maps.Size(24, 35);
+
+        // 마커 이미지를 생성합니다
+        let markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+
+        // console.log(cityInfo[i].mapy, cityInfo[i].mapx);
+
+        // 마커를 생성합니다
+        let marker = new kakao.maps.Marker({
+          map: map, // 마커를 표시할 지도
+          position: new kakao.maps.LatLng(cityInfo[i].mapy, cityInfo[i].mapx), // 마커를 표시할 위치
+          title: cityInfo[i].korarea, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+          image: markerImage, // 마커 이미지
+        });
+        // console.log(marker);
+        // marker.setMap(map);
+      }
     });
-  }, [locationInfo, myPlan, scheduleInfo]);
+  }, []);
 
   return (
     <Style.Wrap>

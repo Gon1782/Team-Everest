@@ -19,5 +19,5 @@ export const Wrap = styled.section`
 `;
 export const Mapbox = styled.div`
   width: 100%;
-  height: 400px;
+  height: 100vh;
 `;

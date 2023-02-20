@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 export const Wrap = styled.section`
+  position: relative;
   display: flex;
   width: 100vw;
-  min-height: 100%;
+  height: 100vh;
 `;
