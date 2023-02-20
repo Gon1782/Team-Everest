@@ -1,8 +1,8 @@
 interface Category {
-  [key:string]: number
+  [key: string]: number;
 }
 
-export const category:Category = {
+export const category: Category = {
   // 카테고리 | Math.floor(totalCount/4)
   A01010100: 10, //	국립공원
   A01010200: 6, //	도립공원

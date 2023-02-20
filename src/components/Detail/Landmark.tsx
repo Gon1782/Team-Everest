@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaBookmark, FaRegBookmark } from 'react-icons/fa';
-import { defaults } from '@/common/utils/defaults';
+import useDefault from '@/hooks/useDefault';
 import { Item } from '@/types/DetailType';
 import * as S from './style/LandmarkStyled';
 
@@ -20,6 +20,7 @@ const Landmark = ({ landmark }: Props) => {
   const uid = !!userItem ? JSON.parse(userItem).uid : '';
 
   // 이미지
+  const defaults = useDefault();
   const { defaultImage } = defaults();
   const img = !!landmark.firstimage ? landmark.firstimage : defaultImage;
 

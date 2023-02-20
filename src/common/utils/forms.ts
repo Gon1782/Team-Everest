@@ -1,8 +1,8 @@
 export const userDBform = {
-  uid: "",
-  email: "",
+  uid: '',
+  email: '',
   photoURL: '',
-  displayName: "",
+  displayName: '',
   introduce: '',
   backImage: '',
   myWishPlace: [],
@@ -11,8 +11,20 @@ export const userDBform = {
 };
 
 export const registerForm = {
-    email: '',
-    password: '',
-    checkPassword: '',
-    nickname: '',
-  };
+  email: '',
+  password: '',
+  checkPassword: '',
+  nickname: '',
+};
+
+export const reviewForm = {
+  rating: 0,
+  content: '',
+  createdAt: '',
+  id: '',
+  image: [],
+  title: '',
+  contentId: '',
+  uid: '',
+  isDelete: '',
+};

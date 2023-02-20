@@ -28,6 +28,6 @@ export const modalSelector = (
         image: [],
         rating: 0,
         clicked: [false, false, false, false, false],
-      }
+      };
   }
 };

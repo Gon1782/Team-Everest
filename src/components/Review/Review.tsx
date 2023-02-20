@@ -6,9 +6,9 @@ import * as S from './style/ReviewStyled';
 
 const Review = () => {
   const list = useRecoilValue(DetailList);
-  const reviews = [...list?.review]
-    ?.filter((review) => review.isDelete === 'N')
-    .reverse();
+  const reviews = !!list.review
+    ? [...list.review]?.filter((review) => review.isDelete === 'N').reverse()
+    : [];
 
   // 더보기
   const [idx, setIdx] = useState(2);

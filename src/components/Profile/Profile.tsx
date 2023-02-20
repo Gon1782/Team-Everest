@@ -1,9 +1,8 @@
 import { useCallback, useEffect, useState } from 'react';
 import { RiBallPenFill, RiCheckboxFill } from 'react-icons/ri';
 import { updateUserDB } from '@/common/api/userApi';
-import { defaults } from '@/common/utils/defaults';
-import { registerForm } from '@/common/utils/forms';
 import useInputs from '@/hooks/useInputs';
+import useDefault from '@/hooks/useDefault';
 import useImageInput from '@/hooks/useImageInput';
 import { Document } from '@/types/DetailType';
 import * as S from './style/ProfileStyled';
@@ -25,14 +24,17 @@ const Profile = ({ user, LoginCheck, checkMy, getUser }: Props) => {
 
   // 프로필 닉네임 한줄소개 수정
   const [checkEdit, setEdit] = useState(false);
-  const [myInfo, onChangeMyInfo, resetMyInfo] = useInputs(registerForm);
+  const [myInfo, onChangeMyInfo, resetMyInfo] = useInputs({
+    nickname: user.displayName,
+    intro: user.introduce,
+  });
 
   // Update UserDB 프로필 이름/소개
   const updateProfile = useCallback(async () => {
     if (!myInfo.nickname) return alert('닉네임을 입력해주세요.');
     if (myInfo.nickname.length > 8)
       return alert('닉네임이 너무 길어요\n닉네임은 9글자 미만까지 가능합니다.');
-    if (myInfo.intro.length > 25)
+    if (!!myInfo.intro && myInfo.intro.length > 25)
       return alert('한줄 소개는 25자 까지 가능합니다.');
     await updateUserDB(user.uid, {
       displayName: myInfo.nickname,
@@ -58,6 +60,7 @@ const Profile = ({ user, LoginCheck, checkMy, getUser }: Props) => {
     }
   }, [profileImg]);
 
+  const defaults = useDefault();
   const { defaultProfile, defaultIntro, backImage } = defaults();
 
   // 프로필 사진

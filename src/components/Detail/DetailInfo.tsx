@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { FaBookmark, FaRegBookmark } from 'react-icons/fa';
-import { defaults } from '@/common/utils/defaults';
+import useDefault from '@/hooks/useDefault';
 import { DetailList } from '@/recoil/atom/Detail';
 import { Item } from '@/types/DetailType';
 import DetailMap from './DetailMap';
@@ -27,6 +27,7 @@ const DetailInfo = ({ item, intro }: Props) => {
     : 0;
 
   // 이미지
+  const defaults = useDefault();
   const { defaultImage } = defaults();
   const img = !!item?.firstimage ? item.firstimage : defaultImage;
 
