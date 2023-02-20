@@ -1,11 +1,7 @@
-import { db } from '@/common/api/firebase';
 import { dateToString } from '@/components/MyPlan/MyPlannerHandler';
 import { Item } from '@/types/DetailType';
-import { async } from '@firebase/util';
-import { doc, getDoc } from 'firebase/firestore';
 import React from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import { atom, atomFamily, selector } from 'recoil';
+import { atom } from 'recoil';
 
 export interface PlanType {
   name: string;
@@ -14,7 +10,8 @@ export interface PlanType {
   schedule: { [key: string]: [] };
   contentId: 0;
   isDelete: false;
-  isShow: false;
+
+  bookmarkCount: 0;
 }
 
 export interface PickScheduleType {
@@ -41,14 +38,19 @@ export const NewPlanRecoil = atom({
     },
     schedule: {},
     isDelete: false,
-    isShow: false,
     contentId: 0,
+    bookmarkCount: 0,
   },
 });
 
 // 관광지 데이터
 export const TourListRecoil = atom({
   key: 'TourList',
+  default: <Item[]>[],
+});
+
+export const MyWishList = atom({
+  key: 'MyWishList',
   default: <Item[]>[],
 });
 

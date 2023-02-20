@@ -11,9 +11,11 @@ const MyPlanner = ({ user }: { user: Document }) => {
     <div>
       {!!user &&
         user['myPlanner']?.map((item: any, index: number) => {
-          return (
-            <div onClick={() => moveToMyPlan(item, index)}>{item?.name}</div>
-          );
+          if (item.isDelete === false) {
+            return (
+              <div onClick={() => moveToMyPlan(item, index)}>{item?.name}</div>
+            );
+          }
         })}
     </div>
   );

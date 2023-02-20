@@ -5,75 +5,23 @@ import {
   IsSidePageView,
   NewPlanRecoil,
 } from '@/recoil/atom/MyPlan';
-import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
-import { db } from '@/common/api/firebase';
+import { useRecoilState } from 'recoil';
 import CalenderView from './CalenderView';
 import { PlanType } from '@/recoil/atom/MyPlan';
-import { doc, updateDoc } from 'firebase/firestore';
 import StartEndDate from './StartEndDate';
-
 import { useNavigate, useParams } from 'react-router-dom';
-
 import styled from 'styled-components';
 import SidePage from './SidePage';
 import Citymap from '../Citymap/Citymap';
 import PlanScheduleList from './PlanScheduleList';
-import { getAllPlanner, getUserPlanList } from '@/common/api/plannerApi';
 import { getUserDB } from '@/common/api/userApi';
-import { dateToString } from './MyPlannerHandler';
-
-/*
-
-// user DB
-  'plan' : {
-    'name' : '' // 플랜 제목
-    'startDate': Date,
-    'endDate':Date,
-    'schedule' :  // 플래너 이름  <- MyPlan 컴포넌트에서 처리
-      {
-        'yyyymmdd' :  // 일정 <- MyPlan 컴포넌트에서 처리
-        [
-          { // event <- 검색 사이드창에서 처리
-            'time':'' , 'name':'장소이름' , 'contentId' : '장소번호',
-            '위치x':'x좌표','위치y':'y좌표','memo':'메모값' , 'index' : 1
-          },
-        ],
-        'yyyymmdd' : [
-          {
-            'time':'15' , 'name':'장소이름' , 'contentId' : '장소번호',
-            '위도':'위도값','경도':'경도값','memo':'메모값'
-          }
-        ],
-        
-   } },{},{},...
-  
-
-  // planner DB
-  list : [{
-    
-    'uid' : '',
-    'like' : 0,
-   
-    'name': '',
-    'startDate': Date,
-    'endDate':Date,
-    'schedule' :  // 플래너 이름  <- MyPlan 컴포넌트에서 처리
-      {
-        'yyyymmdd' :  // 일정 <- MyPlan 컴포넌트에서 처리
-        [
-          { // event // 선택한 관광지
-            'time':'12' , 'name':'장소이름' , 'contentId' : '장소번호',
-            '위도':'위도값','경도':'경도값','memo':'메모값' , 'index' : 1
-          }
-        ],
-        'yyyymmdd' : [
-          {
-            'time':'15' , 'name':'장소이름' , 'contentId' : '장소번호',
-            '위도':'위도값','경도':'경도값','memo':'메모값'
-          }
-        ]
-    },{},{},....]
-*/
+import {
+  addPlan,
+  dateToString,
+  popPlan,
+  saveOtherPlan,
+  updatePlan,
+} from './MyPlannerHandler';
 
 const MyPlan = () => {
   const navigate = useNavigate();
@@ -149,7 +97,7 @@ const MyPlan = () => {
           schedule: { ...newSchedule },
           contentId: 0,
           isDelete: false,
-          isShow: false,
+          bookmarkCount: 0,
         });
 
         setPlanName('');
@@ -165,93 +113,6 @@ const MyPlan = () => {
     }
   }, [planIndex]);
   if (loading) return <>로딩즁</>;
-
-  //일정 저장
-  const addPlan = async () => {
-    if (!!!planName) return alert('일정 제목을 입력해주세요');
-    const planList: any = await getUserPlanList(uid);
-    const allPlanner: any = await getAllPlanner();
-
-    const newPlan: any = {
-      ...plan,
-      name: planName,
-      contentId: planList['myPlanner'].length,
-    };
-    const newMyPlanner = [...planList['myPlanner'], { ...newPlan }];
-
-    try {
-      // 유저 디비에 저장
-      await updateDoc(doc(db, 'users', uid), {
-        myPlanner: [...newMyPlanner],
-      });
-
-      //모든 플래너 디비에 저장
-      newPlan['uid'] = uid;
-      newPlan['like'] = 0;
-      await updateDoc(doc(db, 'planners', 'list'), {
-        items: [
-          ...allPlanner['items'],
-          {
-            ...newPlan,
-          },
-        ],
-      });
-      alert('저장 성공 하였습니다!');
-    } catch (e) {
-      alert('잠시후 다시 시도해주세요!');
-    }
-  };
-
-  // 일정 수정
-  const updatePlan = async () => {
-    const planList: any = await getUserPlanList(uid);
-    const allPlanner: any = await getAllPlanner();
-
-    const newPlan: any = {
-      ...plan,
-      name: planName,
-      contentId: parseInt(planIndex), //
-    };
-    const newUserPlanList = planList['myPlanner'].reduce(
-      (sum: any, item: any, index: number) => {
-        if (parseInt(planIndex) === index) {
-          sum.push(newPlan);
-        } else {
-          sum.push(item);
-        }
-        return sum;
-      },
-      [],
-    );
-
-    try {
-      //유저 디비에 업데이트
-      await updateDoc(doc(db, 'users', uid), {
-        myPlanner: [...newUserPlanList],
-      });
-      //모든 플래너 디비에 업데이트
-      const newAllPlanner = allPlanner['items'].reduce(
-        (sum: any, item: any) => {
-          if (item.contentId === parseInt(planIndex) && item.uid === uid) {
-            // planner 디비에만 필요한 데이터
-            newPlan['uid'] = uid;
-            newPlan['like'] = item.like;
-            sum.push(newPlan);
-          } else {
-            sum.push(item);
-          }
-          return sum;
-        },
-        [],
-      );
-      await updateDoc(doc(db, 'planners', 'list'), {
-        items: newAllPlanner,
-      });
-      alert('저장 성공 하였습니다');
-    } catch (e) {
-      alert('잠시후 다시 시도해주세요!');
-    }
-  };
 
   return (
     <>
@@ -273,6 +134,15 @@ const MyPlan = () => {
         ) : (
           <PlanTitleSection>
             <PlanTitle>{planName}</PlanTitle>
+            {userId !== uid && (
+              <button
+                onClick={() =>
+                  saveOtherPlan(plan, planName, uid, userId, planIndex)
+                }
+              >
+                일정 저장하기
+              </button>
+            )}
           </PlanTitleSection>
         )}
         <PlanDateSection>
@@ -289,20 +159,33 @@ const MyPlan = () => {
           <>
             {authority.update ? (
               <>
-                <button onClick={() => updatePlan()}>
+                <button
+                  onClick={() =>
+                    updatePlan(plan, planName, uid, planIndex, false)
+                  }
+                >
                   임시저장(수정페이지)
                 </button>
-                <button onClick={() => updatePlan()}>저장(수정페이지)</button>
+                <button
+                  onClick={() =>
+                    updatePlan(plan, planName, uid, planIndex, true)
+                  }
+                >
+                  저장(수정페이지)
+                </button>
               </>
             ) : (
               <>
-                <button onClick={() => addPlan()}>임시저장</button>
-                <button onClick={() => addPlan()}>저장</button>
+                <button onClick={() => addPlan(plan, planName, uid, false)}>
+                  임시저장
+                </button>
+                <button onClick={() => addPlan(plan, planName, uid, true)}>
+                  발행
+                </button>
               </>
             )}
           </>
         ) : (
-          // authority.view && (
           userId === uid && (
             <>
               <button
@@ -312,7 +195,7 @@ const MyPlan = () => {
               >
                 수정하기
               </button>
-              <button>삭제하기</button>
+              <button onClick={() => popPlan(uid, planIndex)}>삭제하기</button>
             </>
           )
         )}

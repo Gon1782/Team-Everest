@@ -1,4 +1,10 @@
 import { db } from '@/common/api/firebase';
+import {
+  updateAllPlannerDB,
+  updateUserDB,
+  getAllPlanner,
+  getUserPlanList,
+} from '@/common/api/plannerApi';
 import { doc, updateDoc } from 'firebase/firestore';
 
 interface ScheduleInfo {
@@ -108,4 +114,126 @@ export const addWishList = async (event: any, userDBInfo: any) => {
   await updateDoc(doc(db, 'users', userDBInfo.uid), {
     myWish: [...userDBInfo.users['myWish'], { ...event }],
   });
+};
+
+//일정 저장
+export const addPlan = async (
+  plan: any, // 만든 일정
+  planName: string, // 만든 일정 이름
+  uid: string, // 사용자 고유번호
+  isShow: boolean, // 공개/비공개 처리
+) => {
+  if (!!!planName) return alert('일정 제목을 입력해주세요');
+  const planList: any = await getUserPlanList(uid);
+  const allPlanner: any = await getAllPlanner();
+
+  const newMyPlanner = [
+    ...planList['myPlanner'],
+    { ...plan, name: planName, contentId: planList['myPlanner'].length },
+  ];
+  const newAllPlanner = [
+    ...allPlanner['items'],
+    {
+      ...plan,
+      name: planName,
+      contentId: planList['myPlanner'].length,
+      uid: uid,
+      isShow: isShow,
+    },
+  ];
+  updateAllPlannerDB(newAllPlanner);
+  updateUserDB(newMyPlanner, uid);
+};
+
+// 일정 수정
+export const updatePlan = async (
+  plan: any, //새 일정 데이터
+  planName: string, // 바뀐 일정 제목
+  uid: string, // 사용자 고유 번호
+  planIndex: string, // 수정할 일정 데이터 번호
+  isShow: boolean, // 공개/비공개 처리
+) => {
+  const planList: any = await getUserPlanList(uid);
+  const allPlanner: any = await getAllPlanner();
+
+  const newMyPlanner = planList['myPlanner'].reduce(
+    (sum: any, item: any, index: number) => {
+      if (parseInt(planIndex) === index) {
+        sum.push({ ...plan, name: planName });
+      } else {
+        sum.push(item);
+      }
+      return sum;
+    },
+    [],
+  );
+
+  const newAllPlanner = allPlanner['items'].reduce((sum: any, item: any) => {
+    if (item.contentId === parseInt(planIndex) && item.uid === uid) {
+      sum.push({ ...plan, name: planName, uid: uid, isShow: isShow });
+    } else {
+      sum.push(item);
+    }
+    return sum;
+  }, []);
+  updateAllPlannerDB(newAllPlanner);
+  updateUserDB(newMyPlanner, uid);
+};
+
+// 일정 삭제
+export const popPlan = async (uid: string, planIndex: string) => {
+  const planList: any = await getUserPlanList(uid);
+  const allPlanner: any = await getAllPlanner();
+
+  const newMyPlanner = planList['myPlanner'].reduce((sum: any, item: any) => {
+    if (item.contentId === parseInt(planIndex)) {
+      sum.push({ ...item, isDelete: true });
+    } else {
+      sum.push(item);
+    }
+    return sum;
+  }, []);
+
+  const newAllPlanner = allPlanner['items'].reduce((sum: any, item: any) => {
+    if (item.contentId === parseInt(planIndex) && item.uid === uid) {
+      sum.push({ ...item, isDelete: true });
+    } else {
+      sum.push(item);
+    }
+    return sum;
+  }, []);
+
+  updateAllPlannerDB(newAllPlanner);
+  updateUserDB(newMyPlanner, uid);
+};
+
+export const saveOtherPlan = async (
+  plan: any,
+  planName: string,
+  uid: string,
+  userId: string,
+  planIndex: string,
+) => {
+  // 사용자 일정에 추가
+  await addPlan(plan, planName, uid, false);
+
+  // planner 디비에 해당 일정데이터의 북마크 카운트 +1 하기
+
+  const allPlanner: any = await getAllPlanner();
+  const newAllPlanner = allPlanner['items'].reduce((sum: any, item: any) => {
+    if (item.contentId === parseInt(planIndex) && item.uid === userId) {
+      sum.push({
+        ...item,
+        bookmarkCount: item.bookmarkCount + 1,
+        isShow: true,
+        uid: userId,
+      });
+    } else {
+      sum.push(item);
+    }
+
+    return sum;
+  }, []);
+
+  updateAllPlannerDB([...newAllPlanner]);
 };
