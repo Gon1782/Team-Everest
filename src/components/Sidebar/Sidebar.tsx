@@ -1,17 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as Style from './SidebarStyle';
 import { cityInfo } from '@/common/utils/cityInfo';
 
 const Sidebar = () => {
   return (
     <Style.Wrap>
-      {cityInfo.map((data: any) => {
+      {cityInfo.map((data, index) => {
         return (
-          <Style.ItemWrap>
+          <Style.ItemWrap key={index}>
             <Style.ImageWrap>
-              <img src={data.image}></img>
+              <img
+                style={{
+                  width: '100px',
+                  height: '100px',
+                  borderRadius: '5px',
+                }}
+                src={require(`@/assets/CityImage/${index + 1}.jpg`).default}
+              ></img>
             </Style.ImageWrap>
-            {data.spec}
+            <Style.title>{data.korarea}</Style.title>
           </Style.ItemWrap>
         );
       })}
