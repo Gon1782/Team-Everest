@@ -19,33 +19,37 @@ const BestTravelPlan = () => {
       {!!data && !!data['items'].length ? (
         <>
           {data['items'].map((item: any, index: number) => {
-            return (
-              <BestTravelPlanCard onClick={() => moveToMyPlan(item, index)}>
-                <TravelPlaceMainImgWrapper>
-                  <TravelPlaceMainImg
-                    src={require('@/assets/banner_01.jpg').default}
-                    alt=""
-                  />
-                </TravelPlaceMainImgWrapper>
-                <Wrapper>
-                  <TravelPlaceReviewerImgWrapper>
-                    <TravelPlaceReviewerImg
-                      src={
-                        require('@/assets/MyPage/defaultProfile.jpg').default
-                      }
+            if (item.isDelete === false && item.isShow === true) {
+              return (
+                <BestTravelPlanCard onClick={() => moveToMyPlan(item, index)}>
+                  <TravelPlaceMainImgWrapper>
+                    <TravelPlaceMainImg
+                      src={require('@/assets/banner_01.jpg').default}
                       alt=""
                     />
-                  </TravelPlaceReviewerImgWrapper>
-                </Wrapper>
-                <TravelPlanInfo>
-                  <TravelPlaceName>{item.name}</TravelPlaceName>
-                  <BookMarkCount>
-                    <BookMarkIcon />
-                    <BookMarkCountNumber>{item.like}</BookMarkCountNumber>
-                  </BookMarkCount>
-                </TravelPlanInfo>
-              </BestTravelPlanCard>
-            );
+                  </TravelPlaceMainImgWrapper>
+                  <Wrapper>
+                    <TravelPlaceReviewerImgWrapper>
+                      <TravelPlaceReviewerImg
+                        src={
+                          require('@/assets/MyPage/defaultProfile.jpg').default
+                        }
+                        alt=""
+                      />
+                    </TravelPlaceReviewerImgWrapper>
+                  </Wrapper>
+                  <TravelPlanInfo>
+                    <TravelPlaceName>{item.name}</TravelPlaceName>
+                    <BookMarkCount>
+                      <BookMarkIcon />
+                      <BookMarkCountNumber>
+                        {item.bookmarkCount}
+                      </BookMarkCountNumber>
+                    </BookMarkCount>
+                  </TravelPlanInfo>
+                </BestTravelPlanCard>
+              );
+            }
           })}
         </>
       ) : (

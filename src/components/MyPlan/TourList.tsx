@@ -1,18 +1,27 @@
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import {
   NewPlanRecoil,
   PlanType,
   PickScheduleRecoil,
   TourListRecoil,
+  MyWishList,
 } from '@/recoil/atom/MyPlan';
+import { useEffect, useState } from 'react';
+import { Item } from '@/types/DetailType';
 
 const TourList = () => {
   const setNewPlan = useSetRecoilState<PlanType>(NewPlanRecoil);
 
   // 선택한 일정
   const pickSchedule = useRecoilValue(PickScheduleRecoil);
+  // 보여줄 데이터
+  const [dataList, setDataList] = useState<any>([]);
   // 관광지 데이터
-  const tourDataList = useRecoilValue(TourListRecoil);
+  const tourList = useRecoilValue(TourListRecoil);
+  //관광지 위시 리스트 데이터
+  const myWishList = useRecoilValue(MyWishList);
+  //관광지 위시 리스트만 보기
+  const [isShowMyWish, setIsShowMyWish] = useState(false);
 
   // 추가한 관광지 데이터를 선택한 일정 리스트에 담기
   const eventHandler = (item: any) => {
@@ -31,19 +40,32 @@ const TourList = () => {
       return {
         ...prev,
         schedule: { ...prev.schedule, ...newPlan },
-        // name: prev.name,
-        // startDate: prev.startDate,
-        // endDate: prev.endDate,
-        // contentId: prev.contentId,
-        // isDelete: false,
-        // isShow: false,
       };
     });
   };
+
+  useEffect(() => {
+    if (isShowMyWish) {
+      setDataList(myWishList);
+    } else {
+      setDataList(tourList);
+    }
+  }, [isShowMyWish]);
+
+  useEffect(() => {
+    setDataList(tourList);
+  }, [tourList]);
+
   return (
     <div>
-      {!!tourDataList?.length &&
-        tourDataList.map((item: any, index: number) => {
+      <input
+        type="checkbox"
+        checked={isShowMyWish}
+        onChange={() => setIsShowMyWish((prev) => !prev)}
+      />
+      저장한 장소만 보기
+      {!!dataList?.length &&
+        dataList.map((item: any, index: number) => {
           return (
             <div key={index}>
               {/* <img src={item.fisrtImage} width="50" height="50"></img> */}
