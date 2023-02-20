@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useQueries, useQueryClient } from 'react-query';
 import { useSetRecoilState } from 'recoil';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -25,6 +25,8 @@ const DetailPage = () => {
 
   // 리뷰 등록 모달
   const [modal, openModal, closeModal, closeModalIfClickOutside] = useModal();
+  //위시리스트 데이터
+  const [wishList, setWishList] = useState([]);
 
   const modalOpen = () => {
     if (!uid) {
@@ -46,6 +48,10 @@ const DetailPage = () => {
         totalRating: doc.data()?.totalRating,
       };
       setList(newList);
+    });
+
+    onSnapshot(doc(db, 'users', uid), (doc) => {
+      setWishList(doc.data()?.myWishPlace);
     });
   }, [id]);
 
@@ -101,7 +107,7 @@ const DetailPage = () => {
           closeModalIfClickOutside={closeModalIfClickOutside}
         />
       )}
-      <DetailInfo item={detailList} intro={detailIntro} />
+      <DetailInfo item={detailList} intro={detailIntro} wishList={wishList} />
       <S.DetailSubTitle>관광지 후기 모음</S.DetailSubTitle>
       <S.WriteReview>
         <span>별점과 후기를 남겨주세요</span>
