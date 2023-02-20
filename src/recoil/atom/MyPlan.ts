@@ -7,34 +7,14 @@ import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { atom, atomFamily, selector } from 'recoil';
 
-/*
-  'plan' : {
-    'name' : '' // 플랜 제목
-    'schedule' :  // 플래너 이름  <- MyPlan 컴포넌트에서 처리
-      {
-        'yyyymmdd' :  // 일정 <- MyPlan 컴포넌트에서 처리
-        [
-          { // event <- 검색 사이드창에서 처리
-            'time':'' , 'name':'장소이름' , 'contentId' : '장소번호',
-            '위치x':'x좌표','위치y':'y좌표','memo':'메모값' , 'index' : 1
-          }
-        ],
-        'yyyymmdd' : [
-          {
-            'time':'' , 'name':'장소이름' , 'contentId' : '장소번호',
-            '위도':'위도값','경도':'경도값','memo':'메모값'
-          }
-        ],
-        location : '', 
-   } },{},{},...
-*/
-
 export interface PlanType {
   name: string;
   startDate: {};
   endDate: {};
   schedule: { [key: string]: [] };
   contentId: 0;
+  isDelete: false;
+  isShow: false;
 }
 
 export interface PickScheduleType {
@@ -61,6 +41,7 @@ export const NewPlanRecoil = atom({
     },
     schedule: {},
     isDelete: false,
+    isShow: false,
     contentId: 0,
   },
 });
@@ -105,4 +86,14 @@ export const IsSidePageView = atom({
 export const DropDownRef = atom({
   key: 'DropDownRef',
   default: <React.MutableRefObject<any>>{ current: {} },
+});
+
+// 사이드 메뉴 열기/닫기 데이터
+export const Authority = atom({
+  key: 'Authority',
+  default: {
+    write: true,
+    view: true,
+    update: true,
+  },
 });

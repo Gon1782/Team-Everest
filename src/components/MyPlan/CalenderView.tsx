@@ -7,6 +7,7 @@ import {
   NewPlanRecoil,
   PlanType,
   IsCalenderView,
+  Authority,
 } from '@/recoil/atom/MyPlan';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import {
@@ -58,11 +59,12 @@ const CalenderView = ({ setDropDownRef }: { setDropDownRef: any }) => {
       });
 
       return {
-        name: prev.name,
+        ...prev,
         schedule: { ...planSchedule },
         startDate: dateToObject(calenderDate[0]),
         endDate: dateToObject(calenderDate[1]),
-        contentId: prev.contentId,
+        // name: prev.name,
+        // contentId: prev.contentId,
       };
     });
     setPickSchedule({ schedule: dateToString(calenderDate[0]), day: 'Day1' });
@@ -72,6 +74,7 @@ const CalenderView = ({ setDropDownRef }: { setDropDownRef: any }) => {
     <>
       {isShowCalender && (
         <Calendar
+          // onChange={!authority.update ? setCalenderDate : () => {}}
           onChange={setCalenderDate}
           value={[
             new Date(
