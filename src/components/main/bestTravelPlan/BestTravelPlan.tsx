@@ -12,7 +12,7 @@ const BestTravelPlan = () => {
   if (!!isError) return <>?? 에러누</>;
 
   const moveToMyPlan = (item: any, index: number) => {
-    navigate(`/planner/${item.uid}/${index}`);
+    navigate(`/planner/${item.uid}/${item.contentId}`);
   };
   return (
     <BestTravelPlanContainer>
