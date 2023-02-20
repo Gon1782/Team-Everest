@@ -7,16 +7,19 @@ interface Props {
 }
 
 const MyReview = ({ user }: Props) => {
+  const myReview = user.MyReview?.filter(
+    (review: EachReview) => review.isDelete === 'N',
+  );
+  const checkMyReview = !!myReview?.length;
+
   return (
     <S.MyReviewSection>
       <S.MyReviewTitle>나의 리뷰 리스트</S.MyReviewTitle>
       <S.MyReviewContainer>
-        {!!user?.MyReview.length ? (
-          user.MyReview.filter((x: EachReview) => x.isDelete === 'N').map(
-            (x: EachReview) => {
-              return <MyReviewBox user={user} review={x} key={x.id} />;
-            },
-          )
+        {checkMyReview ? (
+          myReview.map((review: EachReview) => {
+            return <MyReviewBox review={review} key={review.id} />;
+          })
         ) : (
           <S.MyReviewNone>아직 작성한 리뷰가 없어요 ㅠㅠ</S.MyReviewNone>
         )}

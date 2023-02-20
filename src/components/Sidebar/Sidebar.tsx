@@ -1,13 +1,26 @@
 import React, { useState } from 'react';
 import * as Style from './SidebarStyle';
 import { cityInfo } from '@/common/utils/cityInfo';
+import { useRecoilState } from 'recoil';
+import { CityArea } from '@/recoil/atom/CityArea';
 
 const Sidebar = () => {
+  const [word, setWord] = useRecoilState(CityArea);
+
+  const onClickHandler = (areacode: string) => {
+    setWord(areacode);
+  };
+
   return (
     <Style.Wrap>
       {cityInfo.map((data, index) => {
         return (
-          <Style.ItemWrap key={index}>
+          <Style.ItemWrap
+            key={index}
+            onClick={() => {
+              onClickHandler(data.areacode);
+            }}
+          >
             <Style.ImageWrap>
               <img
                 style={{

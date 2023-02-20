@@ -1,52 +1,110 @@
+import { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
+import { FaBookmark, FaRegBookmark } from 'react-icons/fa';
+import useDefault from '@/hooks/useDefault';
 import { DetailList } from '@/recoil/atom/Detail';
 import { Item } from '@/types/DetailType';
+import DetailMap from './DetailMap';
 import * as S from '@/pages/Detail/style/DetailStyled';
-
+import { doc, onSnapshot } from 'firebase/firestore';
+import { db } from '@/common/api/firebase';
+import { addWishList, popWishList } from '../MyPlan/MyPlannerHandler';
 interface Props {
-  item: Item | undefined;
+  item: Item;
+  intro: Item;
+  wishList: Item[];
 }
 
-const DetailInfo = ({ item }: Props) => {
+const DetailInfo = ({ item, intro, wishList }: Props) => {
+  // 로그인 여부 확인
+  const sessionKey = `firebase:authUser:${process.env.FIREBASE_API_KEY}:[DEFAULT]`;
+  const userItem = sessionStorage.getItem(sessionKey);
+  const uid = !!userItem ? JSON.parse(userItem).uid : '';
+
+  // 별점
   const list = useRecoilValue(DetailList);
+  const rating = !!list.ratingCount
+    ? (list.totalRating / list.ratingCount).toFixed(2)
+    : 0;
+
+  // 이미지
+  const defaults = useDefault();
+  const { defaultImage } = defaults();
+  const img = !!item?.firstimage ? item.firstimage : defaultImage;
+
+  // 관광지소개
+  const overview = {
+    __html: !!item?.overview ? item.overview : '',
+  };
+
+  // 관광지 홈페이지
+  const homepage = {
+    __html: !!item?.homepage ? item.homepage : '',
+  };
+
+  const [bookMark, setBookMark] = useState(false);
+
+  const handlerWishList = () => {
+    if (!bookMark) {
+      // 추가()
+      addWishList(wishList, item, uid);
+    } else {
+      //삭제
+      popWishList(wishList, item, uid);
+    }
+    setBookMark(!bookMark);
+  };
+
+  useEffect(() => {
+    const isGet = wishList.filter(
+      (wishItem: any) => wishItem.contentid === item.contentid,
+    ).length;
+
+    !!isGet ? setBookMark(true) : setBookMark(false);
+  }, [wishList]);
 
   return (
     <S.DetailSection>
-      <S.ImageSkeleton
-        src={
-          !!item?.firstimage
-            ? item.firstimage
-            : 'https://images.unsplash.com/photo-1675845626595-a50d669f26cb?ixl'
-        }
-      />
       <S.InfoBox>
+        <div></div>
         <S.DetailTitle>{item?.title}</S.DetailTitle>
         <S.DetailScore>
-          {list.ratingCount > 0
-            ? (list.totalRating / list.ratingCount).toFixed(2)
-            : 0}
-          /{list.ratingCount ? list.ratingCount : 0}개
+          <span>⭐{rating}</span>
+          <div style={{ display: !!uid ? 'flex' : 'none' }}>
+            <FaRegBookmark
+              onClick={() => handlerWishList()}
+              style={{ display: bookMark ? 'none' : 'flex' }}
+            />
+            <FaBookmark
+              onClick={() => handlerWishList()}
+              style={{ display: bookMark ? 'flex' : 'none' }}
+              color="red"
+            />
+          </div>
         </S.DetailScore>
       </S.InfoBox>
-      <S.DetailInfoBox>
-        <div>상세정보</div>
-        <S.LocationInfo>
-          <S.SmallTitle>주소</S.SmallTitle>
-          <div>{item?.addr1}</div>
-          <S.SmallTitle>홈페이지</S.SmallTitle>
-          <div
-            dangerouslySetInnerHTML={{
-              __html: !!item?.homepage ? item.homepage : '',
-            }}
-          ></div>
-          <S.SmallTitle>간단소개</S.SmallTitle>
-          <div
-            dangerouslySetInnerHTML={{
-              __html: !!item?.overview ? item.overview : '',
-            }}
-          ></div>
-        </S.LocationInfo>
-      </S.DetailInfoBox>
+      <S.LandmarkImg src={img} />
+      <S.DetailOverview dangerouslySetInnerHTML={overview}></S.DetailOverview>
+      <DetailMap x={item.mapx} y={item.mapy} />
+      <S.LocationInfo>
+        <S.SmallTitle style={{ display: !!homepage ? 'flex' : 'none' }}>
+          홈페이지
+          <S.LandMarkInfo dangerouslySetInnerHTML={homepage}></S.LandMarkInfo>
+        </S.SmallTitle>
+        <S.SmallTitle style={{ display: !!item.addr1 ? 'flex' : 'none' }}>
+          주소 <S.LandMarkInfo>{item.addr1}</S.LandMarkInfo>
+        </S.SmallTitle>
+        <S.SmallTitle
+          style={{ display: !!intro?.infocenter ? 'flex' : 'none' }}
+        >
+          문의 및 안내
+          <S.LandMarkInfo>{intro.infocenter}</S.LandMarkInfo>
+        </S.SmallTitle>
+        <S.SmallTitle style={{ display: !!intro?.restdate ? 'flex' : 'none' }}>
+          휴무일
+          <S.LandMarkInfo>{intro.restdate}</S.LandMarkInfo>
+        </S.SmallTitle>
+      </S.LocationInfo>
     </S.DetailSection>
   );
 };

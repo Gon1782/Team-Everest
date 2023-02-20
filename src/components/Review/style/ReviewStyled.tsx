@@ -1,3 +1,4 @@
+import { ModalProps } from '@/types/StyledType';
 import styled from 'styled-components';
 
 export const ReviewSection = styled.section`
@@ -6,7 +7,18 @@ export const ReviewSection = styled.section`
 
 export const ReviewContainer = styled.div`
   width: 100%;
-  height: 30vh;
+`;
+
+export const LoadMoreBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+`;
+export const LoadMore = styled.button`
+  width: 10rem;
+  height: 5rem;
+  margin: auto;
 `;
 
 export const Review = styled.div`
@@ -25,12 +37,28 @@ export const ReviewContent = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  gap: 1rem;
+  gap: 0.5rem;
 `;
 
-export const Image = styled.img`
+export const ReviewImage = styled.img`
   width: 10rem;
   height: 6rem;
+`;
+
+export const ReviewSpace = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 1rem;
+  font-weight: bold;
+`;
+
+export const ReviewNickname = styled.span`
+  cursor: pointer;
+`;
+
+export const ReviewBtnBox = styled.div`
+  gap: 1rem;
 `;
 
 export const ModalContainer = styled.div`
@@ -47,14 +75,17 @@ export const ModalContainer = styled.div`
   z-index: 9999;
 `;
 
-export const ModalBox = styled.form`
+export const ModalBox = styled.form<ModalProps>`
   display: flex;
   flex-direction: column;
-  width: 600px;
-  height: 800px;
+  justify-content: ${(props) => props.jc};
+  align-items: ${(props) => props.ai};
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};
   color: black;
   background-color: gray;
   border-radius: 1rem;
+  gap: ${(props) => (!!props.gap ? props.gap : '1rem')};
 `;
 
 export const ModalHeader = styled.header`
@@ -130,4 +161,26 @@ export const ModalImage = styled.img`
   width: 10rem;
   height: 6rem;
   margin: 0 1rem;
+`;
+
+export const DeleteTitle = styled.h2`
+  font-size: 1.5rem;
+`;
+
+export const DeleteBtnBox = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 1rem;
+`;
+
+export const DeleteBtn = styled.div`
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 7rem;
+  height: 3rem;
+  border-radius: 30px;
+  background-color: ${(props) => props.color};
 `;

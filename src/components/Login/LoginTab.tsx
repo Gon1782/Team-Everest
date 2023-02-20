@@ -1,128 +1,71 @@
-import { useState } from 'react';
-import { useRecoilState } from 'recoil';
-import { useNavigate } from 'react-router-dom';
-import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
+import { useCallback } from 'react';
+import { useSetRecoilState } from 'recoil';
 import { FcGoogle } from 'react-icons/fc';
 import { GrFacebook, GrTwitter } from 'react-icons/gr';
-import * as F from 'firebase/auth';
-import { doc, getDoc, setDoc } from 'firebase/firestore';
-import { auth, db } from '@/common/api/firebase';
+import {
+  FacebookAuthProvider,
+  GoogleAuthProvider,
+  TwitterAuthProvider,
+} from 'firebase/auth';
+import { LoginValidation } from '@/common/utils/validations';
 import useInput from '@/hooks/useInput';
-import { LoginState } from '@/recoil/atom/LoginToggle';
+import useSignIn from '@/hooks/useSignIn';
+import { LoginState } from '@/recoil/atom/Login';
+import LoginInput from './LoginInput';
 import * as S from './style/LoginTabStyled';
 
-const googleProvider = new F.GoogleAuthProvider();
-const facebookProvider = new F.FacebookAuthProvider();
-const twitterProvider = new F.TwitterAuthProvider();
-
-type Provider =
-  | F.GoogleAuthProvider
-  | F.FacebookAuthProvider
-  | F.TwitterAuthProvider;
+const googleProvider = new GoogleAuthProvider();
+const facebookProvider = new FacebookAuthProvider();
+const twitterProvider = new TwitterAuthProvider();
 
 const LoginTab = () => {
-  const navigate = useNavigate();
-  const [_, setCheck] = useRecoilState(LoginState);
+  // 로그인 회원가입 토글
+  const setCheck = useSetRecoilState(LoginState);
 
-  // 이메일 로그인 해야함 귀찮아서 나중에
+  // 이메일 로그인
   const [email, emailChange, resetEmail] = useInput('');
-  const [password, passwordChange, resetPassword] = useInput('');
-  const [visible, setVisible] = useState(false);
+  const [password, pwChange, resetPassword] = useInput('');
 
-  const reset = () => {
+  // 값 초기화
+  const reset = useCallback(() => {
     resetEmail();
     resetPassword();
-  };
+  }, []);
+
+  // 유효성검사
+  const [emailCheck, pwCheck, valiDate] = LoginValidation(email, password);
+
+  // 로그인
+  const [login, socialLogin] = useSignIn(email, password, reset);
 
   const emailLogin = () => {
-    F.setPersistence(auth, F.browserSessionPersistence)
-      .then(() => {
-        return F.signInWithEmailAndPassword(auth, email, password);
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
-  };
-
-  // 소셜 로그인
-  const social = (provider: Provider) => {
-    F.signInWithPopup(auth, provider).then(async (res) => {
-      navigate('/main');
-      //userDB 생성
-      const docRef = doc(db, 'users', `${res.user.uid}`);
-      const data = await getDoc(docRef);
-      const newData = {
-        uid: res.user.uid,
-        introduce: '',
-        backImage: '',
-        displayName: res.user.displayName,
-        photoURL: res.user.photoURL,
-        email: res.user.email,
-        myPlanner: [],
-        MyReview: [],
-      };
-      if (!data.data()) {
-        try {
-          await setDoc(docRef, newData);
-        } catch (error) {
-          console.log(error);
-        }
-      }
-    });
-  };
-
-  const socialLogin = (provider: Provider) => {
-    F.setPersistence(auth, F.browserSessionPersistence)
-      .then(() => {
-        social(provider);
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
-  };
-
-  const logOut = () => {
-    F.signOut(auth);
+    const validation = valiDate();
+    if (validation) {
+      login();
+    }
   };
 
   return (
     <>
       <S.LoginInputContainer>
-        <S.LoginInputBox>
-          <div style={{ fontSize: 24 }}>E-Mail</div>
-          <S.LoginInput
-            type="text"
-            name="email"
-            value={email}
-            onChange={(e) => emailChange(e)}
-          />
-          <S.InputBtn onClick={() => resetEmail()}>X</S.InputBtn>
-        </S.LoginInputBox>
-        <S.LoginInputBox>
-          <div style={{ fontSize: 24 }}>Password</div>
-          <S.LoginInput
-            type={visible ? 'text' : 'password'}
-            name="password"
-            value={password}
-            onChange={(e) => passwordChange(e)}
-          />
-          <S.InputBtn
-            onClick={() => setVisible(true)}
-            style={{ display: visible ? 'none' : 'flex' }}
-          >
-            <AiFillEye size={22} />
-          </S.InputBtn>
-          <S.InputBtn
-            onClick={() => setVisible(false)}
-            style={{ display: visible ? 'flex' : 'none' }}
-          >
-            <AiFillEyeInvisible size={22} />
-          </S.InputBtn>
-        </S.LoginInputBox>
+        <LoginInput
+          name="email"
+          value={email}
+          check={emailCheck}
+          onChange={emailChange}
+          reset={resetEmail}
+        />
+        <LoginInput
+          name="password"
+          value={password}
+          check={pwCheck}
+          onChange={pwChange}
+          reset={resetPassword}
+        />
       </S.LoginInputContainer>
       <S.LoginBtnConatiner>
-        <S.LoginBtn onClick={() => logOut()}>
-          임시 로그아웃(이메일로그인안됨)
+        <S.LoginBtn tabIndex={3} onClick={() => emailLogin()}>
+          Log in
         </S.LoginBtn>
         <S.RegisterBtn onClick={() => setCheck(false)}>
           회원가입하러가기

@@ -6,8 +6,11 @@
         "displayName": "",
         "photoURL": "",
         "e-mail": "",
+        "introduce": "",
+        "backImage": "",
         "myPlanner": [{}],
-        "MyReview": [{}]
+        "MyReview": [{}],
+        "myWishPlace": [""]
       }
     }
   ]

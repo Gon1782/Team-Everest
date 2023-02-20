@@ -1,27 +1,32 @@
-import { useEffect } from 'react';
-import { useQuery } from 'react-query';
-import { useRecoilState } from 'recoil';
+import { useCallback, useEffect, useState } from 'react';
+import { useQueries, useQueryClient } from 'react-query';
+import { useSetRecoilState } from 'recoil';
 import { useNavigate, useParams } from 'react-router-dom';
 import { doc, onSnapshot } from 'firebase/firestore';
-import { getDetail } from '@/common/api/detailApi';
+import { getDetail, getDetailIntro } from '@/common/api/detailApi';
 import { db } from '@/common/api/firebase';
+import { category } from '@/common/utils/cat3';
 import DetailInfo from '@/components/Detail/DetailInfo';
 import Review from '@/components/Review/Review';
 import ReviewModal from '@/components/Review/ReviewModal';
+import SimilarLandmark from '@/components/Detail/SimilarLandmark';
+import useModal from '@/hooks/useModal';
 import { DetailList } from '@/recoil/atom/Detail';
-import { reviewModalState } from '@/recoil/atom/ReviewModal';
-import { DetailResponse, Document, EachReview } from '@/types/DetailType';
 import * as S from './style/DetailStyled';
 
 const DetailPage = () => {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const { id } = useParams();
+  // uid
   const sessionKey = `firebase:authUser:${process.env.FIREBASE_API_KEY}:[DEFAULT]`;
-  const uid = !!sessionStorage.getItem(sessionKey)
-    ? JSON.parse(sessionStorage.getItem(sessionKey)).uid
-    : '';
-  const [list, setList] = useRecoilState<Document>(DetailList);
-  const [modal, setModal] = useRecoilState(reviewModalState);
+  const userItem = sessionStorage.getItem(sessionKey);
+  const uid = !!userItem ? JSON.parse(userItem).uid : '';
+
+  // 리뷰 등록 모달
+  const [modal, openModal, closeModal, closeModalIfClickOutside] = useModal();
+  //위시리스트 데이터
+  const [wishList, setWishList] = useState([]);
 
   const modalOpen = () => {
     if (!uid) {
@@ -29,41 +34,88 @@ const DetailPage = () => {
       navigate('/login');
       return;
     }
-    setModal(true);
+    openModal();
   };
+
+  // 리뷰 불러오기
+  const setList = useSetRecoilState(DetailList);
 
   useEffect(() => {
     onSnapshot(doc(db, 'reviews', `${id}`), (doc) => {
       const newList = {
-        ...doc.data(),
+        ratingCount: doc.data()?.ratingCount,
+        review: doc.data()?.review,
+        totalRating: doc.data()?.totalRating,
       };
       setList(newList);
     });
-  }, []);
 
-  const { isLoading, isError, data, error } = useQuery<DetailResponse, Error>(
-    `${id}`,
-    () => getDetail(id),
-  );
+    onSnapshot(doc(db, 'users', uid), (doc) => {
+      setWishList(doc.data()?.myWishPlace);
+    });
+  }, [id]);
+
+  // GET API
+  const results = useQueries([
+    {
+      queryKey: `${id}`,
+      queryFn: () => getDetail(id),
+    },
+    {
+      queryKey: `${id}intro`,
+      queryFn: () => getDetailIntro(id),
+    },
+  ]);
+
+  const isLoading = results.some((result) => result.isLoading);
+
+  const isError = results.some((result) => result.isError);
+
+  const error = results.some((result) => result.error);
+
+  const data = results.map((result) => result.data);
+
+  const refetchAll = useCallback(() => {
+    results.forEach((result) => result.refetch());
+  }, [results]);
+
+  useEffect(() => {
+    queryClient.removeQueries([id]);
+    refetchAll();
+  }, [id]);
+
   if (isLoading) return <div>로딩중...</div>;
-  if (isError) return <div>에러: {error.message}</div>;
+  if (isError) return <div>에러: {error}</div>;
+
+  const detailList = !!data[0]?.response.body.items
+    ? data[0].response.body.items.item[0]
+    : {};
+  const detailIntro = !!data[1]?.response.body.items
+    ? data[1].response.body.items.item[0]
+    : {};
+  const cat = !!detailList?.cat3 ? detailList?.cat3 : 'A01010100';
+  const pageNo = Math.floor(Math.random() * (category[cat] + 1));
 
   return (
     <S.DetailContainer>
       {modal && (
         <ReviewModal
-          title={data?.response.body.items.item[0].title ?? ''}
-          id={id ?? ''}
+          type="post"
+          id={id}
+          title={detailList?.title}
+          closeModal={closeModal}
+          closeModalIfClickOutside={closeModalIfClickOutside}
         />
       )}
-      <DetailInfo item={data?.response.body.items.item[0]} />
+      <DetailInfo item={detailList} intro={detailIntro} wishList={wishList} />
+      <S.DetailSubTitle>관광지 후기 모음</S.DetailSubTitle>
       <S.WriteReview>
         <span>별점과 후기를 남겨주세요</span>
         <S.ReviewBtn onClick={() => modalOpen()}>후기작성하기</S.ReviewBtn>
       </S.WriteReview>
-      <Review
-        review={list?.review?.filter((x: EachReview) => x.isDelete === 'N')}
-      />
+      <Review />
+      <S.DetailSubTitle>유사한 관광지 추천</S.DetailSubTitle>
+      <SimilarLandmark id={id} pageNo={pageNo} cat={cat} />
     </S.DetailContainer>
   );
 };

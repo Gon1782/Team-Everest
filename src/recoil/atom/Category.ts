@@ -1,6 +1,4 @@
 import { atom } from 'recoil';
-import { doc, getDoc } from 'firebase/firestore';
-import { db } from '@/common/api/firebase';
 import { locationData, themeData } from '@/common/api/categoryApi';
 // 현재 작업중인 일정 폴더
 export const area = atom({

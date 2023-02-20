@@ -1,7 +1,7 @@
 import { useReducer, useCallback } from 'react';
 
 export interface State {
-  [key: string]: string | number | boolean | undefined;
+  [key: string]: string;
 }
 
 interface ActionType {
@@ -12,12 +12,15 @@ interface ActionType {
 
 // 객체일때 커스텀훅 initialState는 객체
 const useInputs = (initialState: State) => {
+  // 리듀서
   const reducer = (state: State, action: ActionType): State => {
     switch (action.type) {
       case 'CHANGE_INPUT':
+        const name = !!action.name ? action.name : '';
+        const value = !!action.value ? action.value : '';
         return {
           ...state,
-          [action.name ?? '']: action.value,
+          [name]: value,
         };
       case 'CHANGE_RESET':
         return initialState;
@@ -26,6 +29,7 @@ const useInputs = (initialState: State) => {
     }
   };
 
+  // 액션
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const onChange = useCallback(

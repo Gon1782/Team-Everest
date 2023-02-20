@@ -1,10 +1,11 @@
+import { useRecoilState } from 'recoil';
 import LoginTab from '@/components/Login/LoginTab';
 import RegisterTab from '@/components/Register/RegisterTab';
-import { LoginState } from '@/recoil/atom/LoginToggle';
-import { useRecoilState } from 'recoil';
+import { LoginState } from '@/recoil/atom/Login';
 import * as S from './style/LoginStyled';
 
 const Login = () => {
+  // 로그인, 회원가입 탭 전환
   const [checkLogin, setCheck] = useRecoilState(LoginState);
 
   const toggleCheck = () => {

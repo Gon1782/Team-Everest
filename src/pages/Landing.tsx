@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
 const Landing = () => {
-  return <StyleTest>Landing 페이지</StyleTest>;
+  return <StyleTest>Landing</StyleTest>;
 };
 
 const StyleTest = styled.div`
-  color: red;
+  color: #1e8add;
 `;
 
 export default Landing;

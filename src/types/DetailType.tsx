@@ -29,6 +29,7 @@ export interface EachReview {
   createdAt: string;
   id: string;
   image: string[];
+  title: string;
   contentId: string;
   uid: string;
   isDelete: string;

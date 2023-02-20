@@ -1,51 +1,63 @@
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { doc, getDoc } from 'firebase/firestore';
-import { db } from '@/common/api/firebase';
+import { useCallback, useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { getUserDB } from '@/common/api/userApi';
 import Profile from '@/components/Profile/Profile';
 import MyReview from '@/components/MyReview/MyReview';
+import MyPlanner from '@/components/Profile/MyPlanner';
 import { Document } from '@/types/DetailType';
 import * as S from './style/MyPageStyled';
 
 const Mypage = () => {
+  const { state } = useLocation();
   const navigate = useNavigate();
   // Login 판별
   const sessionKey = `firebase:authUser:${process.env.FIREBASE_API_KEY}:[DEFAULT]`;
-  const uid = !!sessionStorage.getItem(sessionKey)
-    ? JSON.parse(sessionStorage.getItem(sessionKey)).uid
-    : '';
+  const userItem = sessionStorage.getItem(sessionKey);
+  const uid = !!userItem ? JSON.parse(userItem).uid : '';
+
+  // 프로필 수정 가능 여부 판별
+  const checkMy = state === uid;
+  const LoginCheck = !state && !!uid;
 
   // Get UserDB
   const [userDB, setUserDB] = useState<Document>();
-  // isLoading
   const [isLoading, setIsLoading] = useState(false);
 
-  const getUserDB = async () => {
+  const getUser = useCallback(async (uid: string) => {
     setIsLoading(true);
-    const docRef = doc(db, 'users', `${uid}`);
-    const data = await getDoc(docRef);
-    setUserDB(data.data());
+    const data = await getUserDB(uid);
+    setUserDB(data);
     setIsLoading(false);
-  };
+  }, []);
 
   useEffect(() => {
-    if (!uid) {
+    if (!state && !uid) {
       alert('로그인 후 이용해 주세요');
       navigate('/login');
     }
-    if (!!uid) {
-      getUserDB();
+    if (!!state) {
+      getUser(state);
+    } else if (!!uid) {
+      getUser(uid);
     }
   }, []);
 
   if (isLoading) return <S.Loading>로딩중...</S.Loading>;
 
+  const user = !!userDB ? userDB : {};
+
   return (
     <S.MyPageContainer>
-      <Profile user={userDB} getUserDB={getUserDB} />
+      <Profile
+        LoginCheck={LoginCheck}
+        checkMy={checkMy}
+        user={user}
+        getUser={getUser}
+      />
       {/* 나의 위시리스트 섹션 아마도? */}
+      <MyPlanner user={user} />
       {/* 나의 플래너 섹션 */}
-      <MyReview user={userDB} />
+      <MyReview user={user} />
     </S.MyPageContainer>
   );
 };

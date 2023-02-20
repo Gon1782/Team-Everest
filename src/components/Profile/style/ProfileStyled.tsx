@@ -9,8 +9,9 @@ export const MyBackImage = styled.img`
   position: absolute;
   width: 100%;
   height: 450px;
-  background-color: green;
+  background-color: gray;
   border: none;
+  object-fit: cover;
 `;
 export const ProfileBox = styled.div`
   display: flex;
@@ -72,30 +73,32 @@ export const NicknameBox = styled.div`
   gap: 3rem;
   line-height: 1.5rem;
   padding: 1rem 2rem;
+  & svg {
+    cursor: pointer;
+  }
 `;
 export const MyText = styled.span`
   width: 100%;
   line-height: 1.5rem;
   padding: 1rem 2rem;
+  font-size: 1rem;
 `;
 export const NickNameInput = styled.input`
   position: relative;
   right: 1rem;
   width: 100%;
   height: 2rem;
-  padding: 0 0.5rem;
+  padding: 0.5rem;
   font-size: 1.5rem;
   line-height: 1.5rem;
-  border-radius: 20px;
-  border: none;
+  border-bottom: 1px solid black;
 `;
 export const ProfileInput = styled.input`
   width: 40.7%;
   height: 2rem;
-  padding: 0 0.5rem;
+  padding: 0.5rem;
   margin: 0.8rem 1rem;
-  font-size: 1.5rem;
+  font-size: 1rem;
   line-height: 1.5rem;
-  border-radius: 20px;
-  border: none;
+  border-bottom: 1px solid black;
 `;
