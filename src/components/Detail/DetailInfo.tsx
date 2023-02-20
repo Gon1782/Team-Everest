@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { FaBookmark, FaRegBookmark } from 'react-icons/fa';
 import useDefault from '@/hooks/useDefault';
@@ -6,15 +6,16 @@ import { DetailList } from '@/recoil/atom/Detail';
 import { Item } from '@/types/DetailType';
 import DetailMap from './DetailMap';
 import * as S from '@/pages/Detail/style/DetailStyled';
+import { doc, onSnapshot } from 'firebase/firestore';
+import { db } from '@/common/api/firebase';
+import { addWishList, popWishList } from '../MyPlan/MyPlannerHandler';
 interface Props {
   item: Item;
   intro: Item;
+  wishList: Item[];
 }
 
-const DetailInfo = ({ item, intro }: Props) => {
-  // 북마크 여부만 확인
-  const [bookMark, setBookMark] = useState(false);
-
+const DetailInfo = ({ item, intro, wishList }: Props) => {
   // 로그인 여부 확인
   const sessionKey = `firebase:authUser:${process.env.FIREBASE_API_KEY}:[DEFAULT]`;
   const userItem = sessionStorage.getItem(sessionKey);
@@ -41,6 +42,27 @@ const DetailInfo = ({ item, intro }: Props) => {
     __html: !!item?.homepage ? item.homepage : '',
   };
 
+  const [bookMark, setBookMark] = useState(false);
+
+  const handlerWishList = () => {
+    if (!bookMark) {
+      // 추가()
+      addWishList(wishList, item, uid);
+    } else {
+      //삭제
+      popWishList(wishList, item, uid);
+    }
+    setBookMark(!bookMark);
+  };
+
+  useEffect(() => {
+    const isGet = wishList.filter(
+      (wishItem: any) => wishItem.contentid === item.contentid,
+    ).length;
+
+    !!isGet ? setBookMark(true) : setBookMark(false);
+  }, [wishList]);
+
   return (
     <S.DetailSection>
       <S.InfoBox>
@@ -50,11 +72,11 @@ const DetailInfo = ({ item, intro }: Props) => {
           <span>⭐{rating}</span>
           <div style={{ display: !!uid ? 'flex' : 'none' }}>
             <FaRegBookmark
-              onClick={() => setBookMark(true)}
+              onClick={() => handlerWishList()}
               style={{ display: bookMark ? 'none' : 'flex' }}
             />
             <FaBookmark
-              onClick={() => setBookMark(false)}
+              onClick={() => handlerWishList()}
               style={{ display: bookMark ? 'flex' : 'none' }}
               color="red"
             />

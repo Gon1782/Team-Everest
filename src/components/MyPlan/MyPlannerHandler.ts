@@ -110,12 +110,19 @@ export const scheduleHandler = (startDate: Date, endDate: Date): Date[] => {
   return scheduleList;
 };
 
-export const addWishList = async (event: any, userDBInfo: any) => {
-  await updateDoc(doc(db, 'users', userDBInfo.uid), {
-    myWish: [...userDBInfo.users['myWish'], { ...event }],
+export const addWishList = async (wishList: any, event: any, uid: any) => {
+  await updateDoc(doc(db, 'users', uid), {
+    myWishPlace: [...wishList, { ...event }],
   });
 };
-
+export const popWishList = async (wishList: any, event: any, uid: any) => {
+  const newWishList = wishList.filter((item: any) => {
+    item.contentId !== event.contentId;
+  });
+  await updateDoc(doc(db, 'users', uid), {
+    myWishPlace: newWishList,
+  });
+};
 //일정 저장
 export const addPlan = async (
   plan: any, // 만든 일정

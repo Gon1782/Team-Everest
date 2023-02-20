@@ -54,6 +54,7 @@ const TourList = () => {
 
   useEffect(() => {
     setDataList(tourList);
+    setIsShowMyWish(false);
   }, [tourList]);
 
   return (

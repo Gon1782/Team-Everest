@@ -3,9 +3,10 @@ import {
   Authority,
   IsCalenderView,
   IsSidePageView,
+  MyWishList,
   NewPlanRecoil,
 } from '@/recoil/atom/MyPlan';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import CalenderView from './CalenderView';
 import { PlanType } from '@/recoil/atom/MyPlan';
 import StartEndDate from './StartEndDate';
@@ -28,12 +29,11 @@ const MyPlan = () => {
 
   const sessionKey = `firebase:authUser:${process.env.FIREBASE_API_KEY}:[DEFAULT]`;
   const userItem = sessionStorage.getItem(sessionKey);
-  const uid = !!userItem ? JSON.parse(userItem).uid : '';
+  const uid = !!userItem ? JSON.parse(userItem).uid : ''; // 드롭 다운 레퍼런스 객체, calenderView 컴포넌트에서 초기화함
 
-  // 드롭 다운 레퍼런스 객체, calenderView 컴포넌트에서 초기화함
   const [dropDownRef, setDropDownRef] = useState<any>({});
   const [loading, setLoading] = useState(true);
-
+  const setMyWishList = useSetRecoilState(MyWishList);
   const [authority, setAuthority] = useRecoilState(Authority);
   //
   const { planIndex, userId } = useParams() as {
@@ -57,6 +57,7 @@ const MyPlan = () => {
       setPlan(userDB['myPlanner'][parseInt(planIndex)]);
       setPlanName(userDB['myPlanner'][parseInt(planIndex)]['name']);
 
+      setMyWishList(userDB['myWishPlace']);
       setAuthority({
         write: false,
         view: true,
@@ -76,6 +77,7 @@ const MyPlan = () => {
         getPlan(userId); // 해당 일정 가져오기
       } else {
         setLoading(true);
+        // 이부분 나중에 아톰 selector로 다시 짜기
         const newSchedule: any = {};
         const initSchedule = dateToString(new Date());
         newSchedule[initSchedule] = [];
