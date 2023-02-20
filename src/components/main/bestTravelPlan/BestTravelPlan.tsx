@@ -14,6 +14,7 @@ const BestTravelPlan = () => {
   const moveToMyPlan = (item: any, index: number) => {
     navigate(`/planner/${item.uid}/${item.contentId}`);
   };
+
   return (
     <BestTravelPlanContainer>
       {!!data && !!data['items'].length ? (
