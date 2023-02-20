@@ -81,7 +81,7 @@ const MyPlan = () => {
   const userItem = sessionStorage.getItem(sessionKey);
   const uid = !!userItem ? JSON.parse(userItem).uid : '';
 
-  // 드롭 다운 레퍼런스 객체, useEffect에서 초기화함
+  // 드롭 다운 레퍼런스 객체, calenderView 컴포넌트에서 초기화함
   const [dropDownRef, setDropDownRef] = useState<any>({});
   const [loading, setLoading] = useState(true);
   //
@@ -142,7 +142,7 @@ const MyPlan = () => {
           schedule: { ...newSchedule },
           contentId: 0,
         });
-        //resetPlan();
+        // resetPlan();
         setPlanName('');
         setIsShowPlanNameInput(true);
         setLoading(false);
