@@ -1,15 +1,3 @@
-interface type {
-  areacode: string;
-  korarea: string;
-  engarea: string;
-  description: string;
-  [hashtag: string]: string;
-  tourcount: string;
-  spec: string;
-  mapy: any;
-  mapx: any;
-}
-
 export const cityInfo = [
   {
     areacode: '1',
@@ -191,7 +179,7 @@ export const cityInfo = [
     tourdate: '9월~10월',
     spec: '사과,굴,한과',
     mapy: 35.49899056118,
-    mapx: 128.510735006334,
+    mapx: 128.310735006334,
   },
   {
     areacode: '37',

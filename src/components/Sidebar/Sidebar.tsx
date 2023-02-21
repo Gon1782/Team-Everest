@@ -5,10 +5,10 @@ import { useRecoilState } from 'recoil';
 import { CityArea } from '@/recoil/atom/CityArea';
 
 const Sidebar = () => {
-  const [word, setWord] = useRecoilState(CityArea);
+  const [area, setArea] = useRecoilState(CityArea);
 
-  const onClickHandler = (areacode: string) => {
-    setWord(areacode);
+  const onClickHandler = (mapx: number, mapy: number) => {
+    setArea({ mapx, mapy, level: 9 });
   };
 
   return (
@@ -18,7 +18,7 @@ const Sidebar = () => {
           <Style.ItemWrap
             key={index}
             onClick={() => {
-              onClickHandler(data.areacode);
+              onClickHandler(data.mapx, data.mapy);
             }}
           >
             <Style.ImageWrap>
