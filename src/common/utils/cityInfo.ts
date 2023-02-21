@@ -1,15 +1,3 @@
-interface type {
-  areacode: string;
-  korarea: string;
-  engarea: string;
-  description: string;
-  [hashtag: string]: string;
-  tourcount: string;
-  spec: string;
-  mapy: any;
-  mapx: any;
-}
-
 export const cityInfo = [
   {
     areacode: '1',

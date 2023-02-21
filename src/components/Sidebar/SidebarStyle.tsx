@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Wrap = styled.section`
   min-width: 18rem;
@@ -27,7 +27,7 @@ export const ItemWrap = styled.div`
   align-items: center;
   gap: 20px;
   &:hover {
-    background-color: #f9f9f9;
+    background-color: #f3f3f3;
   }
 `;
 

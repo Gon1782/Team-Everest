@@ -26,17 +26,18 @@ const Citymap = () => {
         center: position, // 지도의 중심좌표
         level: 13, // 지도의 확대 레벨
       };
-      const map = new kakao.maps.Map(el, mapOptions); //current??
+
+      const map = new kakao.maps.Map(el, mapOptions);
 
       // 마커 이미지의 이미지 주소
-      let imageSrc = '@/assets/MyPage/defaultProfile.jpg';
+      let imageSrc = require('@/assets/marker.png');
+      // 마커 이미지의 이미지 크기
+      let imageSize = new kakao.maps.Size(27, 40);
 
       for (let i = 0; i < cityInfo.length; i++) {
-        // 마커 이미지의 이미지 크기 입니다
-        let imageSize = new kakao.maps.Size(24, 35);
-
         // 마커 이미지를 생성합니다
         let markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+        // console.log(markerImage);
 
         // console.log(cityInfo[i].mapy, cityInfo[i].mapx);
 
