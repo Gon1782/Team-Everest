@@ -58,8 +58,8 @@ export const dateConvert = (scheduleInfo: ScheduleInfo): any => {
   );
 };
 
-export const timeHandler = (when: { time?: number }): any => {
-  if (!!!when?.time) return '--:--';
+export const timeHandler = (when: { time: number }): any => {
+  if (when?.time === 999) return '--:--';
   // const hour =s
   // time.hour < 10 // 1~9시 앞에 0 붙이기
   //   ? '0' + time.hour
@@ -173,6 +173,7 @@ export const updatePlan = async (
   planIndex: string, // 수정할 일정 데이터 번호
   isShow: boolean, // 공개/비공개 처리
 ) => {
+  // console.log(plan);
   if (
     window.confirm(
       `해당 일정을 ${isShow ? '공개' : '비공개'}로 저장 하시겠습니까?`,
@@ -180,7 +181,8 @@ export const updatePlan = async (
   ) {
     const planList: any = await getUserPlanList(uid);
     const allPlanner: any = await getAllPlanner();
-
+    console.log(planList);
+    console.log(allPlanner);
     const newMyPlanner = planList['myPlanner'].reduce(
       (sum: any, item: any, index: number) => {
         if (parseInt(planIndex) === index) {
@@ -192,7 +194,7 @@ export const updatePlan = async (
       },
       [],
     );
-
+    //console.log(newMyPlanner);
     const newAllPlanner = allPlanner['items'].reduce((sum: any, item: any) => {
       if (item.contentId === parseInt(planIndex) && item.uid === uid) {
         sum.push({ ...plan, name: planName, uid: uid, isShow: isShow });
@@ -201,6 +203,7 @@ export const updatePlan = async (
       }
       return sum;
     }, []);
+    //
     try {
       updateAllPlannerDB(newAllPlanner);
       updateUserDB(newMyPlanner, uid);
