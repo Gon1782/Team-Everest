@@ -15,9 +15,8 @@ const ThemeSlideBanner = () => {
   // 선택 카테고리 state - 선택한 카테고리 없을 시 첫 번째 태그 리스트 보임
   const [selectedCategory, setSelectedCategory] =
     useState<HashTagCategory | null>('# 이색 체험');
-  // 리스트 선택시 해당 슬라이더 배너로 이동하기 위한 state
+  // Swiper 구성요소 인스턴스 할당
   const [swiper, setSwiper] = useState<SwiperCore>();
-  const [value, setValue] = useState<any>();
 
   // 카테고리 선택시 state 업데이트
   const categorySelectHandler = (category: HashTagCategory) => {
@@ -30,11 +29,10 @@ const ThemeSlideBanner = () => {
     : listItems;
 
   //  선택한 리스트 항목에 해당하는 슬라이드 배너로 포커스 이동해주기
-  const listClickHandler = (index: any) => {
-    console.log(index);
-    const idx = index.id - 1; // realIndex로 쓸 지 체크할 것
+  const listClickHandler = (item: any) => {
+    const idx = item.id - 1;
     if (swiper) {
-      swiper.slideTo(idx, 1000);
+      swiper.slideTo(idx, 1000); // 1000 - 이동할 때 걸리는 시간
     }
   };
 
@@ -95,7 +93,8 @@ const ThemeSlideBanner = () => {
           resistance={false}
           watchOverflow={true}
           onSwiper={setSwiper}
-          onSlideChange={(swiper) => setValue(swiper.realIndex)}
+          // onSwipre - 외부에서 스와이퍼를 변경하고자 할 때 사용, 스와이퍼 인스턴스를 state로 할당
+          onSlideChange={(swiper) => setSwiper(swiper)}
         >
           <ThemelistItemsImages>
             {filteredListItems.map((item) => (
