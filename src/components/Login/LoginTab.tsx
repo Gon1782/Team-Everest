@@ -38,7 +38,8 @@ const LoginTab = () => {
   // 로그인
   const [login, socialLogin] = useSignIn(email, password, reset);
 
-  const emailLogin = () => {
+  const emailLogin = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     const validation = valiDate();
     if (validation) {
       login();
@@ -46,7 +47,7 @@ const LoginTab = () => {
   };
 
   return (
-    <>
+    <S.LoginTab onSubmit={(e) => emailLogin(e)}>
       <S.LoginInputContainer>
         <LoginInput
           name="email"
@@ -64,9 +65,7 @@ const LoginTab = () => {
         />
       </S.LoginInputContainer>
       <S.LoginBtnConatiner>
-        <S.LoginBtn tabIndex={3} onClick={() => emailLogin()}>
-          Log in
-        </S.LoginBtn>
+        <S.LoginBtn tabIndex={3}>Log in</S.LoginBtn>
         <S.RegisterBtn onClick={() => setCheck(false)}>
           회원가입하러가기
         </S.RegisterBtn>
@@ -84,7 +83,7 @@ const LoginTab = () => {
           />
         </S.SocialLoginBtnBox>
       </S.LoginBtnConatiner>
-    </>
+    </S.LoginTab>
   );
 };
 

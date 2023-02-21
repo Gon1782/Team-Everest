@@ -14,7 +14,6 @@ export const DetailList = atom({
         uid: '',
         isDelete: '',
         contentId: '',
-        title: '',
       },
     ],
     totalRating: 0,

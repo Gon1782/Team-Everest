@@ -1,4 +1,4 @@
-export const areaCode35 = [
+export const areaCode36 = [
   {
     rnum: 1,
     code: '1',

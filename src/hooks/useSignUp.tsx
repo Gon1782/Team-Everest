@@ -41,7 +41,7 @@ const useSignUp = (
       });
   };
 
-  const emailSignup = useCallback(() => {
+  const emailSignup = () => {
     // 세션 스토리지로 회원가입
     setPersistence(auth, browserSessionPersistence)
       .then(() => {
@@ -50,7 +50,7 @@ const useSignUp = (
       .catch((error) => {
         console.log(error.message);
       });
-  }, []);
+  };
 
   return emailSignup;
 };

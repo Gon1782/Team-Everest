@@ -6,8 +6,6 @@ import { DetailList } from '@/recoil/atom/Detail';
 import { Item } from '@/types/DetailType';
 import DetailMap from './DetailMap';
 import * as S from '@/pages/Detail/style/DetailStyled';
-import { doc, onSnapshot } from 'firebase/firestore';
-import { db } from '@/common/api/firebase';
 import { addWishList, popWishList } from '../MyPlan/MyPlannerHandler';
 interface Props {
   item: Item;

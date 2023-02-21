@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
+import { AiFillEye, AiFillEyeInvisible, AiOutlineClose } from 'react-icons/ai';
 import * as S from './style/LoginTabStyled';
 
 interface Props {
@@ -23,7 +23,11 @@ const LoginInput = ({ name, value, check, onChange, reset }: Props) => {
           name: 'email',
           title: 'E-Mail',
           warning: '※ 이메일 형식에 맞게 입력해주세요.',
-          button: <S.InputBtn onClick={() => reset()}>X</S.InputBtn>,
+          button: (
+            <S.InputBtn onClick={() => reset()}>
+              <AiOutlineClose size={22} />
+            </S.InputBtn>
+          ),
         };
       case name === 'password':
         return {

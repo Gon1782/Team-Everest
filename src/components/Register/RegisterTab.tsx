@@ -40,7 +40,8 @@ const RegisterTab = () => {
     reset,
   );
 
-  const emailSignup = () => {
+  const emailSignup = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     const validation = valiDate();
     if (validation) {
       signUp();
@@ -52,7 +53,7 @@ const RegisterTab = () => {
   }, []);
 
   return (
-    <>
+    <form onSubmit={(e) => emailSignup(e)}>
       <S.RegisterInputContainer>
         <RegisterInput
           name={'email'}
@@ -77,16 +78,9 @@ const RegisterTab = () => {
         />
       </S.RegisterInputContainer>
       <S.LoginBtnConatiner>
-        <S.LoginBtn
-          tabIndex={5}
-          onClick={() => {
-            emailSignup();
-          }}
-        >
-          Sign Up
-        </S.LoginBtn>
+        <S.LoginBtn>Sign Up</S.LoginBtn>
       </S.LoginBtnConatiner>
-    </>
+    </form>
   );
 };
 

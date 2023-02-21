@@ -1,17 +1,20 @@
-import { useCallback, useState } from 'react';
-import { FaStar, FaCamera } from 'react-icons/fa';
+import { useEffect, useState } from 'react';
+import { AiOutlineClose } from 'react-icons/ai';
+import { modalSelector } from '@/common/utils/selector';
 import useAddReview from '@/hooks/useAddReview';
 import useInput from '@/hooks/useInput';
 import useEditReview from '@/hooks/useEditReview';
 import useImageInputs from '@/hooks/useImageInputs';
 import { Document, EachReview } from '@/types/DetailType';
+import ReviewStars from './ReviewStars';
+import ReviewForm from './ReviewForm';
 import * as S from './style/ReviewStyled';
-import { modalSelector } from '@/common/utils/selector';
 
 interface Props {
   type: string;
   id?: string;
   title: string;
+  addr: string;
   closeModal: () => void;
   closeModalIfClickOutside: (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>,
@@ -23,10 +26,10 @@ interface Props {
 const ReviewModal = ({
   type,
   title,
+  addr,
   id,
   closeModal,
   closeModalIfClickOutside,
-  user,
   review,
 }: Props) => {
   // 수정 전 값들 불러오기
@@ -40,19 +43,10 @@ const ReviewModal = ({
 
   // 별점 관련
   const [rating, setRating] = useState(chosen.rating);
-  const [hovered, setHovered] = useState(0);
-  const [clicked, setClicked] = useState(chosen.clicked);
-  const ratingArr = [0, 1, 2, 3, 4];
-
-  const handleStarClick = useCallback((index: number) => {
-    const clickStates = [...clicked].map((_, i) => (i <= index ? true : false));
-    setRating(clickStates.filter((click) => click === true).length);
-    setClicked(clickStates);
-  }, []);
 
   // 인풋
   const [content, onChangeContent, resetContent] = useInput(chosen.content);
-  const [image, onImageChange, resetImage] = useImageInputs(chosen.image);
+  const [image, onChangeImage, resetImage] = useImageInputs(chosen.image);
 
   // 리셋
   const reset = () => {
@@ -65,7 +59,6 @@ const ReviewModal = ({
     content,
     rating,
     image,
-    title,
     contentId,
     reset,
     closeModal,
@@ -83,60 +76,40 @@ const ReviewModal = ({
   return (
     <S.ModalContainer onClick={(e) => closeModalIfClickOutside(e)}>
       <S.ModalBox
-        width="600px"
+        width="790px"
         height="800px"
         gap="0"
         onSubmit={type === 'post' ? (e) => addReview(e) : (e) => editReview(e)}
       >
         <S.ModalHeader>
-          <div
-            style={{ cursor: 'pointer' }}
+          <S.ReviewName>
+            <span>{title}</span>
+            <S.ReviewAddr>{addr}</S.ReviewAddr>
+          </S.ReviewName>
+          <S.CloseBtn
             onClick={() => {
               reset();
               closeModal();
             }}
           >
-            닫기
-          </div>
-          <span>{title}</span>
+            <AiOutlineClose size={24} />
+          </S.CloseBtn>
         </S.ModalHeader>
-        <S.StarBox>
-          {ratingArr.map((num: number, idx: number) => {
-            return (
-              <FaStar
-                key={idx}
-                size={25}
-                onClick={() => handleStarClick(num)}
-                onMouseEnter={() => setHovered(num)}
-                onMouseLeave={() => setHovered(0)}
-                className={clicked[num] || hovered > num ? 'yellowStar' : ''}
-              />
-            );
-          })}
-        </S.StarBox>
-        <S.ReviewForm>
-          <S.InputArea value={content} onChange={(e) => onChangeContent(e)} />
-          <label>
-            <FaCamera size={48} />
-            <input
-              onChange={(e) => {
-                onImageChange(e);
-              }}
-              type="file"
-              accept="image/*"
-              style={{ display: 'none' }}
-            />
-          </label>
-        </S.ReviewForm>
-        <S.InputFooter>
-          <div style={{ marginRight: 20 }}>{content.length}/500</div>
-        </S.InputFooter>
-        <S.ImageBox>
-          {image.map((image, i) => {
-            return <S.ModalImage src={image} key={i} />;
-          })}
-        </S.ImageBox>
-        <button>등록</button>
+        <ReviewStars
+          rating={rating}
+          setRating={setRating}
+          click={chosen.clicked}
+        />
+        <S.ReviewModalTitle>리뷰를 남겨주세요</S.ReviewModalTitle>
+        <ReviewForm
+          content={content}
+          image={image}
+          onChangeContent={onChangeContent}
+          onChangeImage={onChangeImage}
+        />
+        <S.ReviewModalBtnBox>
+          <S.ReviewBtn>등록하기</S.ReviewBtn>
+        </S.ReviewModalBtnBox>
       </S.ModalBox>
     </S.ModalContainer>
   );
