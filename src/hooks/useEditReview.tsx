@@ -22,6 +22,10 @@ const useEditReview = (
   const editReview = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    if (!content) return alert('리뷰 내용을 입력해주세요.');
+    if (!rating) return alert('별점을 등록해 주세요.');
+    if (content.length > 500) return alert('500자 미만으로 작성해주세요');
+
     const user = await getUserDB(review.uid);
     const myReviews = user?.MyReview;
 

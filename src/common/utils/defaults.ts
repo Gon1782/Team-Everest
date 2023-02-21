@@ -3,6 +3,8 @@ export const defaultProfile =
   require('@/assets/MyPage/defaultProfile.jpg').default;
 export const defaultIntro = '소개가 없습니다 작성해주세요';
 
+export const placeHolder = "관광지에 대한 느낌과 공유하고 싶은 팁들을\n다른 분들에게 설명해주세요.\n함께 공유하면 더 좋은 관광지로 거듭날거에요 !"
+
 export const No = Math.floor(Math.random() * 9);
 
 const backImages = [

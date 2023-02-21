@@ -1,18 +1,19 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getUserDB } from '@/common/api/userApi';
+import useDefault from '@/hooks/useDefault';
 import useModal from '@/hooks/useModal';
-import { Document, EachReview } from '@/types/DetailType';
+import { Document, EachReview, Item } from '@/types/DetailType';
 import ReviewDelete from './ReviewDelete';
 import ReviewModal from './ReviewModal';
 import * as S from './style/ReviewStyled';
-import useDefault from '@/hooks/useDefault';
 
 interface Props {
+  item: Item;
   review: EachReview;
 }
 
-const ReviewBox = ({ review }: Props) => {
+const ReviewBox = ({ item, review }: Props) => {
   const navigate = useNavigate();
 
   // 삭제 확인 모달
@@ -58,7 +59,6 @@ const ReviewBox = ({ review }: Props) => {
     <S.Review>
       {deleteModal && (
         <ReviewDelete
-          user={user}
           id={review.id}
           closeModal={closeDeleteModal}
           closeModalIfClickOutside={closeDeleteModalIfClickOutside}
@@ -68,15 +68,15 @@ const ReviewBox = ({ review }: Props) => {
         <ReviewModal
           type="edit"
           id={review.contentId}
-          title={review.title}
+          title={item.title}
+          addr={item.addr1}
           closeModal={closeEditModal}
           closeModalIfClickOutside={closeEditModalIfClickOutside}
-          user={user}
           review={review}
         />
       )}
       <S.Profile src={profileImg} />
-      <S.ReviewContent>
+      <S.ReviewContentBox>
         <S.ReviewSpace>
           <S.ReviewNickname
             onClick={() => navigate('/my', { state: review.uid })}
@@ -93,14 +93,14 @@ const ReviewBox = ({ review }: Props) => {
           </S.ReviewBtnBox>
         </S.ReviewSpace>
         <div>{'⭐'.repeat(Number(review.rating))}</div>
-        <div style={{ fontSize: '1.25rem' }}>{review.content}</div>
-        <div style={{ display: 'flex', gap: '1rem' }}>
+        <S.ReviewContent>{review.content}</S.ReviewContent>
+        <S.ReviewImageBox>
           {review.image.map((image: string, i: number) => {
             return <S.ReviewImage src={image} key={i} />;
           })}
-        </div>
-        <span style={{ color: 'gray' }}>{review.createdAt}</span>
-      </S.ReviewContent>
+        </S.ReviewImageBox>
+        <S.ReviewCreatedAt>{review.createdAt}</S.ReviewCreatedAt>
+      </S.ReviewContentBox>
     </S.Review>
   );
 };

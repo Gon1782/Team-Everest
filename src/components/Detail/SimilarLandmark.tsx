@@ -1,18 +1,22 @@
 import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import { getSimilar } from '@/common/api/detailApi';
-import { DetailResponse } from '@/types/DetailType';
+import { DetailResponse, Item } from '@/types/DetailType';
 import Landmark from './Landmark';
 import * as S from './style/LandmarkStyled';
+import useRandomPage from '@/hooks/useRandomPage';
 
 interface Props {
-  id?: string;
-  pageNo: number;
   cat: string;
+  id?: string;
 }
 
-const SimilarLandmark = ({ id, pageNo, cat }: Props) => {
+const SimilarLandmark = ({ id, cat }: Props) => {
   const navigate = useNavigate();
+  const page = useRandomPage();
+
+  const { pageNo } = page(cat);
+
   const { isLoading, isError, data, error } = useQuery<DetailResponse, Error>(
     'similar',
     () => getSimilar(pageNo, cat),

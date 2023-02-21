@@ -32,6 +32,8 @@ export const SeeMore = styled.div`
 `;
 export const LandmarkImg = styled.img`
   position: absolute;
+  width: 100%;
+  height: 100%;
   border-radius: 30px;
   object-fit: cover;
 `;
@@ -56,6 +58,9 @@ export const LandmarkBookmarkBack = styled.div`
   padding: 0.5rem;
   background-color: #737373;
   border-radius: 50%;
+  & svg {
+    cursor: pointer;
+  }
 `;
 export const LandmarkTitle = styled.h1`
   display: flex;

@@ -21,6 +21,7 @@ const RegisterInput = ({ name, value, check, dupCheck, onChange }: Props) => {
           checkUse: dupCheck
             ? '사용가능한 이메일입니다.'
             : '중복된 이메일입니다.',
+          tabIndex: 1,
         };
       case name === 'nickname':
         return {
@@ -30,6 +31,7 @@ const RegisterInput = ({ name, value, check, dupCheck, onChange }: Props) => {
           checkUse: dupCheck
             ? '사용가능한 닉네임입니다.'
             : '중복된 닉네임입니다.',
+          tabIndex: 4,
         };
       default:
         return {
@@ -48,7 +50,7 @@ const RegisterInput = ({ name, value, check, dupCheck, onChange }: Props) => {
         <S.RegisterTitle>{chosen.title}</S.RegisterTitle>
         <S.MoreInfo>{chosen.info}</S.MoreInfo>
         <S.LoginInput
-          tabIndex={1}
+          tabIndex={chosen.tabIndex}
           type="text"
           name={name}
           value={value}
@@ -73,7 +75,7 @@ const RegisterInput = ({ name, value, check, dupCheck, onChange }: Props) => {
           color: dupCheck ? 'lightgreen' : 'red',
         }}
       >
-        {dupCheck ? '사용가능한 이메일입니다.' : '중복된 이메일입니다.'}
+        {chosen.checkUse}
       </S.Warning>
     </>
   );
