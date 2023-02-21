@@ -14,7 +14,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import SidePage from './SidePage';
 import EventMap from './EventMap';
-import PlanScheduleList from './PlanScheduleList';
+import PlanScheduleList from './ScheduleList';
 import { getUserDB } from '@/common/api/userApi';
 import {
   addPlan,

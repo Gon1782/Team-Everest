@@ -22,8 +22,6 @@ const EventMap = () => {
   const locationInfo = useRecoilValue(InitLocation);
 
   useEffect(() => {
-    const normalImageSrc =
-      'https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678111-map-marker-128.png';
     const container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
 
     const options = {
@@ -32,17 +30,31 @@ const EventMap = () => {
     };
 
     const map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
-    const imageSize = new kakao.maps.Size(35, 35);
 
-    const markerImage = new kakao.maps.MarkerImage(normalImageSrc, imageSize);
-
-    myPlan?.schedule[scheduleInfo.schedule]?.map((item: any) => {
+    const linePath: any = [];
+    myPlan?.schedule[scheduleInfo.schedule]?.map((item: any, index: number) => {
+      // 좌표 담아서 선 그려야함
+      linePath.push(new kakao.maps.LatLng(item.mapy, item.mapx));
+      // 마커 생성
       const markers = new kakao.maps.Marker({
         // 지도 중심좌표에 마커를 생성합니다.
         map: map,
         position: new kakao.maps.LatLng(item.mapy, item.mapx),
-        image: markerImage,
+
+        image: new kakao.maps.MarkerImage(
+          `https://img.icons8.com/color/48/null/${index + 1}-circle-c--v1.png`,
+          new kakao.maps.Size(35, 35),
+        ),
       });
+    });
+    // 선 생성
+    const polyline = new kakao.maps.Polyline({
+      map: map, // 지도에 선을 생성합니다.
+      path: linePath, // 선을 구성하는 좌표배열 입니다
+      strokeWeight: 5, // 선의 두께 입니다
+      strokeColor: 'black', // 선의 색깔입니다
+      strokeOpacity: 0.7, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+      strokeStyle: 'solid', // 선의 스타일입니다
     });
   }, [locationInfo, myPlan, scheduleInfo]);
 
