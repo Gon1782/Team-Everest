@@ -45,14 +45,21 @@ const DetailInfo = ({ item, intro, wishList }: Props) => {
   const [bookMark, setBookMark] = useState(false);
 
   const handlerWishList = () => {
-    if (!bookMark) {
-      // 추가()
-      addWishList(wishList, item, uid);
+    if (
+      window.confirm(`북마크에 ${!bookMark ? '추가' : '취소'} 하시겠습니까?`)
+    ) {
+      if (!bookMark) {
+        // 추가()
+
+        addWishList(wishList, item, uid);
+      } else {
+        //삭제
+        popWishList(wishList, item, uid);
+      }
+      setBookMark(!bookMark);
     } else {
-      //삭제
-      popWishList(wishList, item, uid);
+      alert('취소하셨습니다');
     }
-    setBookMark(!bookMark);
   };
 
   useEffect(() => {

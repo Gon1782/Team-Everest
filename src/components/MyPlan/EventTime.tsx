@@ -11,8 +11,8 @@ const EventTime = () => {
   useEffect(() => {
     setMemo((prev) => {
       return {
-        time: { hour: hour, minute: minute, amPm: amPm },
-        memo: prev.memo,
+        ...prev,
+        when: { time: hour * 60 + minute, amPm: amPm },
       };
     });
   }, [hour, minute, amPm]);
