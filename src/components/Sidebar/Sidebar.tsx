@@ -8,7 +8,7 @@ const Sidebar = () => {
   const [area, setArea] = useRecoilState(CityArea);
 
   const onClickHandler = (mapx: number, mapy: number) => {
-    setArea({ mapx, mapy });
+    setArea({ mapx, mapy, level: 9 });
   };
 
   return (
