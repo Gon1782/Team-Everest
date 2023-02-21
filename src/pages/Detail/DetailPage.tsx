@@ -5,7 +5,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { doc, onSnapshot } from 'firebase/firestore';
 import { getDetail, getDetailIntro } from '@/common/api/detailApi';
 import { db } from '@/common/api/firebase';
-import { category } from '@/common/utils/cat3';
 import DetailInfo from '@/components/Detail/DetailInfo';
 import Review from '@/components/Review/Review';
 import ReviewModal from '@/components/Review/ReviewModal';
@@ -18,6 +17,7 @@ const DetailPage = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const { id } = useParams();
+
   // uid
   const sessionKey = `firebase:authUser:${process.env.FIREBASE_API_KEY}:[DEFAULT]`;
   const userItem = sessionStorage.getItem(sessionKey);
@@ -50,9 +50,11 @@ const DetailPage = () => {
       setList(newList);
     });
 
-    onSnapshot(doc(db, 'users', uid), (doc) => {
-      setWishList(doc.data()?.myWishPlace);
-    });
+    if (!!uid) {
+      onSnapshot(doc(db, 'users', uid), (doc) => {
+        setWishList(doc.data()?.myWishPlace);
+      });
+    }
   }, [id]);
 
   // GET API
@@ -94,7 +96,6 @@ const DetailPage = () => {
     ? data[1].response.body.items.item[0]
     : {};
   const cat = !!detailList?.cat3 ? detailList?.cat3 : 'A01010100';
-  const pageNo = Math.floor(Math.random() * (category[cat] + 1));
 
   return (
     <S.DetailContainer>
@@ -103,6 +104,7 @@ const DetailPage = () => {
           type="post"
           id={id}
           title={detailList?.title}
+          addr={detailList?.addr1}
           closeModal={closeModal}
           closeModalIfClickOutside={closeModalIfClickOutside}
         />
@@ -113,9 +115,9 @@ const DetailPage = () => {
         <span>별점과 후기를 남겨주세요</span>
         <S.ReviewBtn onClick={() => modalOpen()}>후기작성하기</S.ReviewBtn>
       </S.WriteReview>
-      <Review />
+      <Review item={detailList} />
       <S.DetailSubTitle>유사한 관광지 추천</S.DetailSubTitle>
-      <SimilarLandmark id={id} pageNo={pageNo} cat={cat} />
+      <SimilarLandmark cat={cat} id={id} />
     </S.DetailContainer>
   );
 };

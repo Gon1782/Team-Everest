@@ -19,6 +19,7 @@ import { timeHandler } from './MyPlannerHandler';
 import EventTime from './EventTime';
 import EventMemo from './EventMemo';
 import styled from 'styled-components';
+import { Item } from '@/types/DetailType';
 
 const PlanScheduleList = ({
   dropDownRef,
@@ -62,57 +63,48 @@ const PlanScheduleList = ({
       return {
         ...prev,
         schedule: { ...prev.schedule, ...updateSchedule },
-        // name: prev.name,
-        // startDate: prev.startDate,
-        // endDate: prev.endDate,
-        // contentId: prev.contentId,
-        // isDelete: false,
-        // isShow: false,
       };
     });
   };
 
-  // 해당일정의 시간,메모 설정하고 완료 버튼 눌렀을때
+  // 해당일정의 시간,메모 설정하고 저장 버튼 눌렀을때
   const updateEventContent = (
     date: string,
     eventIndex: number,
-    eventList: [],
+    eventList: Item[],
   ) => {
-    if (memoAndTime.time['minute'] > 59) {
+    if (memoAndTime.when['time'] % 60 > 59) {
       return alert('시간을 다시 설정해주세요!');
     }
-    setNewPlan((prev) => {
-      const updateEventList = eventList.reduce(
-        (sum: any, item: any, idx: number) => {
-          if (eventIndex === idx) {
-            const cloneItem: any = { ...item };
-            cloneItem['memo'] = memoAndTime.memo;
-            cloneItem['time'] = memoAndTime.time;
 
-            sum.push(cloneItem);
-            return sum;
+    setNewPlan((prev) => {
+      // reduce,sorting,
+      // filter, sorting ()
+
+      const updateEventList = eventList
+        .reduce((sum: any, item: any, idx: number) => {
+          if (eventIndex === idx) {
+            sum.push({
+              ...item,
+              memo: memoAndTime.memo,
+              when: memoAndTime.when,
+            });
           } else {
             sum.push(item);
-            return sum;
           }
-        },
-        [],
-      );
+          return sum;
+        }, [])
+        .sort((a: any, b: any) => a?.when?.time - b?.when?.time);
 
       const newData: any = {};
       newData[date] = [...updateEventList];
-      showDropDownPage(date, eventIndex); // 해당 드롭다운 닫기
+
       return {
         ...prev,
         schedule: { ...prev.schedule, ...newData },
-        // name: prev.name,
-        // startDate: prev.startDate,
-        // endDate: prev.endDate,
-        // contentId: prev.contentId,
-        // isDelete: false,
-        // isShow: false,
       };
     });
+    showDropDownPage(date, eventIndex); // 해당 드롭다운 닫기
   };
   // 시간/메모 수정 버튼 클릭시 드롭다운창 보여주기
   const showDropDownPage = (date: string, index: number) => {
@@ -139,19 +131,19 @@ const PlanScheduleList = ({
   return (
     <PlanItems>
       {!!planSchedule?.length &&
-        planSchedule.map((date: any, index: number) => {
+        planSchedule.map((scheduleDate: any, index: number) => {
           return (
             <PlanItem key={index}>
-              <div onClick={() => initMap(date)}>
-                Day{index + 1} |{date}
+              <div onClick={() => initMap(scheduleDate)}>
+                Day{index + 1} |{scheduleDate}
               </div>
               {authority.write && (
                 <button onClick={() => onChangeSidePage(index)}>
                   일정 추가
                 </button>
               )}
-              {!!newPlan.schedule[date]?.length &&
-                newPlan.schedule[date].map((item: any, index) => {
+              {!!newPlan.schedule[scheduleDate]?.length &&
+                newPlan.schedule[scheduleDate].map((item: any, index) => {
                   return (
                     <>
                       <div
@@ -165,18 +157,26 @@ const PlanScheduleList = ({
                           })
                         }
                       >
-                        {timeHandler(item.time)}
+                        {index + 1} 순위 :{timeHandler(item.when)}
                         {item.title}
                         {item.memo}
                       </div>
                       {authority.write && (
                         <>
-                          <button onClick={() => showDropDownPage(date, index)}>
+                          <button
+                            onClick={() =>
+                              showDropDownPage(scheduleDate, index)
+                            }
+                          >
                             시간/메모 설정
                           </button>
                           <button
                             onClick={() =>
-                              popEvent(date, index, newPlan.schedule[date])
+                              popEvent(
+                                scheduleDate,
+                                index,
+                                newPlan.schedule[scheduleDate],
+                              )
                             }
                           >
                             삭제
@@ -189,11 +189,11 @@ const PlanScheduleList = ({
                         ref={(el: any) => {
                           // 각 div에 ref 할당하기 : 드롭다운페이지의 display 때문에
 
-                          const clone = !!dropDownRef.current[date]
-                            ? [...dropDownRef?.current[date]]
-                            : [];
+                          const clone = !!dropDownRef.current[scheduleDate]
+                            ? [...dropDownRef?.current[scheduleDate]] // 수정 페이지로 들어온 경우
+                            : []; // 작성 페이지로 들어온 경우
                           clone[index] = el;
-                          dropDownRef.current[date] = clone;
+                          dropDownRef.current[scheduleDate] = clone;
                         }}
                       >
                         시간/메모 설정페이지
@@ -202,9 +202,9 @@ const PlanScheduleList = ({
                         <button
                           onClick={() =>
                             updateEventContent(
-                              date,
+                              scheduleDate,
                               index,
-                              newPlan.schedule[date],
+                              newPlan.schedule[scheduleDate],
                             )
                           }
                         >

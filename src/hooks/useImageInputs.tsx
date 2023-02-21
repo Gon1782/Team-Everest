@@ -12,7 +12,6 @@ const useImageInputs = (initialArray: string[]) => {
         reader.readAsDataURL(file);
         reader.onloadend = () => {
           if (typeof reader.result === 'string') {
-            console.log([...image, reader.result]);
             setImage([...image, reader.result]);
           }
         };

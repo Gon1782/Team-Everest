@@ -1,5 +1,11 @@
 import styled from 'styled-components';
 
+export const LoginTab = styled.form`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+`;
+
 export const LoginInputContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -23,7 +29,7 @@ export const LoginInput = styled.input`
   border-bottom: 1px solid black;
   font-size: 1rem;
 `;
-export const InputBtn = styled.button`
+export const InputBtn = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -54,7 +60,7 @@ export const LoginBtn = styled.button`
   font-size: 22px;
   border: none;
 `;
-export const RegisterBtn = styled.button`
+export const RegisterBtn = styled.div`
   cursor: pointer;
   font-size: 1rem;
   background-color: transparent;

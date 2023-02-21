@@ -31,7 +31,7 @@ const Landmark = ({ landmark }: Props) => {
         navigate(`/detail/${landmark.contentid}`);
       }}
     >
-      <S.LandmarkImg style={{ width: '100%', height: '100%' }} src={img} />
+      <S.LandmarkImg src={img} />
       <S.LandmarkInfo>
         <S.LandmarkBookmarkBox
           style={{ visibility: !!uid ? 'visible' : 'hidden' }}
@@ -40,14 +40,12 @@ const Landmark = ({ landmark }: Props) => {
             <FaRegBookmark
               onClick={() => setBookMark(true)}
               style={{
-                cursor: 'pointer',
                 display: bookMark ? 'none' : 'flex',
               }}
             />
             <FaBookmark
               onClick={() => setBookMark(false)}
               style={{
-                cursor: 'pointer',
                 display: bookMark ? 'flex' : 'none',
               }}
               color="red"

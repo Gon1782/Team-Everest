@@ -63,7 +63,7 @@ export const PickScheduleRecoil = atom({
 // 지정할 시간,메모 데이터
 export const MemoAndTime = atom({
   key: 'memoAndTime',
-  default: { memo: '', time: {} },
+  default: { memo: '', when: {} },
 });
 
 // 초기 좌표 데이터

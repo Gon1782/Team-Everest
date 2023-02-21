@@ -3,14 +3,26 @@ import LoginTab from '@/components/Login/LoginTab';
 import RegisterTab from '@/components/Register/RegisterTab';
 import { LoginState } from '@/recoil/atom/Login';
 import * as S from './style/LoginStyled';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+  const navigate = useNavigate();
+  // uid
+  const sessionKey = `firebase:authUser:${process.env.FIREBASE_API_KEY}:[DEFAULT]`;
+  const userItem = sessionStorage.getItem(sessionKey);
+  const uid = !!userItem ? JSON.parse(userItem).uid : '';
+
   // 로그인, 회원가입 탭 전환
   const [checkLogin, setCheck] = useRecoilState(LoginState);
 
   const toggleCheck = () => {
     setCheck(!checkLogin);
   };
+
+  useEffect(() => {
+    if (!!uid) navigate(-1);
+  }, []);
 
   return (
     <>

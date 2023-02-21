@@ -6,10 +6,9 @@ import { uuidv4 } from '@firebase/util';
 import { DetailList } from '@/recoil/atom/Detail';
 
 const useAddReview = (
-  text: string,
+  content: string,
   rating: number,
   image: string[],
-  title: string,
   contentId: string,
   reset: () => void,
   closeModal: () => void,
@@ -26,13 +25,16 @@ const useAddReview = (
   const addReview = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    if (!content) return alert('리뷰 내용을 입력해주세요.');
+    if (!rating) return alert('별점을 등록해 주세요.');
+    if (content.length > 500) return;
+
     const newReview = {
       rating,
-      content: text,
+      content,
       createdAt: `${date} ${time}`,
       id: uuidv4(),
       image,
-      title,
       contentId,
       uid,
       isDelete: 'N',

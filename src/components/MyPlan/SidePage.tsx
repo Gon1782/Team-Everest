@@ -25,8 +25,9 @@ const SidePage = () => {
 
   const [pickLocation, setPickLocation] = useState('');
   const [pickTheme, setPickTheme] = useState('');
-  const setTourList = useSetRecoilState<Item[]>(TourListRecoil);
+
   const pickSchedule = useRecoilValue(PickScheduleRecoil);
+  const setTourList = useSetRecoilState<Item[]>(TourListRecoil);
   const setMyWishList = useSetRecoilState(MyWishList);
 
   useEffect(() => {

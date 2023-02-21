@@ -3,8 +3,13 @@ import { useRecoilValue } from 'recoil';
 import { DetailList } from '@/recoil/atom/Detail';
 import ReviewBox from './ReviewBox';
 import * as S from './style/ReviewStyled';
+import { Item } from '@/types/DetailType';
 
-const Review = () => {
+interface Props {
+  item: Item;
+}
+
+const Review = ({ item }: Props) => {
   const list = useRecoilValue(DetailList);
   const reviews = !!list.review
     ? [...list.review]?.filter((review) => review.isDelete === 'N').reverse()
@@ -25,7 +30,8 @@ const Review = () => {
     <S.ReviewSection>
       <S.ReviewContainer>
         {reviews?.map((review, i) => {
-          if (i <= idx) return <ReviewBox review={review} key={review.id} />;
+          if (i <= idx)
+            return <ReviewBox item={item} review={review} key={review.id} />;
         })}
       </S.ReviewContainer>
       <S.LoadMoreBox style={{ visibility: checkEnd ? 'hidden' : 'visible' }}>

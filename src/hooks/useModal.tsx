@@ -1,7 +1,9 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 
 const useModal = () => {
   const [modal, setModal] = useState(false);
+  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
 
   const openModal = useCallback(() => {
     setModal(true);
@@ -19,6 +21,25 @@ const useModal = () => {
     },
     [],
   );
+
+  const disableScroll = () => {
+    window.onscroll = () => {
+      window.scrollTo(scrollLeft, scrollTop);
+    };
+  };
+
+  const enableScroll = () => {
+    window.onscroll = () => {};
+  };
+
+  useEffect(() => {
+    if (modal) {
+      disableScroll();
+    }
+    if (!modal) {
+      enableScroll();
+    }
+  }, [modal]);
 
   return [modal, openModal, closeModal, closeModalIfClickOutside] as const;
 };
