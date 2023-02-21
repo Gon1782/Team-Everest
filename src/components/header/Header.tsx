@@ -5,6 +5,7 @@ import { FaSearch } from 'react-icons/fa';
 import SearchModal from './SearchModal';
 import { auth } from '../../common/api/firebase';
 import { onAuthStateChanged } from '@firebase/auth';
+import useModal from '@/hooks/useModal';
 
 const Header = () => {
   // 검색창 토글
@@ -12,7 +13,12 @@ const Header = () => {
   const [logoutText, setLogoutText] = useState(true);
   const [uid, setUid] = useState('');
   const navigate = useNavigate();
+  // 유즈 모달 훅
+  const [modal, openModal, closeModal, closeModalIfClickOutside] = useModal();
 
+  const modalOpen = () => {
+    openModal();
+  };
   // 로그인 상태 체크 후 연결 페이지 설정
   const LoginOutHandler = () => {
     if (logoutText === false) {
@@ -42,6 +48,15 @@ const Header = () => {
     <>
       {/* 기본 헤더 메뉴 */}
       <HeaderContainer>
+        {modal && (
+          <SearchModal
+            // type="post"
+            // id={id}
+            // title={detailList?.title}
+            closeModal={closeModal}
+            closeModalIfClickOutside={closeModalIfClickOutside}
+          />
+        )}
         <Nav>
           <HeaderLogo>
             {/* 로고 */}
@@ -52,7 +67,8 @@ const Header = () => {
             <NavBarLink to="/citymap">지도로 이동하기</NavBarLink>
             <NavBarLink to="/planner/my/write">일정 만들기</NavBarLink>
             <NavBarLink to="my">마이페이지</NavBarLink>
-            <SearchIcon onClick={() => setIsMenuToggled(!isMenuToggled)} />
+            {/* <SearchIcon onClick={() => setIsMenuToggled(!isMenuToggled)} /> */}
+            <SearchIcon onClick={() => modalOpen()} />
             <LogInButton onClick={LoginOutHandler}>
               <LogoutText>{logoutText ? '로그인' : '로그아웃'}</LogoutText>
             </LogInButton>
@@ -60,10 +76,10 @@ const Header = () => {
         </Nav>
       </HeaderContainer>
       {/* 검색창 토글 */}
-      <SearchModal
+      {/* <SearchModal
         isMenuToggled={isMenuToggled}
         setIsMenuToggled={setIsMenuToggled}
-      />
+      /> */}
     </>
   );
 };
@@ -104,6 +120,7 @@ const NavBarLink = styled(NavLink)`
 `;
 
 const SearchIcon = styled(FaSearch)``;
+// const SearchIcon = styled.button``;
 
 // 로그인 버튼
 

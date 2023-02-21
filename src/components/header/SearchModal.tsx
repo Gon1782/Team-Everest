@@ -1,34 +1,24 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import useModal from '@/hooks/useModal';
 import styled from 'styled-components';
-import { FaSearch } from 'react-icons/fa';
 
-interface ToggleType {
-  isMenuToggled: boolean;
-  setIsMenuToggled: React.Dispatch<React.SetStateAction<boolean>>;
+interface Props {
+  closeModal: () => void;
+  closeModalIfClickOutside: (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+  ) => void;
 }
 
-const SearchModal = ({ setIsMenuToggled, isMenuToggled }: ToggleType) => {
+const SearchModal = ({ closeModal, closeModalIfClickOutside }: Props) => {
+  // 리뷰 등록 모달
+
   const menuRef = useRef<HTMLDivElement>(null);
   // 검색창 키워드
   const [searcharea, setSearcharea] = useState('');
   const navigate = useNavigate();
 
   // 검색창 토글 외부 영역 클릭시 창 닫기
-
-  useEffect(() => {
-    const handleOutsideClick = (event: MouseEvent) => {
-      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
-        setIsMenuToggled(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handleOutsideClick);
-
-    return () => {
-      document.removeEventListener('mousedown', handleOutsideClick);
-    };
-  }, []);
 
   const modalOpen = () => {};
 
@@ -57,31 +47,25 @@ const SearchModal = ({ setIsMenuToggled, isMenuToggled }: ToggleType) => {
       console.log(searcharea);
       navigate(`/searcharea?name=${searcharea}`);
       setSearcharea('');
+      closeModal();
     }
   };
   return (
     <div>
-      {/* 검색창 토글 */}
-      {isMenuToggled && (
-        <div ref={menuRef}>
-          <SearchScreenWrapper onClick={() => setIsMenuToggled(!isMenuToggled)}>
-            <SearchScreen>
-              <button onClick={() => setIsMenuToggled(!isMenuToggled)}>
-                X
-              </button>
-              <SearchForm onSubmit={handleSubmit}>
-                <SearchInput
-                  type="text"
-                  placeholder="지역명 검색"
-                  onChange={(event) => setSearcharea(event.target.value)}
-                  value={searcharea}
-                ></SearchInput>
-                <SearchButton>검색</SearchButton>
-              </SearchForm>
-            </SearchScreen>
-          </SearchScreenWrapper>
-        </div>
-      )}
+      <SearchScreenWrapper onClick={(e) => closeModalIfClickOutside(e)}>
+        <SearchScreen>
+          <div onClick={(e) => closeModalIfClickOutside(e)}>X</div>
+          <SearchForm onSubmit={handleSubmit}>
+            <SearchInput
+              type="text"
+              placeholder="지역명 검색"
+              onChange={(event) => setSearcharea(event.target.value)}
+              value={searcharea}
+            ></SearchInput>
+            <SearchButton>검색</SearchButton>
+          </SearchForm>
+        </SearchScreen>
+      </SearchScreenWrapper>
     </div>
   );
 };

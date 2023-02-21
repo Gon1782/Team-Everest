@@ -22,7 +22,10 @@ const BestTravelPlan = () => {
           {data['items'].map((item: any, index: number) => {
             if (item.isDelete === false && item.isShow === true) {
               return (
-                <BestTravelPlanCard onClick={() => moveToMyPlan(item, index)}>
+                <BestTravelPlanCard
+                  onClick={() => moveToMyPlan(item, index)}
+                  key={index}
+                >
                   <TravelPlaceMainImgWrapper>
                     <TravelPlaceMainImg
                       src={require('@/assets/banner_01.jpg').default}

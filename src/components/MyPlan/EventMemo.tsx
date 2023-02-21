@@ -13,7 +13,7 @@ const EventMemo = () => {
         onChange={(e) =>
           setMemo((prev) => {
             return {
-              time: prev.time,
+              ...prev,
               memo: e.target.value,
             };
           })
