@@ -13,7 +13,7 @@ import StartEndDate from './StartEndDate';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import SidePage from './SidePage';
-import Citymap from '../Citymap/Citymap';
+import EventMap from './EventMap';
 import PlanScheduleList from './PlanScheduleList';
 import { getUserDB } from '@/common/api/userApi';
 import {
@@ -153,7 +153,7 @@ const MyPlan = () => {
         <PlanMapSection>
           <CalenderView setDropDownRef={setDropDownRef} />
         </PlanMapSection>
-        <Citymap />
+        <EventMap />
         <PlanScheduleList dropDownRef={dropDownRef} />
       </MyPlanContainer>
       <MyPlanButtonContainer>
