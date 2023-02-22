@@ -6,6 +6,8 @@ import { uuidv4 } from '@firebase/util';
 import { DetailList } from '@/recoil/atom/Detail';
 
 const useAddReview = (
+  areacode: string,
+  sigungucode: string,
   content: string,
   rating: number,
   image: string[],
@@ -40,6 +42,8 @@ const useAddReview = (
       isDelete: 'N',
     };
     const newReviewData = {
+      areacode,
+      sigungucode,
       ratingCount: !!list.ratingCount ? list.ratingCount + 1 : 1,
       review: !!list.review ? [...list?.review, newReview] : [newReview],
       totalRating: !!list.totalRating ? list.totalRating + rating : rating,

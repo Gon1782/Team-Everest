@@ -17,5 +17,7 @@ export const DetailList = atom({
       },
     ],
     totalRating: 0,
+    areacode: "",
+    sigungucode: "",
   },
 });

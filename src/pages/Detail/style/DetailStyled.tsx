@@ -38,7 +38,7 @@ export const LandmarkImg = styled.img`
 
 export const InfoBox = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr 3fr 1fr;
   justify-content: center;
   justify-items: center;
   align-items: center;
