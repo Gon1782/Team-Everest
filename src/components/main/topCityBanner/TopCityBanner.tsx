@@ -47,9 +47,7 @@ const TopCityCategoryContainer = styled.section`
   gap: 1rem;
 `;
 
-const CategoriesTitle = styled.h2`
-  font-size: 2.2rem;
-  font-weight: 900;
+const CategoriesTitle = styled.h1`
   color: #0c0c0c;
   margin-bottom: 30px;
 `;

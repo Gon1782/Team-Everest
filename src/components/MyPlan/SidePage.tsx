@@ -57,7 +57,9 @@ const SidePage = () => {
   const keepCheckingScroll = () => {
     // 스크롤바 길이 , 스크롤바의 위치 , 해당 컴포넌트 높이
     const { scrollHeight, scrollTop, clientHeight } = pageRef.current;
-    if (clientHeight + scrollTop >= scrollHeight - 1) {
+
+   if (clientHeight + scrollTop >= scrollHeight - 1) {
+
       getTourList(pickLocation, pickTheme, String(pageNo)).then(
         (result: DetailResponse) =>
           setTourList(tourList.concat(result?.response.body.items.item)),
@@ -68,11 +70,11 @@ const SidePage = () => {
 
   useEffect(() => {
     // 스크롤 움직임 체크 함수
-    window.addEventListener('scroll', keepCheckingScroll, true);
+    pageRef.current.addEventListener('scroll', keepCheckingScroll, true);
 
     // 컴포넌트 나가면 핸들러 제거하기
     return () => {
-      window.removeEventListener('scroll', keepCheckingScroll, true);
+      pageRef.current.removeEventListener('scroll', keepCheckingScroll, true);
     };
   }, [keepCheckingScroll]);
 
