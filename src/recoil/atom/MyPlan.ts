@@ -63,7 +63,19 @@ export const PickScheduleRecoil = atom({
 // 지정할 시간,메모 데이터
 export const MemoAndTime = atom({
   key: 'memoAndTime',
-  default: { memo: '', when: {} },
+  default: { memo: '', when: { time: 60, hour: 1, minute: 0, amPm: '오전' } },
+});
+
+// 작업할 이벤트 정보
+export const WhichEvent = atom({
+  key: 'WhichEvent',
+  default: { date: '', index: 0, isOpen: false },
+});
+
+// 작업했던 전 이벤트
+export const PreviousEvent = atom({
+  key: 'previousEvent',
+  default: [],
 });
 
 // 초기 좌표 데이터
