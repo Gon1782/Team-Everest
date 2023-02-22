@@ -3,7 +3,11 @@ import { useEffect, useRef } from 'react';
 import * as Style from './CitymapStyle';
 import { useRecoilState } from 'recoil';
 import { cityInfo } from '@/common/utils/cityInfo';
+
+import { CityAreaInfo } from '@/recoil/atom/CityAreaInfo';
 import { CityArea } from '@/recoil/atom/CityArea';
+import useModal from '@/hooks/useModal';
+import CityInfoModal from './CityInfoModal';
 
 declare global {
   interface Window {
@@ -11,10 +15,26 @@ declare global {
   }
 }
 
+interface InfoType {
+  areacode: string;
+  engarea: string;
+  korarea: string;
+  description: string;
+  hashtag: string[];
+  tourcount: string;
+  tourdate: string;
+  spec: string;
+  jpgindex: number;
+}
+
 const { kakao } = window;
 
 const Citymap = () => {
   const [area, setArea] = useRecoilState(CityArea);
+  const [areaInfo, setAreaInfo] = useRecoilState(CityAreaInfo);
+
+  const [modal, openModal, closeModal, closeModalIfClickOutside] = useModal();
+  // console.log(modal);
 
   useEffect(() => {
     kakao.maps.load(() => {
@@ -42,10 +62,9 @@ const Citymap = () => {
         // 마커 이미지를 생성합니다
         let markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
 
-        //추가
         const content = `
-        <div class="customoverlay" style="background-color :#fff; width: auto; height: auto; padding: 5px; border-radius: 5px; border: 1px solid #1753a5;">
-          <span style="color: #1753a5; font-weight: 700; font-size: 15px;">${cityInfo[i].korarea}</span>
+        <div class="customoverlay" style="background-color :#fff; width: auto; height: auto; padding: 2px; border-radius: 5px; border: 1px solid #1753a5;">
+          <div style="color: #1753a5; font-weight: 700; font-size: 13px;">${cityInfo[i].korarea}</div>
         </div>`;
 
         // 마커를 생성합니다
@@ -66,6 +85,24 @@ const Citymap = () => {
         });
 
         marker.setMap(map);
+
+        kakao.maps.event.addListener(marker, 'click', () => {
+          //모달 생성
+          const object: InfoType = {
+            areacode: cityInfo[i].areacode,
+            engarea: cityInfo[i].engarea,
+            korarea: cityInfo[i].korarea,
+            description: cityInfo[i].description,
+            hashtag: cityInfo[i].hashtag,
+            tourcount: cityInfo[i].tourcount,
+            tourdate: cityInfo[i].tourdate,
+            spec: cityInfo[i].spec,
+            jpgindex: i + 1,
+          };
+          setAreaInfo({ ...object });
+
+          openModal();
+        });
       }
     });
   }, [area]);
@@ -73,6 +110,10 @@ const Citymap = () => {
   return (
     <Style.Wrap>
       <Style.Mapbox id="map"></Style.Mapbox>
+      {/* 모달 */}
+      {modal && (
+        <CityInfoModal closeModalIfClickOutside={closeModalIfClickOutside} />
+      )}
     </Style.Wrap>
   );
 };
