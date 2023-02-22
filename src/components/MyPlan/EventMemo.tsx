@@ -1,9 +1,31 @@
-import { MemoAndTime } from '@/recoil/atom/MyPlan';
+import {
+  MemoAndTime,
+  NewPlanRecoil,
+  PlanType,
+  WhichEvent,
+} from '@/recoil/atom/MyPlan';
+import { useEffect } from 'react';
 
-import { useSetRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 
 const EventMemo = () => {
-  const setMemo = useSetRecoilState(MemoAndTime);
+  const newPlan = useRecoilValue<PlanType>(NewPlanRecoil);
+  const { date, index, isOpen } = useRecoilValue(WhichEvent);
+
+  const [{ memo }, setMemo] = useRecoilState(MemoAndTime);
+
+  useEffect(() => {
+    if (isOpen) {
+      // 드롭다운박스 열리면 메모 셋팅하기
+      setMemo((prev) => {
+        const eventMemo = newPlan.schedule[date][index]['memo'];
+        return {
+          ...prev,
+          memo: eventMemo,
+        };
+      });
+    }
+  }, [isOpen]);
 
   return (
     <div>
@@ -18,6 +40,7 @@ const EventMemo = () => {
             };
           })
         }
+        value={memo}
       />
     </div>
   );
