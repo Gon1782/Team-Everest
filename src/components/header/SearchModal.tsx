@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useModal from '@/hooks/useModal';
 import styled from 'styled-components';
+import { AiOutlineClose } from 'react-icons/ai';
+import { FaSearch } from 'react-icons/fa';
 
 interface Props {
   closeModal: () => void;
@@ -22,21 +24,6 @@ const SearchModal = ({ closeModal, closeModalIfClickOutside }: Props) => {
 
   const modalOpen = () => {};
 
-  // 모달창 오픈시, 스크롤 방지
-
-  // useEffect(() => {
-  //   document.body.style.cssText = `
-  //     position: fixed;
-  //     top: -${window.scrollY}px;
-  //     overflow-y: scroll;
-  //     width: 100%;`;
-  //   return () => {
-  //     const scrollY = document.body.style.top;
-  //     document.body.style.cssText = '';
-  //     window.scrollTo(0, parseInt(scrollY || '0', 10) * -1);
-  //   };
-  // }, [isMenuToggled]);
-
   // 검색창 키워드 입력시 검색 결과 페이지 이동
   const handleSubmit = (event: any) => {
     event.preventDefault();
@@ -54,15 +41,17 @@ const SearchModal = ({ closeModal, closeModalIfClickOutside }: Props) => {
     <div>
       <SearchScreenWrapper onClick={(e) => closeModalIfClickOutside(e)}>
         <SearchScreen>
-          <div onClick={(e) => closeModalIfClickOutside(e)}>X</div>
+          <CloseIconWrapper onClick={() => closeModal()}>
+            <CloseIcon />
+          </CloseIconWrapper>
           <SearchForm onSubmit={handleSubmit}>
             <SearchInput
               type="text"
-              placeholder="지역명 검색"
+              placeholder="지역을 검색해주세요."
               onChange={(event) => setSearcharea(event.target.value)}
               value={searcharea}
             ></SearchInput>
-            <SearchButton>검색</SearchButton>
+            <SearchIcon />
           </SearchForm>
         </SearchScreen>
       </SearchScreenWrapper>
@@ -71,16 +60,6 @@ const SearchModal = ({ closeModal, closeModalIfClickOutside }: Props) => {
 };
 
 export default SearchModal;
-
-const SearchScreen = styled.div`
-  width: 100%;
-  height: 200px;
-  background-color: #dedede;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /* z-index: 999; */
-`;
 
 const SearchScreenWrapper = styled.div`
   position: fixed;
@@ -93,8 +72,46 @@ const SearchScreenWrapper = styled.div`
   z-index: 999;
 `;
 
-const SearchForm = styled.form``;
+const SearchScreen = styled.div`
+  width: 100%;
+  height: 200px;
+  background-color: #256492;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* z-index: 999; */
+  position: relative;
+`;
 
-const SearchInput = styled.input``;
+const CloseIconWrapper = styled.div`
+  position: absolute;
+  top: 30px;
+  right: 300px;
+  color: #fff;
+`;
 
-const SearchButton = styled.button``;
+const SearchForm = styled.form`
+  border-bottom: 1px solid white;
+  padding: 5px;
+`;
+
+const SearchInput = styled.input`
+  color: white;
+  outline: none;
+  width: 300px;
+  background-color: transparent;
+  /* border-bottom: 1px solid white; */
+  ::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+  }
+`;
+
+const SearchIcon = styled(FaSearch)`
+  color: white;
+  cursor: pointer;
+`;
+
+const CloseIcon = styled(AiOutlineClose)`
+  font-size: 20px;
+  cursor: pointer;
+`;

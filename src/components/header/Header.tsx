@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { FaSearch } from 'react-icons/fa';
@@ -9,16 +9,17 @@ import useModal from '@/hooks/useModal';
 
 const Header = () => {
   // 검색창 토글
-  const [isMenuToggled, setIsMenuToggled] = useState<boolean>(false);
   const [logoutText, setLogoutText] = useState(true);
   const [uid, setUid] = useState('');
   const navigate = useNavigate();
-  // 유즈 모달 훅
+
+  // 모달 기능
   const [modal, openModal, closeModal, closeModalIfClickOutside] = useModal();
 
   const modalOpen = () => {
     openModal();
   };
+
   // 로그인 상태 체크 후 연결 페이지 설정
   const LoginOutHandler = () => {
     if (logoutText === false) {
@@ -51,9 +52,6 @@ const Header = () => {
       <HeaderContainer>
         {modal && (
           <SearchModal
-            // type="post"
-            // id={id}
-            // title={detailList?.title}
             closeModal={closeModal}
             closeModalIfClickOutside={closeModalIfClickOutside}
           />
@@ -68,7 +66,6 @@ const Header = () => {
             <NavBarLink to="/citymap">지도로 이동하기</NavBarLink>
             <NavBarLink to="/planner/my/write">일정 만들기</NavBarLink>
             <NavBarLink to="my">마이페이지</NavBarLink>
-            {/* <SearchIcon onClick={() => setIsMenuToggled(!isMenuToggled)} /> */}
             <SearchIcon onClick={() => modalOpen()} />
             <LogInButton onClick={LoginOutHandler}>
               <LogoutText>{logoutText ? '로그인' : '로그아웃'}</LogoutText>
@@ -76,11 +73,6 @@ const Header = () => {
           </RightSection>
         </Nav>
       </HeaderContainer>
-      {/* 검색창 토글 */}
-      {/* <SearchModal
-        isMenuToggled={isMenuToggled}
-        setIsMenuToggled={setIsMenuToggled}
-      /> */}
     </>
   );
 };
@@ -88,13 +80,15 @@ const Header = () => {
 export default Header;
 
 const HeaderContainer = styled.header`
-  background-color: grey;
-  color: white;
+  background-color: #fff;
+  color: #151515;
   width: 100%;
   height: 50px;
   display: flex;
   align-items: center;
-  position: fixed;
+  justify-content: center;
+  position: sticky;
+  top: 0;
   z-index: 999;
 `;
 
@@ -107,21 +101,24 @@ const Nav = styled.nav`
   cursor: pointer;
 `;
 
-const HeaderLogo = styled.div``;
+const HeaderLogo = styled.div`
+  line-height: 50px;
+`;
 
 const RightSection = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 80%;
 `;
 
 const NavBarLink = styled(NavLink)`
   text-decoration: none;
-  color: white;
+  color: #151515;
+  font-size: 1rem;
 `;
 
 const SearchIcon = styled(FaSearch)``;
-// const SearchIcon = styled.button``;
 
 // 로그인 버튼
 
@@ -131,7 +128,7 @@ const LogInButton = styled.button`
   border: none;
   border-radius: 100px;
   background-color: #d0d0d0;
-  color: #5b5b5b;
+  color: #313131;
   font-size: 0.8rem;
   cursor: pointer;
 `;
