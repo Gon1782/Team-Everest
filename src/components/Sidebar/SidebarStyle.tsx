@@ -18,6 +18,21 @@ export const Wrap = styled.section`
   }
 `;
 
+export const IconWrap = styled.div`
+  cursor: pointer;
+  width: 100%;
+  margin-left: 10px;
+  padding: 10px 0px;
+  display: flex;
+  align-items: center;
+`;
+
+export const Text = styled.span`
+  margin-left: 10px;
+  font-size: 18px;
+  font-weight: 700;
+`;
+
 export const ItemWrap = styled.div`
   cursor: pointer;
   width: 100%;

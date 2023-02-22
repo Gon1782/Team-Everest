@@ -3,8 +3,12 @@ import * as Style from './SidebarStyle';
 import { cityInfo } from '@/common/utils/cityInfo';
 import { useRecoilState } from 'recoil';
 import { CityArea } from '@/recoil/atom/CityArea';
+import { FaArrowLeft } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 const Sidebar = () => {
+  const navigate = useNavigate();
+
   const [area, setArea] = useRecoilState(CityArea);
 
   const onClickHandler = (mapx: number, mapy: number, areacode: string) => {
@@ -13,6 +17,14 @@ const Sidebar = () => {
 
   return (
     <Style.Wrap>
+      <Style.IconWrap
+        onClick={() => {
+          navigate('/main');
+        }}
+      >
+        <FaArrowLeft size={25}></FaArrowLeft>
+        <Style.Text>홈으로 이동</Style.Text>
+      </Style.IconWrap>
       {cityInfo.map((data, index) => {
         return (
           <Style.ItemWrap
