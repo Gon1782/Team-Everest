@@ -4,7 +4,7 @@ import { getUserDB } from '@/common/api/userApi';
 import { Document } from '@/types/DetailType';
 import Profile from '@/components/MyPage/Profile/Profile';
 import MyPlanner from '@/components/MyPage/MyPlanner/MyPlanner';
-import MyReview from '@/components/MyPage/MyReview/MyReview'
+import MyReview from '@/components/MyPage/MyReview/MyReview';
 import * as S from './style/MyPageStyled';
 
 const Mypage = () => {
