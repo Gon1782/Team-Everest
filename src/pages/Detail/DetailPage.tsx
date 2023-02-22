@@ -12,7 +12,6 @@ import SimilarLandmark from '@/components/Detail/Landmark/SimilarLandmark';
 import useModal from '@/hooks/useModal';
 import { DetailList } from '@/recoil/atom/Detail';
 import * as S from './style/DetailStyled';
-import { category } from '@/common/utils/cat3';
 
 const DetailPage = () => {
   const navigate = useNavigate();
@@ -87,7 +86,16 @@ const DetailPage = () => {
     refetchAll();
   }, [id]);
 
-  if (isLoading) return <div>로딩중...</div>;
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  if (isLoading)
+    return (
+      <div>
+        <DetailInfo />
+      </div>
+    );
   if (isError) return <div>에러: {error}</div>;
 
   const detailList = !!data[0]?.response.body.items

@@ -91,6 +91,7 @@ export const LandMarkInfo = styled.span`
 
 export const DetailOverview = styled.div`
   width: 1024px;
+  min-height: 200px;
   line-height: 1.5rem;
   text-align: center;
 `;

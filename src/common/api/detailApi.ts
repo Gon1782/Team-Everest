@@ -6,37 +6,33 @@ const BASE_URL = (type: string, num: number, pageNum: number) => {
 };
 
 export const getDetail = async (id?: string) => {
+  const SERVER_URL = BASE_URL('detailCommon', 1, 1);
+
   const { data } = await axios.get<DetailResponse>(
-    `${BASE_URL(
-      'detailCommon',
-      1,
-      1,
-    )}&contentId=${id}&defaultYN=Y&firstImageYN=Y&areacodeYN=Y&catcodeYN=Y&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y`,
+    `${SERVER_URL}&contentId=${id}&defaultYN=Y&firstImageYN=Y&areacodeYN=Y&catcodeYN=Y&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y`,
   );
   return data;
 };
 
 export const getDetailIntro = async (id?: string) => {
+  const SERVER_URL = BASE_URL('detailIntro', 1, 1);
+
   const contentTypeId = id?.slice(0, 2);
+  
   const { data } = await axios.get<DetailResponse>(
-    `${BASE_URL(
-      'detailIntro',
-      1,
-      1,
-    )}&contentId=${id}&contentTypeId=${contentTypeId}`,
+    `${SERVER_URL}&contentId=${id}&contentTypeId=${contentTypeId}`,
   );
   return data;
 };
 
 export const getSimilar = async (pageNo: number, cat: string) => {
+  const SERVER_URL = BASE_URL('areaBasedList', 4, pageNo);
+
   const cat1 = cat.slice(0, 3);
   const cat2 = cat.slice(0, 5);
+
   const { data } = await axios.get<DetailResponse>(
-    `${BASE_URL(
-      'areaBasedList',
-      4,
-      pageNo,
-    )}&listYN=Y&arrange=A&contentTypeId=&areaCode=&sigunguCode=&cat1=${cat1}&cat2=${cat2}&cat3=${cat}`,
+    `${SERVER_URL}&listYN=Y&arrange=A&contentTypeId=&areaCode=&sigunguCode=&cat1=${cat1}&cat2=${cat2}&cat3=${cat}`,
   );
   return data;
 };
