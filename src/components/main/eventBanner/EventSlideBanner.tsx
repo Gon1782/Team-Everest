@@ -30,37 +30,40 @@ const EventSlideBanner = () => {
         resistance={false}
       >
         <SlideBanner>
-          <Link to="http://www.koreaflowerpark.com/" target="_blank">
-            <img
-              src={require('@/assets/banner_01.jpg').default}
-              alt="slide banner1"
-            />
-          </Link>
-          　
-        </SlideBanner>
-        <SlideBanner>
           <Link to="https://seoulland.co.kr/?p=11_view&idx=41" target="_blank">
             <img
-              src={require('@/assets/banner_02.jpg').default}
-              alt="slide banner2"
+              src={require('@/assets/banner_01.jpg').default}
+              alt="서울랜드 루나 축제"
             />
           </Link>
           　
         </SlideBanner>
         <SlideBanner>
-          <Link to="" target="_blank">
+          <Link
+            to="https://www.changwon.go.kr/depart/contents.do?mId=1101010000"
+            target="_blank"
+          >
+            <img
+              src={require('@/assets/banner_02.jpg').default}
+              alt="진해 군항제"
+            />
+          </Link>
+          　
+        </SlideBanner>
+        <SlideBanner>
+          <Link to="http://www.koreaflowerpark.com/" target="_blank">
             <img
               src={require('@/assets/banner_03.jpg').default}
-              alt="slide banner3"
+              alt="태안 세계튤립꽃박람회"
             />
           </Link>
           　
         </SlideBanner>
         <SlideBanner>
-          <Link to="" target="_blank">
+          <Link to="http://hueree.com/pages.php?p=4_1_1_1" target="_blank">
             <img
               src={require('@/assets/banner_04.jpg').default}
-              alt="slide banner4"
+              alt="휴애리 매화축제"
             />
           </Link>
           　
