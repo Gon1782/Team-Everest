@@ -37,6 +37,7 @@ const ScheduleDate = ({
   const onChangeSidePage = (index: number) => {
     setShowSideSection(true); // 사이드창 열고
     setPickSchedule((prev) => {
+      //사이드창에 보내기
       const clonePrev = { ...prev };
       clonePrev.day = `Day${index + 1}`;
       clonePrev.schedule = planSchedule[index];

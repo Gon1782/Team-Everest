@@ -5,8 +5,7 @@ import {
   WhichEvent,
 } from '@/recoil/atom/MyPlan';
 import { useEffect } from 'react';
-
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 
 const EventMemo = () => {
   const newPlan = useRecoilValue<PlanType>(NewPlanRecoil);

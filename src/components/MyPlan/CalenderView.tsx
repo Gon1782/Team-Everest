@@ -1,13 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-
 import {
   PickScheduleRecoil,
   NewPlanRecoil,
   PlanType,
   IsCalenderView,
-  Authority,
 } from '@/recoil/atom/MyPlan';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import {
@@ -17,11 +15,10 @@ import {
 } from './MyPlannerHandler';
 
 const CalenderView = ({ setDropDownRef }: { setDropDownRef: any }) => {
-  /* -----------------리코일 데이터--------------*/
   const [newPlan, setNewPlan] = useRecoilState<PlanType | any>(NewPlanRecoil);
   // 캘린더 열기/닫기
   const isShowCalender = useRecoilValue(IsCalenderView);
-  //
+
   const setPickSchedule = useSetRecoilState(PickScheduleRecoil);
 
   const dropDownRef = useRef<any>({});
@@ -63,8 +60,6 @@ const CalenderView = ({ setDropDownRef }: { setDropDownRef: any }) => {
         schedule: { ...planSchedule },
         startDate: dateToObject(calenderDate[0]),
         endDate: dateToObject(calenderDate[1]),
-        // name: prev.name,
-        // contentId: prev.contentId,
       };
     });
     setPickSchedule({ schedule: dateToString(calenderDate[0]), day: 'Day1' });

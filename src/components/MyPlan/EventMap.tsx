@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-
 import { useRecoilValue } from 'recoil';
 import {
   InitLocation,
@@ -7,7 +6,6 @@ import {
   PickScheduleRecoil,
 } from '@/recoil/atom/MyPlan';
 import styled from 'styled-components';
-
 declare global {
   interface Window {
     kakao: any;

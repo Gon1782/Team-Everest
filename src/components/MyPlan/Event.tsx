@@ -1,15 +1,5 @@
-import {
-  Authority,
-  InitLocation,
-  MemoAndTime,
-  NewPlanRecoil,
-  PlanType,
-} from '@/recoil/atom/MyPlan';
-import { Item } from 'firebase/analytics';
-import { useState } from 'react';
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
-import EventMemo from './EventMemo';
-import EventTime from './EventTime';
+import { InitLocation } from '@/recoil/atom/MyPlan';
+import { useSetRecoilState } from 'recoil';
 import { timeHandler } from './MyPlannerHandler';
 
 // 일정 데이터

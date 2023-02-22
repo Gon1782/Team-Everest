@@ -2,7 +2,6 @@ import {
   MemoAndTime,
   NewPlanRecoil,
   PlanType,
-  PreviousEvent,
   WhichEvent,
 } from '@/recoil/atom/MyPlan';
 import { useEffect, useState } from 'react';

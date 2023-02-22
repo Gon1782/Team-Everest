@@ -37,7 +37,7 @@ const MyPlan = () => {
   const setMyWishList = useSetRecoilState(MyWishList);
   const [authority, setAuthority] = useRecoilState(Authority);
   const resetInitLocation = useResetRecoilState(InitLocation);
-  //
+
   const { planIndex, userId } = useParams() as {
     planIndex: string;
     userId: string;
@@ -52,21 +52,23 @@ const MyPlan = () => {
 
   const [planName, setPlanName] = useState('');
 
+  // 이거 다시짜기
   const connectionDB = (key: string, isShow?: boolean) => {
     if (window.confirm(`해당 일정을 ${key} 하시겠습니까?`)) {
       try {
-        if (key === '수정' && isShow !== undefined)
-          updatePlan(plan, planName, uid, planIndex, isShow);
         if (key === '저장' && isShow !== undefined) {
           if (!!!planName) return alert('일정 제목을 입력해주세요');
           addPlan(plan, planName, uid, isShow);
         }
+        if (key === '수정' && isShow !== undefined)
+          updatePlan(plan, planName, uid, planIndex, isShow);
         if (key === '북마크 저장')
           saveOtherPlan(plan, planName, uid, userId, planIndex);
         if (key === '삭제') popPlan(uid, planIndex);
         alert('완료 했습니다.');
+        navigate('/my');
       } catch (e) {
-        alert('잠시 후에 다시 시도해주세요');
+        return alert('잠시 후에 다시 시도해주세요');
       }
     } else {
       alert('취소 하셨습니다.');
@@ -100,11 +102,11 @@ const MyPlan = () => {
         getPlan(userId); // 해당 일정 가져오기
       } else {
         setLoading(true);
-        // 이부분 나중에 아톰 selector로 다시 짜기
+
         const newSchedule: any = {};
         const initSchedule = dateToString(new Date());
         newSchedule[initSchedule] = [];
-
+        // 이부분 나중에 아톰 selector로 다시 짜기
         setPlan({
           name: '',
           startDate: {

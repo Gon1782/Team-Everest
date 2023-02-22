@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { themeService, locationService } from '@/recoil/atom/Category';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { Item } from '@/types/DetailType';
 import { DetailResponse } from '@/types/DetailType';
 import { getTourList } from '@/common/api/detailApi';
@@ -24,21 +24,26 @@ const SidePage = () => {
   const theme = useRecoilValue(themeService);
 
   const [pickLocation, setPickLocation] = useState('');
+  const [pageNo, setPageNo] = useState(1);
   const [pickTheme, setPickTheme] = useState('');
 
   const pickSchedule = useRecoilValue(PickScheduleRecoil);
-  const setTourList = useSetRecoilState<Item[]>(TourListRecoil);
+  const [tourList, setTourList] = useRecoilState<Item[]>(TourListRecoil);
   const setMyWishList = useSetRecoilState(MyWishList);
 
   useEffect(() => {
     // 지역, 테마 선택했을 경우에만 돌수있게
     if (!!pickLocation && !!pickTheme) {
-      getTourList(pickLocation, pickTheme).then((result: DetailResponse) =>
-        setTourList(result?.response.body.items.item),
+      getTourList(pickLocation, pickTheme, String(pageNo)).then(
+        (result: DetailResponse) =>
+          setTourList(result?.response.body.items.item),
       );
+      setPageNo(pageNo + 1);
     }
+
     return () => {
       setTourList([]);
+      setPageNo(1);
     };
   }, [pickLocation, pickTheme]);
 
@@ -48,8 +53,31 @@ const SidePage = () => {
     });
   }, []);
 
+  const pageRef = useRef<any>();
+  const keepCheckingScroll = () => {
+    // 스크롤바 길이 , 스크롤바의 위치 , 해당 컴포넌트 높이
+    const { scrollHeight, scrollTop, clientHeight } = pageRef.current;
+    if (clientHeight + scrollTop >= scrollHeight - 1) {
+      getTourList(pickLocation, pickTheme, String(pageNo)).then(
+        (result: DetailResponse) =>
+          setTourList(tourList.concat(result?.response.body.items.item)),
+      );
+      setPageNo(pageNo + 1);
+    }
+  };
+
+  useEffect(() => {
+    // 스크롤 움직임 체크 함수
+    window.addEventListener('scroll', keepCheckingScroll, true);
+
+    // 컴포넌트 나가면 핸들러 제거하기
+    return () => {
+      window.removeEventListener('scroll', keepCheckingScroll, true);
+    };
+  }, [keepCheckingScroll]);
+
   return (
-    <SidePageContainer>
+    <SidePageContainer ref={pageRef}>
       <>
         {pickSchedule.day} | {pickSchedule.schedule}
       </>
@@ -73,10 +101,12 @@ const SidePage = () => {
 export default SidePage;
 
 const SidePageContainer = styled.div`
-  width: auto;
+  width: 300px;
   position: absolute;
+  height: 1000px;
   left: 78%;
   top: 10%;
+  overflow: scroll;
 `;
 const SelectBoxList = styled.div`
   display: flex;

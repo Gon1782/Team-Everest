@@ -1,4 +1,4 @@
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import {
   NewPlanRecoil,
   PlanType,
@@ -6,8 +6,8 @@ import {
   TourListRecoil,
   MyWishList,
 } from '@/recoil/atom/MyPlan';
-import { useEffect, useState } from 'react';
-import { Item } from '@/types/DetailType';
+import { useEffect, useRef, useState } from 'react';
+import { getTourList } from '@/common/api/detailApi';
 
 const TourList = () => {
   const setNewPlan = useSetRecoilState<PlanType>(NewPlanRecoil);
@@ -29,7 +29,7 @@ const TourList = () => {
       const clonePrev = { ...prev.schedule }; // 기존 데이터 복사
       const cloneItem = { ...item };
       /* 선택한 관광지 데이터에 시간과 메모를 사용자가 사용 할 수 있게 데이터를 초기화*/
-      cloneItem['when'] = { time: 999, amPm: '' }; // 시간
+      cloneItem['when'] = { time: 999, amPm: '언제' }; // 시간
       cloneItem['memo'] = ''; // 메모
       /*----------------------------------------------------------*/
       const newPlan: any = {};
@@ -66,7 +66,7 @@ const TourList = () => {
       {!!dataList?.length &&
         dataList.map((item: any, index: number) => {
           return (
-            <div key={index}>
+            <div key={index} style={{ height: 150 }}>
               {/* <img src={item.fisrtImage} width="50" height="50"></img> */}
               <div>{item.title}</div>
               <div>{item.tel}</div>

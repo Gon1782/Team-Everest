@@ -1,25 +1,7 @@
-import {
-  Authority,
-  InitLocation,
-  IsSidePageView,
-  MemoAndTime,
-  NewPlanRecoil,
-  PickScheduleRecoil,
-  PickScheduleType,
-  PlanType,
-} from '@/recoil/atom/MyPlan';
-import React, { useEffect, useRef, useState } from 'react';
-import {
-  useRecoilState,
-  useRecoilValue,
-  useResetRecoilState,
-  useSetRecoilState,
-} from 'recoil';
-import { timeHandler } from './MyPlannerHandler';
-import EventTime from './EventTime';
-import EventMemo from './EventMemo';
+import { NewPlanRecoil, PlanType } from '@/recoil/atom/MyPlan';
+import React, { useEffect, useState } from 'react';
+import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
-import { Item } from '@/types/DetailType';
 import ScheduleDate from './ScheduleDate';
 import Event from './Event';
 import EventDropDown from './EventDropDown';
@@ -34,7 +16,7 @@ const PlanScheduleList = ({
 
   useEffect(() => {
     setPlanSchedule(Object.keys(plan.schedule));
-  }, [plan]); // dropDownRef
+  }, [plan]);
 
   return (
     <PlanItems>

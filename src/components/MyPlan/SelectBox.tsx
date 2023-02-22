@@ -1,5 +1,3 @@
-import React from 'react';
-
 // 지역, 테마 셀렉트박스
 const SelectBox = ({
   onChangeHandler,
