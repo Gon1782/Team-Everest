@@ -1,10 +1,10 @@
+import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
+import { useNavigate } from 'react-router-dom';
 import LoginTab from '@/components/Login/LoginTab';
 import RegisterTab from '@/components/Register/RegisterTab';
 import { LoginState } from '@/recoil/atom/Login';
 import * as S from './style/LoginStyled';
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const navigate = useNavigate();

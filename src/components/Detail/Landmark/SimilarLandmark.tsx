@@ -1,25 +1,34 @@
+import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import { getSimilar } from '@/common/api/detailApi';
+import { category as category3 } from '@/common/utils/cat3';
 import { DetailResponse, Item } from '@/types/DetailType';
 import Landmark from './Landmark';
 import * as S from './style/LandmarkStyled';
-import useRandomPage from '@/hooks/useRandomPage';
 
 interface Props {
-  cat: string;
+  detailList: Item;
   id?: string;
 }
 
-const SimilarLandmark = ({ id, cat }: Props) => {
+const SimilarLandmark = ({ id, detailList }: Props) => {
   const navigate = useNavigate();
-  const page = useRandomPage();
+  const [category, setCategory] = useState('');
+  const [pageNo, setPageNo] = useState(0);
 
-  const { pageNo } = page(cat);
+  // TiL
+  useEffect(() => {
+    const category = detailList.cat3;
+    const pageNo = Math.floor(Math.random() * (category3[category] + 1));
+
+    setCategory(category);
+    setPageNo(pageNo);
+  }, [detailList]);
 
   const { isLoading, isError, data, error } = useQuery<DetailResponse, Error>(
     'similar',
-    () => getSimilar(pageNo, cat),
+    () => getSimilar(pageNo, category),
   );
 
   if (isLoading)

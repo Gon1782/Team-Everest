@@ -59,17 +59,14 @@ export const dateConvert = (scheduleInfo: ScheduleInfo): any => {
 };
 
 export const timeHandler = (when: { time: number }): any => {
+  // console.log(when?.time);
   if (when?.time === 999) return '--:--';
-  // const hour =s
-  // time.hour < 10 // 1~9시 앞에 0 붙이기
-  //   ? '0' + time.hour
-  //   : time.hour;
-  // const minute =
-  //   time.minute < 10 // 1~9분 앞에 0 붙이기
-  //     ? '0' + time.minute
-  //     : time.minute;
-  const hour = when.time / 60 < 10 ? '0' + when.time / 60 : when.time / 60;
-  const minute = when.time % 60 < 10 ? '0' + (when.time % 60) : when.time % 60;
+
+  const floorForHour = Math.floor(when.time / 60);
+  const floorForMinute = Math.floor(when.time % 60);
+  console.log(floorForHour, floorForMinute);
+  const hour = floorForHour < 10 ? '0' + floorForHour : floorForHour;
+  const minute = floorForMinute < 10 ? '0' + floorForMinute : floorForMinute;
 
   return `${hour}:${minute}`;
 };
@@ -130,39 +127,26 @@ export const addPlan = async (
   uid: string, // 사용자 고유번호
   isShow: boolean, // 공개/비공개 처리
 ) => {
-  if (
-    window.confirm(
-      `해당 일정을 ${isShow ? '전체공개' : '비공개'} 로 저장 하시겠습니까?`,
-    )
-  ) {
-    if (!!!planName) return alert('일정 제목을 입력해주세요');
-    const planList: any = await getUserPlanList(uid);
-    const allPlanner: any = await getAllPlanner();
+  const planList: any = await getUserPlanList(uid);
+  const allPlanner: any = await getAllPlanner();
 
-    const newMyPlanner = [
-      ...planList['myPlanner'],
-      { ...plan, name: planName, contentId: planList['myPlanner'].length },
-    ];
-    const newAllPlanner = [
-      ...allPlanner['items'],
-      {
-        ...plan,
-        name: planName,
-        contentId: planList['myPlanner'].length,
-        uid: uid,
-        isShow: isShow,
-      },
-    ];
-    try {
-      updateAllPlannerDB(newAllPlanner);
-      updateUserDB(newMyPlanner, uid);
-      alert('저장 완료 되었습니다.');
-    } catch (e) {
-      alert('잠시후에 다시 시도해주세요!');
-    }
-  } else {
-    alert('취소하셨습니다');
-  }
+  const newMyPlanner = [
+    ...planList['myPlanner'],
+    { ...plan, name: planName, contentId: planList['myPlanner'].length },
+  ];
+  const newAllPlanner = [
+    ...allPlanner['items'],
+    {
+      ...plan,
+      name: planName,
+      contentId: planList['myPlanner'].length,
+      uid: uid,
+      isShow: isShow,
+    },
+  ];
+
+  updateAllPlannerDB(newAllPlanner);
+  updateUserDB(newMyPlanner, uid);
 };
 
 // 일정 수정
@@ -173,82 +157,58 @@ export const updatePlan = async (
   planIndex: string, // 수정할 일정 데이터 번호
   isShow: boolean, // 공개/비공개 처리
 ) => {
-  // console.log(plan);
-  if (
-    window.confirm(
-      `해당 일정을 ${isShow ? '공개' : '비공개'}로 저장 하시겠습니까?`,
-    )
-  ) {
-    const planList: any = await getUserPlanList(uid);
-    const allPlanner: any = await getAllPlanner();
-    console.log(planList);
-    console.log(allPlanner);
-    const newMyPlanner = planList['myPlanner'].reduce(
-      (sum: any, item: any, index: number) => {
-        if (parseInt(planIndex) === index) {
-          sum.push({ ...plan, name: planName });
-        } else {
-          sum.push(item);
-        }
-        return sum;
-      },
-      [],
-    );
-    //console.log(newMyPlanner);
-    const newAllPlanner = allPlanner['items'].reduce((sum: any, item: any) => {
-      if (item.contentId === parseInt(planIndex) && item.uid === uid) {
-        sum.push({ ...plan, name: planName, uid: uid, isShow: isShow });
+  const planList: any = await getUserPlanList(uid);
+  const allPlanner: any = await getAllPlanner();
+  const newMyPlanner = planList['myPlanner'].reduce(
+    (sum: any, item: any, index: number) => {
+      if (parseInt(planIndex) === index) {
+        sum.push({ ...plan, name: planName });
       } else {
         sum.push(item);
       }
       return sum;
-    }, []);
-    //
-    try {
-      updateAllPlannerDB(newAllPlanner);
-      updateUserDB(newMyPlanner, uid);
-      alert('저장 완료 되었습니다.');
-    } catch (e) {
-      alert('잠시후에 다시 시도해주세요!');
+    },
+    [],
+  );
+
+  const newAllPlanner = allPlanner['items'].reduce((sum: any, item: any) => {
+    if (item.contentId === parseInt(planIndex) && item.uid === uid) {
+      sum.push({ ...plan, name: planName, uid: uid, isShow: isShow });
+    } else {
+      sum.push(item);
     }
-  } else {
-    alert('취소하셨습니다');
-  }
+    return sum;
+  }, []);
+
+  updateAllPlannerDB(newAllPlanner);
+  updateUserDB(newMyPlanner, uid);
 };
 
 // 일정 삭제
 export const popPlan = async (uid: string, planIndex: string) => {
-  if (window.confirm('해당 일정을 삭제하시겠습니까?')) {
-    const planList: any = await getUserPlanList(uid);
-    const allPlanner: any = await getAllPlanner();
+  const planList: any = await getUserPlanList(uid);
+  const allPlanner: any = await getAllPlanner();
 
-    const newMyPlanner = planList['myPlanner'].reduce((sum: any, item: any) => {
-      if (item.contentId === parseInt(planIndex)) {
-        sum.push({ ...item, isDelete: true });
-      } else {
-        sum.push(item);
-      }
-      return sum;
-    }, []);
-
-    const newAllPlanner = allPlanner['items'].reduce((sum: any, item: any) => {
-      if (item.contentId === parseInt(planIndex) && item.uid === uid) {
-        sum.push({ ...item, isDelete: true });
-      } else {
-        sum.push(item);
-      }
-      return sum;
-    }, []);
-    try {
-      updateAllPlannerDB(newAllPlanner);
-      updateUserDB(newMyPlanner, uid);
-      alert('삭제 되었습니다.');
-    } catch (e) {
-      alert('잠시후에 다시 시도해주세요!');
+  const newMyPlanner = planList['myPlanner'].reduce((sum: any, item: any) => {
+    if (item.contentId === parseInt(planIndex)) {
+      sum.push({ ...item, isDelete: true });
+    } else {
+      sum.push(item);
     }
-  } else {
-    alert('취소하셨습니다.');
-  }
+    return sum;
+  }, []);
+
+  const newAllPlanner = allPlanner['items'].reduce((sum: any, item: any) => {
+    if (item.contentId === parseInt(planIndex) && item.uid === uid) {
+      sum.push({ ...item, isDelete: true });
+    } else {
+      sum.push(item);
+    }
+    return sum;
+  }, []);
+
+  updateAllPlannerDB(newAllPlanner);
+  updateUserDB(newMyPlanner, uid);
 };
 
 export const saveOtherPlan = async (
@@ -264,25 +224,22 @@ export const saveOtherPlan = async (
   // planner 디비에 해당 일정데이터의 북마크 카운트 +1 하기
 
   const allPlanner: any = await getAllPlanner();
-  const newAllPlanner = allPlanner['items'].reduce((sum: any, item: any) => {
-    if (item.contentId === parseInt(planIndex) && item.uid === userId) {
-      sum.push({
-        ...item,
-        bookmarkCount: item.bookmarkCount + 1,
-        isShow: true,
-        uid: userId,
-      });
-    } else {
-      sum.push(item);
-    }
+  const newAllPlanner = allPlanner['items']
+    .reduce((sum: any, item: any) => {
+      if (item.contentId === parseInt(planIndex) && item.uid === userId) {
+        sum.push({
+          ...item,
+          bookmarkCount: item.bookmarkCount + 1,
+          isShow: true,
+          uid: userId,
+        });
+      } else {
+        sum.push(item);
+      }
 
-    return sum;
-  }, []);
+      return sum;
+    }, [])
+    .sort((a: any, b: any) => b?.bookmarkCount - a?.bookmarkCount);
 
-  try {
-    updateAllPlannerDB([...newAllPlanner]);
-    alert('추가 하였습니다.');
-  } catch (e) {
-    alert('취소 하였습니다.');
-  }
+  updateAllPlannerDB([...newAllPlanner]);
 };

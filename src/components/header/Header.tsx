@@ -25,6 +25,7 @@ const Header = () => {
       if (window.confirm('로그아웃 하시겠습니까?')) {
         auth.signOut();
         alert('로그아웃 되셨습니다.');
+        navigate('/');
       }
       return;
     } else {

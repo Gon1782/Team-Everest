@@ -17,6 +17,7 @@ const ThemeSlideBanner = () => {
     useState<HashTagCategory | null>('# 이색 체험');
   // Swiper 구성요소 인스턴스 할당
   const [swiper, setSwiper] = useState<SwiperCore>();
+  const [value, setValue] = useState<any>();
 
   // 카테고리 선택시 state 업데이트
   const categorySelectHandler = (category: HashTagCategory) => {
@@ -29,10 +30,11 @@ const ThemeSlideBanner = () => {
     : listItems;
 
   //  선택한 리스트 항목에 해당하는 슬라이드 배너로 포커스 이동해주기
-  const listClickHandler = (item: any) => {
-    const idx = item.id - 1;
+  const listClickHandler = (index: any) => {
+    // console.log('item', item);
+    const idx = index - 1;
     if (swiper) {
-      swiper.slideTo(idx, 1000); // 1000 - 이동할 때 걸리는 시간
+      swiper.slideTo(idx, 1000); //  해당 인덱스로 이동한다.
     }
   };
 
@@ -69,10 +71,10 @@ const ThemeSlideBanner = () => {
       <ThemelistItems>
         <ThemelistItemsTitleWrapper>
           <ThemelistItemsTitles>
-            {filteredListItems.map((item) => (
+            {filteredListItems.map((item, index) => (
               <ThemelistItemsTitle
                 key={item.id}
-                onClick={() => listClickHandler(item)}
+                onClick={() => listClickHandler(index)}
               >
                 {item.title}
               </ThemelistItemsTitle>
@@ -82,9 +84,9 @@ const ThemeSlideBanner = () => {
         {/* 우측 이미지 카드 리스트 */}
         <SlideBannerWrapper
           modules={[Navigation, Pagination, Autoplay]}
-          pagination={{ clickable: true }}
+          // pagination={{ clickable: true }}
           navigation
-          loop={true}
+          // loop={true}
           spaceBetween={0}
           slidesPerView={3}
           observer={true}
@@ -99,11 +101,12 @@ const ThemeSlideBanner = () => {
           <ThemelistItemsImages>
             {filteredListItems.map((item) => (
               <SlideBanner key={item.id}>
-                <Link to="">
-                  <ThemelistItemsImage
+                <Link to={`/detail/${item.contentId}`}>
+                  {/* <ThemelistItemsImage
                     src={item.url}
                     alt={`slide banner ${item.id}`}
-                  />
+                  /> */}
+                  <ThemeCard>{item.title}</ThemeCard>
                 </Link>
               </SlideBanner>
             ))}
@@ -201,5 +204,13 @@ const ThemelistItemsImage = styled.img`
   width: 100%;
   height: 600px;
   object-fit: cover;
+  border-radius: 10px;
+`;
+
+// 임시 이미지 카드
+const ThemeCard = styled.div`
+  background-color: #acace1;
+  width: 100%;
+  height: 600px;
   border-radius: 10px;
 `;

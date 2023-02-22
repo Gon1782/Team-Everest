@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
 import {
   Authority,
+  InitLocation,
   IsCalenderView,
   IsSidePageView,
   MyWishList,
   NewPlanRecoil,
 } from '@/recoil/atom/MyPlan';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useRecoilState, useResetRecoilState, useSetRecoilState } from 'recoil';
 import CalenderView from './CalenderView';
 import { PlanType } from '@/recoil/atom/MyPlan';
 import StartEndDate from './StartEndDate';
@@ -35,7 +36,8 @@ const MyPlan = () => {
   const [loading, setLoading] = useState(true);
   const setMyWishList = useSetRecoilState(MyWishList);
   const [authority, setAuthority] = useRecoilState(Authority);
-  //
+  const resetInitLocation = useResetRecoilState(InitLocation);
+
   const { planIndex, userId } = useParams() as {
     planIndex: string;
     userId: string;
@@ -49,6 +51,29 @@ const MyPlan = () => {
   const [plan, setPlan] = useRecoilState<PlanType>(NewPlanRecoil);
 
   const [planName, setPlanName] = useState('');
+
+  // 이거 다시짜기
+  const connectionDB = (key: string, isShow?: boolean) => {
+    if (window.confirm(`해당 일정을 ${key} 하시겠습니까?`)) {
+      try {
+        if (key === '저장' && isShow !== undefined) {
+          if (!!!planName) return alert('일정 제목을 입력해주세요');
+          addPlan(plan, planName, uid, isShow);
+        }
+        if (key === '수정' && isShow !== undefined)
+          updatePlan(plan, planName, uid, planIndex, isShow);
+        if (key === '북마크 저장')
+          saveOtherPlan(plan, planName, uid, userId, planIndex);
+        if (key === '삭제') popPlan(uid, planIndex);
+        alert('완료 했습니다.');
+        navigate('/my');
+      } catch (e) {
+        return alert('잠시 후에 다시 시도해주세요');
+      }
+    } else {
+      alert('취소 하셨습니다.');
+    }
+  };
 
   const getPlan = async (userUid: string) => {
     if (!!planIndex) {
@@ -77,11 +102,11 @@ const MyPlan = () => {
         getPlan(userId); // 해당 일정 가져오기
       } else {
         setLoading(true);
-        // 이부분 나중에 아톰 selector로 다시 짜기
+
         const newSchedule: any = {};
         const initSchedule = dateToString(new Date());
         newSchedule[initSchedule] = [];
-
+        // 이부분 나중에 아톰 selector로 다시 짜기
         setPlan({
           name: '',
           startDate: {
@@ -113,6 +138,9 @@ const MyPlan = () => {
       setIsSidePageView(false);
       setIsCalenderView(false);
     }
+    return () => {
+      resetInitLocation();
+    };
   }, [planIndex]);
   if (loading) return <>로딩즁</>;
 
@@ -137,11 +165,7 @@ const MyPlan = () => {
           <PlanTitleSection>
             <PlanTitle>{planName}</PlanTitle>
             {userId !== uid && (
-              <button
-                onClick={() =>
-                  saveOtherPlan(plan, planName, uid, userId, planIndex)
-                }
-              >
+              <button onClick={() => connectionDB('북마크 저장')}>
                 일정 저장하기
               </button>
             )}
@@ -161,29 +185,17 @@ const MyPlan = () => {
           <>
             {authority.update ? (
               <>
-                <button
-                  onClick={() =>
-                    updatePlan(plan, planName, uid, planIndex, false)
-                  }
-                >
-                  임시저장(수정페이지)
+                <button onClick={() => connectionDB('수정', false)}>
+                  임시저장
                 </button>
-                <button
-                  onClick={() =>
-                    updatePlan(plan, planName, uid, planIndex, true)
-                  }
-                >
-                  저장(수정페이지)
-                </button>
+                <button onClick={() => connectionDB('수정', true)}>발행</button>
               </>
             ) : (
               <>
-                <button onClick={() => addPlan(plan, planName, uid, false)}>
+                <button onClick={() => connectionDB('저장', false)}>
                   임시저장
                 </button>
-                <button onClick={() => addPlan(plan, planName, uid, true)}>
-                  발행
-                </button>
+                <button onClick={() => connectionDB('저장', true)}>발행</button>
               </>
             )}
           </>
@@ -197,7 +209,7 @@ const MyPlan = () => {
               >
                 수정하기
               </button>
-              <button onClick={() => popPlan(uid, planIndex)}>삭제하기</button>
+              <button onClick={() => connectionDB('삭제')}>삭제하기</button>
             </>
           )
         )}
