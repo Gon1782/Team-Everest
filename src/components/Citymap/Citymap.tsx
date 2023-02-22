@@ -34,7 +34,6 @@ const Citymap = () => {
   const [areaInfo, setAreaInfo] = useRecoilState(CityAreaInfo);
 
   const [modal, openModal, closeModal, closeModalIfClickOutside] = useModal();
-  // console.log(modal);
 
   useEffect(() => {
     kakao.maps.load(() => {
@@ -112,7 +111,10 @@ const Citymap = () => {
       <Style.Mapbox id="map"></Style.Mapbox>
       {/* 모달 */}
       {modal && (
-        <CityInfoModal closeModalIfClickOutside={closeModalIfClickOutside} />
+        <CityInfoModal
+          closeModalIfClickOutside={closeModalIfClickOutside}
+          closeModal={closeModal}
+        />
       )}
     </Style.Wrap>
   );
