@@ -9,7 +9,6 @@ interface Props {
 }
 
 const DetailMap = ({ x, y }: Props) => {
-  console.log(x, y);
   const mapRef = useRef(null);
 
   useEffect(() => {
