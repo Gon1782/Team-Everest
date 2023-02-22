@@ -1,22 +1,31 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 const TopCityBanner = () => {
+  const navigate = useNavigate();
+
   return (
     <TopCityCategoryContainer>
       <CategoriesTitle>인기 도시</CategoriesTitle>
       <TopCityCategories>
+        <p>부산</p>
         <TopCityCategory
+          onClick={() => navigate(`/`)}
           src={require('@/assets/CityImage/1.jpg').default}
-          alt="slide banner2"
+          alt="부산"
         />
+        <p>제주</p>
         <TopCityCategory
+          onClick={() => navigate(`/`)}
           src={require('@/assets/banner_02.jpg').default}
-          alt="slide banner2"
+          alt="제주"
         />
+        <p>춘천</p>
         <TopCityCategory
+          onClick={() => navigate(`/`)}
           src={require('@/assets/banner_02.jpg').default}
-          alt="slide banner2"
+          alt="춘천"
         />
       </TopCityCategories>
     </TopCityCategoryContainer>
@@ -30,7 +39,6 @@ const TopCityCategoryContainer = styled.section`
   width: 60%;
   height: 350px;
   padding: 2rem;
-  background-color: grey;
   margin: 0 auto;
   display: flex;
   flex-direction: column;

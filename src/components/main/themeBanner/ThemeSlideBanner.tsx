@@ -17,6 +17,7 @@ const ThemeSlideBanner = () => {
     useState<HashTagCategory | null>('# 이색 체험');
   // Swiper 구성요소 인스턴스 할당
   const [swiper, setSwiper] = useState<SwiperCore>();
+  const [value, setValue] = useState<any>();
 
   // 카테고리 선택시 state 업데이트
   const categorySelectHandler = (category: HashTagCategory) => {
@@ -28,9 +29,15 @@ const ThemeSlideBanner = () => {
     ? listItems.filter((item) => item.category === selectedCategory)
     : listItems;
 
+  // console.log(value);
+  // console.log(swiper);
+  // console.log('value', value);
   //  선택한 리스트 항목에 해당하는 슬라이드 배너로 포커스 이동해주기
   const listClickHandler = (item: any) => {
+    // const listClickHandler = () => {
     const idx = item.id - 1;
+
+    console.log('item.id', item.id);
     if (swiper) {
       swiper.slideTo(idx, 1000); // 1000 - 이동할 때 걸리는 시간
     }
@@ -73,6 +80,7 @@ const ThemeSlideBanner = () => {
               <ThemelistItemsTitle
                 key={item.id}
                 onClick={() => listClickHandler(item)}
+                // onClick={() => listClickHandler()}
               >
                 {item.title}
               </ThemelistItemsTitle>
