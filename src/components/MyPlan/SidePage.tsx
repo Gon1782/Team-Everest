@@ -57,7 +57,7 @@ const SidePage = () => {
   const keepCheckingScroll = () => {
     // 스크롤바 길이 , 스크롤바의 위치 , 해당 컴포넌트 높이
     const { scrollHeight, scrollTop, clientHeight } = pageRef.current;
-    if (clientHeight + scrollTop >= scrollHeight - 1) {
+   if (clientHeight + scrollTop >= scrollHeight - 1 && scrollTop > 0) {
       getTourList(pickLocation, pickTheme, String(pageNo)).then(
         (result: DetailResponse) =>
           setTourList(tourList.concat(result?.response.body.items.item)),
