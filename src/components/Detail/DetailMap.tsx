@@ -9,10 +9,12 @@ interface Props {
 }
 
 const DetailMap = ({ x, y }: Props) => {
+  console.log(x, y);
   const mapRef = useRef(null);
-  const location = new kakao.maps.LatLng(y, x);
 
   useEffect(() => {
+    const location = new kakao.maps.LatLng(y, x);
+
     const options = {
       center: location,
       level: 2,

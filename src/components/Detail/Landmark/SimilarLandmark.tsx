@@ -1,10 +1,10 @@
 import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import { getSimilar } from '@/common/api/detailApi';
-import { DetailResponse, Item } from '@/types/DetailType';
+import useRandomPage from '@/hooks/useRandomPage';
+import { DetailResponse } from '@/types/DetailType';
 import Landmark from './Landmark';
 import * as S from './style/LandmarkStyled';
-import useRandomPage from '@/hooks/useRandomPage';
 
 interface Props {
   cat: string;

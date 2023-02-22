@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { getUserDB } from '@/common/api/userApi';
-import Profile from '@/components/Profile/Profile';
-import MyReview from '@/components/MyReview/MyReview';
-import MyPlanner from '@/components/Profile/MyPlanner';
 import { Document } from '@/types/DetailType';
+import Profile from '@/components/MyPage/Profile/Profile';
+import MyPlanner from '@/components/MyPage/MyPlanner/MyPlanner';
+import MyReview from '@/components/MyPage/MyReview/MyReview'
 import * as S from './style/MyPageStyled';
 
 const Mypage = () => {
