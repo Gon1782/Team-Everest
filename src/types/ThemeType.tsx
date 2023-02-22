@@ -13,4 +13,5 @@ export interface ListItem {
   title: string;
   category: HashTagCategory;
   url: string;
+  contentId: number;
 }
