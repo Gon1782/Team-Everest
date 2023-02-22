@@ -52,6 +52,18 @@ const RegisterTab = () => {
     getUser();
   }, []);
 
+  useEffect(() => {
+    window.addEventListener('beforeunload', alertUser);
+    return () => {
+      window.removeEventListener('beforeunload', alertUser);
+    };
+  }, []);
+  const alertUser = (e: any) => {
+    console.log(e);
+    e.preventDefault();
+    e.returnValue = '';
+  };
+
   return (
     <form onSubmit={(e) => emailSignup(e)}>
       <S.RegisterInputContainer>

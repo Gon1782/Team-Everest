@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { getDetail } from '@/common/api/detailApi';
 import { DetailResponse, EachReview } from '@/types/DetailType';
 import * as S from './style/MyReviewStyled';
-import { ReviewImage } from '../Review/style/ReviewStyled';
+import { ReviewImage } from '@/components/Detail/Review/style/ReviewStyled';
 
 interface Props {
   review: EachReview;
