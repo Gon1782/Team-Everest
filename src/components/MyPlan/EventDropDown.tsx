@@ -7,7 +7,6 @@ import {
   WhichEvent,
 } from '@/recoil/atom/MyPlan';
 import { Item } from 'firebase/analytics';
-import React, { useEffect, useState } from 'react';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import EventMemo from './EventMemo';
 import EventTime from './EventTime';
@@ -41,6 +40,7 @@ const EventDropDown = ({
       // reduce,sorting,
       // filter, sorting ()
 
+      // 이게 맞누,,,
       const updateEventList = eventList
         .reduce((sum: any, item: any, idx: number) => {
           if (eventIndex === idx) {
@@ -54,7 +54,14 @@ const EventDropDown = ({
           }
           return sum;
         }, [])
-        .sort((a: any, b: any) => a?.when?.time - b?.when?.time);
+        .sort((a: any, b: any) => a?.when?.time - b?.when?.time)
+        .sort((a: any, b: any) => {
+          return a?.when?.amPm > b?.when?.amPm
+            ? 1
+            : a?.when?.amPm < b?.when?.amPm
+            ? -1
+            : 0;
+        });
 
       const newData: any = {};
       newData[date] = [...updateEventList];
