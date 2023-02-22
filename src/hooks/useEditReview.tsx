@@ -29,7 +29,6 @@ const useEditReview = (
     const user = await getUserDB(review.uid);
     const myReviews = user?.MyReview;
 
-    const ratingCount = list.ratingCount;
     const totalRating = list.totalRating - review.rating + rating;
     const newReviews = reviews.map((review) => {
       if (review.id === reviewId) {
@@ -39,7 +38,7 @@ const useEditReview = (
       }
     });
     const newList = {
-      ratingCount,
+      ...list,
       review: newReviews,
       totalRating,
     };

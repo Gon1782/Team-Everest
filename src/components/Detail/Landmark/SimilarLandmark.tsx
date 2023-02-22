@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useQuery, useQueryClient } from 'react-query';
 import { useNavigate } from 'react-router-dom';
-import { getSimilar } from '@/common/api/detailApi';
+import { getSimilar } from '@/common/api/toruApi';
 import { category as category3 } from '@/common/utils/cat3';
 import { DetailResponse, Item } from '@/types/DetailType';
 import Landmark from './Landmark';

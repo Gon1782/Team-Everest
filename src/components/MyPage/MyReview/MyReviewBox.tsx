@@ -1,6 +1,6 @@
 import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
-import { getDetail } from '@/common/api/detailApi';
+import { getDetail } from '@/common/api/toruApi';
 import { DetailResponse, EachReview } from '@/types/DetailType';
 import * as S from './style/MyReviewStyled';
 import { ReviewImage } from '@/components/Detail/Review/style/ReviewStyled';

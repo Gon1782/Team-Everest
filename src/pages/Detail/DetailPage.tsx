@@ -3,7 +3,7 @@ import { useQueries, useQueryClient } from 'react-query';
 import { useSetRecoilState } from 'recoil';
 import { useNavigate, useParams } from 'react-router-dom';
 import { doc, onSnapshot } from 'firebase/firestore';
-import { getDetail, getDetailIntro } from '@/common/api/detailApi';
+import { getDetail, getDetailIntro } from '@/common/api/toruApi';
 import { db } from '@/common/api/firebase';
 import DetailInfo from '@/components/Detail/DetailInfo';
 import ReviewModal from '@/components/Detail/Review/ReviewModal';
@@ -46,6 +46,8 @@ const DetailPage = () => {
         ratingCount: doc.data()?.ratingCount,
         review: doc.data()?.review,
         totalRating: doc.data()?.totalRating,
+        areacode: doc.data()?.areacode,
+        sigungucode: doc.data()?.sigungucode,
       };
       setList(newList);
     });
@@ -86,10 +88,6 @@ const DetailPage = () => {
     refetchAll();
   }, [id]);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   if (isLoading)
     return (
       <div>
@@ -111,6 +109,8 @@ const DetailPage = () => {
         <ReviewModal
           type="post"
           id={id}
+          areaCode={detailList?.areacode}
+          sigunguCode={detailList?.sigungucode}
           title={detailList?.title}
           addr={detailList?.addr1}
           closeModal={closeModal}
