@@ -1,5 +1,4 @@
 import useDeleteReview from '@/hooks/useDeleteReview';
-import { Document } from '@/types/DetailType';
 import * as S from './style/ReviewStyled';
 
 interface Props {

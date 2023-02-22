@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Document } from '@/types/DetailType';
 import * as S from './style/MyPlannerStyled';

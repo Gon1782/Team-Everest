@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { DetailList } from '@/recoil/atom/Detail';
 import ReviewBox from './ReviewBox';
