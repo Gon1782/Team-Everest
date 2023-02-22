@@ -1,9 +1,9 @@
-import { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { DetailList } from '@/recoil/atom/Detail';
 import ReviewBox from './ReviewBox';
 import * as S from './style/ReviewStyled';
 import { Item } from '@/types/DetailType';
+import useLoadMore from '@/hooks/useLoadMore';
 
 interface Props {
   item: Item;
@@ -16,15 +16,7 @@ const Review = ({ item }: Props) => {
     : [];
 
   // 더보기
-  const [idx, setIdx] = useState(2);
-
-  const checkEnd = !!reviews ? reviews.length - 1 <= idx : true;
-
-  const loadMore = () => {
-    if (!checkEnd) {
-      setIdx(idx + 3);
-    }
-  };
+  const [idx, checkEnd, loadMore] = useLoadMore(reviews);
 
   return (
     <S.ReviewSection>
