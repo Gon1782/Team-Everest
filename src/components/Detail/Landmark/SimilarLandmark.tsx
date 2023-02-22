@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useQuery } from 'react-query';
+import { useQuery, useQueryClient } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import { getSimilar } from '@/common/api/detailApi';
 import { category as category3 } from '@/common/utils/cat3';
@@ -14,7 +14,8 @@ interface Props {
 
 const SimilarLandmark = ({ id, detailList }: Props) => {
   const navigate = useNavigate();
-  const [category, setCategory] = useState('');
+  const queryClient = useQueryClient();
+  const [category, setCategory] = useState(detailList.cat3);
   const [pageNo, setPageNo] = useState(0);
 
   // TiL
@@ -26,10 +27,15 @@ const SimilarLandmark = ({ id, detailList }: Props) => {
     setPageNo(pageNo);
   }, [detailList]);
 
-  const { isLoading, isError, data, error } = useQuery<DetailResponse, Error>(
-    'similar',
-    () => getSimilar(pageNo, category),
-  );
+  const { isLoading, isError, data, error, refetch } = useQuery<
+    DetailResponse,
+    Error
+  >('similar', () => getSimilar(pageNo, category));
+
+  useEffect(() => {
+    queryClient.removeQueries('similar');
+    refetch();
+  }, [category, pageNo]);
 
   if (isLoading)
     return (
@@ -44,7 +50,7 @@ const SimilarLandmark = ({ id, detailList }: Props) => {
 
   if (isError) return <div>에러: {error.message}</div>;
 
-  const Landmarks = data?.response.body.items.item.filter(
+  const Landmarks = data?.response.body.items?.item.filter(
     (list) => list.contentid !== id,
   );
 

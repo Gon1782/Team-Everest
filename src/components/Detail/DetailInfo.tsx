@@ -8,9 +8,9 @@ import DetailMap from './DetailMap';
 import * as S from '@/pages/Detail/style/DetailStyled';
 import { addWishList, popWishList } from '../MyPlan/MyPlannerHandler';
 interface Props {
-  item: Item;
-  intro: Item;
-  wishList: Item[];
+  item?: Item;
+  intro?: Item;
+  wishList?: Item[];
 }
 
 const DetailInfo = ({ item, intro, wishList }: Props) => {
@@ -42,6 +42,10 @@ const DetailInfo = ({ item, intro, wishList }: Props) => {
 
   const [bookMark, setBookMark] = useState(false);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const handlerWishList = () => {
     if (
       window.confirm(`북마크에 ${!bookMark ? '추가' : '취소'} 하시겠습니까?`)
@@ -61,8 +65,8 @@ const DetailInfo = ({ item, intro, wishList }: Props) => {
   };
 
   useEffect(() => {
-    const isGet = wishList.filter(
-      (wishItem: any) => wishItem.contentid === item.contentid,
+    const isGet = wishList?.filter(
+      (wishItem: any) => wishItem.contentid === item?.contentid,
     ).length;
 
     !!isGet ? setBookMark(true) : setBookMark(false);
@@ -72,7 +76,7 @@ const DetailInfo = ({ item, intro, wishList }: Props) => {
     <S.DetailSection>
       <S.InfoBox>
         <div></div>
-        <S.DetailTitle>{item?.title}</S.DetailTitle>
+        <S.DetailTitle>{item?.title ? item.title : '관광지'}</S.DetailTitle>
         <S.DetailScore>
           <span>⭐{rating}</span>
           <div style={{ display: !!uid ? 'flex' : 'none' }}>
@@ -90,24 +94,24 @@ const DetailInfo = ({ item, intro, wishList }: Props) => {
       </S.InfoBox>
       <S.LandmarkImg src={img} />
       <S.DetailOverview dangerouslySetInnerHTML={overview}></S.DetailOverview>
-      <DetailMap x={item.mapx} y={item.mapy} />
+      <DetailMap x={item?.mapx} y={item?.mapy} />
       <S.LocationInfo>
         <S.SmallTitle style={{ display: !!homepage ? 'flex' : 'none' }}>
           홈페이지
           <S.LandMarkInfo dangerouslySetInnerHTML={homepage}></S.LandMarkInfo>
         </S.SmallTitle>
-        <S.SmallTitle style={{ display: !!item.addr1 ? 'flex' : 'none' }}>
-          주소 <S.LandMarkInfo>{item.addr1}</S.LandMarkInfo>
+        <S.SmallTitle style={{ display: !!item?.addr1 ? 'flex' : 'none' }}>
+          주소 <S.LandMarkInfo>{item?.addr1}</S.LandMarkInfo>
         </S.SmallTitle>
         <S.SmallTitle
           style={{ display: !!intro?.infocenter ? 'flex' : 'none' }}
         >
           문의 및 안내
-          <S.LandMarkInfo>{intro.infocenter}</S.LandMarkInfo>
+          <S.LandMarkInfo>{intro?.infocenter}</S.LandMarkInfo>
         </S.SmallTitle>
         <S.SmallTitle style={{ display: !!intro?.restdate ? 'flex' : 'none' }}>
           휴무일
-          <S.LandMarkInfo>{intro.restdate}</S.LandMarkInfo>
+          <S.LandMarkInfo>{intro?.restdate}</S.LandMarkInfo>
         </S.SmallTitle>
       </S.LocationInfo>
     </S.DetailSection>
