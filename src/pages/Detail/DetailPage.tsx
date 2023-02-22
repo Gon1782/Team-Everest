@@ -12,6 +12,7 @@ import SimilarLandmark from '@/components/Detail/Landmark/SimilarLandmark';
 import useModal from '@/hooks/useModal';
 import { DetailList } from '@/recoil/atom/Detail';
 import * as S from './style/DetailStyled';
+import { category } from '@/common/utils/cat3';
 
 const DetailPage = () => {
   const navigate = useNavigate();
@@ -95,7 +96,6 @@ const DetailPage = () => {
   const detailIntro = !!data[1]?.response.body.items
     ? data[1].response.body.items.item[0]
     : {};
-  const cat = !!detailList?.cat3 ? detailList?.cat3 : 'A01010100';
 
   return (
     <S.DetailContainer>
@@ -117,7 +117,7 @@ const DetailPage = () => {
       </S.WriteReview>
       <Review item={detailList} />
       <S.DetailSubTitle>유사한 관광지 추천</S.DetailSubTitle>
-      <SimilarLandmark cat={cat} id={id} />
+      <SimilarLandmark detailList={detailList} id={id} />
     </S.DetailContainer>
   );
 };
