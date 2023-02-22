@@ -3,7 +3,7 @@ import { useQueries, useQueryClient } from 'react-query';
 import { useSetRecoilState } from 'recoil';
 import { useNavigate, useParams } from 'react-router-dom';
 import { doc, onSnapshot } from 'firebase/firestore';
-import { getDetail, getDetailIntro } from '@/common/api/detailApi';
+import { getDetail, getDetailIntro } from '@/common/api/tourApi';
 import { db } from '@/common/api/firebase';
 import DetailInfo from '@/components/Detail/DetailInfo';
 import ReviewModal from '@/components/Detail/Review/ReviewModal';
@@ -12,7 +12,6 @@ import SimilarLandmark from '@/components/Detail/Landmark/SimilarLandmark';
 import useModal from '@/hooks/useModal';
 import { DetailList } from '@/recoil/atom/Detail';
 import * as S from './style/DetailStyled';
-import { category } from '@/common/utils/cat3';
 
 const DetailPage = () => {
   const navigate = useNavigate();
@@ -47,6 +46,8 @@ const DetailPage = () => {
         ratingCount: doc.data()?.ratingCount,
         review: doc.data()?.review,
         totalRating: doc.data()?.totalRating,
+        areacode: doc.data()?.areacode,
+        sigungucode: doc.data()?.sigungucode,
       };
       setList(newList);
     });
@@ -87,7 +88,12 @@ const DetailPage = () => {
     refetchAll();
   }, [id]);
 
-  if (isLoading) return <div>로딩중...</div>;
+  if (isLoading)
+    return (
+      <div>
+        <DetailInfo />
+      </div>
+    );
   if (isError) return <div>에러: {error}</div>;
 
   const detailList = !!data[0]?.response.body.items
@@ -103,6 +109,8 @@ const DetailPage = () => {
         <ReviewModal
           type="post"
           id={id}
+          areaCode={detailList?.areacode}
+          sigunguCode={detailList?.sigungucode}
           title={detailList?.title}
           addr={detailList?.addr1}
           closeModal={closeModal}

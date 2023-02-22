@@ -12,6 +12,8 @@ import * as S from './style/ReviewStyled';
 
 interface Props {
   type: string;
+  areaCode?: string;
+  sigunguCode?: string;
   id?: string;
   title: string;
   addr: string;
@@ -19,7 +21,6 @@ interface Props {
   closeModalIfClickOutside: (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>,
   ) => void;
-  user?: Document;
   review?: EachReview;
 }
 
@@ -31,8 +32,12 @@ const ReviewModal = ({
   closeModal,
   closeModalIfClickOutside,
   review,
+  areaCode,
+  sigunguCode,
 }: Props) => {
   // 수정 전 값들 불러오기
+  const areacode = !!areaCode ? areaCode : '';
+  const sigungucode = !!sigunguCode ? sigunguCode : '';
   const contentId = !!id ? id : '';
   const reviewId = !!review?.id ? review.id : '';
   const reviewContent = !!review?.content ? review.content : '';
@@ -56,6 +61,8 @@ const ReviewModal = ({
   };
 
   const addReview = useAddReview(
+    areacode,
+    sigungucode,
     content,
     rating,
     image,

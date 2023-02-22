@@ -38,7 +38,7 @@ export const LandmarkImg = styled.img`
 
 export const InfoBox = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr 3fr 1fr;
   justify-content: center;
   justify-items: center;
   align-items: center;
@@ -91,6 +91,7 @@ export const LandMarkInfo = styled.span`
 
 export const DetailOverview = styled.div`
   width: 1024px;
+  min-height: 200px;
   line-height: 1.5rem;
   text-align: center;
 `;

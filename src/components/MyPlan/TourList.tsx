@@ -7,7 +7,7 @@ import {
   MyWishList,
 } from '@/recoil/atom/MyPlan';
 import { useEffect, useRef, useState } from 'react';
-import { getTourList } from '@/common/api/detailApi';
+import { getTourList } from '@/common/api/tourApi';
 
 const TourList = () => {
   const setNewPlan = useSetRecoilState<PlanType>(NewPlanRecoil);

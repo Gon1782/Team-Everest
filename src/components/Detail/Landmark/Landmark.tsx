@@ -27,7 +27,6 @@ const Landmark = ({ landmark }: Props) => {
   return (
     <S.LandmarkBox
       onClick={() => {
-        window.scrollTo(0, 0);
         navigate(`/detail/${landmark.contentid}`);
       }}
     >
