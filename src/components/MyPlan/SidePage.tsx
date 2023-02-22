@@ -3,7 +3,7 @@ import { themeService, locationService } from '@/recoil/atom/Category';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { Item } from '@/types/DetailType';
 import { DetailResponse } from '@/types/DetailType';
-import { getTourList } from '@/common/api/toruApi';
+import { getTourList } from '@/common/api/tourApi';
 import SelectBox from './SelectBox';
 import TourList from './TourList';
 import {

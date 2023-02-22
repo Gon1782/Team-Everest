@@ -3,7 +3,7 @@ import { useQueries, useQueryClient } from 'react-query';
 import { useSetRecoilState } from 'recoil';
 import { useNavigate, useParams } from 'react-router-dom';
 import { doc, onSnapshot } from 'firebase/firestore';
-import { getDetail, getDetailIntro } from '@/common/api/toruApi';
+import { getDetail, getDetailIntro } from '@/common/api/tourApi';
 import { db } from '@/common/api/firebase';
 import DetailInfo from '@/components/Detail/DetailInfo';
 import ReviewModal from '@/components/Detail/Review/ReviewModal';
