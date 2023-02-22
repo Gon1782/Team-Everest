@@ -20,7 +20,6 @@ export const Wrap = styled.section`
 
 export const IconWrap = styled.div`
   cursor: pointer;
-  width: 100%;
   margin-left: 10px;
   padding: 10px 0px;
   display: flex;

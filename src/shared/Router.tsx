@@ -8,6 +8,7 @@ import Login from '@/pages/Login/Login';
 import SearchArea from '@/pages/SearchArea';
 import CityMapPage from '@/pages/CityMap/CityMapPage';
 import Layout from '@/pages/Layout/Layout';
+import CityDetailPage from '@/pages/CityDetail/CityDetailPage';
 
 const Router = () => {
   return (
@@ -22,6 +23,7 @@ const Router = () => {
           <Route path="/my" element={<Mypage />} />
           <Route path="/searcharea" element={<SearchArea />} />
           <Route path="/citymap" element={<CityMapPage />} />
+          <Route path="/citydetail/:id" element={<CityDetailPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -1,10 +1,10 @@
-import React from 'react';
+import { useEffect } from 'react';
 import styled from 'styled-components';
 import { CityAreaInfo } from '@/recoil/atom/CityAreaInfo';
 import { useRecoilState } from 'recoil';
 import { useNavigate } from 'react-router-dom';
 
-const CityInfoModal = ({ closeModalIfClickOutside }: any) => {
+const CityInfoModal = ({ closeModalIfClickOutside, closeModal }: any) => {
   const navigate = useNavigate();
   const [areaInfo, setAreaInfo] = useRecoilState(CityAreaInfo);
 
@@ -45,8 +45,20 @@ const CityInfoModal = ({ closeModalIfClickOutside }: any) => {
           {/* 버튼 */}
           <StyleButtomWrap>
             {/* navigate 지정 */}
-            <StyleButton>도시 상세보기</StyleButton>
-            <StyleButton>일정 만들기</StyleButton>
+            <StyleButton
+              onClick={() => {
+                navigate(`/citydetail/${areaInfo.areacode}`);
+              }}
+            >
+              도시 상세보기
+            </StyleButton>
+            <StyleButton
+              onClick={() => {
+                navigate('/planner/:userId/:planIndex');
+              }}
+            >
+              일정 만들기
+            </StyleButton>
           </StyleButtomWrap>
         </StyleContent>
       </ModalBox>
