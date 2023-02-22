@@ -17,48 +17,56 @@ const BestTravelPlan = () => {
 
   return (
     <BestTravelPlanContainer>
-      {!!data && !!data['items'].length ? (
-        <>
-          {data['items'].map((item: any, index: number) => {
-            if (item.isDelete === false && item.isShow === true) {
-              return (
-                <BestTravelPlanCard
-                  onClick={() => moveToMyPlan(item, index)}
-                  key={index}
-                >
-                  <TravelPlaceMainImgWrapper>
-                    <TravelPlaceMainImg
-                      src={require('@/assets/banner_01.jpg').default}
-                      alt=""
-                    />
-                  </TravelPlaceMainImgWrapper>
-                  <Wrapper>
-                    <TravelPlaceReviewerImgWrapper>
-                      <TravelPlaceReviewerImg
-                        src={
-                          require('@/assets/MyPage/defaultProfile.jpg').default
-                        }
-                        alt=""
-                      />
-                    </TravelPlaceReviewerImgWrapper>
-                  </Wrapper>
-                  <TravelPlanInfo>
-                    <TravelPlaceName>{item.name}</TravelPlaceName>
-                    <BookMarkCount>
-                      <BookMarkIcon />
-                      <BookMarkCountNumber>
-                        {item.bookmarkCount}
-                      </BookMarkCountNumber>
-                    </BookMarkCount>
-                  </TravelPlanInfo>
-                </BestTravelPlanCard>
-              );
-            }
-          })}
-        </>
-      ) : (
-        <>베스트 일정이 아직 없어요!</>
-      )}
+      <BestTravelPlanTitle>
+        <h1>BEST 여행 일정</h1>
+      </BestTravelPlanTitle>
+      <>
+        {!!data && !!data['items'].length ? (
+          <>
+            {data['items']
+              .map((item: any, index: number) => {
+                if (item.isDelete === false && item.isShow === true) {
+                  return (
+                    <BestTravelPlanCard
+                      onClick={() => moveToMyPlan(item, index)}
+                      key={index}
+                    >
+                      <TravelPlaceMainImgWrapper>
+                        <TravelPlaceMainImg
+                          src={require('@/assets/banner_01.jpg').default}
+                          alt=""
+                        />
+                      </TravelPlaceMainImgWrapper>
+                      <Wrapper>
+                        <TravelPlaceReviewerImgWrapper>
+                          <TravelPlaceReviewerImg
+                            src={
+                              require('@/assets/MyPage/defaultProfile.jpg')
+                                .default
+                            }
+                            alt=""
+                          />
+                        </TravelPlaceReviewerImgWrapper>
+                      </Wrapper>
+                      <TravelPlanInfo>
+                        <TravelPlaceName>{item.name}</TravelPlaceName>
+                        <BookMarkCount>
+                          <BookMarkIcon />
+                          <BookMarkCountNumber>
+                            {item.bookmarkCount}
+                          </BookMarkCountNumber>
+                        </BookMarkCount>
+                      </TravelPlanInfo>
+                    </BestTravelPlanCard>
+                  );
+                }
+              })
+              .slice(0, 14)}
+          </>
+        ) : (
+          <>베스트 일정이 아직 없어요!</>
+        )}
+      </>
     </BestTravelPlanContainer>
   );
 };
@@ -68,21 +76,28 @@ export default BestTravelPlan;
 // 베스트 여행 일정
 
 const BestTravelPlanContainer = styled.div`
-  width: 100%;
+  width: 80%;
   height: auto;
-  background-color: #d68989;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   padding: 70px 50px;
+  margin: 30px auto;
+`;
+
+const BestTravelPlanTitle = styled.div`
+  width: 100%;
+  height: 100px;
+  text-align: center;
 `;
 
 const BestTravelPlanCard = styled.div`
   background-color: #dadada;
   border-radius: 20px;
-  width: 250px;
+  /* width: 250px; */
+  width: 20%;
   height: 300px;
-  margin: 0 10px 20px 10px;
+  margin: 0 10px 40px 10px;
   position: relative;
   overflow: hidden;
 `;
