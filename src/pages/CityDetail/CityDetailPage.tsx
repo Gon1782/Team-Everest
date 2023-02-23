@@ -4,6 +4,7 @@ import { CityAreaInfo } from '@/recoil/atom/CityAreaInfo';
 import { useRecoilState } from 'recoil';
 import { useNavigate, useParams } from 'react-router-dom';
 import { cityInfo } from '@/common/utils/cityInfo';
+import CityInfoList from '@/components/CityInfoList/CityInfoList';
 
 const CityDetailPage = () => {
   const navigate = useNavigate();
@@ -26,8 +27,10 @@ const CityDetailPage = () => {
       <Style.Introduce>
         Welcome to {cityInfo[fileNumber - 1].korarea} !
       </Style.Introduce>
+
       {/* 음식점 */}
       {/* 리스트 */}
+      <CityInfoList id={id} />
       {/* 레포츠 */}
     </Style.Wrap>
   );
