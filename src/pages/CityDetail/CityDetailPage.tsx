@@ -23,7 +23,12 @@ const CityDetailPage = () => {
         src={require(`@/assets/CityImage/${fileNumber}.jpg`).default}
       ></img>
       <Style.WeatherWrap>도시 api 넣을 예정</Style.WeatherWrap>
-      <Style.Introduce>도시를 소개</Style.Introduce>
+      <Style.Introduce>
+        Welcome to {cityInfo[fileNumber - 1].korarea} !
+      </Style.Introduce>
+      {/* 음식점 */}
+      {/* 리스트 */}
+      {/* 레포츠 */}
     </Style.Wrap>
   );
 };
