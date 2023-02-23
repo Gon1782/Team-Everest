@@ -7,6 +7,7 @@ import {
 } from '@/recoil/atom/MyPlan';
 
 import { useRecoilValue, useResetRecoilState, useSetRecoilState } from 'recoil';
+import styled from 'styled-components';
 
 const ScheduleDate = ({
   planSchedule,
@@ -35,7 +36,10 @@ const ScheduleDate = ({
     });
   };
   const onChangeSidePage = (index: number) => {
-    setShowSideSection(true); // 사이드창 열고
+    setShowSideSection(() => {
+      window.scrollTo(0, 0);
+      return true;
+    }); // 사이드창 열고
     setPickSchedule((prev) => {
       //사이드창에 보내기
       const clonePrev = { ...prev };
@@ -47,14 +51,59 @@ const ScheduleDate = ({
 
   return (
     <>
-      <div onClick={() => initMap(scheduleDate)}>
-        Day{index + 1} |{scheduleDate}
-      </div>
-      {authority.write && (
-        <button onClick={() => onChangeSidePage(index)}>일정 추가</button>
-      )}
+      <PlanDateWrapper onClick={() => initMap(scheduleDate)}>
+        <PlanDateCount>Day{index + 1} </PlanDateCount>
+        <PlanDate>{scheduleDate}</PlanDate>
+      </PlanDateWrapper>
+      <AddPlanBtnWapper>
+        {authority.write && (
+          <AddPlanBtn onClick={() => onChangeSidePage(index)}>
+            일정 추가
+          </AddPlanBtn>
+        )}
+      </AddPlanBtnWapper>
     </>
   );
 };
 
 export default ScheduleDate;
+
+const PlanDateWrapper = styled.div`
+  width: 100%;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  padding: 5px 8px;
+  background-color: #2c2c2c;
+  color: #fff;
+  border-radius: 9px 9px 0 0;
+`;
+
+// 일정의 일일 표기
+const PlanDateCount = styled.h2`
+  font-size: 1.2rem;
+  margin-right: 10px;
+`;
+
+// 일정 날짜
+const PlanDate = styled.h4`
+  font-size: 0.8rem;
+  color: #e3e3e3;
+`;
+
+// 일정 추가 버튼 영역
+const AddPlanBtnWapper = styled.div`
+  width: 100%;
+  text-align: right;
+  padding: 5px 8px;
+  /* border-bottom: 1px solid #2c2c2c; */
+`;
+
+const AddPlanBtn = styled.button`
+  width: 80px;
+  height: 28px;
+  font-size: 0.75rem;
+  background-color: #3f46ff;
+  color: #f3f3f3;
+  border-radius: 50px;
+`;

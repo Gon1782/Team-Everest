@@ -17,7 +17,7 @@ import {
 const CalenderView = ({ setDropDownRef }: { setDropDownRef: any }) => {
   const [newPlan, setNewPlan] = useRecoilState<PlanType | any>(NewPlanRecoil);
   // 캘린더 열기/닫기
-  const isShowCalender = useRecoilValue(IsCalenderView);
+  const [isShowCalender, setIsShowCalender] = useRecoilState(IsCalenderView);
 
   const setPickSchedule = useSetRecoilState(PickScheduleRecoil);
 
@@ -63,6 +63,7 @@ const CalenderView = ({ setDropDownRef }: { setDropDownRef: any }) => {
       };
     });
     setPickSchedule({ schedule: dateToString(calenderDate[0]), day: 'Day1' });
+    setIsShowCalender(false);
   }, [calenderDate]);
 
   return (

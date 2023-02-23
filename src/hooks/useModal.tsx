@@ -2,12 +2,6 @@ import { useState, useCallback, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 const useModal = () => {
-  useEffect(() => {
-    return () => {
-      enableScroll();
-    };
-  }, []);
-
   const [modal, setModal] = useState(false);
   const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
   const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
@@ -47,6 +41,12 @@ const useModal = () => {
       enableScroll();
     }
   }, [modal]);
+
+  useEffect(() => {
+    return () => {
+      enableScroll();
+    };
+  }, []);
 
   return [modal, openModal, closeModal, closeModalIfClickOutside] as const;
 };

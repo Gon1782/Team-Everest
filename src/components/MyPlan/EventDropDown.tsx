@@ -11,6 +11,8 @@ import { useEffect, useState } from 'react';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import EventMemo from './EventMemo';
 import EventTime from './EventTime';
+import styled from 'styled-components';
+import { FaRegTrashAlt } from 'react-icons/fa';
 
 const EventDropDown = ({
   index,
@@ -147,20 +149,22 @@ const EventDropDown = ({
   return (
     <>
       {authority.write && (
-        <>
-          <button onClick={() => showDropDownPage(scheduleDate, index)}>
-            시간/메모 설정
-          </button>
-          <button
+        <EventTimeMemoSet style={{ position: 'relative' }}>
+          <EventTimeMemoSetBtn
+            onClick={() => showDropDownPage(scheduleDate, index)}
+          >
+            시간/메모 설정 &#9660;
+          </EventTimeMemoSetBtn>
+          <DeleteIcon
             onClick={() =>
               popEvent(scheduleDate, index, newPlan.schedule[scheduleDate])
             }
           >
             삭제
-          </button>
-        </>
+          </DeleteIcon>
+        </EventTimeMemoSet>
       )}
-      <div
+      <EventTimeMemoSetDrop
         style={{ display: 'none' }}
         ref={(el: any) => {
           // 각 div에 ref 할당하기 : 드롭다운페이지의 display 때문에
@@ -171,10 +175,12 @@ const EventDropDown = ({
           dropDownRef.current[scheduleDate] = clone;
         }}
       >
-        시간/메모 설정페이지
+        {/* 시간/메모 설정페이지 */}
+        <div>시간</div>
+
         <EventTime when={initEventWhen} setWhen={setInitEventWhen} />
         <EventMemo memo={initEventMemo} setMemo={setInitEventMemo} />
-        <button
+        <TimeMemoSaveBtn
           onClick={() =>
             updateEventContent(
               scheduleDate,
@@ -184,10 +190,46 @@ const EventDropDown = ({
           }
         >
           저장
-        </button>
-      </div>
+        </TimeMemoSaveBtn>
+      </EventTimeMemoSetDrop>
     </>
   );
 };
 
 export default EventDropDown;
+
+// 시간 메모 설정
+const EventTimeMemoSet = styled.div`
+  width: 80%;
+  margin: 0 auto;
+  margin-bottom: 10px;
+`;
+
+const EventTimeMemoSetBtn = styled.button`
+  width: 100%;
+  height: 20px;
+  font-size: 0.8rem;
+  font-weight: 400;
+`;
+
+// 삭제 버튼
+const DeleteIcon = styled(FaRegTrashAlt)`
+  position: absolute;
+  right: 10px;
+  top: -48px;
+  font-size: 0.9rem;
+  color: grey;
+
+  cursor: pointer;
+  &:hover {
+    color: #c62626;
+  }
+`;
+
+// 시간, 설정 드롭메뉴
+const EventTimeMemoSetDrop = styled.div`
+  margin: 0 auto;
+  width: 80%;
+`;
+
+const TimeMemoSaveBtn = styled.button``;
