@@ -4,11 +4,14 @@ import { CityAreaInfo } from '@/recoil/atom/CityAreaInfo';
 import { useRecoilState } from 'recoil';
 import { useNavigate, useParams } from 'react-router-dom';
 import { cityInfo } from '@/common/utils/cityInfo';
+import CitySection from '@/components/common/CitySection';
 
 const CityDetailPage = () => {
   const navigate = useNavigate();
   const [areaInfo, setAreaInfo] = useRecoilState(CityAreaInfo);
   const { id } = useParams();
+  const city = cityInfo.filter(({ areacode }) => areacode === id)[0];
+  console.log(city);
   const fileNumber = cityInfo.findIndex(({ areacode }) => areacode === id) + 1;
   return (
     <Style.Wrap>
@@ -24,6 +27,11 @@ const CityDetailPage = () => {
       ></img>
       <Style.WeatherWrap>도시 api 넣을 예정</Style.WeatherWrap>
       <Style.Introduce>도시를 소개</Style.Introduce>
+      {/* 음식점 */}
+      <CitySection name="Michelin" city={city} />
+      {/* 랜덤리스트 */}
+      {/* 레포츠 */}
+      <CitySection name="Amusement" city={city} />
     </Style.Wrap>
   );
 };
