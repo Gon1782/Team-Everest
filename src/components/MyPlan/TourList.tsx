@@ -29,9 +29,16 @@ const TourList = () => {
       const clonePrev = { ...prev.schedule }; // 기존 데이터 복사
       const cloneItem = { ...item };
       /* 선택한 관광지 데이터에 시간과 메모를 사용자가 사용 할 수 있게 데이터를 초기화*/
-      cloneItem['when'] = { time: 999, amPm: '언제' }; // 시간
+      cloneItem['when'] = {
+        amPm: '3',
+        time: 999,
+        hour: '1',
+        minute: 0,
+      }; // 시간
       cloneItem['memo'] = ''; // 메모
+      cloneItem['isSave'] = false;
       /*----------------------------------------------------------*/
+      //console.log('s>', cloneItem);
       const newPlan: any = {};
       const newEvents = [...clonePrev[pickSchedule.schedule], cloneItem];
       newPlan[pickSchedule.schedule] = newEvents;

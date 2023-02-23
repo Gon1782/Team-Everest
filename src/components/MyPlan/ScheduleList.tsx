@@ -30,11 +30,11 @@ const PlanScheduleList = ({
                 scheduleDate={scheduleDate}
               />
               {!!plan.schedule[scheduleDate]?.length &&
-                plan.schedule[scheduleDate].map((item: any, index) => {
+                plan.schedule[scheduleDate].map((event: any, index) => {
                   // 선택한 관광지들
                   return (
                     <>
-                      <Event index={index} item={item} />
+                      <Event index={index} item={event} />
                       <EventDropDown
                         index={index}
                         scheduleDate={scheduleDate}
