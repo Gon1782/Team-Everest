@@ -1,7 +1,7 @@
 import React from 'react';
 import { atom } from 'recoil';
 
-interface InfoType {
+export interface InfoType {
   areacode: string;
   engarea: string;
   korarea: string;

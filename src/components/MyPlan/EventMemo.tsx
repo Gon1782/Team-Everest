@@ -9,11 +9,18 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 
 const EventMemo = ({ memo, setMemo }: { memo: string; setMemo: any }) => {
   return (
-    <div>
-      <input
+    <div style={{ width: '100%' }}>
+      <textarea
+        style={{ width: '80%', resize: 'none', marginTop: '5px' }}
         placeholder="메모할 내용을 적으세요"
-        type="text"
-        onChange={(e) => setMemo(e.target.value)}
+        onChange={(e) =>
+          setMemo((prev: any) => {
+            return {
+              ...prev,
+              memo: e.target.value,
+            };
+          })
+        }
         value={memo}
       />
     </div>
