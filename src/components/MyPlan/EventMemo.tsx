@@ -7,32 +7,14 @@ import {
 import { useEffect } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 
-const EventMemo = () => {
-  const newPlan = useRecoilValue<PlanType>(NewPlanRecoil);
-  const { date, index, isOpen } = useRecoilValue(WhichEvent);
-
-  const [{ memo }, setMemo] = useRecoilState(MemoAndTime);
-
-  useEffect(() => {
-    if (isOpen) {
-      // 드롭다운박스 열리면 메모 셋팅하기
-      setMemo((prev) => {
-        const eventMemo = newPlan.schedule[date][index]['memo'];
-        return {
-          ...prev,
-          memo: eventMemo,
-        };
-      });
-    }
-  }, [isOpen]);
-
+const EventMemo = ({ memo, setMemo }: { memo: string; setMemo: any }) => {
   return (
     <div style={{ width: '100%' }}>
       <textarea
         style={{ width: '80%', resize: 'none', marginTop: '5px' }}
         placeholder="메모할 내용을 적으세요"
         onChange={(e) =>
-          setMemo((prev) => {
+          setMemo((prev: any) => {
             return {
               ...prev,
               memo: e.target.value,

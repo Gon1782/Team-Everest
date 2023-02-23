@@ -52,7 +52,7 @@ const MyPlan = () => {
 
   const [planName, setPlanName] = useState('');
 
-  // 이거 다시짜기
+  // 이거 다시짜기, 중간 발표후에 다시
   const connectionDB = (key: string, isShow?: boolean) => {
     if (window.confirm(`해당 일정을 ${key} 하시겠습니까?`)) {
       try {
@@ -103,29 +103,29 @@ const MyPlan = () => {
       } else {
         setLoading(true);
 
-        const newSchedule: any = {};
-        const initSchedule = dateToString(new Date());
-        newSchedule[initSchedule] = [];
+        // const newSchedule: any = {};
+        // const initSchedule = dateToString(new Date());
+        // newSchedule[initSchedule] = [];
         // 이부분 나중에 아톰 selector로 다시 짜기
-        setPlan({
-          name: '',
-          startDate: {
-            year: new Date().getFullYear(),
-            month: new Date().getMonth(),
-            date: new Date().getDate(),
-            yyyymmdd: dateToString(new Date()),
-          },
-          endDate: {
-            year: new Date().getFullYear(),
-            month: new Date().getMonth(),
-            date: new Date().getDate(),
-            yyyymmdd: dateToString(new Date()),
-          },
-          schedule: { ...newSchedule },
-          contentId: 0,
-          isDelete: false,
-          bookmarkCount: 0,
-        });
+        // setPlan({
+        //   name: '',
+        //   startDate: {
+        //     year: new Date().getFullYear(),
+        //     month: new Date().getMonth(),
+        //     date: new Date().getDate(),
+        //     yyyymmdd: dateToString(new Date()),
+        //   },
+        //   endDate: {
+        //     year: new Date().getFullYear(),
+        //     month: new Date().getMonth(),
+        //     date: new Date().getDate(),
+        //     yyyymmdd: dateToString(new Date()),
+        //   },
+        //   schedule: { ...newSchedule },
+        //   contentId: 0,
+        //   isDelete: false,
+        //   bookmarkCount: 0,
+        // });
 
         setPlanName('');
         setAuthority({
@@ -146,75 +146,87 @@ const MyPlan = () => {
 
   return (
     <>
-      <MyPlanContainer>
-        {authority.write ? ( // 일정 만들때
-          <PlanTitleSection>
-            <PlanTitleInput
-              type="text"
-              onChange={(e) => setPlanName(e.target.value)}
-              placeholder={
-                authority.write
-                  ? authority.update
-                    ? planName
-                    : '제목을 입력해주세요'
-                  : planName
-              }
-            />
-          </PlanTitleSection>
-        ) : (
-          <PlanTitleSection>
-            <PlanTitle>{planName}</PlanTitle>
-            {userId !== uid && (
-              <button onClick={() => connectionDB('북마크 저장')}>
-                일정 저장하기
-              </button>
-            )}
-          </PlanTitleSection>
-        )}
-        <PlanDateSection>
-          <StartEndDate />
-        </PlanDateSection>
-        <PlanMapSection>
-          <CalenderView setDropDownRef={setDropDownRef} />
-        </PlanMapSection>
-        <EventMap />
-        <PlanScheduleList dropDownRef={dropDownRef} />
-      </MyPlanContainer>
-      <MyPlanButtonContainer>
-        {authority.write ? (
-          <>
-            {authority.update ? (
-              <>
-                <button onClick={() => connectionDB('수정', false)}>
-                  임시저장
-                </button>
-                <button onClick={() => connectionDB('수정', true)}>발행</button>
-              </>
-            ) : (
-              <>
-                <button onClick={() => connectionDB('저장', false)}>
-                  임시저장
-                </button>
-                <button onClick={() => connectionDB('저장', true)}>발행</button>
-              </>
-            )}
-          </>
-        ) : (
-          userId === uid && (
-            <>
-              <button
-                onClick={() =>
-                  setAuthority({ write: true, view: false, update: true })
+      <div
+        style={{
+          opacity: isSidePageView ? 0.15 : 1,
+          pointerEvents: isSidePageView ? 'none' : 'auto',
+        }}
+      >
+        {/* <div style={{ backgroundColor: rgba<>(145, 143, 143, 0.4)}}> */}
+        <MyPlanContainer>
+          {authority.write ? ( // 일정 만들때
+            <PlanTitleSection>
+              <PlanTitleInput
+                type="text"
+                onChange={(e) => setPlanName(e.target.value)}
+                placeholder={
+                  authority.write
+                    ? authority.update
+                      ? planName
+                      : '제목을 입력해주세요'
+                    : planName
                 }
-              >
-                수정하기
-              </button>
-              <button onClick={() => connectionDB('삭제')}>삭제하기</button>
+              />
+            </PlanTitleSection>
+          ) : (
+            <PlanTitleSection>
+              <PlanTitle>{planName}</PlanTitle>
+              {userId !== uid && (
+                <button onClick={() => connectionDB('북마크 저장')}>
+                  일정 저장하기
+                </button>
+              )}
+            </PlanTitleSection>
+          )}
+          <PlanDateSection>
+            <StartEndDate />
+          </PlanDateSection>
+          <PlanMapSection>
+            <CalenderView setDropDownRef={setDropDownRef} />
+          </PlanMapSection>
+          <EventMap />
+          <PlanScheduleList dropDownRef={dropDownRef} />
+        </MyPlanContainer>
+        <MyPlanButtonContainer>
+          {authority.write ? (
+            <>
+              {authority.update ? (
+                <>
+                  <button onClick={() => connectionDB('수정', false)}>
+                    임시저장
+                  </button>
+                  <button onClick={() => connectionDB('수정', true)}>
+                    발행
+                  </button>
+                </>
+              ) : (
+                <>
+                  <button onClick={() => connectionDB('저장', false)}>
+                    임시저장
+                  </button>
+                  <button onClick={() => connectionDB('저장', true)}>
+                    발행
+                  </button>
+                </>
+              )}
             </>
-          )
-        )}
-      </MyPlanButtonContainer>
-      {isSidePageView && <SidePage />}
+          ) : (
+            userId === uid && (
+              <>
+                <button
+                  onClick={() =>
+                    setAuthority({ write: true, view: false, update: true })
+                  }
+                >
+                  수정하기
+                </button>
+                <button onClick={() => connectionDB('삭제')}>삭제하기</button>
+              </>
+            )
+          )}
+        </MyPlanButtonContainer>
+      </div>
+      <>{isSidePageView && <SidePage />}</>
     </>
   );
 };
@@ -237,7 +249,7 @@ const MyPlanContainer = styled.div`
 const PlanTitleSection = styled.div`
   width: 100%;
   height: 10px;
-  margin: 60px 0;
+  margin: 20px 0 50px 0;
 
   /* margin-bottom: 50px; */
 `;

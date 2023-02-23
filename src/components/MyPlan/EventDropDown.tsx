@@ -7,6 +7,7 @@ import {
   WhichEvent,
 } from '@/recoil/atom/MyPlan';
 import { Item } from 'firebase/analytics';
+import { useEffect, useState } from 'react';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import EventMemo from './EventMemo';
 import EventTime from './EventTime';
@@ -27,6 +28,9 @@ const EventDropDown = ({
   const [newPlan, setNewPlan] = useRecoilState<PlanType>(NewPlanRecoil);
   const setWhichEvent = useSetRecoilState(WhichEvent);
   const [previousEvent, setPreviousEvent] = useRecoilState<any>(PreviousEvent);
+  const [initEventWhen, setInitEventWhen] = useState<any>({});
+  const [initEventMemo, setInitEventMemo] = useState('');
+
   // 해당일정의 시간,메모 설정하고 저장 버튼 눌렀을때
   const updateEventContent = (
     date: string,
@@ -37,7 +41,7 @@ const EventDropDown = ({
       // 여기 다시
       return alert('시간을 다시 설정해주세요!');
     }
-
+    console.log(initEventWhen);
     setNewPlan((prev) => {
       // reduce,sorting,
       // filter, sorting ()
@@ -46,23 +50,34 @@ const EventDropDown = ({
       const updateEventList = eventList
         .reduce((sum: any, item: any, idx: number) => {
           if (eventIndex === idx) {
+            console.log({
+              amPm: Number(initEventWhen.amPm),
+              time: initEventWhen.hour * 60 + Number(initEventWhen.minute),
+              hour: initEventWhen.hour,
+              minute: initEventWhen.minute,
+            });
             sum.push({
               ...item,
-              memo: memoAndTime.memo,
-              when: memoAndTime.when,
+              memo: initEventMemo,
+              when: {
+                amPm: Number(initEventWhen.amPm),
+                time: initEventWhen.hour * 60 + Number(initEventWhen.minute),
+                hour: initEventWhen.hour,
+                minute: initEventWhen.minute,
+              },
+              isSave: true,
             });
           } else {
             sum.push(item);
           }
           return sum;
         }, [])
-        .sort((a: any, b: any) => a?.when?.time - b?.when?.time)
         .sort((a: any, b: any) => {
-          return a?.when?.amPm > b?.when?.amPm
+          return a?.when?.amPm > b?.when?.amPm // 오전 , 오후 , 미정 순으로
             ? 1
             : a?.when?.amPm < b?.when?.amPm
             ? -1
-            : 0;
+            : a?.when?.time - b?.when?.time;
         });
 
       const newData: any = {};
@@ -92,7 +107,9 @@ const EventDropDown = ({
   };
 
   // 시간/메모 수정 버튼 클릭시 드롭다운창 보여주기
-  const showDropDownPage = (date: string, index: number) => {
+  const showDropDownPage = (date: string, index: number): any => {
+    const event = newPlan.schedule[date][index];
+    console.log(event);
     setPreviousEvent(previousEvent.concat({ date: date, index: index }));
 
     if (previousEvent.length) {
@@ -113,12 +130,20 @@ const EventDropDown = ({
     dropDownRef.current[date][index].style.display =
       isDisplay === 'none' ? 'block' : 'none';
 
-    // 선택한 드롭박스에 정보 셋팅
-    setWhichEvent({
-      date: date,
-      index: index,
-      isOpen: isDisplay === 'none' ? true : false,
-    });
+    if (event['isSave'] === false) {
+      // 저장 여부
+      setInitEventWhen({
+        // 저장 안했으면 초기화
+        amPm: '1',
+        time: 60,
+        hour: '1',
+        minute: 0,
+      });
+    } else {
+      console.log(event);
+      setInitEventWhen(event['when']); // 저장되어있는 이벤트면 불러서 초기화
+      setInitEventMemo(event['memo']);
+    }
   };
 
   return (
@@ -143,7 +168,6 @@ const EventDropDown = ({
         style={{ display: 'none' }}
         ref={(el: any) => {
           // 각 div에 ref 할당하기 : 드롭다운페이지의 display 때문에
-
           const clone = !!dropDownRef.current[scheduleDate]
             ? [...dropDownRef?.current[scheduleDate]] // 수정 페이지로 들어온 경우
             : []; // 작성 페이지로 들어온 경우
@@ -154,8 +178,8 @@ const EventDropDown = ({
         {/* 시간/메모 설정페이지 */}
         <div>시간</div>
 
-        <EventTime />
-        <EventMemo />
+        <EventTime when={initEventWhen} setWhen={setInitEventWhen} />
+        <EventMemo memo={initEventMemo} setMemo={setInitEventMemo} />
         <TimeMemoSaveBtn
           onClick={() =>
             updateEventContent(

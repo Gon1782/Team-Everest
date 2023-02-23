@@ -20,28 +20,28 @@ export interface PickScheduleType {
 }
 
 //  일정 데이터
-export const NewPlanRecoil = atom({
-  key: 'NewPlanRecoil',
-  default: <PlanType>{
-    name: '',
-    startDate: {
-      year: new Date().getFullYear(),
-      month: new Date().getMonth(),
-      date: new Date().getDate(),
-      yyyymmdd: dateToString(new Date()),
-    },
-    endDate: {
-      year: new Date().getFullYear(),
-      month: new Date().getMonth(),
-      date: new Date().getDate(),
-      yyyymmdd: dateToString(new Date()),
-    },
-    schedule: {},
-    isDelete: false,
-    contentId: 0,
-    bookmarkCount: 0,
-  },
-});
+// export const NewPlanRecoil = atom({
+//   key: 'NewPlanRecoil',
+//   default: <PlanType>{
+//     name: '',
+//     startDate: {
+//       year: new Date().getFullYear(),
+//       month: new Date().getMonth(),
+//       date: new Date().getDate(),
+//       yyyymmdd: dateToString(new Date()),
+//     },
+//     endDate: {
+//       year: new Date().getFullYear(),
+//       month: new Date().getMonth(),
+//       date: new Date().getDate(),
+//       yyyymmdd: dateToString(new Date()),
+//     },
+//     schedule: {},
+//     isDelete: false,
+//     contentId: 0,
+//     bookmarkCount: 0,
+//   },
+// });
 
 // 관광지 데이터
 export const TourListRecoil = atom({
@@ -63,7 +63,7 @@ export const PickScheduleRecoil = atom({
 // 지정할 시간,메모 데이터
 export const MemoAndTime = atom({
   key: 'memoAndTime',
-  default: { memo: '', when: { time: 60, hour: 1, minute: 0, amPm: '오전' } },
+  default: { memo: '', when: { time: 60, hour: 1, minute: 0, amPm: 1 } },
 });
 
 // 작업할 이벤트 정보
@@ -81,7 +81,7 @@ export const PreviousEvent = atom({
 // 초기 좌표 데이터
 export const InitLocation = atom({
   key: 'InitLocation',
-  default: { x: 126.98117041998981, y: 37.545642179638556, level: 10 },
+  default: { x: 127.7, y: 36.2, level: 13 },
 });
 
 // 캘린더 열기/닫기 데이터
@@ -110,4 +110,36 @@ export const Authority = atom({
     view: true,
     update: true,
   },
+});
+
+export const NewPlanRecoil = atom({
+  key: 'NewPlanRecoil',
+  default: <any>{},
+  effects: [
+    ({ setSelf }: any) => {
+      const newSchedule: any = {};
+      const initSchedule = dateToString(new Date());
+      newSchedule[initSchedule] = [];
+
+      setSelf({
+        name: '',
+        startDate: {
+          year: new Date().getFullYear(),
+          month: new Date().getMonth(),
+          date: new Date().getDate(),
+          yyyymmdd: dateToString(new Date()),
+        },
+        endDate: {
+          year: new Date().getFullYear(),
+          month: new Date().getMonth(),
+          date: new Date().getDate(),
+          yyyymmdd: dateToString(new Date()),
+        },
+        schedule: { ...newSchedule },
+        contentId: 0,
+        isDelete: false,
+        bookmarkCount: 0,
+      });
+    },
+  ],
 });

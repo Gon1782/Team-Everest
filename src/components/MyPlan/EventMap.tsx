@@ -31,6 +31,7 @@ const EventMap = () => {
       const map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
 
       const linePath: any = [];
+      const bounds = new kakao.maps.LatLngBounds();
       myPlan?.schedule[scheduleInfo.schedule]?.map(
         (item: any, index: number) => {
           // 좌표 담아서 선 그려야함
@@ -48,8 +49,12 @@ const EventMap = () => {
               new kakao.maps.Size(35, 35),
             ),
           });
+
+          bounds.extend(new kakao.maps.LatLng(item.mapy, item.mapx));
+          map.setBounds(bounds);
         },
       );
+
       // 선 생성
       new kakao.maps.Polyline({
         map: map, // 지도에 선을 생성합니다.
