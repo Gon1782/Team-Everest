@@ -6,6 +6,7 @@ import {
 } from '@/recoil/atom/MyPlan';
 import { useEffect, useState } from 'react';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import styled from 'styled-components';
 
 const EventTime = () => {
   const newPlan = useRecoilValue<PlanType>(NewPlanRecoil);
@@ -47,7 +48,7 @@ const EventTime = () => {
 
   const hourList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
   return (
-    <div>
+    <PlanTimeMemoContainer>
       <select onChange={(event) => setAmPm(event.target.value)} value={amPm}>
         <option key="오전" value="오전">
           오전
@@ -73,9 +74,14 @@ const EventTime = () => {
         type="number"
         onChange={(event) => setMinute(event.target.value)}
         value={minute}
+        style={{ width: '30%' }}
       />
-    </div>
+    </PlanTimeMemoContainer>
   );
 };
 
 export default EventTime;
+
+const PlanTimeMemoContainer = styled.div`
+  width: 100%;
+`;

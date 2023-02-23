@@ -27,10 +27,10 @@ const EventMemo = () => {
   }, [isOpen]);
 
   return (
-    <div>
-      <input
+    <div style={{ width: '100%' }}>
+      <textarea
+        style={{ width: '80%', resize: 'none', marginTop: '5px' }}
         placeholder="메모할 내용을 적으세요"
-        type="text"
         onChange={(e) =>
           setMemo((prev) => {
             return {
