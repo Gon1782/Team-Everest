@@ -34,29 +34,27 @@ const PlanScheduleList = ({
         planSchedule.map((scheduleDate: any, index: number) => {
           return (
             <SlideBanner>
-              <SlideBanner>
-                <PlanItem key={index}>
-                  <ScheduleDate // Day1 |20xx-몇월-며칠
-                    planSchedule={planSchedule}
-                    index={index}
-                    scheduleDate={scheduleDate}
-                  />
-                  {!!plan.schedule[scheduleDate]?.length &&
-                    plan.schedule[scheduleDate].map((item: any, index) => {
-                      // 선택한 관광지들
-                      return (
-                        <>
-                          <Event index={index} item={item} />
-                          <EventDropDown
-                            index={index}
-                            scheduleDate={scheduleDate}
-                            dropDownRef={dropDownRef}
-                          />
-                        </>
-                      );
-                    })}
-                </PlanItem>
-              </SlideBanner>
+              <PlanItem key={index}>
+                <ScheduleDate // Day1 |20xx-몇월-며칠
+                  planSchedule={planSchedule}
+                  index={index}
+                  scheduleDate={scheduleDate}
+                />
+                {!!plan.schedule[scheduleDate]?.length &&
+                  plan.schedule[scheduleDate].map((event: any, index) => {
+                    // 선택한 관광지들
+                    return (
+                      <>
+                        <Event index={index} item={event} />
+                        <EventDropDown
+                          index={index}
+                          scheduleDate={scheduleDate}
+                          dropDownRef={dropDownRef}
+                        />
+                      </>
+                    );
+                  })}
+              </PlanItem>
             </SlideBanner>
           );
         })}
