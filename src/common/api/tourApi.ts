@@ -1,12 +1,12 @@
 import { DetailResponse } from '@/types/DetailType';
 import axios from 'axios';
 
-const BASE_URL = (type: string, num: number, pageNum: number) => {
+const baseURL = (type: string, num: number, pageNum: number) => {
   return `https://apis.data.go.kr/B551011/KorService/${type}?numOfRows=${num}&pageNo=${pageNum}&_type=json&MobileOS=ETC&MobileApp=Test&ServiceKey=${process.env.API_KEY}`;
 };
 
 export const getDetail = async (id?: string) => {
-  const SERVER_URL = BASE_URL('detailCommon', 1, 1);
+  const SERVER_URL = baseURL('detailCommon', 1, 1);
 
   const { data } = await axios.get<DetailResponse>(
     `${SERVER_URL}&contentId=${id}&defaultYN=Y&firstImageYN=Y&areacodeYN=Y&catcodeYN=Y&addrinfoYN=Y&mapinfoYN=Y&overviewYN=Y`,
@@ -15,7 +15,7 @@ export const getDetail = async (id?: string) => {
 };
 
 export const getDetailIntro = async (id?: string) => {
-  const SERVER_URL = BASE_URL('detailIntro', 1, 1);
+  const SERVER_URL = baseURL('detailIntro', 1, 1);
 
   const contentTypeId = id?.slice(0, 2);
 
@@ -26,13 +26,31 @@ export const getDetailIntro = async (id?: string) => {
 };
 
 export const getSimilar = async (pageNo: number, cat: string) => {
-  const SERVER_URL = BASE_URL('areaBasedList', 4, pageNo);
+  const SERVER_URL = baseURL('areaBasedList', 4, pageNo);
 
   const cat1 = cat.slice(0, 3);
   const cat2 = cat.slice(0, 5);
 
   const { data } = await axios.get<DetailResponse>(
     `${SERVER_URL}&listYN=Y&arrange=A&contentTypeId=&areaCode=&sigunguCode=&cat1=${cat1}&cat2=${cat2}&cat3=${cat}`,
+  );
+  return data;
+};
+
+export const getAmusement = async (areaCode: string, pageNo?: number) => {
+  const SERVER_URL = baseURL('areaBasedList', 5, 1);
+
+  const { data } = await axios.get<DetailResponse>(
+    `${SERVER_URL}&listYN=Y&arrange=Q&contentTypeId=&areaCode=${areaCode}&sigunguCode=&cat1=A03&cat2=&cat3=`,
+  );
+  return data;
+};
+
+export const getMichelin = async (areaCode: string, pageNo?: number) => {
+  const SERVER_URL = baseURL('areaBasedList', 5, 1);
+
+  const { data } = await axios.get<DetailResponse>(
+    `${SERVER_URL}&listYN=Y&arrange=Q&contentTypeId=&areaCode=${areaCode}&sigunguCode=&cat1=A05&cat2=&cat3=`,
   );
   return data;
 };
@@ -50,7 +68,7 @@ export const getTourList = async (
 };
 
 export const getCityTourInfo = async (areacode: string, pageNo: number) => {
-  const SERVER_URL = BASE_URL('areaBasedList', 5, pageNo);
+  const SERVER_URL = baseURL('areaBasedList', 5, pageNo);
 
   const { data } = await axios.get<DetailResponse>(
     `${SERVER_URL}&listYN=Y&arrange=A&contentTypeId=12&areaCode=${areacode}&sigunguCode=&cat1=&cat2=&cat3=`,
