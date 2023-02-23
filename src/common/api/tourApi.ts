@@ -53,7 +53,7 @@ export const getMichelin = async (areaCode: string, pageNo?: number) => {
     `${SERVER_URL}&listYN=Y&arrange=Q&contentTypeId=&areaCode=${areaCode}&sigunguCode=&cat1=A05&cat2=&cat3=`,
   );
   return data;
-}
+};
 
 export const getTourList = async (
   pickLocation: string,
@@ -62,6 +62,16 @@ export const getTourList = async (
 ) => {
   const { data } = await axios.get<DetailResponse>(
     `http://apis.data.go.kr/B551011/KorService/areaBasedList?numOfRows=12&pageNo=${pageNo}&MobileOS=ETC&MobileApp=AppTest&ServiceKey=h8KR%2BEmY3pofSJxtRE2zYr0i90MhTWIBn3LT8ffM1QHexnPGhkppmh3QtBtT76cMnYgj4n3HE76WvYb2UHbChA%3D%3D&listYN=Y&arrange=A&contentTypeId=${pickTheme}&areaCode=${pickLocation}&sigunguCode=&cat1=&cat2=&cat3=&_type=json`,
+  );
+
+  return data;
+};
+
+export const getCityTourInfo = async (areacode: string, pageNo: number) => {
+  const SERVER_URL = baseURL('areaBasedList', 5, pageNo);
+
+  const { data } = await axios.get<DetailResponse>(
+    `${SERVER_URL}&listYN=Y&arrange=A&contentTypeId=12&areaCode=${areacode}&sigunguCode=&cat1=&cat2=&cat3=`,
   );
 
   return data;
