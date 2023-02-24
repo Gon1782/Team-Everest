@@ -41,7 +41,7 @@ const EventDropDown = ({
       // 여기 다시
       return alert('시간을 다시 설정해주세요!');
     }
-    console.log(initEventWhen);
+
     setNewPlan((prev) => {
       // reduce,sorting,
       // filter, sorting ()
@@ -140,7 +140,6 @@ const EventDropDown = ({
         minute: 0,
       });
     } else {
-      console.log(event);
       setInitEventWhen(event['when']); // 저장되어있는 이벤트면 불러서 초기화
       setInitEventMemo(event['memo']);
     }
