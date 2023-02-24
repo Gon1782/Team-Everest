@@ -19,29 +19,29 @@ export interface PickScheduleType {
   day: string;
 }
 
-//  일정 데이터
-// export const NewPlanRecoil = atom({
-//   key: 'NewPlanRecoil',
-//   default: <PlanType>{
-//     name: '',
-//     startDate: {
-//       year: new Date().getFullYear(),
-//       month: new Date().getMonth(),
-//       date: new Date().getDate(),
-//       yyyymmdd: dateToString(new Date()),
-//     },
-//     endDate: {
-//       year: new Date().getFullYear(),
-//       month: new Date().getMonth(),
-//       date: new Date().getDate(),
-//       yyyymmdd: dateToString(new Date()),
-//     },
-//     schedule: {},
-//     isDelete: false,
-//     contentId: 0,
-//     bookmarkCount: 0,
-//   },
-// });
+//일정 데이터
+export const NewPlanRecoil = atom({
+  key: 'NewPlanRecoil',
+  default: <PlanType>{
+    name: '',
+    startDate: {
+      year: new Date().getFullYear(),
+      month: new Date().getMonth(),
+      date: new Date().getDate(),
+      yyyymmdd: dateToString(new Date()),
+    },
+    endDate: {
+      year: new Date().getFullYear(),
+      month: new Date().getMonth(),
+      date: new Date().getDate(),
+      yyyymmdd: dateToString(new Date()),
+    },
+    schedule: {},
+    isDelete: false,
+    contentId: 0,
+    bookmarkCount: 0,
+  },
+});
 
 // 관광지 데이터
 export const TourListRecoil = atom({
@@ -112,34 +112,34 @@ export const Authority = atom({
   },
 });
 
-export const NewPlanRecoil = atom({
-  key: 'NewPlanRecoil',
-  default: <any>{},
-  effects: [
-    ({ setSelf }: any) => {
-      const newSchedule: any = {};
-      const initSchedule = dateToString(new Date());
-      newSchedule[initSchedule] = [];
+// export const NewPlanRecoil = atom({
+//   key: 'NewPlanRecoil',
+//   default: <any>{},
+//   effects: [
+//     ({ setSelf }: any) => {
+//       const newSchedule: any = {};
+//       const initSchedule = dateToString(new Date());
+//       newSchedule[initSchedule] = [];
 
-      setSelf({
-        name: '',
-        startDate: {
-          year: new Date().getFullYear(),
-          month: new Date().getMonth(),
-          date: new Date().getDate(),
-          yyyymmdd: dateToString(new Date()),
-        },
-        endDate: {
-          year: new Date().getFullYear(),
-          month: new Date().getMonth(),
-          date: new Date().getDate(),
-          yyyymmdd: dateToString(new Date()),
-        },
-        schedule: { ...newSchedule },
-        contentId: 0,
-        isDelete: false,
-        bookmarkCount: 0,
-      });
-    },
-  ],
-});
+//       setSelf({
+//         name: '',
+//         startDate: {
+//           year: new Date().getFullYear(),
+//           month: new Date().getMonth(),
+//           date: new Date().getDate(),
+//           yyyymmdd: dateToString(new Date()),
+//         },
+//         endDate: {
+//           year: new Date().getFullYear(),
+//           month: new Date().getMonth(),
+//           date: new Date().getDate(),
+//           yyyymmdd: dateToString(new Date()),
+//         },
+//         schedule: { ...newSchedule },
+//         contentId: 0,
+//         isDelete: false,
+//         bookmarkCount: 0,
+//       });
+//     },
+//   ],
+// });

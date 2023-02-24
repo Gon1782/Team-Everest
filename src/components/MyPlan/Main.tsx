@@ -45,11 +45,10 @@ const MyPlan = () => {
 
   const [isSidePageView, setIsSidePageView] = useRecoilState(IsSidePageView);
   const [_, setIsCalenderView] = useRecoilState(IsCalenderView);
-  //const resetPlan = useResetRecoilState(NewPlanRecoil);
 
   // 이 페이지에서 생성한 플랜
   const [plan, setPlan] = useRecoilState<PlanType>(NewPlanRecoil);
-
+  //const resetPlan = useResetRecoilState(NewPlanRecoil);
   const [planName, setPlanName] = useState('');
 
   // 이거 다시짜기, 중간 발표후에 다시
@@ -103,29 +102,29 @@ const MyPlan = () => {
       } else {
         setLoading(true);
 
-        // const newSchedule: any = {};
-        // const initSchedule = dateToString(new Date());
-        // newSchedule[initSchedule] = [];
-        // 이부분 나중에 아톰 selector로 다시 짜기
-        // setPlan({
-        //   name: '',
-        //   startDate: {
-        //     year: new Date().getFullYear(),
-        //     month: new Date().getMonth(),
-        //     date: new Date().getDate(),
-        //     yyyymmdd: dateToString(new Date()),
-        //   },
-        //   endDate: {
-        //     year: new Date().getFullYear(),
-        //     month: new Date().getMonth(),
-        //     date: new Date().getDate(),
-        //     yyyymmdd: dateToString(new Date()),
-        //   },
-        //   schedule: { ...newSchedule },
-        //   contentId: 0,
-        //   isDelete: false,
-        //   bookmarkCount: 0,
-        // });
+        const newSchedule: any = {};
+        const initSchedule = dateToString(new Date());
+        newSchedule[initSchedule] = [];
+        //plan 리코일데이터 onSet 짜놓기
+        setPlan({
+          name: '',
+          startDate: {
+            year: new Date().getFullYear(),
+            month: new Date().getMonth(),
+            date: new Date().getDate(),
+            yyyymmdd: dateToString(new Date()),
+          },
+          endDate: {
+            year: new Date().getFullYear(),
+            month: new Date().getMonth(),
+            date: new Date().getDate(),
+            yyyymmdd: dateToString(new Date()),
+          },
+          schedule: { ...newSchedule },
+          contentId: 0,
+          isDelete: false,
+          bookmarkCount: 0,
+        });
 
         setPlanName('');
         setAuthority({
@@ -133,6 +132,7 @@ const MyPlan = () => {
           view: false,
           update: false,
         });
+        //resetPlan();
         setLoading(false);
       }
       setIsSidePageView(false);
