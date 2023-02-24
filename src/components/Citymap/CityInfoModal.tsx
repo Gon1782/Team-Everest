@@ -54,7 +54,7 @@ const CityInfoModal = ({ closeModalIfClickOutside, closeModal }: any) => {
             </StyleButton>
             <StyleButton
               onClick={() => {
-                navigate('/planner/:userId/:planIndex');
+                navigate('/planner/:userId/:planUniqueId');
               }}
             >
               일정 만들기

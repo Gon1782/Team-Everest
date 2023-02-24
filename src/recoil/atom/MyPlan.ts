@@ -8,7 +8,7 @@ export interface PlanType {
   startDate: {};
   endDate: {};
   schedule: { [key: string]: [] };
-  contentId: 0;
+  planUniqueId: 0;
   isDelete: false;
 
   bookmarkCount: 0;
@@ -38,7 +38,7 @@ export const NewPlanRecoil = atom({
     },
     schedule: {},
     isDelete: false,
-    contentId: 0,
+    planUniqueId: 0,
     bookmarkCount: 0,
   },
 });
@@ -102,7 +102,7 @@ export const DropDownRef = atom({
   default: <React.MutableRefObject<any>>{ current: {} },
 });
 
-// 사이드 메뉴 열기/닫기 데이터
+// 읽기/쓰기/수정 권한 부여 리코일
 export const Authority = atom({
   key: 'Authority',
   default: {

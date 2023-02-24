@@ -64,7 +64,7 @@ export const timeHandler = (when: { time: number }): any => {
 
   const floorForHour = Math.floor(when.time / 60);
   const floorForMinute = Math.floor(when.time % 60);
-  console.log(floorForHour, floorForMinute);
+
   const hour = floorForHour < 10 ? '0' + floorForHour : floorForHour;
   const minute = floorForMinute < 10 ? '0' + floorForMinute : floorForMinute;
 
@@ -131,15 +131,15 @@ export const addPlan = async (
   const allPlanner: any = await getAllPlanner();
 
   const newMyPlanner = [
+    { ...plan, name: planName, planUniqueId: planList['myPlanner'].length },
     ...planList['myPlanner'],
-    { ...plan, name: planName, contentId: planList['myPlanner'].length },
   ];
   const newAllPlanner = [
     ...allPlanner['items'],
     {
       ...plan,
       name: planName,
-      contentId: planList['myPlanner'].length,
+      planUniqueId: planList['myPlanner'].length,
       uid: uid,
       isShow: isShow,
     },
@@ -154,14 +154,14 @@ export const updatePlan = async (
   plan: any, //새 일정 데이터
   planName: string, // 바뀐 일정 제목
   uid: string, // 사용자 고유 번호
-  planIndex: string, // 수정할 일정 데이터 번호
+  planUniqueId: string, // 수정할 일정 데이터 번호
   isShow: boolean, // 공개/비공개 처리
 ) => {
   const planList: any = await getUserPlanList(uid);
   const allPlanner: any = await getAllPlanner();
   const newMyPlanner = planList['myPlanner'].reduce(
     (sum: any, item: any, index: number) => {
-      if (parseInt(planIndex) === index) {
+      if (parseInt(planUniqueId) === item['planUniqueId']) {
         sum.push({ ...plan, name: planName });
       } else {
         sum.push(item);
@@ -172,7 +172,7 @@ export const updatePlan = async (
   );
 
   const newAllPlanner = allPlanner['items'].reduce((sum: any, item: any) => {
-    if (item.contentId === parseInt(planIndex) && item.uid === uid) {
+    if (item.planUniqueId === parseInt(planUniqueId) && item.uid === uid) {
       sum.push({ ...plan, name: planName, uid: uid, isShow: isShow });
     } else {
       sum.push(item);
@@ -185,12 +185,12 @@ export const updatePlan = async (
 };
 
 // 일정 삭제
-export const popPlan = async (uid: string, planIndex: string) => {
+export const popPlan = async (uid: string, planUniqueId: string) => {
   const planList: any = await getUserPlanList(uid);
   const allPlanner: any = await getAllPlanner();
 
   const newMyPlanner = planList['myPlanner'].reduce((sum: any, item: any) => {
-    if (item.contentId === parseInt(planIndex)) {
+    if (item.planUniqueId === parseInt(planUniqueId)) {
       sum.push({ ...item, isDelete: true });
     } else {
       sum.push(item);
@@ -199,7 +199,7 @@ export const popPlan = async (uid: string, planIndex: string) => {
   }, []);
 
   const newAllPlanner = allPlanner['items'].reduce((sum: any, item: any) => {
-    if (item.contentId === parseInt(planIndex) && item.uid === uid) {
+    if (item.planUniqueId === parseInt(planUniqueId) && item.uid === uid) {
       sum.push({ ...item, isDelete: true });
     } else {
       sum.push(item);
@@ -216,7 +216,7 @@ export const saveOtherPlan = async (
   planName: string,
   uid: string,
   userId: string,
-  planIndex: string,
+  planUniqueId: string,
 ) => {
   // 사용자 일정에 추가
   await addPlan(plan, planName, uid, false);
@@ -226,7 +226,7 @@ export const saveOtherPlan = async (
   const allPlanner: any = await getAllPlanner();
   const newAllPlanner = allPlanner['items']
     .reduce((sum: any, item: any) => {
-      if (item.contentId === parseInt(planIndex) && item.uid === userId) {
+      if (item.planUniqueId === parseInt(planUniqueId) && item.uid === userId) {
         sum.push({
           ...item,
           bookmarkCount: item.bookmarkCount + 1,
