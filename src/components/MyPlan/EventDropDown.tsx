@@ -129,14 +129,14 @@ const EventDropDown = ({
     const isDisplay = dropDownRef.current[date][index].style.display;
     dropDownRef.current[date][index].style.display =
       isDisplay === 'none' ? 'block' : 'none';
-
-    if (event['isSave'] === false) {
+    if (event['isSave'] === false || event['when']['time'] === 999) {
+      // if (event['isSave'] === false || event['when']['time'] === 999) {
       // 저장 여부
       setInitEventWhen({
         // 저장 안했으면 초기화
-        amPm: '1',
+        amPm: 1,
         time: 60,
-        hour: '1',
+        hour: 1,
         minute: 0,
       });
     } else {

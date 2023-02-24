@@ -9,8 +9,8 @@ const MyPlanner = ({ user }: { user: Document }) => {
   const myPlanner = user.myPlanner?.filter((x: any) => x.isDelete === false);
   const checkMyPlanner = !!myPlanner?.length;
 
-  const moveToMyPlan = (item: any, index: number) => {
-    navigate(`/planner/${user['uid']}/${index}`);
+  const moveToMyPlan = (item: any) => {
+    navigate(`/planner/${user['uid']}/${item.planUniqueId}`);
   };
 
   const [idx, checkEnd, ViewMore] = useLoadMore(myPlanner);
@@ -27,7 +27,7 @@ const MyPlanner = ({ user }: { user: Document }) => {
               return (
                 <S.MyPlannerBox
                   key={item.name}
-                  onClick={() => moveToMyPlan(item, index)}
+                  onClick={() => moveToMyPlan(item)}
                 >
                   <span>{item?.name}</span>
                 </S.MyPlannerBox>

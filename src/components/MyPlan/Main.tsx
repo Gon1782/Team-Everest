@@ -38,8 +38,8 @@ const MyPlan = () => {
   const [authority, setAuthority] = useRecoilState(Authority);
   const resetInitLocation = useResetRecoilState(InitLocation);
 
-  const { planIndex, userId } = useParams() as {
-    planIndex: string;
+  const { planUniqueId, userId } = useParams() as {
+    planUniqueId: string;
     userId: string;
   };
 
@@ -57,13 +57,14 @@ const MyPlan = () => {
       try {
         if (key === '저장' && isShow !== undefined) {
           if (!!!planName) return alert('일정 제목을 입력해주세요');
+
           addPlan(plan, planName, uid, isShow);
         }
         if (key === '수정' && isShow !== undefined)
-          updatePlan(plan, planName, uid, planIndex, isShow);
+          updatePlan(plan, planName, uid, planUniqueId, isShow);
         if (key === '북마크 저장')
-          saveOtherPlan(plan, planName, uid, userId, planIndex);
-        if (key === '삭제') popPlan(uid, planIndex);
+          saveOtherPlan(plan, planName, uid, userId, planUniqueId);
+        if (key === '삭제') popPlan(uid, planUniqueId);
         alert('완료 했습니다.');
         navigate('/my');
       } catch (e) {
@@ -75,11 +76,16 @@ const MyPlan = () => {
   };
 
   const getPlan = async (userUid: string) => {
-    if (!!planIndex) {
+    if (!!planUniqueId) {
       setLoading(true);
       const userDB: any = await getUserDB(userUid);
-      setPlan(userDB['myPlanner'][parseInt(planIndex)]);
-      setPlanName(userDB['myPlanner'][parseInt(planIndex)]['name']);
+
+      const [plan] = userDB['myPlanner'].filter(
+        (item: any) => Number(planUniqueId) === item.planUniqueId,
+      );
+      console.log(plan);
+      setPlan(plan);
+      setPlanName(plan['name']);
 
       setMyWishList(userDB['myWishPlace']);
       setAuthority({
@@ -92,56 +98,56 @@ const MyPlan = () => {
   };
 
   useEffect(() => {
-    if (!uid) {
-      alert('로그인 후 이용해 주세요');
-      navigate('/login');
-    }
-    if (!!uid) {
-      if (planIndex !== 'write') {
-        getPlan(userId); // 해당 일정 가져오기
-      } else {
-        setLoading(true);
-
-        const newSchedule: any = {};
-        const initSchedule = dateToString(new Date());
-        newSchedule[initSchedule] = [];
-        //plan 리코일데이터 onSet 짜놓기
-        setPlan({
-          name: '',
-          startDate: {
-            year: new Date().getFullYear(),
-            month: new Date().getMonth(),
-            date: new Date().getDate(),
-            yyyymmdd: dateToString(new Date()),
-          },
-          endDate: {
-            year: new Date().getFullYear(),
-            month: new Date().getMonth(),
-            date: new Date().getDate(),
-            yyyymmdd: dateToString(new Date()),
-          },
-          schedule: { ...newSchedule },
-          contentId: 0,
-          isDelete: false,
-          bookmarkCount: 0,
-        });
-
-        setPlanName('');
-        setAuthority({
-          write: true,
-          view: false,
-          update: false,
-        });
-        //resetPlan();
-        setLoading(false);
+    console.log(userId);
+    if (planUniqueId !== 'write') {
+      getPlan(userId); // 해당 일정 가져오기
+    } else {
+      if (!uid) {
+        alert('로그인 후 이용해 주세요');
+        navigate('/login');
       }
-      setIsSidePageView(false);
-      setIsCalenderView(false);
+      setLoading(true);
+
+      const newSchedule: any = {};
+      const initSchedule = dateToString(new Date());
+      newSchedule[initSchedule] = [];
+      //plan 리코일데이터 onSet 짜놓기
+      setPlan({
+        name: '',
+        startDate: {
+          year: new Date().getFullYear(),
+          month: new Date().getMonth(),
+          date: new Date().getDate(),
+          yyyymmdd: dateToString(new Date()),
+        },
+        endDate: {
+          year: new Date().getFullYear(),
+          month: new Date().getMonth(),
+          date: new Date().getDate(),
+          yyyymmdd: dateToString(new Date()),
+        },
+        schedule: { ...newSchedule },
+        planUniqueId: 0,
+        isDelete: false,
+        bookmarkCount: 0,
+      });
+
+      setPlanName('');
+      setAuthority({
+        write: true,
+        view: false,
+        update: false,
+      });
+      //resetPlan();
+      setLoading(false);
     }
+    setIsSidePageView(false);
+    setIsCalenderView(false);
+
     return () => {
       resetInitLocation();
     };
-  }, [planIndex]);
+  }, [planUniqueId]);
   if (loading) return <>로딩즁</>;
 
   return (
@@ -171,7 +177,7 @@ const MyPlan = () => {
           ) : (
             <PlanTitleSection>
               <PlanTitle>{planName}</PlanTitle>
-              {userId !== uid && (
+              {!!uid && userId !== uid && (
                 <button onClick={() => connectionDB('북마크 저장')}>
                   일정 저장하기
                 </button>
