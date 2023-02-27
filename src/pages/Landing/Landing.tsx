@@ -16,17 +16,16 @@ const Landing = () => {
         <StartBtn to="/main">시작하기</StartBtn>
       </InfoSection>
       <VideoSection>
-        <LandingVideo
+        <ReactPlayer
           className="react-player"
           url={require('@/assets/Landing/Landing_video.mp4').default} // 플레이어 url
-          width="100%" // 플레이어 크기 (가로)
-          height="auto" // 플레이어 크기 (세로)
+          width={'auto'} // 플레이어 크기 (가로)
+          height={'100%'} // 플레이어 크기 (세로)
           playing={true} // 자동 재생 on
           muted={true} // 자동 재생 on
           controls={false} // 플레이어 컨트롤 노출 여부
           light={false} // 플레이어 모드
           pip={true} // pip 모드 설정 여부
-          covered={true} //
         />
       </VideoSection>
     </Container>
@@ -34,17 +33,16 @@ const Landing = () => {
 };
 
 export default Landing;
-
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
   background-color: #959595;
   display: flex;
+  box-sizing: border-box;
 `;
 
 const InfoSection = styled.div`
   width: 40%;
-  height: 100%;
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
@@ -81,10 +79,10 @@ const StartBtn = styled(NavLink)`
 
 const VideoSection = styled.div`
   width: 60%;
-  height: 100%;
   display: flex;
+  overflow: hidden;
 `;
 
-const LandingVideo = styled(ReactPlayer)`
-  object-fit: cover;
-`;
+// const LandingVideo = styled(ReactPlayer)`
+//   object-fit: cover;
+// `;
