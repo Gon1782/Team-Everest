@@ -33,3 +33,13 @@ export const updateReview = async (id: string, newReviewData: Document) => {
     }
   }
 };
+
+export const postCities = async (city: string, Data: Document) => {
+  try {
+    await setDoc(doc(db, 'cities', city), Data);
+  } catch (error) {
+    if (error instanceof Error) {
+      console.log(error.message);
+    }
+  }
+};
