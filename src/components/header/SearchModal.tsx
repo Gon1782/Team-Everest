@@ -1,9 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { getDocs, where, query, collection } from 'firebase/firestore';
+import { db } from '../../common/api/firebase';
 import { useNavigate } from 'react-router-dom';
 import useModal from '@/hooks/useModal';
 import styled from 'styled-components';
 import { AiOutlineClose } from 'react-icons/ai';
 import { FaSearch } from 'react-icons/fa';
+import useDebounce from '../../hooks/useDebounce';
 
 interface Props {
   closeModal: () => void;
@@ -11,6 +14,18 @@ interface Props {
     e: React.MouseEvent<HTMLDivElement, MouseEvent>,
   ) => void;
 }
+
+const CityList = ({ data }: any): any => {
+  if (!data) return;
+
+  return (
+    <>
+      {Object.keys(data).map((i) => (
+        <li key={i}>{data[i].name}</li>
+      ))}
+    </>
+  );
+};
 
 const SearchModal = ({ closeModal, closeModalIfClickOutside }: Props) => {
   // 리뷰 등록 모달
@@ -37,6 +52,57 @@ const SearchModal = ({ closeModal, closeModalIfClickOutside }: Props) => {
       closeModal();
     }
   };
+  // -----------------------------------
+  const [search, setSearch] = useState('');
+  // const [data, setData] = useState<any>({});
+  const [data, setData] = useState<any>(null);
+
+  const debounceValue = useDebounce(search);
+
+  // 도시 데이터 가져오기
+  const searchCityRequest = async () => {
+    const q = query(
+      collection(db, 'cities'),
+      where('name', '>=', search),
+      where('name', '<=', search + '\uf8ff'),
+    );
+
+    const querySnapshot = await getDocs(q);
+
+    const searchItem: any[] = [];
+    querySnapshot.docs.forEach((doc) => {
+      searchItem.push({ id: doc.id, ...doc.data() });
+    });
+
+    setData(searchItem);
+
+    return searchItem;
+  };
+
+  useEffect(() => {
+    const searchCityRequest = async () => {
+      const q = query(
+        collection(db, 'cities'),
+        where('name', '>=', search),
+        where('name', '<=', search + '\uf8ff'),
+      );
+
+      const querySnapshot = await getDocs(q);
+
+      const searchItem: any[] = [];
+      querySnapshot.docs.forEach((doc) => {
+        searchItem.push({ id: doc.id, ...doc.data() });
+      });
+
+      setData(searchItem);
+
+      return searchItem;
+    };
+    if (debounceValue) {
+      searchCityRequest();
+    }
+  }, [debounceValue]);
+
   return (
     <div>
       <SearchScreenWrapper onClick={(e) => closeModalIfClickOutside(e)}>
@@ -44,15 +110,17 @@ const SearchModal = ({ closeModal, closeModalIfClickOutside }: Props) => {
           <CloseIconWrapper onClick={() => closeModal()}>
             <CloseIcon />
           </CloseIconWrapper>
+          {/* <SearchForm onSubmit={handleSubmit}> */}
           <SearchForm onSubmit={handleSubmit}>
             <SearchInput
               type="text"
               placeholder="지역을 검색해주세요."
-              onChange={(event) => setSearcharea(event.target.value)}
-              value={searcharea}
+              onChange={(event) => setSearch(event.target.value)}
+              value={search}
             ></SearchInput>
             <SearchIcon />
           </SearchForm>
+          {search ? <CityList data={data} /> : ''}
         </SearchScreen>
       </SearchScreenWrapper>
     </div>
