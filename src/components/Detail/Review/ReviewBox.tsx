@@ -14,6 +14,7 @@ interface Props {
 }
 
 const ReviewBox = ({ item, review }: Props) => {
+  console.log(review);
   const navigate = useNavigate();
 
   // 삭제 확인 모달
