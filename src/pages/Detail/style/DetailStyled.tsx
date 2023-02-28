@@ -6,20 +6,20 @@ export const DetailContainer = styled.main`
   margin: 1rem auto 0;
 `;
 
-export const WriteReview = styled.div`
+export const DetailBtnBox = styled.div`
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: flex-end;
   width: 100%;
-  margin-bottom: 3rem;
-  border: 1px solid black;
 `;
 
 export const ReviewBtn = styled.button`
   cursor: pointer;
-  width: 10rem;
-  height: 5rem;
+  width: 11rem;
+  height: 3rem;
   border: none;
+  border-radius: 30px;
+  color: white;
+  background-color: #3f46ff;
 `;
 
 export const DetailSection = styled.section`
@@ -94,6 +94,7 @@ export const DetailOverview = styled.div`
   min-height: 200px;
   line-height: 1.5rem;
   text-align: center;
+  margin: 2rem 0;
 `;
 
 export const DetailSubTitle = styled.h1`

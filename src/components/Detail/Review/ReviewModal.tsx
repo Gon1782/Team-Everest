@@ -9,6 +9,8 @@ import { EachReview } from '@/types/DetailType';
 import ReviewStars from './ReviewStars';
 import ReviewForm from './ReviewForm';
 import * as S from './style/ReviewStyled';
+import ReviewTags from './ReviewTags';
+import { tags } from '@/common/utils/tags';
 
 interface Props {
   type: string;
@@ -43,10 +45,17 @@ const ReviewModal = ({
   const reviewContent = !!review?.content ? review.content : '';
   const reviewImg = !!review?.image ? review.image : [];
   const reviewRating = !!review?.rating ? review.rating : 0;
+  const reviewTag = !!review?.tag ? review.tag : [];
 
   const [area, sigungu] = areaSelector(areacode, sigungucode);
 
-  const chosen = modalSelector(type, reviewContent, reviewImg, reviewRating);
+  const chosen = modalSelector(
+    type,
+    reviewContent,
+    reviewImg,
+    reviewRating,
+    reviewTag,
+  );
 
   // 별점 관련
   const [rating, setRating] = useState(chosen.rating);
@@ -54,6 +63,7 @@ const ReviewModal = ({
   // 인풋
   const [content, onChangeContent, resetContent] = useInput(chosen.content);
   const [image, onChangeImage, resetImage] = useImageInputs(chosen.image);
+  const [tag, setTag] = useState<string[]>(chosen.tags);
 
   // 리셋
   const reset = () => {
@@ -69,6 +79,7 @@ const ReviewModal = ({
     rating,
     image,
     contentId,
+    tag,
     reset,
     closeModal,
   );
@@ -78,6 +89,7 @@ const ReviewModal = ({
     rating,
     content,
     image,
+    tag,
     reset,
     closeModal,
   );
@@ -85,8 +97,8 @@ const ReviewModal = ({
   return (
     <S.ModalContainer onClick={(e) => closeModalIfClickOutside(e)}>
       <S.ModalBox
-        width="790px"
-        height="800px"
+        width="1200px"
+        height="900px"
         gap="0"
         onSubmit={type === 'post' ? (e) => addReview(e) : (e) => editReview(e)}
       >
@@ -109,6 +121,7 @@ const ReviewModal = ({
           setRating={setRating}
           click={chosen.clicked}
         />
+        <ReviewTags tag={tag} setTag={setTag} />
         <S.ReviewModalTitle>리뷰를 남겨주세요</S.ReviewModalTitle>
         <ReviewForm
           content={content}

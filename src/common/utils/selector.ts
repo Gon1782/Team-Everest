@@ -1,4 +1,5 @@
 import { areaCode } from './areaCode/areaCode';
+import { tags } from './tags';
 
 // 모달창 선택자
 export const modalSelector = (
@@ -6,6 +7,7 @@ export const modalSelector = (
   reviewContent: string,
   reviewImg: string[],
   reviewRating: number,
+  reviewTag: string[]
 ) => {
   switch (true) {
     case type === 'post':
@@ -14,6 +16,7 @@ export const modalSelector = (
         image: [],
         rating: 0,
         clicked: [false, false, false, false, false],
+        tags: [],
       };
     case type === 'edit':
       return {
@@ -23,6 +26,7 @@ export const modalSelector = (
         clicked: [false, false, false, false, false].map((_, i) =>
           i < reviewRating ? true : false,
         ),
+        tags: reviewTag
       };
     default:
       return {
@@ -30,6 +34,7 @@ export const modalSelector = (
         image: [],
         rating: 0,
         clicked: [false, false, false, false, false],
+        tags: [],
       };
   }
 };

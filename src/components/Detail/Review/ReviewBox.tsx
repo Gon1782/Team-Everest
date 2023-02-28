@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { FaStar } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { getUserDB } from '@/common/api/userApi';
 import useDefault from '@/hooks/useDefault';
@@ -7,6 +8,8 @@ import { Document, EachReview, Item } from '@/types/DetailType';
 import ReviewDelete from './ReviewDelete';
 import ReviewModal from './ReviewModal';
 import * as S from './style/ReviewStyled';
+import styled from 'styled-components';
+import { Tag } from './ReviewTags';
 
 interface Props {
   item: Item;
@@ -14,7 +17,6 @@ interface Props {
 }
 
 const ReviewBox = ({ item, review }: Props) => {
-  console.log(review);
   const navigate = useNavigate();
 
   // 삭제 확인 모달
@@ -56,6 +58,10 @@ const ReviewBox = ({ item, review }: Props) => {
   const { defaultProfile } = defaults();
   const profileImg = !!user?.photoURL ? user?.photoURL : defaultProfile;
 
+  const rating = [false, false, false, false, false].map((_, i) =>
+    i < review.rating ? true : false,
+  );
+
   return (
     <S.Review>
       {deleteModal && (
@@ -76,14 +82,18 @@ const ReviewBox = ({ item, review }: Props) => {
           review={review}
         />
       )}
-      <S.Profile src={profileImg} />
+      <S.ReviewLeftBox onClick={() => navigate('/my', { state: review.uid })}>
+        <S.Profile src={profileImg} />
+        <S.ReviewNickname>{user?.displayName}</S.ReviewNickname>
+        <div>
+          {rating.map((x) =>
+            x ? <FaStar color="#0039CB" /> : <FaStar color="gray" />,
+          )}
+        </div>
+      </S.ReviewLeftBox>
       <S.ReviewContentBox>
         <S.ReviewSpace>
-          <S.ReviewNickname
-            onClick={() => navigate('/my', { state: review.uid })}
-          >
-            {user?.displayName}&nbsp;
-          </S.ReviewNickname>
+          <S.ReviewCreatedAt>{review.createdAt}</S.ReviewCreatedAt>
           <S.ReviewBtnBox
             style={{
               display: checkMine ? 'flex' : 'none',
@@ -93,17 +103,25 @@ const ReviewBox = ({ item, review }: Props) => {
             <button onClick={() => openDeleteModal()}>삭제</button>
           </S.ReviewBtnBox>
         </S.ReviewSpace>
-        <div>{'⭐'.repeat(Number(review.rating))}</div>
+        <ReviewTagsBox>
+          {review.tag.map((x, i) => (
+            <S.ReviewTag key={i}>{x}</S.ReviewTag>
+          ))}
+        </ReviewTagsBox>
         <S.ReviewContent>{review.content}</S.ReviewContent>
         <S.ReviewImageBox>
           {review.image.map((image: string, i: number) => {
             return <S.ReviewImage src={image} key={i} />;
           })}
         </S.ReviewImageBox>
-        <S.ReviewCreatedAt>{review.createdAt}</S.ReviewCreatedAt>
       </S.ReviewContentBox>
     </S.Review>
   );
 };
 
 export default ReviewBox;
+
+export const ReviewTagsBox = styled.div`
+  display: flex;
+  gap: 0.5rem;
+`;

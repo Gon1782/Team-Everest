@@ -10,6 +10,7 @@ const useEditReview = (
   rating: number,
   content: string,
   image: string[],
+  tag: string[],
   reset: () => void,
   closeModal: () => void,
 ) => {
@@ -32,7 +33,7 @@ const useEditReview = (
     const totalRating = list.totalRating - review.rating + rating;
     const newReviews = reviews.map((review) => {
       if (review.id === reviewId) {
-        return { ...review, rating, content, image };
+        return { ...review, rating, content, image, tag };
       } else {
         return review;
       }
@@ -44,7 +45,7 @@ const useEditReview = (
     };
     const newMyReviews = myReviews.map((review: EachReview) => {
       if (review.id === reviewId) {
-        return { ...review, rating, content, image };
+        return { ...review, rating, content, image, tag };
       } else {
         return review;
       }

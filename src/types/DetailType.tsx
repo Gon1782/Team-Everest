@@ -32,6 +32,7 @@ export interface EachReview {
   contentId: string;
   uid: string;
   isDelete: string;
+  tag: string[];
 }
 
 export interface Document {

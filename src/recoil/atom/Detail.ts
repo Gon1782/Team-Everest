@@ -14,10 +14,11 @@ export const DetailList = atom({
         uid: '',
         isDelete: '',
         contentId: '',
+        tag: [''],
       },
     ],
     totalRating: 0,
-    areacode: "",
-    sigungucode: "",
+    areacode: '',
+    sigungucode: '',
   },
 });
