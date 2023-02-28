@@ -1,7 +1,9 @@
 import { createGlobalStyle } from 'styled-components';
+import { Reset } from './Reset';
 
 const GlobalStyle = createGlobalStyle`
 
+${Reset}
 
 html {
   width: 100%;
