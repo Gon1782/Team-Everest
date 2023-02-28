@@ -61,16 +61,16 @@ const Header = () => {
             {/* 로고 */}
             <NavBarLink to="">Landing</NavBarLink>
           </HeaderLogo>
-          <RightSection>
+          <MenuSection onClick={() => closeModal()}>
             <NavBarLink to="/main">여행 시작하기</NavBarLink>
             <NavBarLink to="/citymap">지도로 이동하기</NavBarLink>
             <NavBarLink to="/planner/my/write">일정 만들기</NavBarLink>
             <NavBarLink to="my">마이페이지</NavBarLink>
-            <SearchIcon onClick={() => modalOpen()} />
-            <LogInButton onClick={LoginOutHandler}>
-              <LogoutText>{logoutText ? '로그인' : '로그아웃'}</LogoutText>
-            </LogInButton>
-          </RightSection>
+          </MenuSection>
+          <SearchIcon onClick={() => modalOpen()} />
+          <LogInButton onClick={LoginOutHandler}>
+            <LogoutText>{logoutText ? '로그인' : '로그아웃'}</LogoutText>
+          </LogInButton>
         </Nav>
       </HeaderContainer>
     </>
@@ -96,6 +96,7 @@ const HeaderContainer = styled.header`
 const Nav = styled.nav`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
   padding-left: 20px;
   padding-right: 20px;
@@ -106,11 +107,13 @@ const HeaderLogo = styled.div`
   line-height: 50px;
 `;
 
-const RightSection = styled.div`
+const MenuSection = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 80%;
+  padding-left: 80px;
+  padding-right: 80px;
+  width: 70%;
 `;
 
 const NavBarLink = styled(NavLink)`
@@ -118,6 +121,8 @@ const NavBarLink = styled(NavLink)`
   color: #151515;
   font-size: 1rem;
 `;
+
+// 검색 아이콘 & 로그인
 
 const SearchIcon = styled(FaSearch)``;
 
