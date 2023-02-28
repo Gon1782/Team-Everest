@@ -26,7 +26,7 @@ const CityInfoList = ({ id }: any) => {
   }
 
   const filterdData = cityItem?.response.body.items.item;
-  console.log(filterdData);
+  // console.log(filterdData);
 
   return (
     <Style.Wrap>

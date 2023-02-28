@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { getDocs, where, query, collection } from 'firebase/firestore';
 import { db } from '../../common/api/firebase';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import useModal from '@/hooks/useModal';
 import styled from 'styled-components';
 import { AiOutlineClose } from 'react-icons/ai';
@@ -17,44 +17,24 @@ interface Props {
 
 const CityList = ({ data }: any): any => {
   if (!data) return;
+  console.log(data);
 
   return (
-    <>
+    <CityItems>
       {Object.keys(data).map((i) => (
-        <li key={i}>{data[i].name}</li>
+        <CityItemLink
+          to={`citydetail/${data[i].areaCode}${data[i].sigunguCode}`}
+          key={data[i].mapx}
+        >
+          <CityItem>{data[i].name}</CityItem>
+        </CityItemLink>
       ))}
-    </>
+    </CityItems>
   );
 };
 
 const SearchModal = ({ closeModal, closeModalIfClickOutside }: Props) => {
-  // 리뷰 등록 모달
-
-  const menuRef = useRef<HTMLDivElement>(null);
-  // 검색창 키워드
-  const [searcharea, setSearcharea] = useState('');
-  const navigate = useNavigate();
-
-  // 검색창 토글 외부 영역 클릭시 창 닫기
-
-  const modalOpen = () => {};
-
-  // 검색창 키워드 입력시 검색 결과 페이지 이동
-  const handleSubmit = (event: any) => {
-    event.preventDefault();
-    if (searcharea.trim() === '') {
-      alert('내용을 입력해주세요.');
-      return;
-    } else {
-      console.log(searcharea);
-      navigate(`/searcharea?name=${searcharea}`);
-      setSearcharea('');
-      closeModal();
-    }
-  };
-  // -----------------------------------
   const [search, setSearch] = useState('');
-  // const [data, setData] = useState<any>({});
   const [data, setData] = useState<any>(null);
 
   const debounceValue = useDebounce(search);
@@ -111,7 +91,7 @@ const SearchModal = ({ closeModal, closeModalIfClickOutside }: Props) => {
             <CloseIcon />
           </CloseIconWrapper>
           {/* <SearchForm onSubmit={handleSubmit}> */}
-          <SearchForm onSubmit={handleSubmit}>
+          <SearchForm>
             <SearchInput
               type="text"
               placeholder="지역을 검색해주세요."
@@ -120,7 +100,9 @@ const SearchModal = ({ closeModal, closeModalIfClickOutside }: Props) => {
             ></SearchInput>
             <SearchIcon />
           </SearchForm>
-          {search ? <CityList data={data} /> : ''}
+          <SearchCityWrapper>
+            {search ? <CityList data={data} /> : ''}
+          </SearchCityWrapper>
         </SearchScreen>
       </SearchScreenWrapper>
     </div>
@@ -137,7 +119,7 @@ const SearchScreenWrapper = styled.div`
   right: 0;
   height: 100vh;
   background: rgba(0, 0, 0, 0.5);
-  z-index: 999;
+  z-index: 888;
 `;
 
 const SearchScreen = styled.div`
@@ -145,9 +127,9 @@ const SearchScreen = styled.div`
   height: 200px;
   background-color: #256492;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  /* z-index: 999; */
+  flex-direction: column;
   position: relative;
 `;
 
@@ -161,6 +143,8 @@ const CloseIconWrapper = styled.div`
 const SearchForm = styled.form`
   border-bottom: 1px solid white;
   padding: 5px;
+  display: fixed;
+  margin-top: 80px;
 `;
 
 const SearchInput = styled.input`
@@ -182,4 +166,33 @@ const SearchIcon = styled(FaSearch)`
 const CloseIcon = styled(AiOutlineClose)`
   font-size: 20px;
   cursor: pointer;
+`;
+
+// 자동완성 도시 태그
+
+const SearchCityWrapper = styled.div`
+  /* display: flex;
+  flex-direction: column; */
+  height: auto;
+  width: 326px;
+  /* background-color: red; */
+`;
+
+const CityItems = styled.ul`
+  /* height: 300px; */
+  width: 100%;
+`;
+
+const CityItemLink = styled(Link)`
+  text-decoration: none;
+  color: #222;
+`;
+
+const CityItem = styled.li`
+  width: 100%;
+  height: 26px;
+  line-height: 26px;
+  padding-left: 8px;
+  background-color: #f2f2f2;
+  margin-bottom: 2px;
 `;
