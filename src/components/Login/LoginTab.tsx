@@ -1,5 +1,4 @@
 import { useCallback } from 'react';
-import { useSetRecoilState } from 'recoil';
 import { FcGoogle } from 'react-icons/fc';
 import { GrFacebook, GrTwitter } from 'react-icons/gr';
 import {
@@ -9,9 +8,10 @@ import {
 } from 'firebase/auth';
 import { LoginValidation } from '@/common/utils/validations';
 import useInput from '@/hooks/useInput';
+import useModal from '@/hooks/useModal';
 import useSignIn from '@/hooks/useSignIn';
-import { LoginState } from '@/recoil/atom/Login';
 import LoginInput from './LoginInput';
+import PasswordResetModal from './PasswordResetModal';
 import * as S from './style/LoginTabStyled';
 
 const googleProvider = new GoogleAuthProvider();
@@ -19,9 +19,6 @@ const facebookProvider = new FacebookAuthProvider();
 const twitterProvider = new TwitterAuthProvider();
 
 const LoginTab = () => {
-  // 로그인 회원가입 토글
-  const setCheck = useSetRecoilState(LoginState);
-
   // 이메일 로그인
   const [email, emailChange, resetEmail] = useInput('');
   const [password, pwChange, resetPassword] = useInput('');
@@ -46,8 +43,17 @@ const LoginTab = () => {
     }
   };
 
+  // 비밀번호 찾기 모달
+  const [modal, openModal, closeModal, closeModalIfClickOutside] = useModal();
+
   return (
     <S.LoginTab onSubmit={(e) => emailLogin(e)}>
+      {modal && (
+        <PasswordResetModal
+          closeModal={closeModal}
+          closeModalIfClickOutside={closeModalIfClickOutside}
+        />
+      )}
       <S.LoginInputContainer>
         <LoginInput
           name="email"
@@ -66,9 +72,7 @@ const LoginTab = () => {
       </S.LoginInputContainer>
       <S.LoginBtnConatiner>
         <S.LoginBtn tabIndex={3}>Log in</S.LoginBtn>
-        <S.RegisterBtn onClick={() => setCheck(false)}>
-          회원가입하러가기
-        </S.RegisterBtn>
+        <S.RegisterBtn onClick={() => openModal()}>비밀번호 찾기</S.RegisterBtn>
         <S.SocialLoginBtnBox>
           <FcGoogle size={45} onClick={() => socialLogin(googleProvider)} />
           <GrFacebook

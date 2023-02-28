@@ -13,7 +13,8 @@ export const LoginContainer = styled.main`
 export const LoginBox = styled.section`
   width: 440px;
   height: 635px;
-  background-color: white;
+  border-radius: 30px;
+  background-color: #edf2ff;
 `;
 export const LoginHeader = styled.header`
   display: flex;
@@ -21,8 +22,8 @@ export const LoginHeader = styled.header`
   gap: 2rem;
 `;
 export const LoginHeaderBtn = styled.button`
-  background-color: white;
+  background-color: #edf2ff;
   border: none;
   font-size: 24px;
-  color: lightgray;
+  color: #8a9ac3;
 `;

@@ -25,7 +25,7 @@ const LoginInput = ({ name, value, check, onChange, reset }: Props) => {
           warning: '※ 이메일 형식에 맞게 입력해주세요.',
           button: (
             <S.InputBtn onClick={() => reset()}>
-              <AiOutlineClose size={22} />
+              <AiOutlineClose size={24} />
             </S.InputBtn>
           ),
         };
@@ -41,13 +41,13 @@ const LoginInput = ({ name, value, check, onChange, reset }: Props) => {
                 onClick={() => setVisible(true)}
                 style={{ display: visible ? 'none' : 'flex' }}
               >
-                <AiFillEye size={22} />
+                <AiFillEye size={24} />
               </S.InputBtn>
               <S.InputBtn
                 onClick={() => setVisible(false)}
                 style={{ display: visible ? 'flex' : 'none' }}
               >
-                <AiFillEyeInvisible size={22} />
+                <AiFillEyeInvisible size={24} />
               </S.InputBtn>
             </>
           ),
