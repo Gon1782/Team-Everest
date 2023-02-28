@@ -1,3 +1,4 @@
+import { ModalProps } from '@/types/StyledType';
 import styled from 'styled-components';
 
 export const LoginTab = styled.form`
@@ -28,6 +29,7 @@ export const LoginInput = styled.input`
   border: none;
   border-bottom: 1px solid black;
   font-size: 1rem;
+  background-color: #edf2ff;
 `;
 export const InputBtn = styled.div`
   display: flex;
@@ -42,7 +44,6 @@ export const InputBtn = styled.div`
   padding: 0;
   margin: 0.5rem;
   border: none;
-  background-color: lightgray;
   border-radius: 50%;
   font-size: 22px;
 `;
@@ -59,6 +60,9 @@ export const LoginBtn = styled.button`
   height: 50px;
   font-size: 22px;
   border: none;
+  border-radius: 30px;
+  color: white;
+  background-color: #0034b9;
 `;
 export const RegisterBtn = styled.div`
   cursor: pointer;
@@ -81,10 +85,12 @@ export const RegisterInputContainer = styled.div`
 export const LoginTitle = styled.div`
   margin-bottom: 1rem;
   font-size: 24px;
+  color: rgba(0, 0, 0, 50%);
 `;
 export const RegisterTitle = styled.div`
   margin: 0.5rem 0;
   font-size: 24px;
+  color: rgba(0, 0, 0, 50%);
 `;
 
 export const MoreInfo = styled.div`
@@ -111,4 +117,69 @@ export const PasswordCheckInput = styled.input`
   border: none;
   border-bottom: 1px solid black;
   font-size: 1rem;
+  background-color: #edf2ff;
+`;
+
+export const ModalContainer = styled.div`
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin: auto;
+  background-color: rgba(0 0 0/60%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+`;
+
+export const ModalBox = styled.div<ModalProps>`
+  display: flex;
+  flex-direction: column;
+  justify-content: ${(props) => props.jc};
+  align-items: ${(props) => props.ai};
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};
+  color: black;
+  background-color: white;
+  border-radius: 1rem;
+  gap: ${(props) => (!!props.gap ? props.gap : '1rem')};
+`;
+
+export const PasswordDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 50%;
+  height: 2rem;
+  margin-top: 3rem;
+`;
+
+export const EmailInput = styled.input`
+  padding: 0.5rem;
+  border: 1px solid black;
+  border-radius: 30px;
+`;
+
+export const PasswordCheckTitle = styled.h2`
+  font-size: 1.5rem;
+`;
+
+export const PasswordCheckBtnBox = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 1rem;
+`;
+
+export const PasswordCheckBtn = styled.div`
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 7rem;
+  height: 3rem;
+  border-radius: 30px;
+  background-color: ${(props) => props.color};
 `;
