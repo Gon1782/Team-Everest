@@ -3,6 +3,7 @@ import { updateReview } from '@/common/api/reviewApi';
 import { getUserDB, updateUserDB } from '@/common/api/userApi';
 import { DetailList } from '@/recoil/atom/Detail';
 import { EachReview } from '@/types/DetailType';
+import { getCities, updateCities } from '@/common/api/cityApi';
 
 const useDeleteReview = (id: string, closeModal: () => void) => {
   const list = useRecoilValue(DetailList);
@@ -38,6 +39,11 @@ const useDeleteReview = (id: string, closeModal: () => void) => {
     closeModal();
     await updateReview(review.contentId, newList);
     await updateUserDB(review.uid, { ...user, MyReview: newMyReviews });
+    const city = await getCities(list.areacode, list.sigungucode);
+    if (!!city)
+      await updateCities(city.engarea, {
+        reviewCount: `${Number(city.reviewCount) - 1}`,
+      });
   };
 
   return deleteReview;

@@ -4,6 +4,7 @@ import { postReview, updateReview } from '@/common/api/reviewApi';
 import { getUserDB, updateUserDB } from '@/common/api/userApi';
 import { uuidv4 } from '@firebase/util';
 import { DetailList } from '@/recoil/atom/Detail';
+import { getCities, updateCities } from '@/common/api/cityApi';
 
 const useAddReview = (
   areacode: string,
@@ -58,6 +59,12 @@ const useAddReview = (
     await updateUserDB(uid, {
       MyReview: !!user?.MyReview ? [...user?.MyReview, newReview] : [newReview],
     });
+
+    const city = await getCities(areacode, sigungucode);
+    if (!!city)
+      await updateCities(city.engarea, {
+        reviewCount: `${Number(city.reviewCount) + 1}`,
+      });
     reset();
   };
 
