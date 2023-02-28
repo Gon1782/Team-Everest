@@ -5,8 +5,8 @@ import useDefault from '@/hooks/useDefault';
 import { DetailList } from '@/recoil/atom/Detail';
 import { Item } from '@/types/DetailType';
 import DetailMap from './DetailMap';
-import * as S from '@/pages/Detail/style/DetailStyled';
 import { addWishList, popWishList } from '../MyPlan/MyPlannerHandler';
+import * as S from '@/pages/Detail/style/DetailStyled';
 interface Props {
   item?: Item;
   intro?: Item;
@@ -40,11 +40,11 @@ const DetailInfo = ({ item, intro, wishList }: Props) => {
     __html: !!item?.homepage ? item.homepage : '',
   };
 
-  const [bookMark, setBookMark] = useState(false);
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const [bookMark, setBookMark] = useState(false);
 
   const handlerWishList = () => {
     if (
@@ -52,7 +52,6 @@ const DetailInfo = ({ item, intro, wishList }: Props) => {
     ) {
       if (!bookMark) {
         // 추가()
-
         addWishList(wishList, item, uid);
       } else {
         //삭제

@@ -10,9 +10,10 @@ import * as S from './style/LandmarkStyled';
 interface Props {
   detailList: Item;
   id?: string;
+  wishList: Item[];
 }
 
-const SimilarLandmark = ({ id, detailList }: Props) => {
+const SimilarLandmark = ({ id, detailList, wishList }: Props) => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const [category, setCategory] = useState(detailList.cat3);
@@ -59,7 +60,13 @@ const SimilarLandmark = ({ id, detailList }: Props) => {
       style={{ display: !!Landmarks?.length ? 'grid' : 'none' }}
     >
       {Landmarks?.map((landmark) => {
-        return <Landmark key={landmark.contentid} landmark={landmark} />;
+        return (
+          <Landmark
+            key={landmark.contentid}
+            landmark={landmark}
+            wishList={wishList}
+          />
+        );
       })}
       <S.SeeMore onClick={() => navigate('/myPlan')}>일정 만들기</S.SeeMore>
     </S.LandmarkContainer>

@@ -23,14 +23,19 @@ export const LoadMore = styled.button`
 
 export const Review = styled.div`
   display: flex;
-  width: 90%;
-  gap: 1rem;
+  width: 80%;
+  min-height: 275px;
+  gap: 4rem;
+  padding: 1rem;
   margin: 1rem auto;
+  border: 1px solid #a1c2f3;
+  border-radius: 30px;
 `;
 
 export const Profile = styled.img`
   width: 4rem;
   height: 4rem;
+  border-radius: 50%;
 `;
 
 export const ReviewContentBox = styled.div`
@@ -48,26 +53,35 @@ export const ReviewImage = styled.img`
 export const ReviewSpace = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 100%;
+  width: 95%;
   font-size: 1rem;
   font-weight: bold;
 `;
 
 export const ReviewContent = styled.div`
-  font-size: 1.25rem;
+  width: 95%;
+  min-height: 70px;
+  font-size: 22px;
 `;
 
 export const ReviewImageBox = styled.div`
   display: flex;
+  margin: auto 0;
   gap: 1rem;
 `;
 
 export const ReviewCreatedAt = styled.span`
   color: gray;
+  font-size: 14px;
 `;
 
 export const ReviewNickname = styled.span`
   cursor: pointer;
+  font-size: 28px;
+  color: #535353;
+  &:hover {
+    color: lightgray;
+  }
 `;
 
 export const ReviewBtnBox = styled.div`
@@ -116,14 +130,14 @@ export const StarBox = styled.div`
   justify-content: center;
   gap: 0.5rem;
   & svg {
-    color: black;
+    color: #666666;
     cursor: pointer;
   }
   & svg:hover {
-    color: yellow;
+    color: #0034b9;
   }
-  .yellowStar {
-    color: yellow;
+  .blueStar {
+    color: #0034b9;
   }
 `;
 
@@ -218,14 +232,21 @@ export const ReviewName = styled.div`
   line-height: 20px;
 `;
 
+export const ReviewLeftBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  gap: 1rem;
+`;
+
 export const StarContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
   gap: 0.5rem;
-  padding: 2rem 0;
-  background-color: #f9f9ff;
+  padding: 1.5rem 0;
 `;
 
 export const ReviewModalTitle = styled.div`
@@ -233,7 +254,7 @@ export const ReviewModalTitle = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  font-size: 20px;
+  font-size: 27px;
   margin: 1rem 0 0;
 `;
 
@@ -268,9 +289,19 @@ export const StarTitle = styled.span`
   font-size: 20px;
 `;
 export const StarInfo = styled.span`
-  font-size: 1rem;
-  color: lightgray;
+  font-size: 20px;
+  color: #202020;
 `;
 export const StarRating = styled.span`
   font-size: 3rem;
+`;
+
+export const ReviewTag = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  color: white;
+  background-color: #0034b9;
+  border-radius: 30px;
 `;

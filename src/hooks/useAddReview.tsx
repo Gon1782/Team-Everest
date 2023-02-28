@@ -13,6 +13,7 @@ const useAddReview = (
   rating: number,
   image: string[],
   contentId: string,
+  tag: string[],
   reset: () => void,
   closeModal: () => void,
 ) => {
@@ -39,6 +40,7 @@ const useAddReview = (
       id: uuidv4(),
       image,
       contentId,
+      tag,
       uid,
       isDelete: 'N',
     };

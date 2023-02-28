@@ -21,19 +21,17 @@ const ReviewStars = ({ rating, setRating, click }: Props) => {
 
   return (
     <S.StarContainer>
-      <S.StarTitle>이곳의 점수를 매겨주세요.</S.StarTitle>
       <S.StarInfo>별점으로 관광지를 표현해주세요.</S.StarInfo>
-      <S.StarRating>{rating}.0</S.StarRating>
       <S.StarBox>
         {ratingArr.map((num: number, idx: number) => {
           return (
             <FaStar
               key={idx}
-              size={25}
+              size={50}
               onClick={() => handleStarClick(num)}
               onMouseEnter={() => setHovered(num)}
               onMouseLeave={() => setHovered(0)}
-              className={clicked[num] || hovered > num ? 'yellowStar' : ''}
+              className={clicked[num] || hovered > num ? 'blueStar' : ''}
             />
           );
         })}

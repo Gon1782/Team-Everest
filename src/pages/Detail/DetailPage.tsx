@@ -25,6 +25,7 @@ const DetailPage = () => {
 
   // 리뷰 등록 모달
   const [modal, openModal, closeModal, closeModalIfClickOutside] = useModal();
+
   //위시리스트 데이터
   const [wishList, setWishList] = useState([]);
 
@@ -119,13 +120,12 @@ const DetailPage = () => {
       )}
       <DetailInfo item={detailList} intro={detailIntro} wishList={wishList} />
       <S.DetailSubTitle>관광지 후기 모음</S.DetailSubTitle>
-      <S.WriteReview>
-        <span>별점과 후기를 남겨주세요</span>
-        <S.ReviewBtn onClick={() => modalOpen()}>후기작성하기</S.ReviewBtn>
-      </S.WriteReview>
       <Review item={detailList} />
+      <S.DetailBtnBox>
+        <S.ReviewBtn onClick={() => modalOpen()}>후기작성하기</S.ReviewBtn>
+      </S.DetailBtnBox>
       <S.DetailSubTitle>유사한 관광지 추천</S.DetailSubTitle>
-      <SimilarLandmark detailList={detailList} id={id} />
+      <SimilarLandmark detailList={detailList} id={id} wishList={wishList} />
     </S.DetailContainer>
   );
 };
