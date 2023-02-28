@@ -15,20 +15,29 @@ interface Props {
   ) => void;
 }
 
-const CityList = ({ data }: any): any => {
+const CityList = ({ data, closeModal }: any): any => {
   if (!data) return;
-  console.log(data);
 
   return (
     <CityItems>
-      {Object.keys(data).map((i) => (
-        <CityItemLink
-          to={`citydetail/${data[i].areaCode}${data[i].sigunguCode}`}
-          key={data[i].mapx}
-        >
-          <CityItem>{data[i].name}</CityItem>
-        </CityItemLink>
-      ))}
+      {Object.keys(data).map((i) =>
+        data[i].areaCode && data[i].sigunguCode ? (
+          <CityItemLink
+            to={`citydetail/${data[i].areaCode}${data[i].sigunguCode}`}
+            key={data[i].mapx}
+          >
+            <CityItem>{data[i].name}</CityItem>
+          </CityItemLink>
+        ) : (
+          <CityItemLink
+            to={`citydetail/${data[i].areaCode}`}
+            key={data[i].mapx}
+            onClick={() => closeModal()}
+          >
+            <CityItem>{data[i].name}</CityItem>
+          </CityItemLink>
+        ),
+      )}
     </CityItems>
   );
 };
@@ -38,6 +47,10 @@ const SearchModal = ({ closeModal, closeModalIfClickOutside }: Props) => {
   const [data, setData] = useState<any>(null);
 
   const debounceValue = useDebounce(search);
+
+  const handleSubmit = (event: any) => {
+    event.preventDefault();
+  };
 
   // 도시 데이터 가져오기
   const searchCityRequest = async () => {
@@ -90,8 +103,7 @@ const SearchModal = ({ closeModal, closeModalIfClickOutside }: Props) => {
           <CloseIconWrapper onClick={() => closeModal()}>
             <CloseIcon />
           </CloseIconWrapper>
-          {/* <SearchForm onSubmit={handleSubmit}> */}
-          <SearchForm>
+          <SearchForm onSubmit={handleSubmit}>
             <SearchInput
               type="text"
               placeholder="지역을 검색해주세요."
@@ -101,7 +113,7 @@ const SearchModal = ({ closeModal, closeModalIfClickOutside }: Props) => {
             <SearchIcon />
           </SearchForm>
           <SearchCityWrapper>
-            {search ? <CityList data={data} /> : ''}
+            {search ? <CityList data={data} closeModal={closeModal} /> : ''}
           </SearchCityWrapper>
         </SearchScreen>
       </SearchScreenWrapper>
@@ -159,8 +171,8 @@ const SearchInput = styled.input`
 `;
 
 const SearchIcon = styled(FaSearch)`
-  color: white;
-  cursor: pointer;
+  color: #d2d2d2;
+  /* cursor: pointer; */
 `;
 
 const CloseIcon = styled(AiOutlineClose)`
