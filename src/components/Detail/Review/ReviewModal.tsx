@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
-import { modalSelector } from '@/common/utils/selector';
+import { areaSelector, modalSelector } from '@/common/utils/selector';
 import useAddReview from '@/hooks/useAddReview';
 import useInput from '@/hooks/useInput';
 import useEditReview from '@/hooks/useEditReview';
 import useImageInputs from '@/hooks/useImageInputs';
-import { Document, EachReview } from '@/types/DetailType';
+import { EachReview } from '@/types/DetailType';
 import ReviewStars from './ReviewStars';
 import ReviewForm from './ReviewForm';
 import * as S from './style/ReviewStyled';
@@ -44,6 +44,8 @@ const ReviewModal = ({
   const reviewImg = !!review?.image ? review.image : [];
   const reviewRating = !!review?.rating ? review.rating : 0;
 
+  const [area, sigungu] = areaSelector(areacode, sigungucode);
+
   const chosen = modalSelector(type, reviewContent, reviewImg, reviewRating);
 
   // 별점 관련
@@ -61,8 +63,8 @@ const ReviewModal = ({
   };
 
   const addReview = useAddReview(
-    areacode,
-    sigungucode,
+    area,
+    sigungu,
     content,
     rating,
     image,

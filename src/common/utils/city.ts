@@ -283,7 +283,8 @@ export const JeonNam = [
       spec: '홍어, 고추장게장, 돌산갓김치',
       mapy: 34.6420615268858,
       mapx: 126.767213471898,
-      image: 'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FGangjin.jpg?alt=media&token=81e29e34-2b1b-44eb-afb6-52761246cbfc',
+      image:
+        'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FGangjin.jpg?alt=media&token=81e29e34-2b1b-44eb-afb6-52761246cbfc',
     },
   },
   {
@@ -301,7 +302,8 @@ export const JeonNam = [
       spec: '산낙지, 송어회, 대추방울토마토',
       mapy: 34.6110820210903,
       mapx: 127.284968746855,
-      image: 'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FGoheung.jpg?alt=media&token=26bd8a83-41e0-4aa1-9c63-b338880a7644',
+      image:
+        'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FGoheung.jpg?alt=media&token=26bd8a83-41e0-4aa1-9c63-b338880a7644',
     },
   },
   {
@@ -319,7 +321,8 @@ export const JeonNam = [
       spec: '참나무김치, 감자, 참숯',
       mapy: 35.2820258392354,
       mapx: 127.291929639637,
-      image: 'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FGoksung.jpg?alt=media&token=9f818d3d-ebdf-437b-b803-a1ed86b8ff8c',
+      image:
+        'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FGoksung.jpg?alt=media&token=9f818d3d-ebdf-437b-b803-a1ed86b8ff8c',
     },
   },
   {
@@ -337,7 +340,8 @@ export const JeonNam = [
       spec: '불고기, 딸기, 참매생이',
       mapy: 34.9404252535168,
       mapx: 127.695930772808,
-      image: 'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FGwangyang.jpg?alt=media&token=59548bb4-706e-42e9-9bad-c6a22912c850',
+      image:
+        'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FGwangyang.jpg?alt=media&token=59548bb4-706e-42e9-9bad-c6a22912c850',
     },
   },
   {
@@ -348,14 +352,15 @@ export const JeonNam = [
       reviewCount: '0',
       engarea: 'Gurye-gun',
       description:
-        "봄꽃의 향연이 펼쳐지는 전남 구례군. 지리산 자락 아래에는 샛노란 산수유꽃이 만개해 매년 봄 산수유꽃 축제가 열린다. 섬진강 변에는 벚꽃길이 조성되어 있어 드라이브하기 좋은 최적의 코스로 한국에서 가장 아름다운 길 100선에 선정되기도 했다. 구례 5일 장은 화개장터와 함께 대표적인 시골장으로서 봄이면 지리산에서 캔 각종 산나물과 들나물이 단연 인기를 끌고 있다.",
+        '봄꽃의 향연이 펼쳐지는 전남 구례군. 지리산 자락 아래에는 샛노란 산수유꽃이 만개해 매년 봄 산수유꽃 축제가 열린다. 섬진강 변에는 벚꽃길이 조성되어 있어 드라이브하기 좋은 최적의 코스로 한국에서 가장 아름다운 길 100선에 선정되기도 했다. 구례 5일 장은 화개장터와 함께 대표적인 시골장으로서 봄이면 지리산에서 캔 각종 산나물과 들나물이 단연 인기를 끌고 있다.',
       hashtag: ['#구례산수유마을', '#구례자연드림파크', '#섬진강대나무숲길'],
       tourcount: '135',
       tourdate: '3~6월',
       spec: '산수유, 유자, 향토술',
       mapy: 35.202496361707,
       mapx: 127.46270363657,
-      image: 'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FGurye.jpg?alt=media&token=217b9a16-07f7-4186-8292-3807e03132f9',
+      image:
+        'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FGurye.jpg?alt=media&token=217b9a16-07f7-4186-8292-3807e03132f9',
     },
   },
   {
@@ -366,14 +371,15 @@ export const JeonNam = [
       reviewCount: '0',
       engarea: 'Naju-si',
       description:
-        "삼국시대에 온 듯한 기분이 들게 하는 나주 영상 테마파크는 드라마, 영화 촬영지이기도 하지만 당시의 역사, 문화를 체험할 수 있는 곳이다. 성균관 다음으로 큰 조선시대 교육 시설인 나주 향교는 역사적, 건축학적 가치가 크며 해마다 여름에 서당이 개설되고 시민들의 전통 혼례식장으로도 이용된다. 푹 끓인 곰탕과 톡 쏘는 맛이 일품인 홍어는 나주를 상징하는 음식인 만큼 먹어보는 것을 추천한다.",
+        '삼국시대에 온 듯한 기분이 들게 하는 나주 영상 테마파크는 드라마, 영화 촬영지이기도 하지만 당시의 역사, 문화를 체험할 수 있는 곳이다. 성균관 다음으로 큰 조선시대 교육 시설인 나주 향교는 역사적, 건축학적 가치가 크며 해마다 여름에 서당이 개설되고 시민들의 전통 혼례식장으로도 이용된다. 푹 끓인 곰탕과 톡 쏘는 맛이 일품인 홍어는 나주를 상징하는 음식인 만큼 먹어보는 것을 추천한다.',
       hashtag: ['#국립나주박물관', '#금성관', '#나주영상테마파크'],
       tourcount: '133',
       tourdate: '9~12월',
       spec: '곰탕, 홍어, 떡갈비',
       mapy: 35.0158976865702,
       mapx: 126.71082925505,
-      image: 'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FNaju.png?alt=media&token=b75f270f-b321-4041-9ac5-c97c6b7b87ec',
+      image:
+        'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FNaju.png?alt=media&token=b75f270f-b321-4041-9ac5-c97c6b7b87ec',
     },
   },
   {
@@ -384,14 +390,15 @@ export const JeonNam = [
       reviewCount: '0',
       engarea: 'Damyang-gun',
       description:
-        "초록 내음 가득한 슬로시티 전남 담양군. 하늘을 찌를 듯한 대나무 그리고 맑은 댓잎의 향기가 가득한 죽녹원은 담양의 대표 관광 명소. 가로수들이 일렬로 서있는 메타세쿼이아 길은 이국적인 풍경을 자랑한다. 아시아 최초의 슬로시티 창평 삼지천 마을의 고즈넉한 한옥, 운치 있는 골목길 그리고 각종 슬로푸드들을 보고 있노라면 타임머신을 타고 옛날 여행을 하는 기분이 들게 만든다.",
+        '초록 내음 가득한 슬로시티 전남 담양군. 하늘을 찌를 듯한 대나무 그리고 맑은 댓잎의 향기가 가득한 죽녹원은 담양의 대표 관광 명소. 가로수들이 일렬로 서있는 메타세쿼이아 길은 이국적인 풍경을 자랑한다. 아시아 최초의 슬로시티 창평 삼지천 마을의 고즈넉한 한옥, 운치 있는 골목길 그리고 각종 슬로푸드들을 보고 있노라면 타임머신을 타고 옛날 여행을 하는 기분이 들게 만든다.',
       hashtag: ['#죽녹원', '#담양관방제림', '#메타세콰이어길'],
       tourcount: '163',
       tourdate: '6~12월',
       spec: '죽순, 산채비빔밥, 더덕',
       mapy: 35.3212107735503,
       mapx: 126.988210711052,
-      image: 'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FDamyang.jpg?alt=media&token=ef4d9eb2-5bea-4206-9187-049508d6ed5c',
+      image:
+        'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FDamyang.jpg?alt=media&token=ef4d9eb2-5bea-4206-9187-049508d6ed5c',
     },
   },
   {
@@ -402,14 +409,15 @@ export const JeonNam = [
       reviewCount: '0',
       engarea: 'Mokpo-si',
       description:
-        "아름다운 한 폭의 동양화를 연상시키는 유달산에서 다도해의 경관을 한눈에 감상할 수 있다. 때묻지 않은 자연을 간직한 사랑의 섬 외달도는 전국에서 휴양하기 좋은 섬 30위 안에 선정될 만큼 아름다운 바다와 해변이 특징이다. 목포 평화광장 앞 바다에는 음악에 맞춰 빛과 물이 어우러지는 세계 최대의 춤추는 바다분수가 있어 이색적인 볼거리를 제공하고 있다. 갯벌 속의 인삼이라 불리는 세 발 낙지는 목포의 대표적인 토산품 중 하나이며 일부 지역에서만 잡히는 지역 특산품이다.",
+        '아름다운 한 폭의 동양화를 연상시키는 유달산에서 다도해의 경관을 한눈에 감상할 수 있다. 때묻지 않은 자연을 간직한 사랑의 섬 외달도는 전국에서 휴양하기 좋은 섬 30위 안에 선정될 만큼 아름다운 바다와 해변이 특징이다. 목포 평화광장 앞 바다에는 음악에 맞춰 빛과 물이 어우러지는 세계 최대의 춤추는 바다분수가 있어 이색적인 볼거리를 제공하고 있다. 갯벌 속의 인삼이라 불리는 세 발 낙지는 목포의 대표적인 토산품 중 하나이며 일부 지역에서만 잡히는 지역 특산품이다.',
       hashtag: ['#씨엘비베이커리', '#목포해상케이블카', '#갓바위'],
       tourcount: '278',
       tourdate: '9~12월',
       spec: '어묵, 세발낙지, 장어',
       mapy: 34.8118309400519,
       mapx: 126.392235351241,
-      image: 'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FMokpo.jpg?alt=media&token=4f8a07ee-9801-468b-9f43-916a3af33e78',
+      image:
+        'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FMokpo.jpg?alt=media&token=4f8a07ee-9801-468b-9f43-916a3af33e78',
     },
   },
   {
@@ -420,14 +428,15 @@ export const JeonNam = [
       reviewCount: '0',
       engarea: 'Muan-gun',
       description:
-        "매년 7-8월 경, 꽃 중의 군자로 불리는 백련을 마음껏 감상할 수 있는 회산백련지는 동양 최대의 백련 자생지라고 불린다. 조수간만의 차가 심하여 펼쳐지는 끝없이 넓은 백사장과 보호림으로 지정된 해송 숲이 조화를 이루는 톱머리 해수욕장에서 낚시와 피서를 즐길 수 있다. 무안 지역의 갯벌은 게르마늄이 다량 함유되어 있어 이곳에서 잡힌 세 발 낙지는 별미로 꼽힌다.",
+        '매년 7-8월 경, 꽃 중의 군자로 불리는 백련을 마음껏 감상할 수 있는 회산백련지는 동양 최대의 백련 자생지라고 불린다. 조수간만의 차가 심하여 펼쳐지는 끝없이 넓은 백사장과 보호림으로 지정된 해송 숲이 조화를 이루는 톱머리 해수욕장에서 낚시와 피서를 즐길 수 있다. 무안 지역의 갯벌은 게르마늄이 다량 함유되어 있어 이곳에서 잡힌 세 발 낙지는 별미로 꼽힌다.',
       hashtag: ['#톱머리해수욕장', '#무안황토갯벌', '#홀통해수욕장'],
       tourcount: '105',
       tourdate: '6~8월',
       spec: '멸치, 세발낙지, 청송도',
       mapy: 34.7888170541041,
       mapx: 126.384450031799,
-      image: 'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FMuan.jpg?alt=media&token=98f38235-2d14-44ca-b465-b474aae2fa93',
+      image:
+        'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FMuan.jpg?alt=media&token=98f38235-2d14-44ca-b465-b474aae2fa93',
     },
   },
   {
@@ -438,14 +447,15 @@ export const JeonNam = [
       reviewCount: '0',
       engarea: 'Boseong-gun',
       description:
-        "그윽한 향이 가득한 푸르른 녹차수도 보성군. 국내에서 가장 오래된 녹차 재배지로서 보성차밭은 수려한 자연경관을 자랑하며 매년 5월 보성다향대축제가 개최된다. 고운 은빛 모래와 소나무들이 숲을 이룬 율포해수욕장 근처에 보성 녹차 잎을 우려낸 해수 녹차탕이 있어 휴식을 취할 수 있다. 벌교꼬막이라는 고유명사가 붙을 만큼 해마다 꼬막 축제가 열려 신선하고 맛있는 꼬막 요리를 맛볼 수 있다.",
+        '그윽한 향이 가득한 푸르른 녹차수도 보성군. 국내에서 가장 오래된 녹차 재배지로서 보성차밭은 수려한 자연경관을 자랑하며 매년 5월 보성다향대축제가 개최된다. 고운 은빛 모래와 소나무들이 숲을 이룬 율포해수욕장 근처에 보성 녹차 잎을 우려낸 해수 녹차탕이 있어 휴식을 취할 수 있다. 벌교꼬막이라는 고유명사가 붙을 만큼 해마다 꼬막 축제가 열려 신선하고 맛있는 꼬막 요리를 맛볼 수 있다.',
       hashtag: ['#대한다원보성녹차밭', '#비봉공룡공원', '#한국차박물관'],
       tourcount: '114',
       tourdate: '9~12월',
       spec: '녹차, 꼬막, 미나리',
       mapy: 34.7714427538727,
       mapx: 127.079946438917,
-      image: 'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FBoseong.jpg?alt=media&token=d958a92f-6d19-422f-a53c-c0d4b4d4d1de',
+      image:
+        'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FBoseong.jpg?alt=media&token=d958a92f-6d19-422f-a53c-c0d4b4d4d1de',
     },
   },
   {
@@ -456,14 +466,15 @@ export const JeonNam = [
       reviewCount: '0',
       engarea: 'Suncheon-si',
       description:
-        "살아숨쉬는 생태 수도 전남 순천시. 매년 깊어지는 가을마다 세계 5대 습지이자 철새들의 도래지인 순천만 습지의 갈대밭은 더욱 몽환적인 모습으로 무장한다. 이를 보호하고자 만든 순천만 국가 정원에서는 다양한 생태 식물들을 관찰할 수 있어 또 다른 자연의 아름다움을 느낄 수 있다. 구불구불한 리아스식 해안선을 따라 드라이브할 수 있는 와온해변은 일몰이 아름답기로 유명하며 이곳의 마을에서는 어촌체험도 가능하다. 추억을 떠올리게 하는 순천 드라마 세트장은 60-80년대의 모습을 완벽히 재현하고 있어 떠오르는 관광 명소다.",
+        '살아숨쉬는 생태 수도 전남 순천시. 매년 깊어지는 가을마다 세계 5대 습지이자 철새들의 도래지인 순천만 습지의 갈대밭은 더욱 몽환적인 모습으로 무장한다. 이를 보호하고자 만든 순천만 국가 정원에서는 다양한 생태 식물들을 관찰할 수 있어 또 다른 자연의 아름다움을 느낄 수 있다. 구불구불한 리아스식 해안선을 따라 드라이브할 수 있는 와온해변은 일몰이 아름답기로 유명하며 이곳의 마을에서는 어촌체험도 가능하다. 추억을 떠올리게 하는 순천 드라마 세트장은 60-80년대의 모습을 완벽히 재현하고 있어 떠오르는 관광 명소다.',
       hashtag: ['#순천만국가공원', '#낙안읍성', '#와온해변'],
       tourcount: '237',
       tourdate: '6~12월',
       spec: '오징어, 연어, 바지락',
       mapy: 34.9506097806669,
       mapx: 127.487382934915,
-      image: 'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FSuncheon.jpg?alt=media&token=3f98f9a2-e869-4e6a-ad0e-8b54c5602bef',
+      image:
+        'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FSuncheon.jpg?alt=media&token=3f98f9a2-e869-4e6a-ad0e-8b54c5602bef',
     },
   },
   {
@@ -474,14 +485,15 @@ export const JeonNam = [
       reviewCount: '0',
       engarea: 'Shinan-gun',
       description:
-        "살다도해의 수려한 자연경관이 펼쳐지는 전남 신안군. 해 질 녘 섬이 붉게 물든다 하여 붙여진 홍도는 이름처럼 일몰이 아름다운 섬이다. 유배지로 이름을 떨쳤던 흑산도는 일주 도로가 조성되어 있어 섬 전역을 편리하게 둘러볼 수 있다. 하트해변이 있는 비금도와 최서남단의 섬 가거도까지, 어느 하나 빼놓을 수 없는 신안군의 대표 여행지이다.",
+        '살다도해의 수려한 자연경관이 펼쳐지는 전남 신안군. 해 질 녘 섬이 붉게 물든다 하여 붙여진 홍도는 이름처럼 일몰이 아름다운 섬이다. 유배지로 이름을 떨쳤던 흑산도는 일주 도로가 조성되어 있어 섬 전역을 편리하게 둘러볼 수 있다. 하트해변이 있는 비금도와 최서남단의 섬 가거도까지, 어느 하나 빼놓을 수 없는 신안군의 대표 여행지이다.',
       hashtag: ['#천사섬', '#퍼플교', '#하트해변'],
       tourcount: '126',
       tourdate: '6~12월',
       spec: '홍합, 삼치, 매화백년초',
       mapy: 34.833553882858,
       mapx: 126.351614243402,
-      image: 'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FShinan.jpg?alt=media&token=74efa75c-4114-4817-b5e7-58096b2dedac',
+      image:
+        'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FShinan.jpg?alt=media&token=74efa75c-4114-4817-b5e7-58096b2dedac',
     },
   },
   {
@@ -492,14 +504,15 @@ export const JeonNam = [
       reviewCount: '0',
       engarea: 'Yeosu-si',
       description:
-        "국제 해양관광의 중심 전남 여수시. 3천여 그루의 동백나무로 가득 찬 붉은 섬 오동도는 웰빙 트래킹 코스를 갖추고 있어 한층 더 운치 있다. 해상 케이블카를 타면 마치 바다 위를 걷는 듯한 느낌이 들며 탁 트인 바다 전망을 감상할 수 있다. 노래 가사에도 나오는 낭만적이고 황홀한 여수의 밤바다는 돌산대교와 음악분수가 함께 어우러져 멋진 야경을 선사한다. 공식 밥도둑 게장백반과 돌산 갓김치, 갈치조림 등 풍부한 먹거리까지 갖춘 인기 만점 관광지!",
+        '국제 해양관광의 중심 전남 여수시. 3천여 그루의 동백나무로 가득 찬 붉은 섬 오동도는 웰빙 트래킹 코스를 갖추고 있어 한층 더 운치 있다. 해상 케이블카를 타면 마치 바다 위를 걷는 듯한 느낌이 들며 탁 트인 바다 전망을 감상할 수 있다. 노래 가사에도 나오는 낭만적이고 황홀한 여수의 밤바다는 돌산대교와 음악분수가 함께 어우러져 멋진 야경을 선사한다. 공식 밥도둑 게장백반과 돌산 갓김치, 갈치조림 등 풍부한 먹거리까지 갖춘 인기 만점 관광지!',
       hashtag: ['#오동도', '#여수해상케이블카', '#아쿠아플라넷'],
       tourcount: '535',
       tourdate: '1~12월',
       spec: '선지해표어, 산국, 박하사탕',
       mapy: 34.7604010648246,
       mapx: 127.662331251572,
-      image: 'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FYeosu.jpg?alt=media&token=4421ef22-778c-479c-bd22-e9024b7fa48f',
+      image:
+        'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FYeosu.jpg?alt=media&token=4421ef22-778c-479c-bd22-e9024b7fa48f',
     },
   },
   {
@@ -510,14 +523,15 @@ export const JeonNam = [
       reviewCount: '0',
       engarea: 'Yeonggwang-gun',
       description:
-        "기암괴석, 광활한 갯벌 그리고 불타는 석양이 만나 황홀한 풍경을 연출하는 백수해안도로는 환상의 드라이브 코스. 전남에서 가장 높은 바다 전망대인 칠산타워에서 칠산 앞바다의 비경과 낙조를 한눈에 감상할 수 있다. 금강산도 식후경! 법성포 굴비와 청보리 한우로 입과 배까지 즐겁게 만들어준다면 금상첨화.",
+        '기암괴석, 광활한 갯벌 그리고 불타는 석양이 만나 황홀한 풍경을 연출하는 백수해안도로는 환상의 드라이브 코스. 전남에서 가장 높은 바다 전망대인 칠산타워에서 칠산 앞바다의 비경과 낙조를 한눈에 감상할 수 있다. 금강산도 식후경! 법성포 굴비와 청보리 한우로 입과 배까지 즐겁게 만들어준다면 금상첨화.',
       hashtag: ['#가마미해수욕장', '#영광굴비거리', '#영광칠산타워'],
       tourcount: '99',
       tourdate: '6~12월',
       spec: '굴비, 한우, 참마',
       mapy: 35.2771900332592,
       mapx: 126.512013797425,
-      image: 'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FYeonggwang.jpg?alt=media&token=940aaf1c-6b93-40fb-a176-2d687f7ff523',
+      image:
+        'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FYeonggwang.jpg?alt=media&token=940aaf1c-6b93-40fb-a176-2d687f7ff523',
     },
   },
   {
@@ -528,14 +542,15 @@ export const JeonNam = [
       reviewCount: '0',
       engarea: 'Yeongam-gun',
       description:
-        "기(氣)의 고장 전남 영암군. 영암의 자존심이자 기둥인 월출산에서의 산행을 통해 자연의 활기를 느낄 수 있다. 빙설 옥수가 흐르는 월출산 용추골에 자리한 기찬랜드는 계곡을 흐르는 자연수를 활용하여 새롭게 조성된 대표 관광명소다. 월출산의 기(氣)를 느끼고 싶다면 친자연 웰빙 산책로인 기찬묏길을 따라 걸으며 심신을 단련해보는 것도 좋다.",
+        '기(氣)의 고장 전남 영암군. 영암의 자존심이자 기둥인 월출산에서의 산행을 통해 자연의 활기를 느낄 수 있다. 빙설 옥수가 흐르는 월출산 용추골에 자리한 기찬랜드는 계곡을 흐르는 자연수를 활용하여 새롭게 조성된 대표 관광명소다. 월출산의 기(氣)를 느끼고 싶다면 친자연 웰빙 산책로인 기찬묏길을 따라 걸으며 심신을 단련해보는 것도 좋다.',
       hashtag: ['#왕인박사유적지', '#월출산', '#영암곤충박물관'],
       tourcount: '77',
       tourdate: '6~10월',
       spec: '떡, 산삼, 호떡',
       mapy: 34.8000591144732,
       mapx: 126.696762590551,
-      image: 'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FYeongam.jpg?alt=media&token=0f2d4441-16a2-4c5f-b9db-2604325e9472',
+      image:
+        'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FYeongam.jpg?alt=media&token=0f2d4441-16a2-4c5f-b9db-2604325e9472',
     },
   },
   {
@@ -553,7 +568,8 @@ export const JeonNam = [
       spec: '김, 곶감, 오디',
       mapy: 34.3109789170971,
       mapx: 126.754998729552,
-      image: 'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FWando.jpg?alt=media&token=f01c98d3-5c29-4174-85eb-56b6c9e859e1',
+      image:
+        'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FWando.jpg?alt=media&token=f01c98d3-5c29-4174-85eb-56b6c9e859e1',
     },
   },
   {
@@ -564,14 +580,15 @@ export const JeonNam = [
       reviewCount: '0',
       engarea: 'Jangseong-gun',
       description:
-        "학문과 선비의 고장 전남 장성군. 매년 봄, 소설 속 주인공으로 알려진 민중의 영웅 홍길동을 테마로 하는 축제가 황룡강변의 유채꽃을 배경으로 열린다. 울긋불긋 오색단풍으로 유명한 백양사는 천연기념물 매화 중 하나이자 국내에 4그루뿐인 고불매가 만개하는 곳이기도 하다. 치유의 숲이라 불리는 축령산 편백나무숲은 산림욕을 통해 잠시 일상에서의 스트레스를 내려놓을 수 있다.",
+        '학문과 선비의 고장 전남 장성군. 매년 봄, 소설 속 주인공으로 알려진 민중의 영웅 홍길동을 테마로 하는 축제가 황룡강변의 유채꽃을 배경으로 열린다. 울긋불긋 오색단풍으로 유명한 백양사는 천연기념물 매화 중 하나이자 국내에 4그루뿐인 고불매가 만개하는 곳이기도 하다. 치유의 숲이라 불리는 축령산 편백나무숲은 산림욕을 통해 잠시 일상에서의 스트레스를 내려놓을 수 있다.',
       hashtag: ['#백양사', '#축령산', '#장성댐'],
       tourcount: '78',
       tourdate: '3~6월',
       spec: '참외, 사과, 청포도',
       mapy: 35.3018576771354,
       mapx: 126.784918877012,
-      image: 'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FJangseong.jpg?alt=media&token=29512fd8-b26b-4a4b-ba36-b49ee768f51c',
+      image:
+        'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FJangseong.jpg?alt=media&token=29512fd8-b26b-4a4b-ba36-b49ee768f51c',
     },
   },
   {
@@ -582,14 +599,15 @@ export const JeonNam = [
       reviewCount: '0',
       engarea: 'Jangheung-gun',
       description:
-        "자연과 더불어 숨 쉬는 건강 휴양촌 장흥군. 전국 최초의 주말 관광 시장인 정남진 장흥 토요시장에서 한우, 키조개, 표고버섯을 삼합으로 즐길 수 있다. 호남 5대 명산 중 하나인 천관산의 아름다운 억새밭 장관은 마치 한 폭의 그림 같다. 약 3만여 평의 유채꽃과 메밀밭이 조성된 선학동에서는 봄에는 유채향, 가을에는 메밀향이 코 끝을 간지럽힌다. 편백 나무의 피톤치드향과 천연 소금을 이용한 피부질환 치유공간이 있는 편백숲 우드랜드는 떠오르는 명소.",
+        '자연과 더불어 숨 쉬는 건강 휴양촌 장흥군. 전국 최초의 주말 관광 시장인 정남진 장흥 토요시장에서 한우, 키조개, 표고버섯을 삼합으로 즐길 수 있다. 호남 5대 명산 중 하나인 천관산의 아름다운 억새밭 장관은 마치 한 폭의 그림 같다. 약 3만여 평의 유채꽃과 메밀밭이 조성된 선학동에서는 봄에는 유채향, 가을에는 메밀향이 코 끝을 간지럽힌다. 편백 나무의 피톤치드향과 천연 소금을 이용한 피부질환 치유공간이 있는 편백숲 우드랜드는 떠오르는 명소.',
       hashtag: ['#편백나무숲', '#전망대', '#천관산'],
       tourcount: '102',
       tourdate: '3~10월',
       spec: '한우, 키조개, 표고버섯',
       mapy: 34.6816120675641,
       mapx: 126.907058431105,
-      image: 'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FJangheung.jpg?alt=media&token=43ed9e24-5c28-4ff8-810c-c6eae46ef06a',
+      image:
+        'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FJangheung.jpg?alt=media&token=43ed9e24-5c28-4ff8-810c-c6eae46ef06a',
     },
   },
   {
@@ -600,14 +618,15 @@ export const JeonNam = [
       reviewCount: '0',
       engarea: 'Jindo-gun',
       description:
-        "우리나라에서 세 번째로 큰 섬 진도. 진도군 여행의 일번지는 바로 운림산방이다. 풍류를 엿볼 수 있는 곳으로 단풍이 물드는 가을이면 더욱 운치를 더한다. 진도에 가서 놓쳐선 안되는 것이 바로 낙조인데, 세방 낙조 전망대와 진도대교 전망대가 일몰 포인트 지점이다. 매년 4월에 열리는 진도 신비의 바닷길 축제에서 한국판 모세의 기적을 직접 눈으로 확인해보는 것을 추천한다.",
+        '우리나라에서 세 번째로 큰 섬 진도. 진도군 여행의 일번지는 바로 운림산방이다. 풍류를 엿볼 수 있는 곳으로 단풍이 물드는 가을이면 더욱 운치를 더한다. 진도에 가서 놓쳐선 안되는 것이 바로 낙조인데, 세방 낙조 전망대와 진도대교 전망대가 일몰 포인트 지점이다. 매년 4월에 열리는 진도 신비의 바닷길 축제에서 한국판 모세의 기적을 직접 눈으로 확인해보는 것을 추천한다.',
       hashtag: ['#운림산방', '#진도항', '#진도신비의바닷길'],
       tourcount: '110',
       tourdate: '3~10월',
       spec: '선문어, 트러플, 굴',
       mapy: 34.486828620348,
       mapx: 126.263446186439,
-      image: 'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FJindo.jpg?alt=media&token=0bcb802c-7112-4da3-a7e5-dd617b24f87f',
+      image:
+        'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FJindo.jpg?alt=media&token=0bcb802c-7112-4da3-a7e5-dd617b24f87f',
     },
   },
   {
@@ -625,7 +644,8 @@ export const JeonNam = [
       spec: '당근, 더덕, 고추',
       mapy: 35.0659111691242,
       mapx: 126.516624840635,
-      image: 'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FHampyeong.jpg?alt=media&token=6fc821fa-a6ce-4871-9836-4f45571afb5f',
+      image:
+        'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FHampyeong.jpg?alt=media&token=6fc821fa-a6ce-4871-9836-4f45571afb5f',
     },
   },
   {
@@ -636,14 +656,15 @@ export const JeonNam = [
       reviewCount: '0',
       engarea: 'Haenam-gun',
       description:
-        "우리나라의 최남단이자 전남 최대 군인 해남군. 국토순례길의 시작과 끝을 모두 품은 땅끝마을에서의 백미는 전망대에 올라 일출을 보는 것이다. 남해안 쪽빛 바다의 아름다움을 더욱 생생하게 느끼고 싶다면 모노레일 카에 탑승하면 된다. 단 13척의 배로 왜군을 물리친 충무공 이순신 장군의 발자취를 울돌목 명량대첩축제에서 만날 수 있으며 거북선 또한 체험 가능하다.",
+        '우리나라의 최남단이자 전남 최대 군인 해남군. 국토순례길의 시작과 끝을 모두 품은 땅끝마을에서의 백미는 전망대에 올라 일출을 보는 것이다. 남해안 쪽빛 바다의 아름다움을 더욱 생생하게 느끼고 싶다면 모노레일 카에 탑승하면 된다. 단 13척의 배로 왜군을 물리친 충무공 이순신 장군의 발자취를 울돌목 명량대첩축제에서 만날 수 있으며 거북선 또한 체험 가능하다.',
       hashtag: ['#대흥사', '#해남공룡박물관', '#땅끝전망대'],
       tourcount: '134',
       tourdate: '6~12월',
       spec: '선초고추, 대나무새우, 참외',
       mapy: 34.5735165884839,
       mapx: 126.599270065365,
-      image: 'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FHaenam.jpg?alt=media&token=97727906-e6a4-4e9c-9e93-d921e916e4e9',
+      image:
+        'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FHaenam.jpg?alt=media&token=97727906-e6a4-4e9c-9e93-d921e916e4e9',
     },
   },
   {
@@ -654,14 +675,161 @@ export const JeonNam = [
       reviewCount: '0',
       engarea: 'Hwasun-gun',
       description:
-        "방랑 시인 김삿갓, 다산 정약용 등 시인 묵객들의 발길이 끊이지 않았던 화순 적벽은 천혜의 장관을 연출하며 매년 10월 말 경에 적벽 문화제가 열린다. 유네스코 세계문화유산에 등재되어 가치를 인정받고 있는 고인돌 유적지는 지역민의 자긍심을 고취시키고 있다. 한국의 알프스라 불리는 만연산 철쭉공원은 봄이 되면 분홍색 철쭉 옷을 입어 눈을 뗄 수 없게 만든다.",
+        '방랑 시인 김삿갓, 다산 정약용 등 시인 묵객들의 발길이 끊이지 않았던 화순 적벽은 천혜의 장관을 연출하며 매년 10월 말 경에 적벽 문화제가 열린다. 유네스코 세계문화유산에 등재되어 가치를 인정받고 있는 고인돌 유적지는 지역민의 자긍심을 고취시키고 있다. 한국의 알프스라 불리는 만연산 철쭉공원은 봄이 되면 분홍색 철쭉 옷을 입어 눈을 뗄 수 없게 만든다.',
       hashtag: ['#세량제', '#무등산양떼목장', '#백아산썰매장'],
       tourcount: '117',
       tourdate: '9~12월',
       spec: '산수유, 청어, 사과',
       mapy: 35.0645119791204,
       mapx: 126.986502436773,
-      image: 'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FHwasoon.jfif?alt=media&token=12a50bce-0b9f-445c-9441-88d0d3b7a0de',
+      image:
+        'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FHwasoon.jfif?alt=media&token=12a50bce-0b9f-445c-9441-88d0d3b7a0de',
+    },
+  },
+];
+
+export const GwangYeokSi = [
+  {
+    Seoul: {
+      name: '서울특별시',
+      areacode: '1',
+      reviewCount: '0',
+      engarea: 'Seoul',
+      description:
+        '서울은 대한민국의 수도로서 정치, 경제, 사회, 문화의 중심지이다. 서울의 면적은 605㎢로서 도쿄의 23개 특별구와 비슷하며, 싱가포르와 뉴욕시보다 다소 작은 크기이다. 서울은 외사산과 내사산에 둘러싸인 분지의 지형이다. 그리고 수계로서 청계천, 중랑천, 홍제천, 안양천, 탄천 등의 지천이 한강으로 흘러가고 있다.이렇게 서울은 동서 간 37㎞, 남북 간 30㎞로, 산악지형의 분지에 입지하고 있고 주변이 1971년부터 개발제한구역으로 지정되어 이를 제외한 시가화면적은 도쿄나 뉴욕에 비해 상당히 작다. 그러나 인구는 1990년에 1,061만 명을 넘어 1992년 1,097만 명으로 피크를 보이다가 2010년에 979만 명으로 완만한 감소 추이를 보이고 있다. 이는 최근 급격한 인구 증가를 보이고 있는 베이징보다 적으나, 도쿄 23개 구부나 뉴 욕, 런던보다는 많은 편이다.',
+      hashtag: ['#창덕궁', '#롯데월드', '#동대문시장'],
+      tourcount: '7838',
+      tourdate: '1~12월',
+      spec: '수라배,허브',
+      mapy: 37.5661493343976,
+      mapx: 127.015755985001,
+    },
+  },
+  {
+    Incheon: {
+      name: '인천광역시',
+      areacode: '2',
+      reviewCount: '0',
+      engarea: 'Incheon',
+      description:
+        '인천은 대한민국 북서부에 있는 광역시이다. 서쪽으로 황해, 동쪽으로 서울특별시 강서구, 경기도 부천시, 남동쪽으로 시흥시, 북쪽으로 김포시와 접한다.인천항과 인천국제공항을 중심으로 제조업과 물류와 산업이 발달하였다. 시청 소재지는 남동구 구월동이고, 행정 구역은 8구 2군이다. 2003년 인천광역시경제자유구역청이 개청되어 송도 · 청라 · 영종 지구를 관할한다',
+      hashtag: ['#을왕리', '#차이나타운', '#월미도'],
+      tourcount: '2004',
+      tourdate: '6~9월',
+      spec: '쌀,잣,한우',
+      mapy: 37.4630042168901,
+      mapx: 126.739298900951,
+    },
+  },
+  {
+    Daejeon: {
+      name: '대전광역시',
+      areacode: '3',
+      reviewCount: '0',
+      engarea: 'Daejeon',
+      description:
+        '대전은 대한민국의 중앙부에 위치하므로 중도 라고도 부른다. 수도권과 영남·호남을 잇는 삼남의 관문이며, 고속도로와 철도, 국도가 분기하는 교통의 요지이다. 시청을 기준으로 직선거리는 서울까지 139km, 부산까지 200km, 대구까지 121km, 광주까지 140km이다.',
+      hashtag: ['#성심당', '#장태산', '#대청호'],
+      tourcount: '776',
+      tourdate: '3~8월',
+      spec: '버섯,포도,배,오이',
+      mapy: 36.343298432692,
+      mapx: 127.383284268094,
+    },
+  },
+  {
+    Daegu: {
+      name: '대구광역시',
+      areacode: '4',
+      reviewCount: '0',
+      engarea: 'Daegu',
+      description:
+        '대구는 대한민국의 동남부 내륙에 있는 광역시이다. 동쪽으로 경상북도 경산시, 영천시, 서쪽으로 고령군, 성주군, 칠곡군, 북쪽으로 청송군, 군위군 남쪽으로 경상남도 창녕군과 인접한다. 팔공산과 비슬산 등 높은 산으로 둘러싸인 분지 지형으로 인해 대한민국에서 가장 기온이 높은 편에 속하는 도시이다.',
+      hashtag: ['#다시그리기길', '#팔공산', '#동성로스파크'],
+      tourcount: '1174',
+      tourdate: '9~10월',
+      spec: '미나리,취나물,연근',
+      mapy: 35.8770755096707,
+      mapx: 128.638937348633,
+    },
+  },
+  {
+    Gwangju: {
+      name: '광주광역시',
+      areacode: '5',
+      reviewCount: '0',
+      engarea: 'Gwangju',
+      description:
+        '광주는 대한민국의 남서부에 있는 광역시이다. 남동쪽으로 전라남도 화순군, 북동쪽으로 전라남도 담양군, 서쪽으로 전라남도 함평군, 서남쪽으로 전라남도 나주시, 북쪽으로 전라남도 장성군과 접한다. 시청 소재지는 서구 치평동이고, 행정 구역은 5구 95동이다. 광주 학생 항일 운동과 5·18 광주 민주화 운동이 발생한 지역이다',
+      hashtag: ['#무등산 국립공원', '#호수생태원', '#펭귄마을'],
+      tourcount: '566',
+      tourdate: '5월~9월',
+      spec: '토마토,새싹채소',
+      mapy: 35.1567803088748,
+      mapx: 126.889456830903,
+    },
+  },
+  {
+    Busan: {
+      name: '부산광역시',
+      areacode: '6',
+      reviewCount: '0',
+      engarea: 'Busan',
+      description:
+        '부산은 대한민국 동남부에 위치한 광역시이다. 대한민국의 제2의 도시이자 최대의 해양(항구) 도시이며, 부산항을 중심으로 해상 무역과 물류 산업이 발달하였다. 일본과는 대한해협과 대마도를 사이에 두고 마주하고 있다.',
+      hashtag: ['#해운대', '#국밥거리', '#남포동'],
+      tourcount: '2191',
+      tourdate: '2~6월',
+      spec: '어묵,다시마,미역',
+      mapy: 35.1807118497826,
+      mapx: 129.101127779282,
+    },
+  },
+  {
+    Ulsan: {
+      name: '울산광역시',
+      areacode: '7',
+      reviewCount: '0',
+      engarea: 'Ulsan',
+      description:
+        '울산은 대한민국 남동부에 있는 광역시이다.서쪽으로 밀양시, 양산시, 청도군, 북쪽으로 경주시, 남쪽으로 부산광역시 기장군과 접한다.태화강이 울산광역시를 통과하여 동해로 흐르며, 동해안에 울산항과 방어진항, 온산항이 위치한다.현대중공업, 현대미포조선 등의 대기업 본사들과 현대자동차, 현대모비스, 한화솔루션, SK이노베이션, S-OIL, LG화학, LS니꼬동제련 롯데케미칼 등의 대기업들이 있고, 한국석유공사, 에너지관리공단, 에너지경제연구원, 한국동서발전, 한국산업인력공단, 근로복지공단, 안전보건공단, 온산공업단지(온산공단) 등 공기업이 있으며, 자동차·조선 및 석유화학 공업이 발달해 있다.2014년 기준 1인당 GRDP 6,110만원으로 전국에서 가장 높다.울산은 대한민국 총 수출의 17.7%를 차지한다.산업 발달의 영향으로 인구가 급증하여 1997년 7월 15일 광역시로 승격되었다.특별·광역시 중 관할 면적이 가장 넓지만 인구는 가장 적어서 인구밀도가 가장 낮다.',
+      hashtag: ['#울산대공원', '#일산해수욕장', '#울산대교전망대'],
+      tourcount: '642',
+      tourdate: '3월~10월',
+      spec: '미나리,배,돌미역,멸치액젓',
+      mapy: 35.5387010197949,
+      mapx: 129.345498927795,
+    },
+  },
+  {
+    Sejong: {
+      name: '세종특별자치시',
+      areacode: '8',
+      reviewCount: '0',
+      engarea: 'Sejong',
+      description:
+        '세종특별자치시는 대한민국의 행정 수도 기능을 하는 특별자치시이다.국토 균형발전의 가치를 실현하고 서울의 과밀화를 해결하기 위해서 어진동 일대에 행정중심복합도시가 조성되어 정부서울청사, 정부과천청사에 분산되어 있던 10부 3처 3청의 정부기관이 정부세종청사로 이전되었다. 시의 이름은 국민 공모를 통해 선정되었으며, 조선 세종의 묘호를 따서 세상의 으뜸이라는 의미를 담고 있다.',
+      hashtag: ['#합강공원오토캠핑장', '#신광사', '#고복저수지'],
+      tourcount: '196',
+      tourdate: '1~12월',
+      spec: '복숭아',
+      mapy: 36.4655606366068,
+      mapx: 127.294039299336,
+    },
+  },
+  {
+    Jeju: {
+      name: '제주특별자치도',
+      areacode: '39',
+      engarea: 'Jeju',
+      description:
+        '제주도는 대한민국의 남서쪽에 있는 섬. 행정구역 상 광역자치단체인 제주특별자치도의 관할. 한국의 섬 중에서 가장 크고 인구가 많은 섬[5]으로 면적은 1,833.2㎢이다. 이는 대한민국 본토에서 가장 큰 기초자치단체인 홍천군(1,820.14㎢)보다 약간 크며, 제주도 다음 2번째 큰 섬인 거제도(379.5㎢)의 5배 정도 된다. 인구는 약 70만 명, 세계 섬 크기 218위이다.',
+      hashtag: ['#한라산', '#성산일출봉', '#국립제주박물관'],
+      tourcount: '2356',
+      tourdate: '4월~6월',
+      spec: '한라봉,옥돔,은갈치,고등어',
+      mapy: 33.4029981024613,
+      mapx: 126.558179265688,
     },
   },
 ];

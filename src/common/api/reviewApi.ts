@@ -1,5 +1,10 @@
 import { Document } from '@/types/DetailType';
-import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
+import {
+  doc,
+  getDoc,
+  setDoc,
+  updateDoc,
+} from 'firebase/firestore';
 import { db } from './firebase';
 
 export const getReview = async (id: string) => {
@@ -27,16 +32,6 @@ export const postReview = async (id: string, newReviewData: Document) => {
 export const updateReview = async (id: string, newReviewData: Document) => {
   try {
     await updateDoc(doc(db, 'reviews', id), newReviewData);
-  } catch (error) {
-    if (error instanceof Error) {
-      console.log(error.message);
-    }
-  }
-};
-
-export const postCities = async (city: string, Data: Document) => {
-  try {
-    await setDoc(doc(db, 'cities', city), Data);
   } catch (error) {
     if (error instanceof Error) {
       console.log(error.message);

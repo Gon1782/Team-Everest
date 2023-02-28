@@ -5,11 +5,11 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import BestTravelPlan from '@/components/main/bestTravelPlan/BestTravelPlan';
 import TopCityBanner from '@/components/main/topCityBanner/TopCityBanner';
-import { JeonNam } from '@/common/utils/city';
-import { postCities } from '@/common/api/reviewApi';
+import { GwangYeokSi } from '@/common/utils/city';
+import { postCities } from '@/common/api/cityApi';
 
 const MainPage = () => {
-  const a = JeonNam.map((x) => {
+  const a = GwangYeokSi.map((x) => {
     const key = Object.keys(x)[0];
     const value = Object.values(x)[0];
     return { key, value };
@@ -28,7 +28,7 @@ const MainPage = () => {
         <EventSlideBanner />
       </TopBanner>
       {/* 인기도시 */}
-      <button onClick={() => uploadCities()}>업로드도시</button>
+      {/* <button onClick={() => uploadCities()}>업로드도시</button> */}
       <TopCityBanner />
       {/* 테마 명소 */}
       <ThemeSlideBanner />
