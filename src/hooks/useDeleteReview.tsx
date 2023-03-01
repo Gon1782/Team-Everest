@@ -10,7 +10,13 @@ const useDeleteReview = (id: string, closeModal: () => void) => {
   const reviews = list.review;
   const review = reviews.filter((review) => review.id === id)[0];
 
+  const sessionKey = `firebase:authUser:${process.env.FIREBASE_API_KEY}:[DEFAULT]`;
+  const userItem = sessionStorage.getItem(sessionKey);
+  const uid = !!userItem ? JSON.parse(userItem).uid : '';
+
   const deleteReview = async () => {
+    if (uid !== review.uid)
+      return alert('다른 사람의 게시글을 삭제할 수 없습니다.');
     const user = await getUserDB(review.uid);
     const myReviews = user?.MyReview;
 

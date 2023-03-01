@@ -26,9 +26,9 @@ const Review = ({ item }: Props) => {
             return <ReviewBox item={item} review={review} key={review.id} />;
         })}
       </S.ReviewContainer>
-      <S.LoadMoreBox style={{ visibility: checkEnd ? 'hidden' : 'visible' }}>
+      {/* <S.LoadMoreBox style={{ visibility: checkEnd ? 'hidden' : 'visible' }}>
         <S.LoadMore onClick={() => loadMore()}>더보기</S.LoadMore>
-      </S.LoadMoreBox>
+      </S.LoadMoreBox> */}
     </S.ReviewSection>
   );
 };

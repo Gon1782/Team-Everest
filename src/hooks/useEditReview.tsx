@@ -20,9 +20,15 @@ const useEditReview = (
     ? reviews.filter((review) => review.id === reviewId)[0]
     : reviewForm;
 
+  const sessionKey = `firebase:authUser:${process.env.FIREBASE_API_KEY}:[DEFAULT]`;
+  const userItem = sessionStorage.getItem(sessionKey);
+  const uid = !!userItem ? JSON.parse(userItem).uid : '';
+
   const editReview = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    if (uid !== review.uid)
+      return alert('다른 사람의 게시글을 수정할 수 없습니다.');
     if (!content) return alert('리뷰 내용을 입력해주세요.');
     if (!rating) return alert('별점을 등록해 주세요.');
     if (content.length > 500) return alert('500자 미만으로 작성해주세요');
