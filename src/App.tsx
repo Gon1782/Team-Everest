@@ -5,6 +5,7 @@ import GlobalStyle from './styles/GlobalStyle';
 import { Suspense } from 'react';
 
 const queryClient = new QueryClient();
+
 const App = () => {
   return (
     <QueryClientProvider client={queryClient}>

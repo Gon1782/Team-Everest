@@ -24,7 +24,7 @@ export const getCities = async (areaCode: string, sigunguCode: string) => {
     get.forEach((doc) => {
       data.push(doc.data());
     });
-    return data[0]
+    return data[0];
   } catch (error) {
     if (error instanceof Error) {
       console.log(error.message);
