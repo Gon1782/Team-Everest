@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { FaBookmark } from 'react-icons/fa';
 import { useQuery } from 'react-query';
 import { getAllPlanner } from '@/common/api/plannerApi';
+import { CloneEventMap } from '@/components/MyPlan/EventMap';
 
 const BestTravelPlan = () => {
   const navigate = useNavigate();
@@ -32,11 +33,15 @@ const BestTravelPlan = () => {
                       key={index}
                     >
                       <TravelPlaceMainImgWrapper>
-                        <TravelPlaceMainImg
-                          src={require('@/assets/banner_01.jpg').default}
-                          alt=""
-                        />
+                        {/* <TravelPlaceMainImg src={item.image} alt="" /> */}
+                        <CloneEventMap
+                          plan={data['items'][index]}
+                          startDate={
+                            data['items'][index]['startDate']['yyyymmdd']
+                          }
+                        ></CloneEventMap>
                       </TravelPlaceMainImgWrapper>
+
                       <Wrapper>
                         <TravelPlaceReviewerImgWrapper>
                           <TravelPlaceReviewerImg

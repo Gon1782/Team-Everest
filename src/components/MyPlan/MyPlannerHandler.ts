@@ -113,9 +113,9 @@ export const addWishList = async (wishList: any, event: any, uid: any) => {
   });
 };
 export const popWishList = async (wishList: any, event: any, uid: any) => {
-  const newWishList = wishList.filter((item: any) => {
-    item.contentId !== event.contentId;
-  });
+  const newWishList = wishList.filter(
+    (item: any) => item.contentid !== event.contentid,
+  );
   await updateDoc(doc(db, 'users', uid), {
     myWishPlace: newWishList,
   });
@@ -131,7 +131,11 @@ export const addPlan = async (
   const allPlanner: any = await getAllPlanner();
 
   const newMyPlanner = [
-    { ...plan, name: planName, planUniqueId: planList['myPlanner'].length },
+    {
+      ...plan,
+      name: planName,
+      planUniqueId: planList['myPlanner'].length,
+    },
     ...planList['myPlanner'],
   ];
   const newAllPlanner = [

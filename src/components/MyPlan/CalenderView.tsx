@@ -14,14 +14,21 @@ import {
   dateToString,
 } from './MyPlannerHandler';
 
-const CalenderView = ({ setDropDownRef }: { setDropDownRef: any }) => {
+const CalenderView = ({
+  setEventRef,
+  setScheduleRef,
+}: {
+  setEventRef: any;
+  setScheduleRef: any;
+}) => {
   const [newPlan, setNewPlan] = useRecoilState<PlanType | any>(NewPlanRecoil);
   // 캘린더 열기/닫기
   const [isShowCalender, setIsShowCalender] = useRecoilState(IsCalenderView);
 
   const setPickSchedule = useSetRecoilState(PickScheduleRecoil);
 
-  const dropDownRef = useRef<any>({});
+  const eventRef = useRef<any>({});
+  const scheduleRef = useRef<any>([]);
   // 캘린더 날짜 초기화
   const [calenderDate, setCalenderDate] = useState([
     new Date(
@@ -47,12 +54,17 @@ const CalenderView = ({ setDropDownRef }: { setDropDownRef: any }) => {
         planSchedule[dateToString(date)] =
           newPlan.schedule[dateToString(date)] ?? [];
       });
-
-      dropDownRef.current = { ...planSchedule };
-      setDropDownRef(() => {
+      scheduleRef.current = new Array(newSchedule.length);
+      eventRef.current = { ...planSchedule };
+      setEventRef(() => {
         const newData: any = {};
-        newData['current'] = { ...dropDownRef.current };
-        return newData;
+        newData['current'] = { ...eventRef.current };
+        return { ...eventRef };
+      });
+      setScheduleRef(() => {
+        // const newData: any = {};
+        // newData['current'] = { ...eventRef.current };
+        return { ...scheduleRef };
       });
 
       return {

@@ -95,7 +95,7 @@ const SidePage = () => {
         <SelectBox
           onChangeHandler={(event: any) => setPickTheme(event.target.value)}
           dataList={theme}
-          valueKey="contentTypeId"
+          valueKey="code"
         />
       </SelectBoxList>
       <TourList />

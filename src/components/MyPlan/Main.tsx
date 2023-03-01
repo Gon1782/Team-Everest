@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   Authority,
   InitLocation,
@@ -24,7 +24,6 @@ import {
   saveOtherPlan,
   updatePlan,
 } from './MyPlannerHandler';
-
 const MyPlan = () => {
   const navigate = useNavigate();
 
@@ -32,7 +31,9 @@ const MyPlan = () => {
   const userItem = sessionStorage.getItem(sessionKey);
   const uid = !!userItem ? JSON.parse(userItem).uid : ''; // 드롭 다운 레퍼런스 객체, calenderView 컴포넌트에서 초기화함
 
-  const [dropDownRef, setDropDownRef] = useState<any>({});
+  const [eventRef, setEventRef] = useState<any>({});
+  const [scheduleRef, setScheduleRef] = useState<any>({});
+
   const [loading, setLoading] = useState(true);
   const setMyWishList = useSetRecoilState(MyWishList);
   const [authority, setAuthority] = useRecoilState(Authority);
@@ -51,27 +52,51 @@ const MyPlan = () => {
   //const resetPlan = useResetRecoilState(NewPlanRecoil);
   const [planName, setPlanName] = useState('');
 
-  // 이거 다시짜기, 중간 발표후에 다시
-  const connectionDB = (key: string, isShow?: boolean) => {
+  const doubleCheck = (key: string) => {
     if (window.confirm(`해당 일정을 ${key} 하시겠습니까?`)) {
-      try {
-        if (key === '저장' && isShow !== undefined) {
-          if (!!!planName) return alert('일정 제목을 입력해주세요');
-
-          addPlan(plan, planName, uid, isShow);
-        }
-        if (key === '수정' && isShow !== undefined)
-          updatePlan(plan, planName, uid, planUniqueId, isShow);
-        if (key === '북마크 저장')
-          saveOtherPlan(plan, planName, uid, userId, planUniqueId);
-        if (key === '삭제') popPlan(uid, planUniqueId);
-        alert('완료 했습니다.');
-        navigate('/my');
-      } catch (e) {
-        return alert('잠시 후에 다시 시도해주세요');
-      }
+      return true;
     } else {
-      alert('취소 하셨습니다.');
+      return false;
+    }
+  };
+  const clickAddPlan = async (isShow: boolean) => {
+    try {
+      doubleCheck('저장')
+        ? await addPlan(plan, planName, uid, isShow)
+        : alert('취소하셨습니다.');
+      alert('완료 되었습니다!');
+    } catch (e) {
+      alert('잠시 후에 시도해주세요');
+    }
+  };
+  const clickUpdatePlan = async (isShow: boolean) => {
+    try {
+      doubleCheck('수정')
+        ? await updatePlan(plan, planName, uid, planUniqueId, isShow)
+        : alert('취소하셨습니다.');
+      alert('완료 되었습니다!');
+    } catch (e) {
+      alert('잠시 후에 시도해주세요');
+    }
+  };
+  const clickBookMark = async () => {
+    try {
+      doubleCheck('북마크')
+        ? await saveOtherPlan(plan, planName, uid, userId, planUniqueId)
+        : alert('취소하셨습니다.');
+      alert('완료 되었습니다!');
+    } catch (e) {
+      alert('잠시 후에 시도해주세요');
+    }
+  };
+  const clickPopPlan = async () => {
+    try {
+      doubleCheck('삭제')
+        ? await popPlan(uid, planUniqueId)
+        : alert('취소하셨습니다.');
+      alert('완료 되었습니다!');
+    } catch (e) {
+      alert('잠시 후에 시도해주세요');
     }
   };
 
@@ -83,7 +108,7 @@ const MyPlan = () => {
       const [plan] = userDB['myPlanner'].filter(
         (item: any) => Number(planUniqueId) === item.planUniqueId,
       );
-      console.log(plan);
+
       setPlan(plan);
       setPlanName(plan['name']);
 
@@ -98,7 +123,6 @@ const MyPlan = () => {
   };
 
   useEffect(() => {
-    console.log(userId);
     if (planUniqueId !== 'write') {
       getPlan(userId); // 해당 일정 가져오기
     } else {
@@ -178,9 +202,7 @@ const MyPlan = () => {
             <PlanTitleSection>
               <PlanTitle>{planName}</PlanTitle>
               {!!uid && userId !== uid && (
-                <button onClick={() => connectionDB('북마크 저장')}>
-                  일정 저장하기
-                </button>
+                <button onClick={() => clickBookMark()}>일정 저장하기</button>
               )}
             </PlanTitleSection>
           )}
@@ -188,31 +210,28 @@ const MyPlan = () => {
             <StartEndDate />
           </PlanDateSection>
           <PlanMapSection>
-            <CalenderView setDropDownRef={setDropDownRef} />
+            <CalenderView
+              setEventRef={setEventRef}
+              setScheduleRef={setScheduleRef}
+            />
           </PlanMapSection>
           <EventMap />
-          <PlanScheduleList dropDownRef={dropDownRef} />
+          <PlanScheduleList eventRef={eventRef} scheduleRef={scheduleRef} />
         </MyPlanContainer>
         <MyPlanButtonContainer>
           {authority.write ? (
             <>
               {authority.update ? (
                 <>
-                  <button onClick={() => connectionDB('수정', false)}>
+                  <button onClick={() => clickUpdatePlan(false)}>
                     임시저장
                   </button>
-                  <button onClick={() => connectionDB('수정', true)}>
-                    발행
-                  </button>
+                  <button onClick={() => clickUpdatePlan(true)}>발행</button>
                 </>
               ) : (
                 <>
-                  <button onClick={() => connectionDB('저장', false)}>
-                    임시저장
-                  </button>
-                  <button onClick={() => connectionDB('저장', true)}>
-                    발행
-                  </button>
+                  <button onClick={() => clickAddPlan(false)}>임시저장</button>
+                  <button onClick={() => clickAddPlan(true)}>발행</button>
                 </>
               )}
             </>
@@ -226,7 +245,7 @@ const MyPlan = () => {
                 >
                   수정하기
                 </button>
-                <button onClick={() => connectionDB('삭제')}>삭제하기</button>
+                <button onClick={() => clickPopPlan()}>삭제하기</button>
               </>
             )
           )}
