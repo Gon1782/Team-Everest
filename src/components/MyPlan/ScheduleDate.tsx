@@ -5,7 +5,8 @@ import {
   PickScheduleRecoil,
   PickScheduleType,
 } from '@/recoil/atom/MyPlan';
-
+import { useEffect, useRef } from 'react';
+import Draggable from 'react-draggable';
 import { useRecoilValue, useResetRecoilState, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 
@@ -13,11 +14,15 @@ const ScheduleDate = ({
   planSchedule,
   scheduleDate,
   index,
+  scheduleRef,
 }: {
   planSchedule: any;
   scheduleDate: any;
   index: number;
+  scheduleRef: any;
 }) => {
+  const nodeRef = useRef(null);
+
   const setPickSchedule =
     useSetRecoilState<PickScheduleType>(PickScheduleRecoil);
   const authority = useRecoilValue(Authority);
@@ -48,13 +53,22 @@ const ScheduleDate = ({
       return clonePrev;
     });
   };
+  useEffect(() => {
+    console.log(scheduleRef.current[index]);
+  }, []);
 
   return (
-    <>
+    <div
+      ref={(el) =>
+        // !!scheduleRef.current[index] ? (scheduleRef.current[index] = el) : false
+        (scheduleRef.current[index] = el)
+      }
+    >
       <PlanDateWrapper onClick={() => initMap(scheduleDate)}>
         <PlanDateCount>Day{index + 1} </PlanDateCount>
         <PlanDate>{scheduleDate}</PlanDate>
       </PlanDateWrapper>
+
       <AddPlanBtnWapper>
         {authority.write && (
           <AddPlanBtn onClick={() => onChangeSidePage(index)}>
@@ -62,7 +76,7 @@ const ScheduleDate = ({
           </AddPlanBtn>
         )}
       </AddPlanBtnWapper>
-    </>
+    </div>
   );
 };
 

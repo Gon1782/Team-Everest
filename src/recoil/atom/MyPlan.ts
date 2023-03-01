@@ -1,16 +1,15 @@
 import { dateToString } from '@/components/MyPlan/MyPlannerHandler';
 import { Item } from '@/types/DetailType';
 import React from 'react';
-import { atom } from 'recoil';
+import { atom, selector } from 'recoil';
 
 export interface PlanType {
   name: string;
-  startDate: {};
-  endDate: {};
+  startDate: { year: number; month: number; date: number; yyyymmdd: string };
+  endDate: { year: number; month: number; date: number; yyyymmdd: string };
   schedule: { [key: string]: [] };
   planUniqueId: 0;
   isDelete: false;
-
   bookmarkCount: 0;
 }
 
@@ -42,6 +41,15 @@ export const NewPlanRecoil = atom({
     bookmarkCount: 0,
   },
 });
+// 관광지 데이터
+// export const MainArea = selector({
+//   key: 'MainArea',
+//   get: (): any => {
+//     const { schedule }: any = { ...NewPlanRecoil };
+//     return schedule;
+//   },
+//   // set: ({set}, newValue) =>
+// });
 
 // 관광지 데이터
 export const TourListRecoil = atom({

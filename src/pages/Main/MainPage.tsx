@@ -1,25 +1,21 @@
-import { auth } from '@/common/api/firebase';
 import EventSlideBanner from '@/components/main/eventBanner/EventSlideBanner';
 import ThemeSlideBanner from '@/components/main/themeBanner/ThemeSlideBanner';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import BestTravelPlan from '@/components/main/bestTravelPlan/BestTravelPlan';
 import TopCityBanner from '@/components/main/topCityBanner/TopCityBanner';
-import { GwangYeokSi } from '@/common/utils/city';
-import { postCities } from '@/common/api/cityApi';
 
 const MainPage = () => {
-  const a = GwangYeokSi.map((x) => {
-    const key = Object.keys(x)[0];
-    const value = Object.values(x)[0];
-    return { key, value };
-  });
+  // const a = Gyeongsangnam.map((x) => {
+  //   const key = Object.keys(x)[0];
+  //   const value = Object.values(x)[0];
+  //   return { key, value };
+  // });
 
-  const uploadCities = () => {
-    for (let i = 0; i < a.length; i++) {
-      postCities(a[i].key, a[i].value);
-    }
-  };
+  // const uploadCities = () => {
+  //   for (let i = 0; i < a.length; i++) {
+  //     postCities(a[i].key, a[i].value);
+  //   }
+  // };
 
   return (
     <MainContainer>

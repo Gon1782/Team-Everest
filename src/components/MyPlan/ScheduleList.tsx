@@ -1,5 +1,5 @@
 import { NewPlanRecoil, PlanType } from '@/recoil/atom/MyPlan';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import ScheduleDate from './ScheduleDate';
@@ -9,11 +9,15 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Scrollbar } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/scrollbar';
+import Draggable from 'react-draggable';
+import quartersToMonths from 'date-fns/quartersToMonths';
 
 const PlanScheduleList = ({
-  dropDownRef,
+  eventRef,
+  scheduleRef,
 }: {
-  dropDownRef: React.MutableRefObject<any>;
+  eventRef: React.MutableRefObject<any>;
+  scheduleRef: React.MutableRefObject<any>;
 }) => {
   const plan = useRecoilValue<PlanType>(NewPlanRecoil);
   const [planSchedule, setPlanSchedule] = useState<any>([]);
@@ -21,6 +25,18 @@ const PlanScheduleList = ({
   useEffect(() => {
     setPlanSchedule(Object.keys(plan.schedule));
   }, [plan]);
+
+  const drag = () => {
+    // e.preventDefault();
+    // e.stopPropagation();
+    alert('s');
+  };
+
+  // useEffect(() => {
+  //   if (scheduleRef.current?.length !== 0) {
+  //     console.log(scheduleRef.current[0]);
+  //   }
+  // }, [drag]);
 
   return (
     <PlanItemsSwiper
@@ -34,13 +50,15 @@ const PlanScheduleList = ({
         planSchedule.map((scheduleDate: any, index: number) => {
           return (
             <SlideBanner>
-              <PlanItem key={index}>
+              <PlanItem>
                 <ScheduleDate // Day1 |20xx-몇월-며칠
                   planSchedule={planSchedule}
                   index={index}
                   scheduleDate={scheduleDate}
+                  scheduleRef={scheduleRef}
                 />
-                {!!plan.schedule[scheduleDate]?.length &&
+
+                {!!plan.schedule[scheduleDate]?.length ? (
                   plan.schedule[scheduleDate].map((event: any, index) => {
                     // 선택한 관광지들
                     return (
@@ -49,11 +67,17 @@ const PlanScheduleList = ({
                         <EventDropDown
                           index={index}
                           scheduleDate={scheduleDate}
-                          dropDownRef={dropDownRef}
+                          eventRef={eventRef}
                         />
                       </>
                     );
-                  })}
+                  })
+                ) : (
+                  <>
+                    <div> 아직 여행 일정이 없어요 ! </div>
+                    <div>셰르파와 함께 여행 일정을 계획해보세요</div>
+                  </>
+                )}
               </PlanItem>
             </SlideBanner>
           );

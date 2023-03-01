@@ -17,11 +17,11 @@ import { FaRegTrashAlt } from 'react-icons/fa';
 const EventDropDown = ({
   index,
   scheduleDate,
-  dropDownRef,
+  eventRef,
 }: {
   index: number;
   scheduleDate: any;
-  dropDownRef: any;
+  eventRef: any;
 }) => {
   const memoAndTime = useRecoilValue<any>(MemoAndTime);
   const authority = useRecoilValue(Authority);
@@ -120,14 +120,14 @@ const EventDropDown = ({
         previousEvent[previousIndex].index !== index
       ) {
         // 다른거 눌렀으면 전에 열었던거 닫기
-        dropDownRef.current[previousEvent[previousIndex].date][
+        eventRef.current[previousEvent[previousIndex].date][
           previousEvent[previousIndex].index
         ].style.display = 'none';
       }
     }
     // 지금 클릭한 시간/메모 수정 드롭다운 열기
-    const isDisplay = dropDownRef.current[date][index].style.display;
-    dropDownRef.current[date][index].style.display =
+    const isDisplay = eventRef.current[date][index].style.display;
+    eventRef.current[date][index].style.display =
       isDisplay === 'none' ? 'block' : 'none';
     if (event['isSave'] === false || event['when']['time'] === 999) {
       // if (event['isSave'] === false || event['when']['time'] === 999) {
@@ -167,11 +167,11 @@ const EventDropDown = ({
         style={{ display: 'none' }}
         ref={(el: any) => {
           // 각 div에 ref 할당하기 : 드롭다운페이지의 display 때문에
-          const clone = !!dropDownRef.current[scheduleDate]
-            ? [...dropDownRef?.current[scheduleDate]] // 수정 페이지로 들어온 경우
+          const clone = !!eventRef.current[scheduleDate]
+            ? [...eventRef?.current[scheduleDate]] // 수정 페이지로 들어온 경우
             : []; // 작성 페이지로 들어온 경우
           clone[index] = el;
-          dropDownRef.current[scheduleDate] = clone;
+          eventRef.current[scheduleDate] = clone;
         }}
       >
         {/* 시간/메모 설정페이지 */}

@@ -26,31 +26,31 @@ const TourList = () => {
 
   // 추가한 관광지 데이터를 선택한 일정 리스트에 담기
   const eventHandler = (item: any) => {
-    if (window.confirm('이 관광지를 현재 일정에 추가하시겠습니까?')) {
-      setNewPlan((prev: PlanType) => {
-        const clonePrev = { ...prev.schedule }; // 기존 데이터 복사
-        const cloneItem = { ...item };
-        /* 선택한 관광지 데이터에 시간과 메모를 사용자가 사용 할 수 있게 데이터를 초기화*/
-        cloneItem['when'] = {
-          amPm: '3',
-          time: 999,
-          hour: '1',
-          minute: 0,
-        }; // 시간
-        cloneItem['memo'] = ''; // 메모
-        cloneItem['isSave'] = false;
-        /*----------------------------------------------------------*/
-        //console.log('s>', cloneItem);
-        const newPlan: any = {};
-        const newEvents = [...clonePrev[pickSchedule.schedule], cloneItem];
-        newPlan[pickSchedule.schedule] = newEvents;
-        return {
-          ...prev,
-          schedule: { ...prev.schedule, ...newPlan },
-        };
-      });
-      // alert('완료되었습니다')
-    }
+    // if (window.confirm('이 관광지를 현재 일정에 추가하시겠습니까?')) {
+    setNewPlan((prev: PlanType) => {
+      const clonePrev = { ...prev.schedule }; // 기존 데이터 복사
+      const cloneItem = { ...item };
+      /* 선택한 관광지 데이터에 시간과 메모를 사용자가 사용 할 수 있게 데이터를 초기화*/
+      cloneItem['when'] = {
+        amPm: '3',
+        time: 999,
+        hour: '1',
+        minute: 0,
+      }; // 시간
+      cloneItem['memo'] = ''; // 메모
+      cloneItem['isSave'] = false;
+      /*----------------------------------------------------------*/
+
+      const newPlan: any = {};
+      const newEvents = [...clonePrev[pickSchedule.schedule], cloneItem];
+      newPlan[pickSchedule.schedule] = newEvents;
+      return {
+        ...prev,
+        schedule: { ...prev.schedule, ...newPlan },
+      };
+    });
+    // alert('완료되었습니다')
+    // }
   };
 
   useEffect(() => {
