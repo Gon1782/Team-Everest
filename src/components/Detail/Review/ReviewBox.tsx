@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
+import { BsPencil } from 'react-icons/bs';
 import { FaStar } from 'react-icons/fa';
+import { HiOutlineTrash } from 'react-icons/hi';
 import { useNavigate } from 'react-router-dom';
 import { getUserDB } from '@/common/api/userApi';
 import useDefault from '@/hooks/useDefault';
@@ -8,8 +10,6 @@ import { Document, EachReview, Item } from '@/types/DetailType';
 import ReviewDelete from './ReviewDelete';
 import ReviewModal from './ReviewModal';
 import * as S from './style/ReviewStyled';
-import styled from 'styled-components';
-import { Tag } from './ReviewTags';
 
 interface Props {
   item: Item;
@@ -86,8 +86,12 @@ const ReviewBox = ({ item, review }: Props) => {
         <S.Profile src={profileImg} />
         <S.ReviewNickname>{user?.displayName}</S.ReviewNickname>
         <div>
-          {rating.map((x) =>
-            x ? <FaStar color="#0039CB" /> : <FaStar color="gray" />,
+          {rating.map((x, i) =>
+            x ? (
+              <FaStar color="#0039CB" size={24} key={i} />
+            ) : (
+              <FaStar color="gray" size={24} key={i} />
+            ),
           )}
         </div>
       </S.ReviewLeftBox>
@@ -99,15 +103,19 @@ const ReviewBox = ({ item, review }: Props) => {
               display: checkMine ? 'flex' : 'none',
             }}
           >
-            <button onClick={() => openEditModal()}>수정</button>
-            <button onClick={() => openDeleteModal()}>삭제</button>
+            <BsPencil
+              onClick={() => openEditModal()}
+              color="#9DB9FF"
+              size={25}
+            />
+            <HiOutlineTrash onClick={() => openDeleteModal()} size={25} />
           </S.ReviewBtnBox>
         </S.ReviewSpace>
-        <ReviewTagsBox>
+        <S.ReviewTagsBox>
           {review.tag.map((x, i) => (
             <S.ReviewTag key={i}>{x}</S.ReviewTag>
           ))}
-        </ReviewTagsBox>
+        </S.ReviewTagsBox>
         <S.ReviewContent>{review.content}</S.ReviewContent>
         <S.ReviewImageBox>
           {review.image.map((image: string, i: number) => {
@@ -120,8 +128,3 @@ const ReviewBox = ({ item, review }: Props) => {
 };
 
 export default ReviewBox;
-
-export const ReviewTagsBox = styled.div`
-  display: flex;
-  gap: 0.5rem;
-`;

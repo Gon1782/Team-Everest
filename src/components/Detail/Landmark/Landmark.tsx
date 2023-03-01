@@ -53,13 +53,12 @@ const Landmark = ({ landmark, wishList }: Props) => {
   }, [wishList]);
 
   return (
-    <S.LandmarkBox>
-      <S.LandmarkImg
-        src={img}
-        onClick={() => {
-          navigate(`/detail/${landmark.contentid}`);
-        }}
-      />
+    <S.LandmarkBox
+      onClick={() => {
+        navigate(`/detail/${landmark.contentid}`);
+      }}
+    >
+      <S.LandmarkImg src={img} />
       <S.LandmarkInfo>
         <S.LandmarkBookmarkBox
           style={{ visibility: !!uid ? 'visible' : 'hidden' }}

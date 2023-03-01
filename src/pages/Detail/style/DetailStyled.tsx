@@ -105,3 +105,12 @@ export const DetailSubTitle = styled.h1`
   font-size: 3rem;
   font-weight: bold;
 `;
+
+export const DetailReviewTitle = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  width: 100%;
+`;

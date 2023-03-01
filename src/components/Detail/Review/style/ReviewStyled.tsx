@@ -25,11 +25,11 @@ export const Review = styled.div`
   display: flex;
   width: 80%;
   min-height: 275px;
-  gap: 4rem;
   padding: 1rem;
   margin: 1rem auto;
   border: 1px solid #a1c2f3;
   border-radius: 30px;
+  gap: 1rem;
 `;
 
 export const Profile = styled.img`
@@ -53,13 +53,11 @@ export const ReviewImage = styled.img`
 export const ReviewSpace = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 95%;
   font-size: 1rem;
   font-weight: bold;
 `;
 
 export const ReviewContent = styled.div`
-  width: 95%;
   min-height: 70px;
   font-size: 22px;
 `;
@@ -86,6 +84,9 @@ export const ReviewNickname = styled.span`
 
 export const ReviewBtnBox = styled.div`
   gap: 1rem;
+  & svg {
+    cursor: pointer;
+  }
 `;
 
 export const ModalContainer = styled.div`
@@ -236,6 +237,7 @@ export const ReviewLeftBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 285px;
   height: 100%;
   gap: 1rem;
 `;
@@ -295,7 +297,6 @@ export const StarInfo = styled.span`
 export const StarRating = styled.span`
   font-size: 3rem;
 `;
-
 export const ReviewTag = styled.div`
   display: flex;
   justify-content: center;
@@ -304,4 +305,8 @@ export const ReviewTag = styled.div`
   color: white;
   background-color: #0034b9;
   border-radius: 30px;
+`;
+export const ReviewTagsBox = styled.div`
+  display: flex;
+  gap: 0.5rem;
 `;

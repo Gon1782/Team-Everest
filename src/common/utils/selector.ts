@@ -7,7 +7,7 @@ export const modalSelector = (
   reviewContent: string,
   reviewImg: string[],
   reviewRating: number,
-  reviewTag: string[]
+  reviewTag: string[],
 ) => {
   switch (true) {
     case type === 'post':
@@ -26,7 +26,7 @@ export const modalSelector = (
         clicked: [false, false, false, false, false].map((_, i) =>
           i < reviewRating ? true : false,
         ),
-        tags: reviewTag
+        tags: reviewTag,
       };
     default:
       return {
@@ -72,12 +72,12 @@ export const registerSelector = (name: string, dupCheck: boolean) => {
 };
 
 export const areaSelector = (areacode: string, sigungucode: string) => {
-  const oneCity = '1' || '2' || '3' || '4' || '5' || '6' || '7' || '8' || '39';
-  const Do = '31' || '32' || '33' || '34' || '35' || '36' || '37' || '38';
+  const oneCity = ['1', '2', '3', '4', '5', '6', '7', '8', '39'];
+  const Do = ['31', '32', '33', '34', '35', '36', '37', '38'];
   switch (true) {
-    case areacode === oneCity:
+    case oneCity.includes(areacode):
       return [areacode, ''];
-    case areacode === Do:
+    case Do.includes(areacode):
       return [areacode, sigungucode];
     default:
       return ['', ''];
