@@ -1,5 +1,4 @@
-import { areaCode } from './areaCode/areaCode';
-import { tags } from './tags';
+import * as tag from './tags';
 
 // 모달창 선택자
 export const modalSelector = (
@@ -81,5 +80,37 @@ export const areaSelector = (areacode: string, sigungucode: string) => {
       return [areacode, sigungucode];
     default:
       return ['', ''];
+  }
+};
+
+export const tagSelector = (categoryCode: string) => {
+  const bigCategory = categoryCode.slice(0, 3);
+  switch (true) {
+    case bigCategory === 'A01' || categoryCode === 'A0202':
+      return tag.nature;
+    case categoryCode === 'A0201':
+      return tag.history;
+    case categoryCode === 'A0203':
+      return tag.experience;
+    case categoryCode === 'A0204':
+      return tag.industry;
+    case categoryCode === 'A0205':
+      return tag.building;
+    case categoryCode === 'A0206' || categoryCode === 'A0208':
+      return tag.culture;
+    case categoryCode === 'A0207':
+      return tag.festival;
+    case bigCategory === 'C01':
+      return tag.course;
+    case bigCategory === 'A03':
+      return tag.leisure;
+    case bigCategory === 'B02':
+      return tag.accomodation;
+    case bigCategory === 'A04':
+      return tag.shoping;
+    case bigCategory === 'A05':
+      return tag.michelin;
+    default:
+      return []
   }
 };

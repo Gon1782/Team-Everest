@@ -27,4 +27,5 @@ export const reviewForm = {
   contentId: '',
   uid: '',
   isDelete: '',
+  tag: [],
 };

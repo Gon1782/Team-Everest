@@ -23,6 +23,7 @@ const Login = () => {
 
   useEffect(() => {
     if (!!uid) navigate(-1);
+    setCheck(true);
   }, []);
 
   return (

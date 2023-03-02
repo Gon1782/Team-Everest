@@ -17,6 +17,7 @@ export const DetailList = atom({
         tag: [''],
       },
     ],
+    tagCount: [{ name: '', count: 0 }],
     totalRating: 0,
     areacode: '',
     sigungucode: '',

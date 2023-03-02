@@ -53,39 +53,40 @@ const Landmark = ({ landmark, wishList }: Props) => {
   }, []);
 
   return (
-    <S.LandmarkBox
-      onClick={() => {
-        navigate(`/detail/${landmark.contentid}`);
-      }}
-    >
-      <S.LandmarkImg src={img} />
-      <S.LandmarkInfo>
-        <S.LandmarkBookmarkBox
-          style={{ visibility: !!uid ? 'visible' : 'hidden' }}
-        >
-          <S.LandmarkBookmarkBack>
-            <FaRegBookmark
-              onClick={() => handlerWishList()}
-              style={{
-                display: bookMark ? 'none' : 'flex',
-              }}
-            />
-            <FaBookmark
-              onClick={() => handlerWishList()}
-              style={{
-                display: bookMark ? 'flex' : 'none',
-              }}
-              color="red"
-            />
-          </S.LandmarkBookmarkBack>
-        </S.LandmarkBookmarkBox>
-        <S.LandmarkTitle
-          onClick={() => {
-            navigate(`/detail/${landmark.contentid}`);
-          }}
-        >
-          {landmark.title}
-        </S.LandmarkTitle>
+    <S.LandmarkBox>
+      <S.LandmarkImg
+        src={img}
+        onClick={() => {
+          navigate(`/detail/${landmark.contentid}`);
+        }}
+      />
+      <S.LandmarkBookmarkBox
+        style={{ visibility: !!uid ? 'visible' : 'hidden' }}
+      >
+        <S.LandmarkBookmarkBack>
+          <FaRegBookmark
+            onClick={() => handlerWishList()}
+            size={24}
+            style={{
+              display: bookMark ? 'none' : 'flex',
+            }}
+          />
+          <FaBookmark
+            onClick={() => handlerWishList()}
+            size={24}
+            style={{
+              display: bookMark ? 'flex' : 'none',
+            }}
+            color="red"
+          />
+        </S.LandmarkBookmarkBack>
+      </S.LandmarkBookmarkBox>
+      <S.LandmarkInfo
+        onClick={() => {
+          navigate(`/detail/${landmark.contentid}`);
+        }}
+      >
+        <S.LandmarkTitle>{landmark.title}</S.LandmarkTitle>
       </S.LandmarkInfo>
     </S.LandmarkBox>
   );

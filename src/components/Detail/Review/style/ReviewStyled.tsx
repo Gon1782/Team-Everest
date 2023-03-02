@@ -310,3 +310,17 @@ export const ReviewTagsBox = styled.div`
   display: flex;
   gap: 0.5rem;
 `;
+export const NoReviewBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  height: 275px;
+  margin: auto;
+  border-radius: 30px;
+  color: white;
+  background-color: #9db9ff;
+  font-size: 25px;
+  text-align: center;
+  line-height: 36px;
+`;

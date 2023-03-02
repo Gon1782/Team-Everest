@@ -1,9 +1,10 @@
 import { useRecoilValue } from 'recoil';
 import { DetailList } from '@/recoil/atom/Detail';
+import useLoadMore from '@/hooks/useLoadMore';
+import { Item } from '@/types/DetailType';
 import ReviewBox from './ReviewBox';
 import * as S from './style/ReviewStyled';
-import { Item } from '@/types/DetailType';
-import useLoadMore from '@/hooks/useLoadMore';
+import NoReview from './NoReview';
 
 interface Props {
   item: Item;
@@ -21,10 +22,14 @@ const Review = ({ item }: Props) => {
   return (
     <S.ReviewSection>
       <S.ReviewContainer>
-        {reviews?.map((review, i) => {
-          if (i <= idx)
-            return <ReviewBox item={item} review={review} key={review.id} />;
-        })}
+        {!!reviews.length ? (
+          reviews?.map((review, i) => {
+            if (i <= idx)
+              return <ReviewBox item={item} review={review} key={review.id} />;
+          })
+        ) : (
+          <NoReview />
+        )}
       </S.ReviewContainer>
       {/* <S.LoadMoreBox style={{ visibility: checkEnd ? 'hidden' : 'visible' }}>
         <S.LoadMore onClick={() => loadMore()}>더보기</S.LoadMore>
