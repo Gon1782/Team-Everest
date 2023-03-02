@@ -1,14 +1,21 @@
 import { useState } from 'react';
 import { Document } from '@/types/DetailType';
 
-const useLoadMore = (list: Document) => {
-  const [idx, setIdx] = useState(2);
+const useLoadMore = (
+  list: Document,
+  initialIndex: number = 2,
+  numberToload?: number,
+) => {
+  const [idx, setIdx] = useState(initialIndex);
 
   const checkEnd = !!list ? list.length - 1 <= idx : true;
+  const nextIdx = !!numberToload
+    ? numberToload
+    : list?.length - 1 - initialIndex;
 
   const LoadMore = () => {
     if (!checkEnd) {
-      setIdx(idx + 3);
+      setIdx(idx + nextIdx);
     }
   };
 

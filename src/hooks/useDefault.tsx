@@ -1,5 +1,5 @@
 import {
-  backImage,
+  defaultBackImage,
   defaultImage,
   defaultIntro,
   defaultProfile,
@@ -8,7 +8,7 @@ import { useCallback } from 'react';
 
 const useDefault = () => {
   const defaults = useCallback(() => {
-    return { defaultImage, defaultIntro, defaultProfile, backImage };
+    return { defaultImage, defaultIntro, defaultProfile, defaultBackImage };
   }, []);
 
   return defaults;
