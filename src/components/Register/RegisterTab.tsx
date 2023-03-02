@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { getAllUser } from '@/common/api/userApi';
 import { registerForm } from '@/common/utils/forms';
 import { registerValidation } from '@/common/utils/validations';
@@ -9,6 +9,7 @@ import { UserData } from '@/types/UserType';
 import RegisterInput from './RegisterInput';
 import RegiPasswordInput from './RegiPasswordInput';
 import * as S from '../Login/style/LoginTabStyled';
+import { usePrompt } from '@/hooks/useConfirmExit';
 
 const RegisterTab = () => {
   // GET UserDB
@@ -52,17 +53,21 @@ const RegisterTab = () => {
     getUser();
   }, []);
 
-  useEffect(() => {
-    window.addEventListener('beforeunload', alertUser);
-    return () => {
-      window.removeEventListener('beforeunload', alertUser);
-    };
-  }, []);
-  const alertUser = (e: any) => {
-    console.log(e);
-    e.preventDefault();
-    e.returnValue = '';
+  // 페이지 나갈때 체크
+  const checkLeave = () => {
+    return (
+      register.email.length > 0 ||
+      register.password.length > 0 ||
+      register.checkPassword.length > 0 ||
+      register.nickname.length > 0
+    );
   };
+
+  const message = useMemo(
+    () => '정말로 페이지를 나가시겠습니까?\n저장되지 않은 데이터는 사라집니다.',
+    [],
+  );
+  usePrompt(message, checkLeave());
 
   return (
     <form onSubmit={(e) => emailSignup(e)}>

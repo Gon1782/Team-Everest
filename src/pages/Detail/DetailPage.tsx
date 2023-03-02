@@ -49,6 +49,7 @@ const DetailPage = () => {
         totalRating: doc.data()?.totalRating,
         areacode: doc.data()?.areacode,
         sigungucode: doc.data()?.sigungucode,
+        tagCount: doc.data()?.tagCount,
       };
       setList(newList);
     });
@@ -109,11 +110,7 @@ const DetailPage = () => {
       {modal && (
         <ReviewModal
           type="post"
-          id={id}
-          areaCode={detailList?.areacode}
-          sigunguCode={detailList?.sigungucode}
-          title={detailList?.title}
-          addr={detailList?.addr1}
+          item={detailList}
           closeModal={closeModal}
           closeModalIfClickOutside={closeModalIfClickOutside}
         />

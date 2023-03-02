@@ -1,12 +1,13 @@
-import { tags } from '@/common/utils/tags';
+import { tagSelector } from '@/common/utils/selector';
 import styled from 'styled-components';
 
 interface Props {
+  tags: string[];
   tag: string[];
   setTag: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
-const ReviewTags = ({ tag, setTag }: Props) => {
+const ReviewTags = ({ tags, tag, setTag }: Props) => {
   const addTag = (x: string) => {
     setTag([...tag, x]);
   };

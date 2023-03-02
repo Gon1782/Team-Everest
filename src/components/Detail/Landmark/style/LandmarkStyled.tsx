@@ -38,20 +38,17 @@ export const LandmarkImg = styled.img`
   object-fit: cover;
 `;
 export const LandmarkInfo = styled.div`
-  position: inherit;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
   width: 100%;
   height: 100%;
   z-index: 1;
   font-size: 1.5rem;
 `;
 export const LandmarkBookmarkBox = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
+  position: absolute;
+  right: 0;
+  z-index: 2;
 `;
 export const LandmarkBookmarkBack = styled.div`
   margin: 1rem;

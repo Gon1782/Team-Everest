@@ -58,6 +58,8 @@ const ReviewBox = ({ item, review }: Props) => {
   const { defaultProfile } = defaults();
   const profileImg = !!user?.photoURL ? user?.photoURL : defaultProfile;
 
+  const tag = [...review.tag].sort();
+
   const rating = [false, false, false, false, false].map((_, i) =>
     i < review.rating ? true : false,
   );
@@ -74,9 +76,7 @@ const ReviewBox = ({ item, review }: Props) => {
       {editModal && (
         <ReviewModal
           type="edit"
-          id={review.contentId}
-          title={item.title}
-          addr={item.addr1}
+          item={item}
           closeModal={closeEditModal}
           closeModalIfClickOutside={closeEditModalIfClickOutside}
           review={review}
@@ -112,7 +112,7 @@ const ReviewBox = ({ item, review }: Props) => {
           </S.ReviewBtnBox>
         </S.ReviewSpace>
         <S.ReviewTagsBox>
-          {review.tag.map((x, i) => (
+          {tag.map((x, i) => (
             <S.ReviewTag key={i}>{x}</S.ReviewTag>
           ))}
         </S.ReviewTagsBox>

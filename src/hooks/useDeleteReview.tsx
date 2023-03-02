@@ -1,3 +1,4 @@
+import { useCallback, useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { updateReview } from '@/common/api/reviewApi';
 import { getUserDB, updateUserDB } from '@/common/api/userApi';
@@ -13,6 +14,26 @@ const useDeleteReview = (id: string, closeModal: () => void) => {
   const sessionKey = `firebase:authUser:${process.env.FIREBASE_API_KEY}:[DEFAULT]`;
   const userItem = sessionStorage.getItem(sessionKey);
   const uid = !!userItem ? JSON.parse(userItem).uid : '';
+
+  const [tagCount, setTagCount] = useState(list.tagCount);
+
+  const tagMinus = useCallback(() => {
+    let tags = [...tagCount];
+    for (let i = 0; i < review.tag.length; i++) {
+      tags = tags.map((x) => {
+        if (x.name === review.tag[i]) {
+          return { ...x, count: x.count - 1 };
+        } else {
+          return x;
+        }
+      });
+    }
+    return tags;
+  }, []);
+
+  useEffect(() => {
+    setTagCount(tagMinus());
+  }, []);
 
   const deleteReview = async () => {
     if (uid !== review.uid)
@@ -30,9 +51,11 @@ const useDeleteReview = (id: string, closeModal: () => void) => {
       }
     });
     const newList = {
+      ...list,
       ratingCount,
       review: newReviews,
       totalRating,
+      tagCount,
     };
     const newMyReviews = myReviews.map((review: EachReview) => {
       if (review.id === id) {
