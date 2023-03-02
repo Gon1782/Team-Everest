@@ -8,10 +8,10 @@ import { useEffect } from 'react';
 
 const MyPlanner = ({
   user,
-  getUser,
-}: {
+}: // getUser,
+{
   user: Document;
-  getUser: (uid: string) => Promise<void>;
+  // getUser: (uid: string) => Promise<void>;
 }) => {
   const navigate = useNavigate();
 
@@ -21,10 +21,6 @@ const MyPlanner = ({
   const moveToMyPlan = (item: any) => {
     navigate(`/planner/${user['uid']}/${item.planUniqueId}`);
   };
-
-  useEffect(() => {
-    getUser(user.uid);
-  }, []);
 
   const [idx, checkEnd, ViewMore] = useLoadMore(myPlanner);
 
