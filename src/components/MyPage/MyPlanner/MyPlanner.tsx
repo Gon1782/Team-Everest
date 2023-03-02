@@ -42,7 +42,7 @@ const MyPlanner = ({
                   <FaBookmark
                     style={{
                       display: item['isMine'] ? 'none' : 'flex',
-                      position: 'absolute',
+                      position: 'relative',
                     }}
                     color="#0A77D1"
                     size="20"
