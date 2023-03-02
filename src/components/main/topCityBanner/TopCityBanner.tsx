@@ -52,8 +52,8 @@ const TopCityBanner = () => {
 
       <TopCityCategories>
         {topCities.map((v: any) => (
-          <>
-            <p>{v.name}</p>
+          <TopCityItem>
+            <TopCitySlogan>{v.slogan}</TopCitySlogan>
             <TopCityCategory
               onClick={() => {
                 const pathCode = checkNavigatePath(v);
@@ -62,7 +62,7 @@ const TopCityBanner = () => {
               src={v.image}
               alt={v.name}
             />
-          </>
+          </TopCityItem>
         ))}
       </TopCityCategories>
     </TopCityCategoryContainer>
@@ -82,6 +82,7 @@ const TopCityCategoryContainer = styled.section`
   justify-content: center;
   align-items: center;
   gap: 1rem;
+  margin-top: 80px;
 `;
 
 const CategoriesTitle = styled.h1`
@@ -99,8 +100,25 @@ const TopCityCategories = styled.div`
   height: 100%;
 `;
 
+const TopCityItem = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  width: 100%;
+  height: 100%;
+`;
+
+const TopCitySlogan = styled.p`
+  color: #fff;
+  font-weight: 600;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
+  position: absolute;
+  bottom: 20px;
+`;
+
 const TopCityCategory = styled.img`
-  width: 30%;
+  width: 100%;
   height: 100%;
   border-radius: 15px;
   text-align: center;
