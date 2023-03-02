@@ -4,9 +4,11 @@ import {
   NewPlanRecoil,
   PlanType,
 } from '@/recoil/atom/MyPlan';
+import { FaRegCalendarAlt } from 'react-icons/fa';
 
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
+import { PlanBtn } from './style/common';
 
 const StartEndDate = () => {
   const myPlan = useRecoilValue<PlanType | any>(NewPlanRecoil);
@@ -18,9 +20,10 @@ const StartEndDate = () => {
         {myPlan?.startDate['yyyymmdd']} - {myPlan?.endDate['yyyymmdd']}
       </p>
       {authority.write && (
-        <button onClick={() => setIsShowCalender((prev) => !prev)}>
-          캘린더 아이콘
-        </button>
+        <FaRegCalendarAlt
+          size={20}
+          onClick={() => setIsShowCalender((prev) => !prev)}
+        />
       )}
     </PlanDate>
   );
@@ -33,6 +36,8 @@ const PlanDate = styled.div`
   & > p {
     font-size: 25px;
   }
+  border-bottom: 1px solid gray;
+  height: 30px;
 `;
 const showCalender = styled.button`
   height: 25px;

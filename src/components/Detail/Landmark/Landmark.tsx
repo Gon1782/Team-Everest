@@ -50,7 +50,7 @@ const Landmark = ({ landmark, wishList }: Props) => {
     ).length;
 
     !!isGet ? setBookMark(true) : setBookMark(false);
-  }, [wishList]);
+  }, []);
 
   return (
     <S.LandmarkBox

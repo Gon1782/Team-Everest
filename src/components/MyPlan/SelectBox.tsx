@@ -1,28 +1,26 @@
 import styled from 'styled-components';
-import { MdOutlineAddLocation } from 'react-icons/md';
 
 // 지역, 테마 셀렉트박스
 const SelectBox = ({
   onChangeHandler,
   dataList,
   valueKey,
+  width,
 }: {
   onChangeHandler: any;
   dataList: any;
   valueKey: string;
+  width: string;
 }) => {
   return (
     <>
-      <MdOutlineAddLocation
-        style={{ width: 40, height: 40 }}
-      ></MdOutlineAddLocation>
-      <Select onChange={onChangeHandler} style={{ border: '0px solid' }}>
-        <option defaultValue="선택">선택</option>
+      <Select onChange={onChangeHandler} width={width}>
+        <option defaultValue={valueKey}>{valueKey}</option>
         {dataList.length &&
           dataList.map((item: any, index: number) => {
             return (
               <>
-                <option value={item[valueKey]} key={index}>
+                <option value={item['code']} key={index}>
                   {item?.name}
                 </option>
               </>
@@ -35,7 +33,9 @@ const SelectBox = ({
 
 export default SelectBox;
 
-const Select = styled.select`
+const Select = styled.select<{ width: string }>`
   width: 100%;
   height: 40px;
+  width: ${(props) => props.width};
+  border: 0px;
 `;

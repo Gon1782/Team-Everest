@@ -126,6 +126,7 @@ export const addPlan = async (
   planName: string, // 만든 일정 이름
   uid: string, // 사용자 고유번호
   isShow: boolean, // 공개/비공개 처리
+  isMine: boolean, // 내가만든건지 /북마크한 일정인지 확인
 ) => {
   const planList: any = await getUserPlanList(uid);
   const allPlanner: any = await getAllPlanner();
@@ -135,6 +136,7 @@ export const addPlan = async (
       ...plan,
       name: planName,
       planUniqueId: planList['myPlanner'].length,
+      isMine: isMine,
     },
     ...planList['myPlanner'],
   ];
@@ -160,20 +162,18 @@ export const updatePlan = async (
   uid: string, // 사용자 고유 번호
   planUniqueId: string, // 수정할 일정 데이터 번호
   isShow: boolean, // 공개/비공개 처리
+  isMine: boolean,
 ) => {
   const planList: any = await getUserPlanList(uid);
   const allPlanner: any = await getAllPlanner();
-  const newMyPlanner = planList['myPlanner'].reduce(
-    (sum: any, item: any, index: number) => {
-      if (parseInt(planUniqueId) === item['planUniqueId']) {
-        sum.push({ ...plan, name: planName });
-      } else {
-        sum.push(item);
-      }
-      return sum;
-    },
-    [],
-  );
+  const newMyPlanner = planList['myPlanner'].reduce((sum: any, item: any) => {
+    if (parseInt(planUniqueId) === item['planUniqueId']) {
+      sum.push({ ...plan, name: planName, isMine: isMine });
+    } else {
+      sum.push(item);
+    }
+    return sum;
+  }, []);
 
   const newAllPlanner = allPlanner['items'].reduce((sum: any, item: any) => {
     if (item.planUniqueId === parseInt(planUniqueId) && item.uid === uid) {
@@ -223,7 +223,7 @@ export const saveOtherPlan = async (
   planUniqueId: string,
 ) => {
   // 사용자 일정에 추가
-  await addPlan(plan, planName, uid, false);
+  await addPlan(plan, planName, uid, false, false);
 
   // planner 디비에 해당 일정데이터의 북마크 카운트 +1 하기
 

@@ -76,3 +76,13 @@ export const getCityTourInfo = async (areacode: string, pageNo: number) => {
 
   return data;
 };
+
+export const getSpot = async (spotName: string) => {
+  const SERVER_URL = baseURL('searchKeyword', 1, 1);
+
+  const { data } = await axios.get<DetailResponse>(
+    `${SERVER_URL}&listYN=Y&keyword=${spotName}`,
+  );
+
+  return data;
+};

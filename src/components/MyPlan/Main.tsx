@@ -24,6 +24,7 @@ import {
   saveOtherPlan,
   updatePlan,
 } from './MyPlannerHandler';
+import { PlanBtn } from './style/common';
 const MyPlan = () => {
   const navigate = useNavigate();
 
@@ -62,9 +63,11 @@ const MyPlan = () => {
   const clickAddPlan = async (isShow: boolean) => {
     try {
       doubleCheck('저장')
-        ? await addPlan(plan, planName, uid, isShow)
+        ? await addPlan(plan, planName, uid, isShow, true).then(() => {
+            alert('완료 되었습니다!');
+            navigate('/my');
+          })
         : alert('취소하셨습니다.');
-      alert('완료 되었습니다!');
     } catch (e) {
       alert('잠시 후에 시도해주세요');
     }
@@ -72,9 +75,18 @@ const MyPlan = () => {
   const clickUpdatePlan = async (isShow: boolean) => {
     try {
       doubleCheck('수정')
-        ? await updatePlan(plan, planName, uid, planUniqueId, isShow)
+        ? await updatePlan(
+            plan,
+            planName,
+            uid,
+            planUniqueId,
+            isShow,
+            !!plan?.isMine,
+          ).then(() => {
+            alert('완료 되었습니다!');
+            navigate('/my');
+          })
         : alert('취소하셨습니다.');
-      alert('완료 되었습니다!');
     } catch (e) {
       alert('잠시 후에 시도해주세요');
     }
@@ -82,9 +94,13 @@ const MyPlan = () => {
   const clickBookMark = async () => {
     try {
       doubleCheck('북마크')
-        ? await saveOtherPlan(plan, planName, uid, userId, planUniqueId)
+        ? await saveOtherPlan(plan, planName, uid, userId, planUniqueId).then(
+            () => {
+              alert('완료 되었습니다!');
+              navigate('/my');
+            },
+          )
         : alert('취소하셨습니다.');
-      alert('완료 되었습니다!');
     } catch (e) {
       alert('잠시 후에 시도해주세요');
     }
@@ -92,9 +108,11 @@ const MyPlan = () => {
   const clickPopPlan = async () => {
     try {
       doubleCheck('삭제')
-        ? await popPlan(uid, planUniqueId)
+        ? await popPlan(uid, planUniqueId).then(() => {
+            alert('완료 되었습니다!');
+            navigate('/my');
+          })
         : alert('취소하셨습니다.');
-      alert('완료 되었습니다!');
     } catch (e) {
       alert('잠시 후에 시도해주세요');
     }
@@ -176,13 +194,15 @@ const MyPlan = () => {
 
   return (
     <>
-      <div
+      <Main
+        // background={isSidePageView ? `rgba(0, 0, 0, 0.5)` : 'none'}
+        // visible={isSidePageView ? 'none' : 'auto'}
         style={{
+          //background: isSidePageView ? 'rgba(0, 0, 0, 0.5)' : 1,
           opacity: isSidePageView ? 0.15 : 1,
           pointerEvents: isSidePageView ? 'none' : 'auto',
         }}
       >
-        {/* <div style={{ backgroundColor: rgba<>(145, 143, 143, 0.4)}}> */}
         <MyPlanContainer>
           {authority.write ? ( // 일정 만들때
             <PlanTitleSection>
@@ -208,7 +228,61 @@ const MyPlan = () => {
           )}
           <PlanDateSection>
             <StartEndDate />
+            <MyPlanButtonContainer>
+              {authority.write ? (
+                <>
+                  {authority.update ? (
+                    <>
+                      <PlanBtn
+                        color={'gray'}
+                        onClick={() => clickUpdatePlan(false)}
+                      >
+                        임시저장
+                      </PlanBtn>
+                      <PlanBtn
+                        color={'gray'}
+                        onClick={() => clickUpdatePlan(true)}
+                      >
+                        발행
+                      </PlanBtn>
+                    </>
+                  ) : (
+                    <>
+                      <PlanBtn
+                        color={'gray'}
+                        onClick={() => clickAddPlan(false)}
+                      >
+                        임시저장
+                      </PlanBtn>
+                      <PlanBtn
+                        color={'gray'}
+                        onClick={() => clickAddPlan(true)}
+                      >
+                        발행
+                      </PlanBtn>
+                    </>
+                  )}
+                </>
+              ) : (
+                userId === uid && (
+                  <>
+                    <PlanBtn
+                      onClick={() =>
+                        setAuthority({ write: true, view: false, update: true })
+                      }
+                      color={'gray'}
+                    >
+                      수정하기
+                    </PlanBtn>
+                    <PlanBtn onClick={() => clickPopPlan()} color={'gray'}>
+                      삭제하기
+                    </PlanBtn>
+                  </>
+                )
+              )}
+            </MyPlanButtonContainer>
           </PlanDateSection>
+
           <PlanMapSection>
             <CalenderView
               setEventRef={setEventRef}
@@ -218,45 +292,16 @@ const MyPlan = () => {
           <EventMap />
           <PlanScheduleList eventRef={eventRef} scheduleRef={scheduleRef} />
         </MyPlanContainer>
-        <MyPlanButtonContainer>
-          {authority.write ? (
-            <>
-              {authority.update ? (
-                <>
-                  <button onClick={() => clickUpdatePlan(false)}>
-                    임시저장
-                  </button>
-                  <button onClick={() => clickUpdatePlan(true)}>발행</button>
-                </>
-              ) : (
-                <>
-                  <button onClick={() => clickAddPlan(false)}>임시저장</button>
-                  <button onClick={() => clickAddPlan(true)}>발행</button>
-                </>
-              )}
-            </>
-          ) : (
-            userId === uid && (
-              <>
-                <button
-                  onClick={() =>
-                    setAuthority({ write: true, view: false, update: true })
-                  }
-                >
-                  수정하기
-                </button>
-                <button onClick={() => clickPopPlan()}>삭제하기</button>
-              </>
-            )
-          )}
-        </MyPlanButtonContainer>
-      </div>
+      </Main>
       <>{isSidePageView && <SidePage />}</>
     </>
   );
 };
 
 export default MyPlan;
+const Main = styled.div`
+  //<{ background: string; visible: string }>
+`;
 
 const MyPlanContainer = styled.div`
   width: 50%;
@@ -282,9 +327,10 @@ const PlanTitleSection = styled.div`
 const PlanDateSection = styled.div`
   width: 100%;
   height: 30px;
-
-  margin-bottom: 40px;
+  justify-content: space-between;
+  margin-bottom: 30px;
   display: flex;
+  align-items: center;
 `;
 
 const PlanMapSection = styled.div`
@@ -292,9 +338,10 @@ const PlanMapSection = styled.div`
 `;
 
 const PlanTitleInput = styled.input`
-  width: 100%;
+  width: 80%;
   height: 60px;
   font-size: 25px;
+  border-bottom: 1px solid gray;
 `;
 
 const PlanTitle = styled.p`
@@ -305,10 +352,7 @@ const PlanTitle = styled.p`
 
 const MyPlanButtonContainer = styled.div`
   display: flex;
-  margin: 0 auto;
-  width: 50%;
-  height: 100%;
+
   align-items: center;
   justify-content: end;
-  padding: 2rem;
 `;

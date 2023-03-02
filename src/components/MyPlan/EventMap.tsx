@@ -46,9 +46,11 @@ const EventMap = () => {
 export const CloneEventMap = ({
   plan,
   startDate,
+  height,
 }: {
   plan: PlanType;
   startDate: string;
+  height: number;
 }) => {
   const myPlan = plan.schedule[startDate];
 
@@ -65,7 +67,7 @@ export const CloneEventMap = ({
 
   return (
     <Wrap>
-      <Mapbox ref={mapRef} height={225} visible={'none'}></Mapbox>
+      <Mapbox ref={mapRef} height={height} visible={'none'}></Mapbox>
     </Wrap>
   );
 };
@@ -135,4 +137,5 @@ export const Mapbox = styled.div<{ height: number; visible?: string }>`
   width: 100%;
   height: ${(props) => props.height + 'px'};
   pointer-events: ${(props) => props?.visible};
+  object-fit: cover;
 `;

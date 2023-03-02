@@ -39,6 +39,7 @@ const BestTravelPlan = () => {
                           startDate={
                             data['items'][index]['startDate']['yyyymmdd']
                           }
+                          height={225}
                         ></CloneEventMap>
                       </TravelPlaceMainImgWrapper>
 

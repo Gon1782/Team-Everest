@@ -84,7 +84,7 @@ export default ScheduleDate;
 
 const PlanDateWrapper = styled.div`
   width: 100%;
-  height: 38px;
+  height: 85px;
   display: flex;
   align-items: center;
   padding: 5px 8px;

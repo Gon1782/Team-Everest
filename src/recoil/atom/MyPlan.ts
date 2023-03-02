@@ -11,6 +11,7 @@ export interface PlanType {
   planUniqueId: 0;
   isDelete: false;
   bookmarkCount: 0;
+  isMine?: boolean;
 }
 
 export interface PickScheduleType {
