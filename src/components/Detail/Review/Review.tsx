@@ -24,8 +24,8 @@ const Review = ({ item }: Props) => {
       <S.ReviewContainer>
         {!!reviews.length ? (
           reviews?.map((review, i) => {
-            if (i <= idx)
-              return <ReviewBox item={item} review={review} key={review.id} />;
+            // if (i <= idx)
+            return <ReviewBox item={item} review={review} key={review.id} />;
           })
         ) : (
           <NoReview />

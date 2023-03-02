@@ -13,6 +13,25 @@ export const MyBackImage = styled.img`
   border: none;
   object-fit: cover;
 `;
+export const BackBtnBox = styled.label`
+  cursor: pointer;
+  position: absolute;
+  display: flex;
+  justify-content: flex-end;
+  width: 90%;
+  margin-top: 50px;
+`;
+export const BackChangeBtn = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 177px;
+  height: 55px;
+  color: white;
+  background-color: #9db9ff;
+  border-radius: 30px;
+  margin-top: 25px;
+`;
 export const ProfileBox = styled.div`
   display: flex;
   align-items: flex-end;
@@ -37,6 +56,7 @@ export const BtnBox = styled.div`
   justify-content: space-evenly;
   width: 100%;
   height: 50px;
+  gap: 1rem;
 `;
 export const ProfileLabel = styled.label`
   cursor: pointer;
@@ -44,17 +64,17 @@ export const ProfileLabel = styled.label`
   justify-content: center;
   align-items: center;
   width: 50%;
-  color: black;
+  color: #79808f;
   background-color: transparent;
-  font-size: 1.5rem;
+  font-size: 20px;
 `;
 export const ProfileBtn = styled.button`
   cursor: pointer;
-  color: black;
+  color: #79808f;
   background-color: transparent;
   border: none;
   width: 50%;
-  font-size: 1.5rem;
+  font-size: 20px;
   padding: 0;
 `;
 export const ProfilInfoBox = styled.div`
@@ -66,11 +86,10 @@ export const ProfilInfoBox = styled.div`
 `;
 export const NicknameBox = styled.div`
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  width: 50%;
+  width: 100%;
   height: 2rem;
-  gap: 3rem;
+  gap: 1rem;
   line-height: 1.5rem;
   padding: 1rem 2rem;
   & svg {

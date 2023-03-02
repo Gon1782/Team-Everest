@@ -1,9 +1,10 @@
 import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import { getDetail } from '@/common/api/tourApi';
+import { FaStar } from 'react-icons/fa';
 import { DetailResponse, EachReview } from '@/types/DetailType';
-import * as S from './style/MyReviewStyled';
 import { ReviewImage } from '@/components/Detail/Review/style/ReviewStyled';
+import * as S from './style/MyReviewStyled';
 
 interface Props {
   review: EachReview;
@@ -15,6 +16,10 @@ const MyReviewBox = ({ review }: Props) => {
   const goToDetail = () => {
     navigate(`/detail/${review.contentId}`);
   };
+
+  const rating = [false, false, false, false, false].map((_, i) =>
+    i < review.rating ? true : false,
+  );
 
   // GET 관광지
   const { isLoading, isError, data, error } = useQuery<DetailResponse, Error>(
@@ -51,7 +56,13 @@ const MyReviewBox = ({ review }: Props) => {
       <S.MyReviewInfoBox>
         <span>{title}</span>
         <S.MyReviewRatingBox>
-          {'⭐'.repeat(Number(review.rating))}
+          {rating.map((x, i) =>
+            x ? (
+              <FaStar color="#0039CB" size={24} key={i} />
+            ) : (
+              <FaStar color="gray" size={24} key={i} />
+            ),
+          )}
         </S.MyReviewRatingBox>
         <S.MyReviewContentBox>
           {review.content.length <= 85

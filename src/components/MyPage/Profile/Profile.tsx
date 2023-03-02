@@ -20,7 +20,9 @@ const Profile = ({ user, LoginCheck, checkMy, getUser }: Props) => {
 
   // 프로필 이미지
   const [img, setImage] = useState(user.photoURL);
+  const [backImg, setBackImage] = useState(user.backImage);
   const [profileImg, changeProfileImg, resetImg] = useImageInput('');
+  const [backImage, changeBackImg, resetBackImg] = useImageInput('');
 
   // 프로필 닉네임 한줄소개 수정
   const [checkEdit, setEdit] = useState(false);
@@ -45,29 +47,41 @@ const Profile = ({ user, LoginCheck, checkMy, getUser }: Props) => {
     setEdit(false);
   }, [myInfo]);
 
-  // Update UserDB 프로필 사진
-  const updateProfileImage = useCallback(async (img: string) => {
-    setImage(img);
-    await updateUserDB(user.uid, {
-      photoURL: img,
-    });
-    resetImg();
-  }, []);
+  // Update UserDB 배경 사진
+  const updateImage = useCallback(
+    async (
+      img: string,
+      edit: { [key: string]: string },
+      setImg: React.Dispatch<any>,
+    ) => {
+      setImg(img);
+      await updateUserDB(user.uid, edit);
+      resetImg();
+      resetBackImg();
+    },
+    [],
+  );
+
+  useEffect(() => {
+    if (!!backImage) {
+      updateImage(backImage, { backImage: backImage }, setBackImage);
+    }
+  }, [backImage]);
 
   useEffect(() => {
     if (!!profileImg) {
-      updateProfileImage(profileImg);
+      updateImage(profileImg, { photoURL: profileImg }, setImage);
     }
   }, [profileImg]);
 
   const defaults = useDefault();
-  const { defaultProfile, defaultIntro, backImage } = defaults();
+  const { defaultProfile, defaultIntro, defaultBackImage } = defaults();
 
   // 프로필 사진
   const profileImage = !!img ? img : defaultProfile;
 
   // 배경사진
-  const backgroundImage = !!user.backImage ? user.backImage : backImage;
+  const backgroundImage = !!backImg ? backImg : defaultBackImage;
 
   // 한줄 소개
   const introduce = !!user.introduce ? user.introduce : defaultIntro;
@@ -75,12 +89,21 @@ const Profile = ({ user, LoginCheck, checkMy, getUser }: Props) => {
   return (
     <S.ProfileSection>
       <S.MyBackImage src={backgroundImage} />
+      <S.BackBtnBox>
+        <S.BackChangeBtn>이미지 변경하기</S.BackChangeBtn>
+        <input
+          type="file"
+          accept="image/*"
+          style={{ display: 'none' }}
+          onChange={(e) => changeBackImg(e)}
+        />
+      </S.BackBtnBox>
       <S.ProfileBox>
         <S.ProfileImageBox>
           <S.ProfileImage src={profileImage} />
           <S.BtnBox style={{ visibility: check ? 'visible' : 'hidden' }}>
             <S.ProfileLabel>
-              Change
+              이미지 변경하기
               <input
                 type="file"
                 accept="image/*"
@@ -88,8 +111,10 @@ const Profile = ({ user, LoginCheck, checkMy, getUser }: Props) => {
                 onChange={(e) => changeProfileImg(e)}
               />
             </S.ProfileLabel>
-            <S.ProfileBtn onClick={() => updateProfileImage('')}>
-              Delete
+            <S.ProfileBtn
+              onClick={() => updateImage('', { photoURL: '' }, setImage)}
+            >
+              이미지 삭제하기
             </S.ProfileBtn>
           </S.BtnBox>
         </S.ProfileImageBox>

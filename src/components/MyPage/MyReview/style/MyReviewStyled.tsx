@@ -6,10 +6,27 @@ export const MyReviewSection = styled.section`
   padding: 0 0 1rem;
   border-radius: 20px;
 `;
+export const MyReviewHeader = styled.header`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+`;
+
 export const MyReviewTitle = styled.header`
   width: 100%;
   padding: 2rem;
   font-size: 2rem;
+`;
+export const MyReviewLoadMore = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 112px;
+  height: 57px;
+  font-size: 20px;
+  color: white;
+  background-color: #9db9ff;
+  border-radius: 30px;
 `;
 export const MyReviewContainer = styled.div`
   display: grid;
@@ -29,16 +46,9 @@ export const MyReview = styled.div`
   cursor: pointer;
   width: 388px;
   height: 420px;
-  background-color: gray;
+  background-color: #b8b8b8;
   padding: 1rem;
   border-radius: 20px;
-`;
-export const MyReviewHeader = styled.div`
-  display: flex;
-  align-items: center;
-  width: 100%;
-  gap: 1rem;
-  font-size: 1.5rem;
 `;
 export const MyReviewProfile = styled.img`
   width: 3rem;
@@ -64,9 +74,10 @@ export const MyReviewRatingBox = styled.div`
 `;
 export const MyReviewContentBox = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   background-color: white;
   width: 100%;
+  min-height: 107px;
   padding: 1rem;
   font-size: 1rem;
   word-break: break-all;

@@ -18,4 +18,4 @@ const backImages = [
   'https://images.unsplash.com/photo-1417716146732-918825b83fa0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
 ];
 
-export const backImage = backImages.filter((_, i) => i === No)[0];
+export const defaultBackImage = backImages.filter((_, i) => i === No)[0];
