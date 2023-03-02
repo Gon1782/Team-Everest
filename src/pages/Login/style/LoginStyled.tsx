@@ -11,10 +11,12 @@ export const LoginContainer = styled.main`
   overflow-y: hidden;
 `;
 export const LoginBox = styled.section`
+  position: relative;
   width: 440px;
   height: 635px;
   border-radius: 30px;
   background-color: #edf2ff;
+  z-index: 1;
 `;
 export const LoginHeader = styled.header`
   display: flex;

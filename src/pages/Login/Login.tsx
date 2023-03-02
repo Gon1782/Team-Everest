@@ -1,3 +1,4 @@
+import ReactPlayer from 'react-player';
 import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import { useNavigate } from 'react-router-dom';
@@ -27,6 +28,14 @@ const Login = () => {
   return (
     <>
       <S.LoginContainer>
+        <ReactPlayer
+          className="login-player"
+          url={require('@/assets/Landing/Landing_video.mp4').default}
+          playing={true}
+          width={'100%'}
+          height={'auto'}
+          style={{ position: 'absolute' }}
+        />
         <S.LoginBox>
           <S.LoginHeader>
             <S.LoginHeaderBtn
