@@ -6,6 +6,7 @@ import SearchModal from './SearchModal';
 import { auth } from '../../common/api/firebase';
 import { onAuthStateChanged } from '@firebase/auth';
 import useModal from '@/hooks/useModal';
+import ScrollToTopBtn from '@/components/button/ScrollToTopBtn';
 
 const Header = () => {
   // 검색창 토글
@@ -71,6 +72,7 @@ const Header = () => {
           <LogInButton onClick={LoginOutHandler}>
             <LogoutText>{logoutText ? '로그인' : '로그아웃'}</LogoutText>
           </LogInButton>
+          <ScrollToTopBtn />
         </Nav>
       </HeaderContainer>
     </>
