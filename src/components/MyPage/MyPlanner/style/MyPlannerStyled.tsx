@@ -25,11 +25,13 @@ export const MyPlannerBox = styled.div`
   cursor: pointer;
   display: flex;
   justify-content: center;
+  overflow: hidden;
   align-items: center;
   min-width: 300px;
   min-height: 300px;
   background-color: lightgray;
   border-radius: 50%;
+  margin-bottom: 20px;
 `;
 
 export const MyPlannerNone = styled.div`

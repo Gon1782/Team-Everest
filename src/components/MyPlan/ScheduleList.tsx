@@ -98,7 +98,7 @@ const PlanItemsSwiper = styled(Swiper)`
 
 const PlanItem = styled.li`
   width: 100%;
-  min-height: 300px;
+  min-height: 500px;
   height: auto;
   border-radius: 10px;
   border: 1px solid #2c2c2c;

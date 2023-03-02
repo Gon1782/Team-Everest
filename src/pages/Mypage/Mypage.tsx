@@ -55,7 +55,7 @@ const Mypage = () => {
         getUser={getUser}
       />
       {/* 나의 위시리스트 섹션 아마도? */}
-      <MyPlanner user={user} />
+      <MyPlanner user={user} getUser={getUser} />
       {/* 나의 플래너 섹션 */}
       <MyReview user={user} />
     </S.MyPageContainer>

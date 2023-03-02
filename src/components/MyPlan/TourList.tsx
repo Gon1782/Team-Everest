@@ -76,7 +76,7 @@ const TourList = () => {
         />
         <ShowMyWish>저장한 장소만 보기</ShowMyWish>
       </MyWish>
-      {!!dataList?.length &&
+      {!!dataList?.length ? (
         dataList.map((item: any, index: number) => {
           return (
             <SpotItem key={index}>
@@ -94,7 +94,10 @@ const TourList = () => {
               </SpotSaveButton>
             </SpotItem>
           );
-        })}
+        })
+      ) : (
+        <>검색 결과</>
+      )}
     </TourListContainer>
   );
 };
@@ -123,7 +126,7 @@ const CheckShowMyWish = styled.input`
 `;
 
 const SpotItem = styled.div`
-  height: 90px;
+  height: 120px;
   width: 100%;
   border: 1px solid black;
   border-radius: 10px;

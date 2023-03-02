@@ -2,8 +2,17 @@ import { useNavigate } from 'react-router-dom';
 import { Document } from '@/types/DetailType';
 import * as S from './style/MyPlannerStyled';
 import useLoadMore from '@/hooks/useLoadMore';
+import { CloneEventMap } from '@/components/MyPlan/EventMap';
+import { FaBookmark } from 'react-icons/fa';
+import { useEffect } from 'react';
 
-const MyPlanner = ({ user }: { user: Document }) => {
+const MyPlanner = ({
+  user,
+  getUser,
+}: {
+  user: Document;
+  getUser: (uid: string) => Promise<void>;
+}) => {
   const navigate = useNavigate();
 
   const myPlanner = user.myPlanner?.filter((x: any) => x.isDelete === false);
@@ -12,6 +21,10 @@ const MyPlanner = ({ user }: { user: Document }) => {
   const moveToMyPlan = (item: any) => {
     navigate(`/planner/${user['uid']}/${item.planUniqueId}`);
   };
+
+  useEffect(() => {
+    getUser(user.uid);
+  }, []);
 
   const [idx, checkEnd, ViewMore] = useLoadMore(myPlanner);
 
@@ -25,12 +38,27 @@ const MyPlanner = ({ user }: { user: Document }) => {
           myPlanner.map((item: any, index: number) => {
             if (index <= idx) {
               return (
-                <S.MyPlannerBox
-                  key={item.name}
-                  onClick={() => moveToMyPlan(item)}
-                >
+                <div style={{ textAlign: 'center' }}>
+                  <FaBookmark
+                    style={{
+                      display: item['isMine'] ? 'none' : 'flex',
+                      position: 'absolute',
+                    }}
+                    color="#0A77D1"
+                    size="20"
+                  />
+                  <S.MyPlannerBox
+                    key={item.name}
+                    onClick={() => moveToMyPlan(item)}
+                  >
+                    <CloneEventMap
+                      plan={item}
+                      startDate={item['startDate']['yyyymmdd']}
+                      height={300}
+                    ></CloneEventMap>
+                  </S.MyPlannerBox>
                   <span>{item?.name}</span>
-                </S.MyPlannerBox>
+                </div>
               );
             }
           })
