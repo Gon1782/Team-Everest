@@ -33,6 +33,7 @@ const Login = () => {
           className="login-player"
           url={require('@/assets/Landing/Landing_video.mp4').default}
           playing={true}
+          loop={true}
           width={'100%'}
           height={'auto'}
           style={{ position: 'absolute' }}

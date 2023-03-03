@@ -1,13 +1,16 @@
-import React from 'react';
-import { useEffect, useRef } from 'react';
-import * as Style from './CitymapStyle';
-import { useRecoilState } from 'recoil';
+import { useEffect, useRef, useState } from 'react';
+import { useSetRecoilState } from 'recoil';
 import { cityInfo } from '@/common/utils/cityInfo';
-
-import { CityAreaInfo } from '@/recoil/atom/CityAreaInfo';
-import { CityArea } from '@/recoil/atom/CityArea';
+import { oneCity } from '@/common/utils/areaCode/areaCode';
+import { markerSelector } from '@/common/utils/selector';
+import useCityMarkers from '@/hooks/useCityMarkers';
+import useMap from '@/hooks/useMap';
 import useModal from '@/hooks/useModal';
+import { CityAreaInfo } from '@/recoil/atom/CityAreaInfo';
 import CityInfoModal from './CityInfoModal';
+import Sidebar from './Sidebar/Sidebar';
+import * as S from './style/CitymapStyle';
+import { GwangYeokSi } from '@/common/utils/city';
 
 declare global {
   interface Window {
@@ -30,93 +33,106 @@ interface InfoType {
 const { kakao } = window;
 
 const Citymap = () => {
-  const [area, setArea] = useRecoilState(CityArea);
-  const [areaInfo, setAreaInfo] = useRecoilState(CityAreaInfo);
+  const mapRef = useRef(null);
+  const setAreaInfo = useSetRecoilState(CityAreaInfo);
+
+  const area = { mapy: 37, mapx: 127, level: 13 };
+
+  const [areaCode, setAreaCode] = useState('');
+  const [sigunguCode, setSigunguCode] = useState('');
 
   const [modal, openModal, closeModal, closeModalIfClickOutside] = useModal();
 
+  const map = useMap(mapRef, area);
+
+  const { markers, overlays, newMarker } = useCityMarkers();
+
+  const gwangYeokSi = (i: number) => {
+    setAreaCode(cityInfo[i].areacode);
+    const center = new kakao.maps.LatLng(cityInfo[i].mapy, cityInfo[i].mapx);
+    map.setCenter(center);
+    map.setLevel(9);
+    openModal();
+  };
+
+  const Do = (i: number) => {
+    setAreaCode(cityInfo[i].areacode);
+    const prevMarkers = markers.markers;
+    prevMarkers.forEach((marker) => marker.setMap(null));
+    overlays?.forEach((overlay) => overlay.setMap(null));
+    const sigungu = markerSelector(cityInfo[i].areacode);
+    const center = new kakao.maps.LatLng(cityInfo[i].mapy, cityInfo[i].mapx);
+    newMarker('sigungu', sigungu);
+    map.setCenter(center);
+    map.setLevel(11);
+  };
+
+  const siGunGu = (i: number) => {
+    const sigungu = markerSelector(areaCode);
+    setSigunguCode(sigungu[i].code);
+    const center = new kakao.maps.LatLng(sigungu[i].mapy, sigungu[i].mapx);
+    map.setCenter(center);
+    map.setLevel(9);
+    openModal();
+  };
+
   useEffect(() => {
-    kakao.maps.load(() => {
-      const position = new kakao.maps.LatLng(area.mapy, area.mapx);
-
-      let el = document.getElementById('map');
-
-      const mapOptions = {
-        center: position, // 지도의 중심좌표
-        level: area.level, // 지도의 확대 레벨
-      };
-
-      const map = new kakao.maps.Map(el, mapOptions);
-
-      // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
-      let zoomControl = new kakao.maps.ZoomControl();
-      map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
-
-      // 마커 이미지의 이미지 주소
-      let imageSrc = require('@/assets/marker.png').default;
-      // 마커 이미지의 이미지 크기
-      let imageSize = new kakao.maps.Size(60, 60);
-
-      for (let i = 0; i < cityInfo.length; i++) {
-        // 마커 이미지를 생성합니다
-        let markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
-
-        const content = `
-        <div class="customoverlay" style="background-color :#fff; width: auto; height: auto; padding: 2px; border-radius: 5px; border: 1px solid #1753a5;">
-          <div style="color: #1753a5; font-weight: 700; font-size: 13px;">${cityInfo[i].korarea}</div>
-        </div>`;
-
-        // 마커를 생성합니다
-        let marker = new kakao.maps.Marker({
-          map, // 마커를 표시할 지도
-          position: new kakao.maps.LatLng(cityInfo[i].mapy, cityInfo[i].mapx), // 마커를 표시할 위치
-          title: cityInfo[i].korarea, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-          image: markerImage, // 마커 이미지
-        });
-
-        // 커스텀 오버레이 생성
-        new kakao.maps.CustomOverlay({
-          map,
-          position: new kakao.maps.LatLng(cityInfo[i].mapy, cityInfo[i].mapx),
-          content,
-          title: cityInfo[i].korarea,
-          image: markerImage,
-        });
-
-        marker.setMap(map);
-
+    const type = markers.type;
+    const nowMarkers = markers.markers;
+    if (type === 'Do') {
+      nowMarkers.forEach((marker, i) => {
+        if (oneCity.includes(`${i + 1}`) || i === nowMarkers.length - 1) {
+          kakao.maps.event.addListener(marker, 'click', () => {
+            gwangYeokSi(i);
+          });
+          marker.setMap(map);
+        } else {
+          kakao.maps.event.addListener(marker, 'click', () => {
+            Do(i);
+          });
+          marker.setMap(map);
+        }
+      });
+      overlays?.forEach((overlay) => overlay.setMap(map));
+    } else {
+      nowMarkers.forEach((marker, i) => {
         kakao.maps.event.addListener(marker, 'click', () => {
-          //모달 생성
-          const object: InfoType = {
-            areacode: cityInfo[i].areacode,
-            engarea: cityInfo[i].engarea,
-            korarea: cityInfo[i].korarea,
-            description: cityInfo[i].description,
-            hashtag: cityInfo[i].hashtag,
-            tourcount: cityInfo[i].tourcount,
-            tourdate: cityInfo[i].tourdate,
-            spec: cityInfo[i].spec,
-            jpgindex: i + 1,
-          };
-          setAreaInfo({ ...object });
-
-          openModal();
+          siGunGu(i);
         });
-      }
-    });
-  }, [area]);
+        marker.setMap(map);
+      });
+      overlays?.forEach((overlay) => overlay.setMap(map));
+    }
+  }, [markers]);
 
   return (
-    <Style.Wrap>
-      <Style.Mapbox id="map"></Style.Mapbox>
-      {/* 모달 */}
-      {modal && (
-        <CityInfoModal
-          closeModalIfClickOutside={closeModalIfClickOutside}
-          closeModal={closeModal}
-        />
-      )}
-    </Style.Wrap>
+    <>
+      <Sidebar
+        areacode={areaCode}
+        map={map}
+        markers={markers}
+        overlays={overlays}
+        newMarker={newMarker}
+        setAreaCode={setAreaCode}
+        setSigunguCode={setSigunguCode}
+        openModal={openModal}
+        Do={Do}
+        gwangYeokSi={gwangYeokSi}
+        siGunGu={siGunGu}
+      />
+      <S.Wrap>
+        <S.Mapbox ref={mapRef} />
+        {/* 모달 */}
+        {modal && (
+          <CityInfoModal
+            areaCode={areaCode}
+            sigunguCode={sigunguCode}
+            closeModalIfClickOutside={closeModalIfClickOutside}
+            closeModal={closeModal}
+          />
+        )}
+      </S.Wrap>
+    </>
   );
 };
 

@@ -19,11 +19,14 @@ export const Wrap = styled.section`
 `;
 
 export const IconWrap = styled.div`
+  position: sticky;
   cursor: pointer;
   margin-left: 10px;
   padding: 10px 0px;
   display: flex;
   align-items: center;
+  top: 0;
+  background-color: white;
 `;
 
 export const Text = styled.span`
