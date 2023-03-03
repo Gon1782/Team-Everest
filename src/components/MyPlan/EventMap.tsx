@@ -26,10 +26,10 @@ const EventMap = () => {
     kakao.maps.load(function () {
       const map = setMap(locationInfo, mapRef); //지도 생성 및 객체 리턴
       const linePath: any = [];
-      if (!!myPlan.schedule[myPlan.startDate?.yyyymmdd].length) {
+      if (!!myPlan.schedule[scheduleInfo.schedule]?.length) {
         setPolyLine(
           map,
-          setMarker(myPlan.schedule[myPlan.startDate?.yyyymmdd], map, linePath),
+          setMarker(myPlan.schedule[scheduleInfo.schedule], map, linePath),
           'black',
         );
       }
@@ -138,4 +138,5 @@ export const Mapbox = styled.div<{ height: number; visible?: string }>`
   height: ${(props) => props.height + 'px'};
   pointer-events: ${(props) => props?.visible};
   object-fit: cover;
+  border-radius: 2%;
 `;

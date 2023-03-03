@@ -54,7 +54,7 @@ const ScheduleDate = ({
     });
   };
   useEffect(() => {
-    console.log(scheduleRef.current[index]);
+    //console.log(scheduleRef.current[index]);
   }, []);
 
   return (
@@ -84,7 +84,7 @@ export default ScheduleDate;
 
 const PlanDateWrapper = styled.div`
   width: 100%;
-  height: 85px;
+  height: 45px;
   display: flex;
   align-items: center;
   padding: 5px 8px;
@@ -110,6 +110,7 @@ const AddPlanBtnWapper = styled.div`
   width: 100%;
   text-align: right;
   padding: 5px 8px;
+  /* border-bottom: 1px inset; */
   /* border-bottom: 1px solid #2c2c2c; */
 `;
 

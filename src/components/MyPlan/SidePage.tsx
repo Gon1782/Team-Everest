@@ -31,62 +31,79 @@ const SidePage = () => {
   const [pickTheme, setPickTheme] = useState('');
   const [keyword, setKeyword] = useState('');
   const [placeholder, setPlaceholder] = useState(false);
+  const pageRef = useRef<any>();
 
   const pickSchedule = useRecoilValue(PickScheduleRecoil);
   const [tourList, setTourList] = useRecoilState<Item[]>(TourListRecoil);
-  const setMyWishList = useSetRecoilState(MyWishList);
+  const [isShowMyWish, setIsShowMyWish] = useState(false);
+  const [myWishList, setMyWishList] = useRecoilState(MyWishList);
+  const [dataList, setDataList] = useState<Item[]>([]);
 
   const setIsSidePageView = useSetRecoilState(IsSidePageView);
 
+  // 관광지 검색하기
   const searching = async () => {
     const { response } = await getSpot(keyword);
-    //.response.body.items.item
-    //console.log(response.body.items.item);
     setTourList(response.body.items.item);
-    // console.log(response);
   };
 
-  useEffect(() => {
-    // 지역, 테마 선택했을 경우에만 돌수있게
+  // 관광지 데이터 가져오기
+  const getSpotList = (
+    pickLocation: string,
+    pickTheme: string,
+    pageNo: number,
+  ) => {
     if (!!pickLocation && !!pickTheme) {
       getTourList(pickLocation, pickTheme, String(pageNo)).then(
-        (result: DetailResponse) =>
-          setTourList(result?.response.body.items.item),
+        (result: DetailResponse) => {
+          setDataList((prev) => {
+            return prev.concat(result?.response.body.items.item);
+          });
+          setTourList((prev) => {
+            return prev.concat(result?.response.body.items.item);
+          });
+        },
       );
       setPageNo(pageNo + 1);
     }
+  };
+
+  //지역/테마 선택시 해당 데이터 리스트 가져오기
+  useEffect(() => {
+    // 지역, 테마 선택했을 경우에만 돌수있게
+    getSpotList(pickLocation, pickTheme, pageNo);
   }, [pickLocation, pickTheme]);
 
+  // 저장한 장소만 보기 클릭시
+  useEffect(() => {
+    isShowMyWish ? setDataList(myWishList) : setDataList(tourList);
+    // setDataList(myWishList);
+  }, [isShowMyWish]);
+
+  // wish 리스트 가져오기
   useEffect(() => {
     getUserDB(uid).then((result: any) => {
       setMyWishList(result.myWishPlace);
     });
     return () => {
-      setTourList([]);
+      setDataList([]);
       setPageNo(1);
     };
   }, []);
 
-  const pageRef = useRef<any>();
   const keepCheckingScroll = () => {
     // 스크롤바 길이 , 스크롤바의 위치 , 해당 컴포넌트 높이
     const { scrollHeight, scrollTop, clientHeight } = pageRef.current;
 
-    if (clientHeight + scrollTop >= scrollHeight - 1) {
-      getTourList(pickLocation, pickTheme, String(pageNo)).then(
-        (result: DetailResponse) =>
-          setTourList(tourList.concat(result?.response.body.items.item)),
-      );
-      setPageNo(pageNo + 1);
+    if (clientHeight + scrollTop >= scrollHeight - 1 && !isShowMyWish) {
+      getSpotList(pickLocation, pickTheme, pageNo);
     }
   };
 
   useEffect(() => {
     // 스크롤 움직임 체크 함수
     pageRef.current.addEventListener('scroll', keepCheckingScroll, true);
-
     // 컴포넌트 나가면 핸들러 제거하기
-
     return () => {
       pageRef.current?.removeEventListener('scroll', keepCheckingScroll, true);
     };
@@ -129,7 +146,12 @@ const SidePage = () => {
         />
         <SlMagnifier onClick={searching} style={{ cursor: 'pointer' }} />
       </SearchingSection>
-      <TourList />
+      <TourList
+        list={dataList}
+        setIsShowMyWish={setIsShowMyWish}
+        pickSchedule={pickSchedule}
+        isShowMyWish={isShowMyWish}
+      />
     </SidePageContainer>
   );
 };

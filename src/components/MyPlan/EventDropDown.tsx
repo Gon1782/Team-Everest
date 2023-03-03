@@ -109,7 +109,7 @@ const EventDropDown = ({
   // 시간/메모 수정 버튼 클릭시 드롭다운창 보여주기
   const showDropDownPage = (date: string, index: number): any => {
     const event = newPlan.schedule[date][index];
-    console.log(event);
+
     setPreviousEvent(previousEvent.concat({ date: date, index: index }));
 
     if (previousEvent.length) {
@@ -148,19 +148,12 @@ const EventDropDown = ({
   return (
     <>
       {authority.write && (
-        <EventTimeMemoSet style={{ position: 'relative' }}>
+        <EventTimeMemoSet>
           <EventTimeMemoSetBtn
             onClick={() => showDropDownPage(scheduleDate, index)}
           >
-            시간/메모 설정 &#9660;
+            시간/메모 설정
           </EventTimeMemoSetBtn>
-          <DeleteIcon
-            onClick={() =>
-              popEvent(scheduleDate, index, newPlan.schedule[scheduleDate])
-            }
-          >
-            삭제
-          </DeleteIcon>
         </EventTimeMemoSet>
       )}
       <EventTimeMemoSetDrop
@@ -175,8 +168,6 @@ const EventDropDown = ({
         }}
       >
         {/* 시간/메모 설정페이지 */}
-        <div>시간</div>
-
         <EventTime when={initEventWhen} setWhen={setInitEventWhen} />
         <EventMemo memo={initEventMemo} setMemo={setInitEventMemo} />
         <TimeMemoSaveBtn
@@ -201,28 +192,6 @@ export default EventDropDown;
 const EventTimeMemoSet = styled.div`
   width: 80%;
   margin: 0 auto;
-  margin-bottom: 10px;
-`;
-
-const EventTimeMemoSetBtn = styled.button`
-  width: 100%;
-  height: 20px;
-  font-size: 0.8rem;
-  font-weight: 400;
-`;
-
-// 삭제 버튼
-const DeleteIcon = styled(FaRegTrashAlt)`
-  position: absolute;
-  right: 10px;
-  top: -48px;
-  font-size: 0.9rem;
-  color: grey;
-
-  cursor: pointer;
-  &:hover {
-    color: #c62626;
-  }
 `;
 
 // 시간, 설정 드롭메뉴
@@ -232,3 +201,10 @@ const EventTimeMemoSetDrop = styled.div`
 `;
 
 const TimeMemoSaveBtn = styled.button``;
+const EventTimeMemoSetBtn = styled.button`
+  width: 100%;
+  height: 20px;
+  font-size: 5px;
+  font-weight: 400;
+  background-color: white;
+`;
