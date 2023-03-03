@@ -10,24 +10,19 @@ const Landing = () => {
           src={require('@/assets/Landing/sherpa_logo.png').default}
           alt="slide banner4"
         />
-        <LogoText>SHERPA</LogoText>
+        <LogoText>SHARPA</LogoText>
         <Title>여행 스케줄링 플래너</Title>
-        {/* <StartButton></StartButton> */}
         <StartBtn to="/main">시작하기</StartBtn>
       </InfoSection>
-      <VideoSection>
-        <ReactPlayer
-          className="react-player"
-          url={require('@/assets/Landing/Landing_video.mp4').default} // 플레이어 url
-          width={'auto'} // 플레이어 크기 (가로)
-          height={'100%'} // 플레이어 크기 (세로)
-          playing={true} // 자동 재생 on
-          muted={true} // 자동 재생 on
-          controls={false} // 플레이어 컨트롤 노출 여부
-          light={false} // 플레이어 모드
-          pip={true} // pip 모드 설정 여부
-        />
-      </VideoSection>
+      <ReactPlayer
+        className="react-player"
+        url={require('@/assets/Landing/Landing_video.mp4').default} // 플레이어 url
+        width={'100%'}
+        height={'auto'}
+        playing={true} // 자동 재생 on
+        loop={true}
+        style={{ position: 'absolute' }}
+      />
     </Container>
   );
 };
@@ -36,53 +31,57 @@ export default Landing;
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
-  background-color: #959595;
   display: flex;
-  box-sizing: border-box;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  overflow-y: hidden;
 `;
 
 const InfoSection = styled.div`
   width: 40%;
-  background-color: #ffffff;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: absolute;
+  z-index: 1;
 `;
 
 const Logo = styled.img`
-  width: 15rem;
+  width: 180px;
   height: auto;
 `;
 
-const LogoText = styled.h2`
-  font-size: 5rem;
-  margin-bottom: 30px;
+const LogoText = styled.h1`
+  font-size: 3rem;
+  color: #fff;
+  transform: translateY(-15px);
+  margin-bottom: 15px;
 `;
 
-const Title = styled.h1`
-  font-size: 2rem;
-  letter-spacing: -2px;
+const Title = styled.h2`
+  font-size: 1.5rem;
+  font-weight: 200;
+  /* letter-spacing: -2px; */
+  color: #fff;
 `;
 
 const StartBtn = styled(NavLink)`
   text-decoration: none;
-  background-color: #1b8a99;
-  width: 280px;
-  height: 60px;
-  font-size: 1.3rem;
+  background-color: #0034b9;
+  width: 150px;
+  height: 50px;
+  font-size: 1.2rem;
   color: white;
-  line-height: 60px;
+  line-height: 50px;
   text-align: center;
-  margin-top: 30px;
+  margin-top: 35px;
+  border-radius: 50px;
+  transition: all 0.25;
+  &:hover {
+    background-color: #06309b;
+  }
 `;
-
-const VideoSection = styled.div`
-  width: 60%;
-  display: flex;
-  overflow: hidden;
-`;
-
-// const LandingVideo = styled(ReactPlayer)`
-//   object-fit: cover;
-// `;
