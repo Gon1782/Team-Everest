@@ -1,7 +1,7 @@
 import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import { getDetail } from '@/common/api/tourApi';
-import { FaStar } from 'react-icons/fa';
+import { FaStar, FaRegStar } from 'react-icons/fa';
 import { DetailResponse, EachReview } from '@/types/DetailType';
 import { ReviewImage } from '@/components/Detail/Review/style/ReviewStyled';
 import * as S from './style/MyReviewStyled';
@@ -60,7 +60,7 @@ const MyReviewBox = ({ review }: Props) => {
             x ? (
               <FaStar color="#0039CB" size={24} key={i} />
             ) : (
-              <FaStar color="gray" size={24} key={i} />
+              <FaRegStar color="#0039CB" size={24} key={i} />
             ),
           )}
         </S.MyReviewRatingBox>

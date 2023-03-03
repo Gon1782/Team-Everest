@@ -131,7 +131,7 @@ export const StarBox = styled.div`
   justify-content: center;
   gap: 0.5rem;
   & svg {
-    color: #666666;
+    color: lightgray;
     cursor: pointer;
   }
   & svg:hover {
