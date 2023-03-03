@@ -1,3 +1,4 @@
+import useMap from '@/hooks/useMap';
 import { useRef, useEffect } from 'react';
 import styled from 'styled-components';
 
@@ -11,29 +12,24 @@ interface Props {
 const DetailMap = ({ x, y }: Props) => {
   const mapRef = useRef(null);
 
+  const area = {
+    mapx: x,
+    mapy: y,
+    level: 2,
+  };
+
+  const map = useMap(mapRef, area);
+
   useEffect(() => {
-    if (x !== '0') {
-      const location = new kakao.maps.LatLng(y, x);
-
-      const options = {
-        center: location,
-        level: 2,
-      };
-
-      // 맵 생성
-      const map = new kakao.maps.Map(mapRef.current, options);
-
-      // 줌컨트롤 ON
-      const zoomControl = new kakao.maps.ZoomControl();
-      map.addControl(zoomControl, kakao.maps.ControlPosition.LEFT);
-
+    if (map) {
+      const position = new kakao.maps.LatLng(area.mapy, area.mapx);
       // 마커 생성
       new kakao.maps.Marker({
-        map: map,
-        position: location,
+        map,
+        position,
       });
     }
-  }, []);
+  }, [map]);
 
   return <Map ref={mapRef}>{x === '0' ? '위치정보가 없습니다 ㅠㅠ' : ''}</Map>;
 };

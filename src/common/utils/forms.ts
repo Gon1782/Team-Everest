@@ -29,3 +29,19 @@ export const reviewForm = {
   isDelete: '',
   tag: [],
 };
+
+export const cityForm = {
+  name: '',
+  areaCode: '',
+  sigunguCode: '',
+  reviewCount: '',
+  engarea: '',
+  description: '',
+  hashtag: [''],
+  tourcount: '',
+  tourdate: '',
+  spec: '',
+  mapx: 0,
+  mapy: 0,
+  image: '',
+};

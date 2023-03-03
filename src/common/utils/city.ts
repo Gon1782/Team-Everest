@@ -12,8 +12,8 @@ export const JeonBuk = [
       tourcount: '150',
       tourdate: '3~6월',
       spec: '수박, 복분자, 풍천장어',
-      mapy: 35.4356982163483,
       mapx: 126.702120365321,
+      mapy: 35.4356982163483,
       image:
         'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FGochang.jpg?alt=media&token=06c4b3bc-3aa2-46a8-871f-4cf77e5a21ed',
     },
@@ -31,8 +31,8 @@ export const JeonBuk = [
       tourcount: '323',
       tourdate: '6~12월',
       spec: '마늘, 메밀국수, 꽃게',
-      mapy: 35.9674665619218,
       mapx: 126.736840487468,
+      mapy: 35.9674665619218,
       image:
         'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FGunsan.gif?alt=media&token=6702544f-7338-4b63-941e-57c41d001c74',
     },
@@ -50,8 +50,8 @@ export const JeonBuk = [
       tourcount: '111',
       tourdate: '6~10월',
       spec: '호두, 고추장, 쌀',
-      mapy: 35.8035816671869,
       mapx: 126.88064623757,
+      mapy: 35.8035816671869,
       image:
         'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FGimje.jpg?alt=media&token=9a19bc2c-6423-495b-85a5-4de9e5e4b9f2',
     },
@@ -69,8 +69,8 @@ export const JeonBuk = [
       tourcount: '208',
       tourdate: '9~12월',
       spec: '더덕, 고추, 참숯',
-      mapy: 35.4163627529983,
       mapx: 127.390396427422,
+      mapy: 35.4163627529983,
       image:
         'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FNamWon.webp?alt=media&token=58aece15-55b1-4ec3-87e5-6dd56d050b6a',
     },
@@ -88,8 +88,8 @@ export const JeonBuk = [
       tourcount: '174',
       tourdate: '8~12월',
       spec: '산수유, 메밀, 곰취',
-      mapy: 35.4163627529983,
       mapx: 127.390396427422,
+      mapy: 35.4163627529983,
       image:
         'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FMuju.jpg?alt=media&token=624e8f31-615b-426e-9981-a9ac2d2acd11',
     },
@@ -107,8 +107,8 @@ export const JeonBuk = [
       tourcount: '188',
       tourdate: '6~12월',
       spec: '양파, 참외, 깻잎',
-      mapy: 35.7316577924649,
       mapx: 126.733011321782,
+      mapy: 35.7316577924649,
       image:
         'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FBuan.jpg?alt=media&token=fb51f2a8-72ae-4eb8-bed3-7548e6b072ae',
     },
@@ -126,8 +126,8 @@ export const JeonBuk = [
       tourcount: '92',
       tourdate: '6~12월',
       spec: '고추장, 찰보리, 구기자',
-      mapy: 35.3744452332964,
       mapx: 127.137364881069,
+      mapy: 35.3744452332964,
       image:
         'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FSunchang.jfif?alt=media&token=88987aba-7179-43fa-b223-73ab52ccb027',
     },
@@ -145,8 +145,8 @@ export const JeonBuk = [
       tourcount: '188',
       tourdate: '6~12월',
       spec: '양배추, 청과, 매실',
-      mapy: 35.9048145963415,
       mapx: 127.162119017463,
+      mapy: 35.9048145963415,
       image:
         'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FWanju.jfif?alt=media&token=d81b3bc3-4095-4483-85fe-f93375e6b5e7',
     },
@@ -164,8 +164,8 @@ export const JeonBuk = [
       tourcount: '175',
       tourdate: '6~12월',
       spec: '어리굴비, 대추, 생면',
-      mapy: 35.9482628600199,
       mapx: 126.957744486694,
+      mapy: 35.9482628600199,
       image:
         'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FIksan.jpg?alt=media&token=b67352a2-377e-42b3-8f20-9fbea5d9f77d',
     },
@@ -183,8 +183,8 @@ export const JeonBuk = [
       tourcount: '99',
       tourdate: '6~12월',
       spec: '치즈, 송이버섯, 밤',
-      mapy: 35.9482628600199,
       mapx: 126.957744486694,
+      mapy: 35.9482628600199,
       image:
         'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FImsil.jpg?alt=media&token=d14c5ba4-b0fb-4f31-9580-77b42726ab4a',
     },
@@ -202,8 +202,8 @@ export const JeonBuk = [
       tourcount: '87',
       tourdate: '9~11월',
       spec: '사과, 석류, 순두부',
-      mapy: 35.6473551301164,
       mapx: 127.52161241409,
+      mapy: 35.6473551301164,
       image:
         'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FJangsu.jpg?alt=media&token=da595aeb-976a-4728-9661-8b04f536e259',
     },
@@ -221,8 +221,8 @@ export const JeonBuk = [
       tourcount: '419',
       tourdate: '1~12월',
       spec: '콩나물, 막걸리, 비빔밥',
-      mapy: 35.8240731508775,
       mapx: 127.148143800621,
+      mapy: 35.8240731508775,
       image:
         'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FJeonju.jpg?alt=media&token=a660d577-8a61-4d8f-b221-57d39e743bbc',
     },
@@ -240,8 +240,8 @@ export const JeonBuk = [
       tourcount: '129',
       tourdate: '6~12월',
       spec: '자두, 한우, 건강보리',
-      mapy: 35.5698780259932,
       mapx: 126.856005647439,
+      mapy: 35.5698780259932,
       image:
         'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FJeongeup.webp?alt=media&token=997a8579-7235-48a8-b513-fa132b208d81',
     },
@@ -259,8 +259,8 @@ export const JeonBuk = [
       tourcount: '117',
       tourdate: '3~6월',
       spec: '청어, 약수터물, 명태',
-      mapy: 35.7917723036092,
       mapx: 127.424865465441,
+      mapy: 35.7917723036092,
       image:
         'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FJinan.jpg?alt=media&token=c3cf0d04-6c33-4ac1-9384-1ef37ee7cd4a',
     },
@@ -281,8 +281,8 @@ export const JeonNam = [
       tourcount: '120',
       tourdate: '9~12월',
       spec: '홍어, 고추장게장, 돌산갓김치',
-      mapy: 34.6420615268858,
       mapx: 126.767213471898,
+      mapy: 34.6420615268858,
       image:
         'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FGangjin.jpg?alt=media&token=81e29e34-2b1b-44eb-afb6-52761246cbfc',
     },
@@ -300,8 +300,8 @@ export const JeonNam = [
       tourcount: '133',
       tourdate: '6~12월',
       spec: '산낙지, 송어회, 대추방울토마토',
-      mapy: 34.6110820210903,
       mapx: 127.284968746855,
+      mapy: 34.6110820210903,
       image:
         'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FGoheung.jpg?alt=media&token=26bd8a83-41e0-4aa1-9c63-b338880a7644',
     },
@@ -319,8 +319,8 @@ export const JeonNam = [
       tourcount: '111',
       tourdate: '3~6월',
       spec: '참나무김치, 감자, 참숯',
-      mapy: 35.2820258392354,
       mapx: 127.291929639637,
+      mapy: 35.2820258392354,
       image:
         'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FGoksung.jpg?alt=media&token=9f818d3d-ebdf-437b-b803-a1ed86b8ff8c',
     },
@@ -338,8 +338,8 @@ export const JeonNam = [
       tourcount: '98',
       tourdate: '3~6월',
       spec: '불고기, 딸기, 참매생이',
-      mapy: 34.9404252535168,
       mapx: 127.695930772808,
+      mapy: 34.9404252535168,
       image:
         'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FGwangyang.jpg?alt=media&token=59548bb4-706e-42e9-9bad-c6a22912c850',
     },
@@ -357,8 +357,8 @@ export const JeonNam = [
       tourcount: '135',
       tourdate: '3~6월',
       spec: '산수유, 유자, 향토술',
-      mapy: 35.202496361707,
       mapx: 127.46270363657,
+      mapy: 35.202496361707,
       image:
         'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FGurye.jpg?alt=media&token=217b9a16-07f7-4186-8292-3807e03132f9',
     },
@@ -376,8 +376,8 @@ export const JeonNam = [
       tourcount: '133',
       tourdate: '9~12월',
       spec: '곰탕, 홍어, 떡갈비',
-      mapy: 35.0158976865702,
       mapx: 126.71082925505,
+      mapy: 35.0158976865702,
       image:
         'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FNaju.png?alt=media&token=b75f270f-b321-4041-9ac5-c97c6b7b87ec',
     },
@@ -395,8 +395,8 @@ export const JeonNam = [
       tourcount: '163',
       tourdate: '6~12월',
       spec: '죽순, 산채비빔밥, 더덕',
-      mapy: 35.3212107735503,
       mapx: 126.988210711052,
+      mapy: 35.3212107735503,
       image:
         'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FDamyang.jpg?alt=media&token=ef4d9eb2-5bea-4206-9187-049508d6ed5c',
     },
@@ -414,8 +414,8 @@ export const JeonNam = [
       tourcount: '278',
       tourdate: '9~12월',
       spec: '어묵, 세발낙지, 장어',
-      mapy: 34.8118309400519,
       mapx: 126.392235351241,
+      mapy: 34.8118309400519,
       image:
         'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FMokpo.jpg?alt=media&token=4f8a07ee-9801-468b-9f43-916a3af33e78',
     },
@@ -433,8 +433,8 @@ export const JeonNam = [
       tourcount: '105',
       tourdate: '6~8월',
       spec: '멸치, 세발낙지, 청송도',
-      mapy: 34.7888170541041,
       mapx: 126.384450031799,
+      mapy: 34.7888170541041,
       image:
         'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FMuan.jpg?alt=media&token=98f38235-2d14-44ca-b465-b474aae2fa93',
     },
@@ -452,8 +452,8 @@ export const JeonNam = [
       tourcount: '114',
       tourdate: '9~12월',
       spec: '녹차, 꼬막, 미나리',
-      mapy: 34.7714427538727,
       mapx: 127.079946438917,
+      mapy: 34.7714427538727,
       image:
         'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FBoseong.jpg?alt=media&token=d958a92f-6d19-422f-a53c-c0d4b4d4d1de',
     },
@@ -471,8 +471,8 @@ export const JeonNam = [
       tourcount: '237',
       tourdate: '6~12월',
       spec: '오징어, 연어, 바지락',
-      mapy: 34.9506097806669,
       mapx: 127.487382934915,
+      mapy: 34.9506097806669,
       image:
         'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FSuncheon.jpg?alt=media&token=3f98f9a2-e869-4e6a-ad0e-8b54c5602bef',
     },
@@ -490,8 +490,8 @@ export const JeonNam = [
       tourcount: '126',
       tourdate: '6~12월',
       spec: '홍합, 삼치, 매화백년초',
-      mapy: 34.833553882858,
       mapx: 126.351614243402,
+      mapy: 34.833553882858,
       image:
         'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FShinan.jpg?alt=media&token=74efa75c-4114-4817-b5e7-58096b2dedac',
     },
@@ -509,8 +509,8 @@ export const JeonNam = [
       tourcount: '535',
       tourdate: '1~12월',
       spec: '선지해표어, 산국, 박하사탕',
-      mapy: 34.7604010648246,
       mapx: 127.662331251572,
+      mapy: 34.7604010648246,
       image:
         'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FYeosu.jpg?alt=media&token=4421ef22-778c-479c-bd22-e9024b7fa48f',
     },
@@ -528,8 +528,8 @@ export const JeonNam = [
       tourcount: '99',
       tourdate: '6~12월',
       spec: '굴비, 한우, 참마',
-      mapy: 35.2771900332592,
       mapx: 126.512013797425,
+      mapy: 35.2771900332592,
       image:
         'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FYeonggwang.jpg?alt=media&token=940aaf1c-6b93-40fb-a176-2d687f7ff523',
     },
@@ -547,8 +547,8 @@ export const JeonNam = [
       tourcount: '77',
       tourdate: '6~10월',
       spec: '떡, 산삼, 호떡',
-      mapy: 34.8000591144732,
       mapx: 126.696762590551,
+      mapy: 34.8000591144732,
       image:
         'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FYeongam.jpg?alt=media&token=0f2d4441-16a2-4c5f-b9db-2604325e9472',
     },
@@ -566,8 +566,8 @@ export const JeonNam = [
       tourcount: '122',
       tourdate: '3~6월',
       spec: '김, 곶감, 오디',
-      mapy: 34.3109789170971,
       mapx: 126.754998729552,
+      mapy: 34.3109789170971,
       image:
         'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FWando.jpg?alt=media&token=f01c98d3-5c29-4174-85eb-56b6c9e859e1',
     },
@@ -585,8 +585,8 @@ export const JeonNam = [
       tourcount: '78',
       tourdate: '3~6월',
       spec: '참외, 사과, 청포도',
-      mapy: 35.3018576771354,
       mapx: 126.784918877012,
+      mapy: 35.3018576771354,
       image:
         'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FJangseong.jpg?alt=media&token=29512fd8-b26b-4a4b-ba36-b49ee768f51c',
     },
@@ -604,8 +604,8 @@ export const JeonNam = [
       tourcount: '102',
       tourdate: '3~10월',
       spec: '한우, 키조개, 표고버섯',
-      mapy: 34.6816120675641,
       mapx: 126.907058431105,
+      mapy: 34.6816120675641,
       image:
         'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FJangheung.jpg?alt=media&token=43ed9e24-5c28-4ff8-810c-c6eae46ef06a',
     },
@@ -623,8 +623,8 @@ export const JeonNam = [
       tourcount: '110',
       tourdate: '3~10월',
       spec: '선문어, 트러플, 굴',
-      mapy: 34.486828620348,
       mapx: 126.263446186439,
+      mapy: 34.486828620348,
       image:
         'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FJindo.jpg?alt=media&token=0bcb802c-7112-4da3-a7e5-dd617b24f87f',
     },
@@ -642,8 +642,8 @@ export const JeonNam = [
       tourcount: '62',
       tourdate: '3~8월',
       spec: '당근, 더덕, 고추',
-      mapy: 35.0659111691242,
       mapx: 126.516624840635,
+      mapy: 35.0659111691242,
       image:
         'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FHampyeong.jpg?alt=media&token=6fc821fa-a6ce-4871-9836-4f45571afb5f',
     },
@@ -661,8 +661,8 @@ export const JeonNam = [
       tourcount: '134',
       tourdate: '6~12월',
       spec: '선초고추, 대나무새우, 참외',
-      mapy: 34.5735165884839,
       mapx: 126.599270065365,
+      mapy: 34.5735165884839,
       image:
         'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FHaenam.jpg?alt=media&token=97727906-e6a4-4e9c-9e93-d921e916e4e9',
     },
@@ -680,8 +680,8 @@ export const JeonNam = [
       tourcount: '117',
       tourdate: '9~12월',
       spec: '산수유, 청어, 사과',
-      mapy: 35.0645119791204,
       mapx: 126.986502436773,
+      mapy: 35.0645119791204,
       image:
         'https://firebasestorage.googleapis.com/v0/b/everest-project-ef02a.appspot.com/o/Cities%2FHwasoon.jfif?alt=media&token=12a50bce-0b9f-445c-9441-88d0d3b7a0de',
     },
@@ -701,8 +701,8 @@ export const GwangYeokSi = [
       tourcount: '7838',
       tourdate: '1~12월',
       spec: '수라배,허브',
-      mapy: 37.5661493343976,
       mapx: 127.015755985001,
+      mapy: 37.5661493343976,
     },
   },
   {
@@ -717,8 +717,8 @@ export const GwangYeokSi = [
       tourcount: '2004',
       tourdate: '6~9월',
       spec: '쌀,잣,한우',
-      mapy: 37.4630042168901,
       mapx: 126.739298900951,
+      mapy: 37.4630042168901,
     },
   },
   {
@@ -733,8 +733,8 @@ export const GwangYeokSi = [
       tourcount: '776',
       tourdate: '3~8월',
       spec: '버섯,포도,배,오이',
-      mapy: 36.343298432692,
       mapx: 127.383284268094,
+      mapy: 36.343298432692,
     },
   },
   {
@@ -749,8 +749,8 @@ export const GwangYeokSi = [
       tourcount: '1174',
       tourdate: '9~10월',
       spec: '미나리,취나물,연근',
-      mapy: 35.8770755096707,
       mapx: 128.638937348633,
+      mapy: 35.8770755096707,
     },
   },
   {
@@ -765,8 +765,8 @@ export const GwangYeokSi = [
       tourcount: '566',
       tourdate: '5월~9월',
       spec: '토마토,새싹채소',
-      mapy: 35.1567803088748,
       mapx: 126.889456830903,
+      mapy: 35.1567803088748,
     },
   },
   {
@@ -781,8 +781,8 @@ export const GwangYeokSi = [
       tourcount: '2191',
       tourdate: '2~6월',
       spec: '어묵,다시마,미역',
-      mapy: 35.1807118497826,
       mapx: 129.101127779282,
+      mapy: 35.1807118497826,
     },
   },
   {
@@ -797,8 +797,8 @@ export const GwangYeokSi = [
       tourcount: '642',
       tourdate: '3월~10월',
       spec: '미나리,배,돌미역,멸치액젓',
-      mapy: 35.5387010197949,
       mapx: 129.345498927795,
+      mapy: 35.5387010197949,
     },
   },
   {
@@ -813,8 +813,8 @@ export const GwangYeokSi = [
       tourcount: '196',
       tourdate: '1~12월',
       spec: '복숭아',
-      mapy: 36.4655606366068,
       mapx: 127.294039299336,
+      mapy: 36.4655606366068,
     },
   },
   {
@@ -828,8 +828,8 @@ export const GwangYeokSi = [
       tourcount: '2356',
       tourdate: '4월~6월',
       spec: '한라봉,옥돔,은갈치,고등어',
-      mapy: 33.4029981024613,
       mapx: 126.558179265688,
+      mapy: 33.4029981024613,
     },
   },
 ];
