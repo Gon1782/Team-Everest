@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { BsPencil } from 'react-icons/bs';
-import { FaStar } from 'react-icons/fa';
+import { FaStar, FaRegStar } from 'react-icons/fa';
 import { HiOutlineTrash } from 'react-icons/hi';
 import { useNavigate } from 'react-router-dom';
 import { getUserDB } from '@/common/api/userApi';
@@ -90,7 +90,7 @@ const ReviewBox = ({ item, review }: Props) => {
             x ? (
               <FaStar color="#0039CB" size={24} key={i} />
             ) : (
-              <FaStar color="gray" size={24} key={i} />
+              <FaRegStar color="#0039CB" size={24} key={i} />
             ),
           )}
         </div>
