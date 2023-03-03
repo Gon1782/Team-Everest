@@ -51,8 +51,8 @@ const TopCityBanner = () => {
       <CategoriesTitle>인기 도시</CategoriesTitle>
 
       <TopCityCategories>
-        {topCities.map((v: any) => (
-          <TopCityItem>
+        {topCities.map((v: any, i: number) => (
+          <TopCityItem key={i}>
             <TopCitySlogan>{v.slogan}</TopCitySlogan>
             <TopCityCategory
               onClick={() => {
