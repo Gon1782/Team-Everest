@@ -65,17 +65,26 @@ const ScheduleDate = ({
       }
     >
       <PlanDateWrapper onClick={() => initMap(scheduleDate)}>
-        <PlanDateCount>Day{index + 1} </PlanDateCount>
-        <PlanDate>{scheduleDate}</PlanDate>
+        <div style={{ position: 'absolute', top: '8.5%', left: '39.5%' }}>
+          {/* <PlanDateCount>Day{index + 1} </PlanDateCount> */}
+          <img
+            src={`https://img.icons8.com/color/48/null/calendar-${
+              index + 1
+            }.png`}
+            width={50}
+            height={50}
+          ></img>
+          <PlanDate>{scheduleDate}</PlanDate>
+        </div>
       </PlanDateWrapper>
 
-      <AddPlanBtnWapper>
-        {authority.write && (
+      {authority.write && (
+        <AddPlanBtnWapper>
           <AddPlanBtn onClick={() => onChangeSidePage(index)}>
             일정 추가
           </AddPlanBtn>
-        )}
-      </AddPlanBtnWapper>
+        </AddPlanBtnWapper>
+      )}
     </div>
   );
 };
@@ -83,33 +92,34 @@ const ScheduleDate = ({
 export default ScheduleDate;
 
 const PlanDateWrapper = styled.div`
-  width: 100%;
-  height: 45px;
-  display: flex;
+  width: 100px;
+  height: 100px;
+  display: block;
   align-items: center;
-  padding: 5px 8px;
-  background-color: #2c2c2c;
-  color: #fff;
-  border-radius: 9px 9px 0 0;
+  margin: 30px auto;
+  color: black;
+  background-color: white;
+  border-radius: 100px;
 `;
 
 // 일정의 일일 표기
-const PlanDateCount = styled.h2`
-  font-size: 1.2rem;
-  margin-right: 10px;
+const PlanDateCount = styled.p`
+  font-size: 20px;
 `;
 
 // 일정 날짜
-const PlanDate = styled.h4`
-  font-size: 0.8rem;
-  color: #e3e3e3;
+const PlanDate = styled.p`
+  font-size: 15px;
+  color: black;
 `;
 
 // 일정 추가 버튼 영역
 const AddPlanBtnWapper = styled.div`
-  width: 100%;
-  text-align: right;
+  width: 100px;
+  margin: 0 auto;
+  text-align: center;
   padding: 5px 8px;
+  margin: 0 auto 30px auto;
   /* border-bottom: 1px inset; */
   /* border-bottom: 1px solid #2c2c2c; */
 `;
@@ -118,7 +128,7 @@ const AddPlanBtn = styled.button`
   width: 80px;
   height: 28px;
   font-size: 0.75rem;
-  background-color: #3f46ff;
+  background-color: #3f72af;
   color: #f3f3f3;
   border-radius: 50px;
 `;

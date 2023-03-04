@@ -42,32 +42,36 @@ const SidePage = () => {
   const setIsSidePageView = useSetRecoilState(IsSidePageView);
   let prevPageNo = 0;
 
-  // 관광지 검색하기
+  // 키워드 검색하여 관광지 검색하기
   const searching = async () => {
     const { response } = await getSpot(keyword);
     setDataList(response.body.items.item);
     setTourList(response.body.items.item);
+    setIsShowMyWish(false);
   };
 
-  // 관광지 데이터 가져오기
+  // 카테고리 선택하여 관광지 데이터 가져오기
   const getSpotList = (
     pickLocation: string,
     pickTheme: string,
     pageNo: number,
   ) => {
-    if (!!pickLocation && !!pickTheme) {
-      console.log(pageNo);
+    if (
+      !!pickLocation &&
+      !!pickTheme &&
+      pickLocation !== '지역' &&
+      pickTheme !== '카테고리'
+    ) {
       getTourList(pickLocation, pickTheme, String(pageNo)).then(
         (result: DetailResponse) => {
-          console.log(result?.response.body.items.item.length);
           setDataList((prev) => {
-            console.log(prev.length);
             return prev.concat(result?.response.body.items.item);
           });
           setTourList((prev) => {
             return prev.concat(result?.response.body.items.item);
           });
           setPageNo(pageNo + 1);
+          setIsShowMyWish(false);
         },
       );
     }
@@ -169,12 +173,12 @@ export default SidePage;
 
 const SidePageContainer = styled.div`
   width: 24%;
-  position: absolute;
+  position: fixed;
   height: 100%;
-  left: 76%;
-  top: 5%;
+  left: 88%;
+  top: 55%;
+  transform: translate(-50%, -50%);
   overflow: auto;
-  border-left: 1px inset;
   padding: 10px 25px;
 `;
 const SearchingSection = styled.div`
@@ -198,7 +202,7 @@ const SelectBoxList = styled.div`
 
 const ScheduleInfo = styled.div`
   top: 5%;
-  font-size: 25px;
+  font-size: 20px;
   color: gray;
   margin: 20px 0;
 
