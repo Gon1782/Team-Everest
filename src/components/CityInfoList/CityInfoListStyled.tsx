@@ -14,15 +14,15 @@ export const SectionInfo = styled.div`
 `;
 
 export const Title = styled.h1`
-  line-height: 56px;
+  line-height: 3.5rem;
   margin-bottom: 40px;
-  font-size: 2.2rem;
+  font-size: 3.125rem;
 `;
 
 export const Introduce = styled.div`
-  line-height: 24px;
+  line-height: 2rem;
   margin-bottom: 80px;
-  font-size: 1rem;
+  font-size: 1.688rem;
 `;
 
 export const Video = styled.div`
@@ -40,7 +40,8 @@ export const ContentWrap = styled.div`
 
 export const ContentItemWrap = styled.div`
   display: flex;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  cursor: pointer;
 `;
 
 // CityInfoListItem
@@ -53,29 +54,44 @@ export const Image = styled.img`
 `;
 
 export const ContentInfoWrap = styled.div`
-  width: 400px;
+  width: 435px;
   height: 250px;
   border: 1px solid lightgrey;
   border-radius: 20px;
-  gap: 20px;
-  padding: 20px;
+  gap: 30px;
+  padding: 30px 25px;
 `;
 
 export const TourName = styled.h2`
-  font-size: 1.6rem;
+  font-size: 2.188rem;
   font-weight: 600;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+  color: #222222;
 `;
 
 export const TourAddr = styled.p`
-  margin-bottom: 20px;
+  margin-bottom: 1.375rem;
+  font-size: 20px;
+  color: #222222;
 `;
 
-export const TourTags = styled.div`
-  width: 350px;
-  height: 30px;
-  background-color: cornflowerblue;
-  margin-bottom: 20px;
+export const TopSection = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25px;
+`;
+
+export const TourCat = styled.span`
+  display: inline-block;
+  min-width: 95px;
+  height: 35px;
+  background-color: #5690c7;
+  color: #f2f2f2;
+  padding: 8px 10px;
+  border-radius: 20px;
+  font-size: 1.125rem;
+  text-align: center;
+  line-height: 1rem;
 `;
 
 export const TourRating = styled.div`
