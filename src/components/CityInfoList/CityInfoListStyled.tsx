@@ -1,47 +1,83 @@
 import styled from 'styled-components';
 
-export const Wrap = styled.div`
+// CityInfoList
+
+export const Container = styled.div`
   width: 100%;
-  /* display: flex;
-  justify-content: center;
-  flex-direction: column; */
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 100px;
 `;
 
-export const Title = styled.div`
-  font-size: 20px;
-  font-weight: 700;
+export const SectionInfo = styled.div`
+  width: 100%;
+`;
+
+export const Title = styled.h1`
+  line-height: 56px;
+  margin-bottom: 40px;
+  font-size: 2.2rem;
+`;
+
+export const Introduce = styled.div`
+  line-height: 24px;
+  margin-bottom: 80px;
+  font-size: 1rem;
+`;
+
+export const Video = styled.div`
+  width: 800px;
+  height: 750px;
+  background-color: #e37f7f;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
 `;
 
 export const ContentWrap = styled.div`
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  width: 1000px;
-  /* height: 1000px; */
-  gap: 30px;
+  width: 60%;
+  margin-left: 150px;
 `;
 
 export const ContentItemWrap = styled.div`
-  width: 1000px;
-  height: 200px;
   display: flex;
-  gap: 30px;
-  background-color: green;
-  border-radius: 20px;
+  margin-bottom: 20px;
 `;
+
+// CityInfoListItem
 
 export const Image = styled.img`
-  width: 300px;
-  height: inherit;
-  border-bottom-left-radius: 20px;
-  border-top-left-radius: 20px;
+  width: 400px;
+  height: 250px;
+  border-radius: 20px;
+  margin-right: 30px;
 `;
 
-export const InfoWrap = styled.div`
-  padding: 30px 20px;
+export const ContentInfoWrap = styled.div`
+  width: 400px;
+  height: 250px;
+  border: 1px solid lightgrey;
+  border-radius: 20px;
+  gap: 20px;
+  padding: 20px;
 `;
 
-export const TourName = styled.div`
-  font-weight: 700;
-  font-size: 24px;
+export const TourName = styled.h2`
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+`;
+
+export const TourAddr = styled.p`
+  margin-bottom: 20px;
+`;
+
+export const TourTags = styled.div`
+  width: 350px;
+  height: 30px;
+  background-color: cornflowerblue;
+  margin-bottom: 20px;
+`;
+
+export const TourRating = styled.div`
+  font-size: 1.2rem;
 `;
