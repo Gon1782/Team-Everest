@@ -25,8 +25,6 @@ const CityListItem = ({ item, img }: Props) => {
     getRating();
   }, [item]);
 
-  console.log('item', item);
-
   return (
     <>
       <S.Image src={img}></S.Image>
