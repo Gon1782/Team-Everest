@@ -8,7 +8,7 @@ import { AiOutlineClose } from 'react-icons/ai';
 import { FaSearch } from 'react-icons/fa';
 import useDebounce from '../../hooks/useDebounce';
 
-interface Props {
+export interface Props {
   closeModal: () => void;
   closeModalIfClickOutside: (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>,

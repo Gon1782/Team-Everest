@@ -26,6 +26,7 @@ import {
 } from './MyPlannerHandler';
 import { PlanBtn } from './style/common';
 import { FaBookmark, FaRegBookmark } from 'react-icons/fa';
+import useModal from '@/hooks/useModal';
 const MyPlan = () => {
   const navigate = useNavigate();
 
@@ -40,6 +41,7 @@ const MyPlan = () => {
   const [loading, setLoading] = useState(true);
   const setMyWishList = useSetRecoilState(MyWishList);
   const [authority, setAuthority] = useRecoilState(Authority);
+  const [placeholder, setPlaceholder] = useState(false);
   const resetInitLocation = useResetRecoilState(InitLocation);
 
   const { planUniqueId, userId } = useParams() as {
@@ -49,6 +51,9 @@ const MyPlan = () => {
 
   const [isSidePageView, setIsSidePageView] = useRecoilState(IsSidePageView);
   const [_, setIsCalenderView] = useRecoilState(IsCalenderView);
+
+  // 모달 기능
+  const [modal, openModal, closeModal, closeModalIfClickOutside] = useModal();
 
   // 이 페이지에서 생성한 플랜
   const [plan, setPlan] = useRecoilState<PlanType>(NewPlanRecoil);
@@ -262,10 +267,14 @@ const MyPlan = () => {
               <PlanTitleInput
                 type="text"
                 onChange={(e) => setPlanName(e.target.value)}
+                onFocus={() => setPlaceholder(true)}
+                onBlur={() => setPlaceholder(false)}
                 placeholder={
                   authority.write
                     ? authority.update
                       ? planName
+                      : placeholder
+                      ? ''
                       : '제목을 입력해주세요'
                     : planName
                 }
@@ -402,6 +411,7 @@ const PlanTitleInput = styled.input`
   font-size: 25px;
   border-bottom: 1px solid gray;
   text-align: center;
+  outline: none;
 `;
 
 const PlanTitle = styled.p`

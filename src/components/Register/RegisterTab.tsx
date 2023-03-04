@@ -12,6 +12,8 @@ import * as S from '../Login/style/LoginTabStyled';
 import { usePrompt } from '@/hooks/useConfirmExit';
 
 const RegisterTab = () => {
+  const [checkSignUp, setCheckSignUp] = useState(false);
+
   // GET UserDB
   const [userDB, setUserDB] = useState<Document>();
 
@@ -42,6 +44,7 @@ const RegisterTab = () => {
   );
 
   const emailSignup = (e: React.FormEvent<HTMLFormElement>) => {
+    setCheckSignUp(true);
     e.preventDefault();
     const validation = valiDate();
     if (validation) {
@@ -55,18 +58,21 @@ const RegisterTab = () => {
 
   // 페이지 나갈때 체크
   const checkLeave = () => {
-    return (
-      register.email.length > 0 ||
-      register.password.length > 0 ||
-      register.checkPassword.length > 0 ||
-      register.nickname.length > 0
-    );
+    if (checkSignUp) return false;
+    else
+      return (
+        register.email.length > 0 ||
+        register.password.length > 0 ||
+        register.checkPassword.length > 0 ||
+        register.nickname.length > 0
+      );
   };
 
   const message = useMemo(
     () => '정말로 페이지를 나가시겠습니까?\n저장되지 않은 데이터는 사라집니다.',
     [],
   );
+
   usePrompt(message, checkLeave());
 
   return (

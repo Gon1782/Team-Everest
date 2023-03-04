@@ -1,3 +1,13 @@
+import { useNavigate } from 'react-router-dom';
+import { Do, oneCity } from './areaCode/areaCode';
+import { areaCode31 } from './areaCode/areaCode31';
+import { areaCode32 } from './areaCode/areaCode32';
+import { areaCode33 } from './areaCode/areaCode33';
+import { areaCode34 } from './areaCode/areaCode34';
+import { areaCode35 } from './areaCode/areaCode35';
+import { areaCode36 } from './areaCode/areaCode36';
+import { areaCode37 } from './areaCode/areaCode37';
+import { areaCode38 } from './areaCode/areaCode38';
 import * as tag from './tags';
 
 // 모달창 선택자
@@ -71,8 +81,6 @@ export const registerSelector = (name: string, dupCheck: boolean) => {
 };
 
 export const areaSelector = (areacode: string, sigungucode: string) => {
-  const oneCity = ['1', '2', '3', '4', '5', '6', '7', '8', '39'];
-  const Do = ['31', '32', '33', '34', '35', '36', '37', '38'];
   switch (true) {
     case oneCity.includes(areacode):
       return [areacode, ''];
@@ -111,6 +119,50 @@ export const tagSelector = (categoryCode: string) => {
     case bigCategory === 'A05':
       return tag.michelin;
     default:
+      return [];
+  }
+};
+
+export const markerSelector = (areaCode: string) => {
+  switch (true) {
+    case areaCode === '31':
+      return areaCode31;
+    case areaCode === '32':
+      return areaCode32;
+    case areaCode === '33':
+      return areaCode33;
+    case areaCode === '34':
+      return areaCode34;
+    case areaCode === '35':
+      return areaCode35;
+    case areaCode === '36':
+      return areaCode36;
+    case areaCode === '37':
+      return areaCode37;
+    case areaCode === '38':
+      return areaCode38;
+    default:
       return []
   }
 };
+
+export const sideMenuSelector = (areacode: string, fn: () => void) => {
+  const navigate = useNavigate()
+
+    switch (true) {
+      case !areacode:
+        return {
+          type: "Do",
+          text: '홈으로 이동',
+          onClick: () => navigate('/main'),
+        };
+      case !!areacode:
+        return {
+          type: "sigungu",
+          text: '뒤로 가기',
+          onClick: () => fn(),
+        };
+      default:
+        return {};
+    }
+  };

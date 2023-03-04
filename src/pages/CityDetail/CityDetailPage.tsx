@@ -29,7 +29,7 @@ const CityDetailPage = () => {
       <Style.WeatherWrap>도시 api 넣을 예정</Style.WeatherWrap>
       <Style.Introduce>도시를 소개</Style.Introduce>
       <Style.Introduce>
-        Welcome to {cityInfo[fileNumber - 1].korarea} !
+        Welcome to {cityInfo[fileNumber - 1].name} !
       </Style.Introduce>
       {/* 음식점 */}
       <CitySection name="Michelin" city={city} />

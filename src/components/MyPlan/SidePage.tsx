@@ -16,7 +16,7 @@ import {
 import styled from 'styled-components';
 import { getUserDB } from '@/common/api/userApi';
 import { SlMagnifier } from 'react-icons/sl';
-import { placeHolder } from '@/common/utils/defaults';
+
 // 검색 할 수 있는 사이드페이지, 일정 추가 버튼 클릭시 생김
 const SidePage = () => {
   const sessionKey = `firebase:authUser:${process.env.FIREBASE_API_KEY}:[DEFAULT]`;
@@ -27,7 +27,7 @@ const SidePage = () => {
   const theme = useRecoilValue(themeService);
 
   const [pickLocation, setPickLocation] = useState('');
-  const [pageNo, setPageNo] = useState(1);
+  const [pageNo, setPageNo] = useState(2);
   const [pickTheme, setPickTheme] = useState('');
   const [keyword, setKeyword] = useState('');
   const [placeholder, setPlaceholder] = useState(false);
@@ -40,10 +40,12 @@ const SidePage = () => {
   const [dataList, setDataList] = useState<Item[]>([]);
 
   const setIsSidePageView = useSetRecoilState(IsSidePageView);
+  let prevPageNo = 0;
 
   // 관광지 검색하기
   const searching = async () => {
     const { response } = await getSpot(keyword);
+    setDataList(response.body.items.item);
     setTourList(response.body.items.item);
   };
 
@@ -54,24 +56,29 @@ const SidePage = () => {
     pageNo: number,
   ) => {
     if (!!pickLocation && !!pickTheme) {
+      console.log(pageNo);
       getTourList(pickLocation, pickTheme, String(pageNo)).then(
         (result: DetailResponse) => {
+          console.log(result?.response.body.items.item.length);
           setDataList((prev) => {
+            console.log(prev.length);
             return prev.concat(result?.response.body.items.item);
           });
           setTourList((prev) => {
             return prev.concat(result?.response.body.items.item);
           });
+          setPageNo(pageNo + 1);
         },
       );
-      setPageNo(pageNo + 1);
     }
   };
 
   //지역/테마 선택시 해당 데이터 리스트 가져오기
   useEffect(() => {
     // 지역, 테마 선택했을 경우에만 돌수있게
-    getSpotList(pickLocation, pickTheme, pageNo);
+    setDataList([]);
+    setTourList([]);
+    getSpotList(pickLocation, pickTheme, 1);
   }, [pickLocation, pickTheme]);
 
   // 저장한 장소만 보기 클릭시
@@ -87,7 +94,7 @@ const SidePage = () => {
     });
     return () => {
       setDataList([]);
-      setPageNo(1);
+      setPageNo(2);
     };
   }, []);
 
@@ -96,7 +103,9 @@ const SidePage = () => {
     const { scrollHeight, scrollTop, clientHeight } = pageRef.current;
 
     if (clientHeight + scrollTop >= scrollHeight - 1 && !isShowMyWish) {
+      if (prevPageNo === pageNo) return; // 끝까지 내렸을때 이상하게 2번 호출 되어서 pageNo가 두번 넘어감 그래서 막아놓음
       getSpotList(pickLocation, pickTheme, pageNo);
+      prevPageNo = pageNo;
     }
   };
 
@@ -165,18 +174,21 @@ const SidePageContainer = styled.div`
   left: 76%;
   top: 5%;
   overflow: auto;
-  border-left: 1px solid black;
+  border-left: 1px inset;
   padding: 10px 25px;
 `;
 const SearchingSection = styled.div`
   display: flex;
+  margin: 40px 0;
   border-bottom: 1px solid black;
+  align-items: center;
 `;
 const SearchInput = styled.input<{ textAlign: string }>`
   width: 100%;
   outline: none;
   text-align: ${(props) => props.textAlign};
   font-size: 20px;
+  margin: 10px 0;
 `;
 const SelectBoxList = styled.div`
   display: flex;
@@ -189,7 +201,8 @@ const ScheduleInfo = styled.div`
   font-size: 25px;
   color: gray;
   margin: 20px 0;
-  border-bottom: 1px solid black;
+
+  //border-bottom: 1px solid black;
   display: flex;
   justify-content: space-between;
 `;
