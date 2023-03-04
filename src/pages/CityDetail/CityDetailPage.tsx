@@ -13,7 +13,7 @@ const CityDetailPage = () => {
   const [areaInfo, setAreaInfo] = useRecoilState(CityAreaInfo);
   const { id } = useParams();
   const city = cityInfo.filter(({ areacode }) => areacode === id)[0];
-  console.log('city', city);
+  // console.log('city', city);
   const fileNumber = cityInfo.findIndex(({ areacode }) => areacode === id) + 1;
 
   return (

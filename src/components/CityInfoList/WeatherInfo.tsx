@@ -39,8 +39,7 @@ const WeatherInfo = ({ city }: Props) => {
   // 날씨이름
   const [weatherName, setWeatherName] = useState('');
   // 최저, 최고 기온
-  const [minTemp, setMinTemp] = useState<number>();
-  const [maxTemp, setMaxTemp] = useState<number>();
+  const [temp, setTemp] = useState<number>();
 
   // 위치로 날씨 불러오기
   const getCityLocation = () => {
@@ -57,41 +56,39 @@ const WeatherInfo = ({ city }: Props) => {
     let response = await axios.get(url);
     console.log('response', response);
     setWeatherName(response?.data.weather[0].main);
-    setMinTemp(response?.data.main.temp_min);
-    setMaxTemp(response?.data.main.temp_max);
+    setTemp(response?.data.main.temp);
   };
-
-  console.log('weatherName', weatherName);
 
   useEffect(() => {
     getCityLocation();
   }, []);
 
   return (
-    <>
-      <Container img={weatherIcon[weatherName]} />
-      <div>{weatherKor[weatherName]}</div>
-      <div>{minTemp}</div>
-      <div>{maxTemp}</div>
-    </>
+    <Container>
+      <WeatherIcon src={weatherIcon[weatherName]} />
+      <WeatherName>{weatherKor[weatherName]}</WeatherName>
+      <div>{temp}&#8451;</div>
+    </Container>
   );
 };
 
 export default WeatherInfo;
 
-interface ContainerProps {
-  img: string | undefined;
-}
-
-const Container = styled.div<ContainerProps>`
-  width: 50px;
+const Container = styled.div`
+  width: 100%;
   height: 50px;
-  /* display: flex;
+  display: flex;
+  justify-content: flex-end;
   align-items: center;
-  justify-content: center; */
-  background-image: url(${(props) => props.img});
-  /* background-repeat: no-repeat; */
-  background-size: 100% 100%;
-  background-position: center;
-  transition: all 0.2s ease-in;
+  padding-right: 40px;
+`;
+
+const WeatherIcon = styled.img`
+  width: 30px;
+  height: 30px;
+  margin-right: 6px;
+`;
+
+const WeatherName = styled.p`
+  margin-right: 8px;
 `;
