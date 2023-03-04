@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import * as S from './CityInfoListStyled';
+import { useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { getCityTourInfo } from '@/common/api/tourApi';
 import { DetailResponse, Item } from '@/types/DetailType';
 import { useRef } from 'react';
 import useDefault from '@/hooks/useDefault';
 import CityListItem from './CityListItem';
+import * as S from './CityInfoListStyled';
 
 interface Props {
   id?: any;
@@ -14,6 +15,8 @@ interface Props {
 
 const CityInfoList = ({ id, city }: Props) => {
   const RanNumber = 5;
+
+  const navigate = useNavigate();
 
   // 이미지
   const defaults = useDefault();
@@ -32,7 +35,7 @@ const CityInfoList = ({ id, city }: Props) => {
   }
 
   const filterdData = cityItem?.response.body.items.item;
-  console.log('filterdData', filterdData);
+  // console.log('filterdData', filterdData);
 
   return (
     <S.Container>
@@ -53,14 +56,10 @@ const CityInfoList = ({ id, city }: Props) => {
         {filterdData?.map((data: Item, index: number) => {
           const img = !!data?.firstimage ? data.firstimage : defaultImage;
           return (
-            // <Style.ContentItemWrap key={index}>
-            //   <Style.Image src={img}></Style.Image>
-            //   <Style.InfoWrap>
-            //     <Style.TourName>{data.title}</Style.TourName>
-            //     <Style.TourAddr>{data.addr1}</Style.TourAddr>
-            //   </Style.InfoWrap>
-            // </Style.ContentItemWrap>
-            <S.ContentItemWrap key={index}>
+            <S.ContentItemWrap
+              key={index}
+              onClick={() => navigate(`/detail/${data?.contentid}`)}
+            >
               <CityListItem item={data} img={img} />
             </S.ContentItemWrap>
           );
