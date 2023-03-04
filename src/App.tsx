@@ -3,7 +3,6 @@ import { RecoilRoot } from 'recoil';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import GlobalStyle from './styles/GlobalStyle';
 import { Suspense } from 'react';
-
 const queryClient = new QueryClient();
 
 const App = () => {
