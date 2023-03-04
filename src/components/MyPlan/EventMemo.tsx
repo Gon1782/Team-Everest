@@ -6,11 +6,12 @@ import {
 } from '@/recoil/atom/MyPlan';
 import { useEffect } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
+import styled from 'styled-components';
 
 const EventMemo = ({ memo, setMemo }: { memo: string; setMemo: any }) => {
   return (
     <div style={{ width: '100%' }}>
-      <input
+      <MemoInput
         style={{ width: '80%', resize: 'none', marginTop: '5px' }}
         placeholder="메모할 내용을 적으세요"
         onChange={(e) => setMemo(e.target.value)}
@@ -21,3 +22,8 @@ const EventMemo = ({ memo, setMemo }: { memo: string; setMemo: any }) => {
 };
 
 export default EventMemo;
+
+const MemoInput = styled.input`
+  text-align: center;
+  margin-bottom: 30px;
+`;
