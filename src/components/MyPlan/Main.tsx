@@ -52,9 +52,6 @@ const MyPlan = () => {
   const [isSidePageView, setIsSidePageView] = useRecoilState(IsSidePageView);
   const [_, setIsCalenderView] = useRecoilState(IsCalenderView);
 
-  // 모달 기능
-  const [modal, openModal, closeModal, closeModalIfClickOutside] = useModal();
-
   // 이 페이지에서 생성한 플랜
   const [plan, setPlan] = useRecoilState<PlanType>(NewPlanRecoil);
   //const resetPlan = useResetRecoilState(NewPlanRecoil);
@@ -223,11 +220,10 @@ const MyPlan = () => {
 
   return (
     <>
+      <>{isSidePageView && <SidePage />}</>
       <Main
-        // background={isSidePageView ? `rgba(0, 0, 0, 0.5)` : 'none'}
-        // visible={isSidePageView ? 'none' : 'auto'}
         style={{
-          //background: isSidePageView ? 'rgba(0, 0, 0, 0.5)' : 1,
+          // background: isSidePageView ? 'rgba(0, 0, 0, 0.618)' : 'none',
           opacity: isSidePageView ? 0.15 : 1,
           pointerEvents: isSidePageView ? 'none' : 'auto',
         }}
@@ -345,11 +341,11 @@ const MyPlan = () => {
                       onClick={() =>
                         setAuthority({ write: true, view: false, update: true })
                       }
-                      color={'gray'}
+                      color={'dbe2ef'}
                     >
                       수정하기
                     </PlanBtn>
-                    <PlanBtn onClick={() => clickPopPlan()} color={'gray'}>
+                    <PlanBtn onClick={() => clickPopPlan()} color={'dbe2ef'}>
                       삭제하기
                     </PlanBtn>
                   </div>
@@ -361,18 +357,15 @@ const MyPlan = () => {
           <PlanScheduleList eventRef={eventRef} scheduleRef={scheduleRef} />
         </MyPlanContainer>
       </Main>
-      <>{isSidePageView && <SidePage />}</>
     </>
   );
 };
 
 export default MyPlan;
-const Main = styled.div`
-  //<{ background: string; visible: string }>
-`;
+const Main = styled.div``;
 
 const MyPlanContainer = styled.div`
-  width: 50%;
+  width: 40%;
   height: 100%;
   padding: 2rem;
 
@@ -382,6 +375,7 @@ const MyPlanContainer = styled.div`
   justify-content: center;
   align-items: center;
   gap: 1rem;
+  background-color: white;
 `;
 
 const PlanTitleSection = styled.div`

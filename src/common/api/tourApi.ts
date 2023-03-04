@@ -61,7 +61,7 @@ export const getTourList = async (
   pageNo: string,
 ) => {
   const { data } = await axios.get<DetailResponse>(
-    `http://apis.data.go.kr/B551011/KorService/areaBasedList?numOfRows=12&pageNo=${pageNo}&MobileOS=ETC&MobileApp=AppTest&ServiceKey=h8KR%2BEmY3pofSJxtRE2zYr0i90MhTWIBn3LT8ffM1QHexnPGhkppmh3QtBtT76cMnYgj4n3HE76WvYb2UHbChA%3D%3D&listYN=Y&arrange=A&contentTypeId=${pickTheme}&areaCode=${pickLocation}&sigunguCode=&cat1=&cat2=&cat3=&_type=json`,
+    `http://apis.data.go.kr/B551011/KorService/areaBasedList?numOfRows=24&pageNo=${pageNo}&MobileOS=ETC&MobileApp=AppTest&ServiceKey=h8KR%2BEmY3pofSJxtRE2zYr0i90MhTWIBn3LT8ffM1QHexnPGhkppmh3QtBtT76cMnYgj4n3HE76WvYb2UHbChA%3D%3D&listYN=Y&arrange=A&contentTypeId=${pickTheme}&areaCode=${pickLocation}&sigunguCode=&cat1=&cat2=&cat3=&_type=json`,
   );
 
   return data;

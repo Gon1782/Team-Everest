@@ -109,12 +109,13 @@ const PlanItem = styled.li`
   min-height: 500px;
   height: auto;
   border-radius: 10px;
-  border: 1px solid #2c2c2c;
-  background-color: #fff;
+
+  background-color: #f1f6f9;
 `;
 
 const SlideBanner = styled(SwiperSlide)`
   width: 100%;
   min-height: 450px;
   height: auto;
+  border-radius: 5%;
 `;

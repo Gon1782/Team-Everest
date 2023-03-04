@@ -4,6 +4,7 @@ import { NewPlanRecoil, PlanType, MyWishList } from '@/recoil/atom/MyPlan';
 import styled from 'styled-components';
 import { PickScheduleType } from '@/recoil/atom/MyPlan';
 import { Item } from '@/types/DetailType';
+import { categoryKor } from '@/common/utils/cat3';
 const TourList = ({
   list,
   isShowMyWish,
@@ -64,7 +65,8 @@ const TourList = ({
               )}
               <SpotInfo>
                 <SpotTitle>{item.title}</SpotTitle>
-                <SpotAdress>{item.addr1}</SpotAdress>
+                <SpotEtc>{categoryKor[item.cat3]}</SpotEtc>
+                <SpotEtc>{item.addr1}</SpotEtc>
               </SpotInfo>
               <SpotSaveButton>
                 <SaveButton onClick={() => eventHandler(item)}>+</SaveButton>
@@ -100,35 +102,42 @@ const CheckShowMyWish = styled.input`
 `;
 
 const SpotItem = styled.div`
-  height: 120px;
+  height: 110px;
   width: 100%;
-  border: 1px solid black;
   border-radius: 10px;
+
   margin: 15px 0;
   display: flex;
   overflow: hidden;
+  //box-shadow: 1px 1px 1px 1px #004a7c;
+  box-shadow: 2px 2px 2px 2px #999;
 `;
 
 const SpotImg = styled.img`
-  width: 25%;
+  width: 30%;
   height: 100%;
 `;
 
 const SpotInfo = styled.div`
-  width: 65%;
+  width: 55%;
   height: 100%;
-  display: inline-block;
+  display: inline-grid;
   padding: 5px 10px;
+  text-align: center;
+  align-items: center;
+  color: black;
 `;
 const SpotTitle = styled.div`
-  font-size: 25px;
+  font-size: 20px;
+  height: auto;
 `;
-const SpotAdress = styled.div`
-  font-size: 15px;
+const SpotEtc = styled.div`
+  font-size: 10px;
+  height: auto;
 `;
 
 const SpotSaveButton = styled.div`
-  width: auto;
+  width: 15%;
   height: 100%;
   margin: 0 auto;
   display: flex;
@@ -137,4 +146,5 @@ const SpotSaveButton = styled.div`
 
 const SaveButton = styled.button`
   background-color: white;
+  width: 100%;
 `;
