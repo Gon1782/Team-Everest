@@ -6,6 +6,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { cityInfo } from '@/common/utils/cityInfo';
 import CitySection from '@/components/common/CitySection';
 import CityInfoList from '@/components/CityInfoList/CityInfoList';
+import WeatherInfo from '@/components/CityInfoList/WeatherInfo';
 
 const CityDetailPage = () => {
   const navigate = useNavigate();
@@ -27,7 +28,9 @@ const CityDetailPage = () => {
         }}
         src={require(`@/assets/CityImage/${fileNumber}.jpg`).default}
       ></img>
-      <Style.WeatherWrap>날씨 api 넣을 예정</Style.WeatherWrap>
+      <Style.WeatherWrap>
+        <WeatherInfo city={city} />
+      </Style.WeatherWrap>
       <Style.Introduce>{city.name}에 대해 자세히 보여드릴게요!</Style.Introduce>
 
       {/* 음식점 */}
