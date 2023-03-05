@@ -30,21 +30,12 @@ const EventSlideBanner = () => {
         resistance={false}
       >
         <SlideBanner>
-          <Link to="https://seoulland.co.kr/?p=11_view&idx=41" target="_blank">
-            <img
-              src={require('@/assets/banner_01.jpg').default}
-              alt="서울랜드 루나 축제"
-            />
-          </Link>
-          　
-        </SlideBanner>
-        <SlideBanner>
           <Link
             to="https://www.changwon.go.kr/depart/contents.do?mId=1101010000"
             target="_blank"
           >
             <img
-              src={require('@/assets/banner_02.jpg').default}
+              src={require('@/assets/Main_Event/event_banner_01.jpg').default}
               alt="진해 군항제"
             />
           </Link>
@@ -53,17 +44,29 @@ const EventSlideBanner = () => {
         <SlideBanner>
           <Link to="http://www.koreaflowerpark.com/" target="_blank">
             <img
-              src={require('@/assets/banner_03.jpg').default}
+              src={require('@/assets/Main_Event/event_banner_02.jpg').default}
               alt="태안 세계튤립꽃박람회"
             />
           </Link>
           　
         </SlideBanner>
         <SlideBanner>
-          <Link to="http://hueree.com/pages.php?p=4_1_1_1" target="_blank">
+          <Link
+            to="https://morningcalm.co.kr/html/preview02.php"
+            target="_blank"
+          >
             <img
-              src={require('@/assets/banner_04.jpg').default}
-              alt="휴애리 매화축제"
+              src={require('@/assets/Main_Event/event_banner_03.jpg').default}
+              alt="오색별빛정원전"
+            />
+          </Link>
+          　
+        </SlideBanner>
+        <SlideBanner>
+          <Link to="https://korearf.kpipa.or.kr/" target="_blank">
+            <img
+              src={require('@/assets/Main_Event/event_banner_04.jpg').default}
+              alt="대한민국 독서대전"
             />
           </Link>
           　

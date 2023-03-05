@@ -26,7 +26,7 @@ const CityInfoList = ({ id }: any) => {
   }
 
   const filterdData = cityItem?.response.body.items.item;
-  // console.log(filterdData);
+  console.log(filterdData);
 
   return (
     <Style.Wrap>
@@ -40,6 +40,7 @@ const CityInfoList = ({ id }: any) => {
               <Style.Image src={img}></Style.Image>
               <Style.InfoWrap>
                 <Style.TourName>{data.title}</Style.TourName>
+                <Style.TourAddr>{data.addr1}</Style.TourAddr>
               </Style.InfoWrap>
             </Style.ContentItemWrap>
           );

@@ -26,22 +26,27 @@ export const ContentItemWrap = styled.div`
   height: 200px;
   display: flex;
   gap: 30px;
-  background-color: green;
-  border-radius: 20px;
+  /* background-color: green; */
+  /* border-radius: 20px; */
 `;
 
 export const Image = styled.img`
   width: 300px;
   height: inherit;
-  border-bottom-left-radius: 20px;
-  border-top-left-radius: 20px;
+  /* border-bottom-left-radius: 20px;
+  border-top-left-radius: 20px; */
+  border-radius: 20px;
 `;
 
 export const InfoWrap = styled.div`
+  width: 400px;
   padding: 30px 20px;
+  border-radius: 20px;
+  border: 1px solid lightgrey;
 `;
 
-export const TourName = styled.div`
-  font-weight: 700;
+export const TourName = styled.h1`
   font-size: 24px;
 `;
+
+export const TourAddr = styled.p``;
