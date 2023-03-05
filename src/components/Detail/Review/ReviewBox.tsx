@@ -6,7 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import { getUserDB } from '@/common/api/userApi';
 import useDefault from '@/hooks/useDefault';
 import useModal from '@/hooks/useModal';
-import { Document, EachReview, Item } from '@/types/DetailType';
+import { EachReview, Item } from '@/types/DetailType';
+import { UserData } from '@/types/UserType';
 import ReviewDelete from './ReviewDelete';
 import ReviewModal from './ReviewModal';
 import * as S from './style/ReviewStyled';
@@ -42,11 +43,12 @@ const ReviewBox = ({ item, review }: Props) => {
   const checkMine = review.uid === uid;
 
   // GET UserDB
-  const [user, setUser] = useState<Document>();
+  const [user, setUser] = useState<UserData>();
 
   const getUser = async () => {
-    const data = await getUserDB(review.uid);
-    setUser(data);
+    await getUserDB(review.uid)
+      .then((res) => setUser(res))
+      .catch((error) => console.log(error.message));
   };
 
   useEffect(() => {

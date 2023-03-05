@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getCities } from '@/common/api/cityApi';
-import { Document } from '@/types/DetailType';
+import { City } from '@/types/CityType';
 import * as S from './style/CitymapStyle';
 
 interface Props {
@@ -19,11 +19,12 @@ const CityInfoModal = ({
   closeModalIfClickOutside,
 }: Props) => {
   const navigate = useNavigate();
-  const [areaInfo, setAreaInfo] = useState<Document>();
+  const [areaInfo, setAreaInfo] = useState<City>();
 
   const getCity = async () => {
-    const city = await getCities(areaCode, sigunguCode);
-    setAreaInfo(city);
+    await getCities(areaCode, sigunguCode)
+      .then((res) => setAreaInfo(res))
+      .catch((error) => console.log(error.message));
   };
 
   useEffect(() => {
@@ -37,15 +38,7 @@ const CityInfoModal = ({
       }}
     >
       <S.ModalBox>
-        <img
-          style={{
-            width: '668px',
-            height: 'inherit',
-            borderRadius: '8px',
-            objectFit: 'cover',
-          }}
-          src={areaInfo?.image}
-        ></img>
+        <S.ModalImg src={areaInfo?.image} />
         <S.StyleContent>
           <S.StyleCityTitleEng>{areaInfo?.engarea}</S.StyleCityTitleEng>
           <S.StyleCityTitleKor>대한민국 {areaInfo?.name}</S.StyleCityTitleKor>
@@ -69,7 +62,9 @@ const CityInfoModal = ({
             {/* navigate 지정 */}
             <S.StyleButton
               onClick={() => {
-                navigate(`/citydetail/${areaInfo?.areacode}`);
+                navigate(
+                  `/citydetail/${areaInfo?.areaCode}/${areaInfo?.sigunguCode}`,
+                );
               }}
             >
               도시 상세보기

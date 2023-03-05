@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
-import { FaBookmark, FaRegBookmark } from 'react-icons/fa';
+import { FaBookmark, FaRegBookmark, FaStar } from 'react-icons/fa';
 import useDefault from '@/hooks/useDefault';
 import { DetailList } from '@/recoil/atom/Detail';
 import { Item } from '@/types/DetailType';
@@ -65,7 +65,7 @@ const DetailInfo = ({ item, intro, wishList }: Props) => {
 
   useEffect(() => {
     const isGet = wishList?.filter(
-      (wishItem: any) => wishItem.contentid === item?.contentid,
+      (wishItem: Item) => wishItem.contentid === item?.contentid,
     ).length;
 
     !!isGet ? setBookMark(true) : setBookMark(false);
@@ -77,8 +77,11 @@ const DetailInfo = ({ item, intro, wishList }: Props) => {
         <div></div>
         <S.DetailTitle>{item?.title ? item.title : '관광지'}</S.DetailTitle>
         <S.DetailScore>
-          <span>⭐{rating}</span>
-          <div style={{ display: !!uid ? 'flex' : 'none' }}>
+          <S.DetailRatingBox>
+            <FaStar color="#0039CB" />
+            {rating}
+          </S.DetailRatingBox>
+          <div style={{ display: !!uid ? 'flex' : 'none', cursor: 'pointer' }}>
             <FaRegBookmark
               onClick={() => handlerWishList()}
               style={{ display: bookMark ? 'none' : 'flex' }}

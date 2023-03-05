@@ -4,13 +4,13 @@ import * as S from './style/MyPlannerStyled';
 import useLoadMore from '@/hooks/useLoadMore';
 import { CloneEventMap } from '@/components/MyPlan/EventMap';
 import { FaBookmark } from 'react-icons/fa';
-import { useEffect } from 'react';
+import { UserData } from '@/types/UserType';
 
 const MyPlanner = ({
   user,
 }: // getUser,
 {
-  user: Document;
+  user: UserData;
   // getUser: (uid: string) => Promise<void>;
 }) => {
   const navigate = useNavigate();

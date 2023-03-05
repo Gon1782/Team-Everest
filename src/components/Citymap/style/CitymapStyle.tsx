@@ -47,7 +47,12 @@ export const ModalBox = styled.div`
   gap: 30px;
   align-items: center;
 `;
-
+export const ModalImg = styled.img`
+  width: 668px;
+  height: inherit;
+  border-radius: 8px;
+  object-fit: cover;
+`;
 export const StyleContent = styled.div`
   border-radius: 8px;
   width: 100%;

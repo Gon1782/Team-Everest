@@ -46,7 +46,7 @@ const Landmark = ({ landmark, wishList }: Props) => {
 
   useEffect(() => {
     const isGet = wishList?.filter(
-      (wishItem: any) => wishItem.contentid === landmark?.contentid,
+      (wishItem: Item) => wishItem.contentid === landmark?.contentid,
     ).length;
 
     !!isGet ? setBookMark(true) : setBookMark(false);

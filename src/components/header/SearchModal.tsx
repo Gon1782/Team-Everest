@@ -23,8 +23,9 @@ const CityList = ({ data, closeModal }: any): any => {
       {Object.keys(data).map((i) =>
         data[i].areaCode && data[i].sigunguCode ? (
           <CityItemLink
-            to={`citydetail/${data[i].areaCode}${data[i].sigunguCode}`}
+            to={`citydetail/${data[i].areaCode}/${data[i].sigunguCode}`}
             key={data[i].mapx}
+            onClick={() => closeModal()}
           >
             <CityItem>{data[i].name}</CityItem>
           </CityItemLink>
@@ -125,7 +126,7 @@ export default SearchModal;
 
 const SearchScreenWrapper = styled.div`
   position: fixed;
-  top: 50px;
+  top: 70px;
   left: 0;
   bottom: 0;
   right: 0;

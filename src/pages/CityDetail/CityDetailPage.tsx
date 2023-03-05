@@ -1,50 +1,48 @@
-import React, { useEffect, useState } from 'react';
-import * as Style from './CityDetailPageStyled';
-import { CityAreaInfo } from '@/recoil/atom/CityAreaInfo';
-import { useRecoilState } from 'recoil';
-import { useNavigate, useParams } from 'react-router-dom';
-import { cityInfo } from '@/common/utils/cityInfo';
-import CitySection from '@/components/common/CitySection';
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { getCities } from '@/common/api/cityApi';
+import Amusement from '@/components/Amusement/Amusement';
 import CityInfoList from '@/components/CityInfoList/CityInfoList';
 import WeatherInfo from '@/components/CityInfoList/WeatherInfo';
+import Michelin from '@/components/Michelin/Michelin';
+import { City } from '@/types/CityType';
+import * as S from './style/CityDetailPageStyled';
 
 const CityDetailPage = () => {
   const api = {
     url: process.env.API_URL,
     api_key: process.env.WEATHER_API_KEY,
   };
+  const { areaCode = '', sigunguCode = '' } = useParams();
+  const [areaInfo, setAreaInfo] = useState<City>();
 
-  const navigate = useNavigate();
-  const [areaInfo, setAreaInfo] = useRecoilState(CityAreaInfo);
-  const { id } = useParams();
-  const city = cityInfo.filter(({ areacode }) => areacode === id)[0];
+  const getCity = async () => {
+    await getCities(areaCode, sigunguCode)
+      .then((res) => setAreaInfo(res))
+      .catch((error) => console.log(error.message));
+  };
 
-  const fileNumber = cityInfo.findIndex(({ areacode }) => areacode === id) + 1;
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    getCity();
+  }, [areaCode, sigunguCode]);
+
+  if (!areaInfo) return <div>로딩중...</div>;
 
   return (
-     <Style.Wrap>
-      <img
-        style={{
-          display: 'block',
-          width: '100%',
-          height: '560px',
-          backgroundImage:
-            'linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5))',
-        }}
-        src={require(`@/assets/CityImage/${fileNumber}.jpg`).default}
-      ></img>
-      <Style.WeatherWrap>
-        <WeatherInfo city={city} />
-      </Style.WeatherWrap>
-      <Style.Introduce>{city.name}에 대해 자세히 보여드릴게요!</Style.Introduce>
-
+    <S.Wrap>
+      <S.CityDetailImg src={areaInfo.image} />
+      <S.WeatherWrap>
+        <WeatherInfo city={areaInfo} />
+      </S.WeatherWrap>
+      <S.Introduce>{areaInfo.name}를 자세히 알려드릴게요!</S.Introduce>
       {/* 음식점 */}
-      <CitySection name="Michelin" city={city} />
+      <Michelin city={areaInfo} />
       {/* 레포츠 */}
-      <CitySection name="Amusement" city={city} />
+      <Amusement city={areaInfo} />
       {/* 랜덤리스트 */}
-      <CityInfoList id={id} city={city} />
-    </Style.Wrap>
+      <CityInfoList city={areaInfo} />
+    </S.Wrap>
   );
 };
 

@@ -4,11 +4,11 @@ import { updateUserDB } from '@/common/api/userApi';
 import useInputs from '@/hooks/useInputs';
 import useDefault from '@/hooks/useDefault';
 import useImageInput from '@/hooks/useImageInput';
-import { Document } from '@/types/DetailType';
+import { UserData } from '@/types/UserType';
 import * as S from './style/ProfileStyled';
 
 interface Props {
-  user: Document;
+  user: UserData;
   LoginCheck: boolean;
   checkMy: boolean;
   getUser: (uid: string) => Promise<void>;
@@ -52,7 +52,7 @@ const Profile = ({ user, LoginCheck, checkMy, getUser }: Props) => {
     async (
       img: string,
       edit: { [key: string]: string },
-      setImg: React.Dispatch<any>,
+      setImg: React.Dispatch<React.SetStateAction<string>>,
     ) => {
       setImg(img);
       await updateUserDB(user.uid, edit);

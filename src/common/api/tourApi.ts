@@ -37,20 +37,28 @@ export const getSimilar = async (pageNo: number, cat: string) => {
   return data;
 };
 
-export const getAmusement = async (areaCode: string, pageNo?: number) => {
-  const SERVER_URL = baseURL('areaBasedList', 5, 1);
+export const getAmusement = async (
+  areaCode: string,
+  sigunguCode: string = '',
+  pageNo: number = 1,
+) => {
+  const SERVER_URL = baseURL('areaBasedList', 14, pageNo);
 
   const { data } = await axios.get<DetailResponse>(
-    `${SERVER_URL}&listYN=Y&arrange=Q&contentTypeId=&areaCode=${areaCode}&sigunguCode=&cat1=A03&cat2=&cat3=`,
+    `${SERVER_URL}&listYN=Y&arrange=Q&contentTypeId=&areaCode=${areaCode}&sigunguCode=${sigunguCode}&cat1=A03&cat2=&cat3=`,
   );
   return data;
 };
 
-export const getMichelin = async (areaCode: string, pageNo?: number) => {
-  const SERVER_URL = baseURL('areaBasedList', 5, 1);
+export const getMichelin = async (
+  areaCode: string,
+  sigunguCode: string = '',
+  pageNo: number = 1,
+) => {
+  const SERVER_URL = baseURL('areaBasedList', 4, pageNo);
 
   const { data } = await axios.get<DetailResponse>(
-    `${SERVER_URL}&listYN=Y&arrange=Q&contentTypeId=&areaCode=${areaCode}&sigunguCode=&cat1=A05&cat2=&cat3=`,
+    `${SERVER_URL}&listYN=Y&arrange=Q&contentTypeId=&areaCode=${areaCode}&sigunguCode=${sigunguCode}&cat1=A05&cat2=&cat3=`,
   );
   return data;
 };
@@ -67,11 +75,15 @@ export const getTourList = async (
   return data;
 };
 
-export const getCityTourInfo = async (areacode: string, pageNo: number) => {
+export const getCityTourInfo = async (
+  areacode: string,
+  sigunguCode: string = '',
+  pageNo: number = 1,
+) => {
   const SERVER_URL = baseURL('areaBasedList', 5, pageNo);
 
   const { data } = await axios.get<DetailResponse>(
-    `${SERVER_URL}&listYN=Y&arrange=A&contentTypeId=12&areaCode=${areacode}&sigunguCode=&cat1=&cat2=&cat3=`,
+    `${SERVER_URL}&listYN=Y&arrange=A&contentTypeId=12&areaCode=${areacode}&sigunguCode=${sigunguCode}&cat1=&cat2=&cat3=`,
   );
 
   return data;

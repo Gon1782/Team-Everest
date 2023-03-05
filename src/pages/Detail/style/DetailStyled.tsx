@@ -59,12 +59,13 @@ export const DetailScore = styled.div`
   align-items: center;
   width: 100%;
   font-size: 1.5rem;
+  line-height: 1.5rem;
   gap: 1rem;
-  & svg {
-    cursor: pointer;
-  }
 `;
-
+export const DetailRatingBox = styled.span`
+  display: flex;
+  gap: 0.2rem;
+`;
 export const SmallTitle = styled.h4`
   display: flex;
   width: 100%;

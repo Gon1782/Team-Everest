@@ -59,7 +59,7 @@ const Header = () => {
           />
         )}
         <Nav>
-          <HeaderLogo>
+          <HeaderLogo onClick={() => navigate('/main')}>
             <img
               src={require('@/assets/Sharpa_block.jpg').default}
               style={{ width: 40, height: 40, marginTop: 20 }}
@@ -100,7 +100,7 @@ const HeaderContainer = styled.header`
   align-items: center;
   justify-content: center;
   /* position: sticky; */ // sticky로 하면 화면에 스크롤 생김
-  position: fixed;
+  position: sticky;
   top: 0;
   z-index: 999;
 `;

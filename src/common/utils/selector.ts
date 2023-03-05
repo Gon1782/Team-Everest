@@ -148,21 +148,24 @@ export const markerSelector = (areaCode: string) => {
 
 export const sideMenuSelector = (areacode: string, fn: () => void) => {
   const navigate = useNavigate()
-
     switch (true) {
-      case !areacode:
+      case oneCity.includes(areacode):
         return {
           type: "Do",
           text: '홈으로 이동',
           onClick: () => navigate('/main'),
         };
-      case !!areacode:
+      case Do.includes(areacode):
         return {
           type: "sigungu",
           text: '뒤로 가기',
           onClick: () => fn(),
         };
       default:
-        return {};
+        return {
+          type: "Do",
+          text: '홈으로 이동',
+          onClick: () => navigate('/main'),
+        };
     }
   };

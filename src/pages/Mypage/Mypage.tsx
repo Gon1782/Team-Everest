@@ -1,10 +1,11 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { getUserDB } from '@/common/api/userApi';
-import { Document } from '@/types/DetailType';
+import { userDBform } from '@/common/utils/forms';
 import Profile from '@/components/MyPage/Profile/Profile';
 import MyPlanner from '@/components/MyPage/MyPlanner/MyPlanner';
 import MyReview from '@/components/MyPage/MyReview/MyReview';
+import { UserData } from '@/types/UserType';
 import * as S from './style/MyPageStyled';
 
 const Mypage = () => {
@@ -20,14 +21,10 @@ const Mypage = () => {
   const LoginCheck = !state && !!uid;
 
   // Get UserDB
-  const [userDB, setUserDB] = useState<Document>();
-  const [isLoading, setIsLoading] = useState(false);
+  const [userDB, setUserDB] = useState<UserData>();
 
   const getUser = useCallback(async (uid: string) => {
-    setIsLoading(true);
-    const data = await getUserDB(uid);
-    setUserDB(data);
-    setIsLoading(false);
+    await getUserDB(uid).then((res) => setUserDB(res));
   }, []);
 
   useEffect(() => {
@@ -42,9 +39,9 @@ const Mypage = () => {
     }
   }, []);
 
-  if (isLoading) return <S.Loading>로딩중...</S.Loading>;
+  if (!userDB) return <S.Loading>로딩중...</S.Loading>;
 
-  const user = !!userDB ? userDB : {};
+  const user = !!userDB ? userDB : { ...userDBform };
 
   return (
     <S.MyPageContainer>

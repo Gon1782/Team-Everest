@@ -4,7 +4,6 @@ import { registerForm } from '@/common/utils/forms';
 import { registerValidation } from '@/common/utils/validations';
 import useInputs from '@/hooks/useInputs';
 import useSignUp from '@/hooks/useSignUp';
-import { Document } from '@/types/DetailType';
 import { UserData } from '@/types/UserType';
 import RegisterInput from './RegisterInput';
 import RegiPasswordInput from './RegiPasswordInput';
@@ -15,11 +14,12 @@ const RegisterTab = () => {
   const [checkSignUp, setCheckSignUp] = useState(false);
 
   // GET UserDB
-  const [userDB, setUserDB] = useState<Document>();
+  const [userDB, setUserDB] = useState<UserData[]>();
 
   const getUser = async () => {
-    const data = await getAllUser();
-    setUserDB(data);
+    await getAllUser()
+      .then((res) => setUserDB(res))
+      .catch((e) => console.log(e.message));
   };
 
   // inputs

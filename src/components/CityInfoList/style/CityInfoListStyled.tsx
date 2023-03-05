@@ -34,8 +34,7 @@ export const Video = styled.div`
 `;
 
 export const ContentWrap = styled.div`
-  width: 60%;
-  margin-left: 150px;
+  margin-left: 120px;
 `;
 
 export const ContentItemWrap = styled.div`
@@ -63,10 +62,11 @@ export const ContentInfoWrap = styled.div`
 `;
 
 export const TourName = styled.h2`
-  font-size: 2.188rem;
+  font-size: 27px;
   font-weight: 600;
   margin-bottom: 20px;
   color: #222222;
+  word-break: keep-all;
 `;
 
 export const TourAddr = styled.p`

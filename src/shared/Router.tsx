@@ -14,16 +14,19 @@ const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/citymap" element={<CityMapPage />} />
         <Route element={<Layout />}>
-          <Route path="/" element={<Landing />} />
           <Route path="/main" element={<MainPage />} />
           <Route path="/planner/:userId/:planUniqueId" element={<MyPlan />} />
           <Route path="/detail/:id" element={<DetailPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/my" element={<Mypage />} />
           <Route path="/searcharea" element={<SearchArea />} />
-          <Route path="/citymap" element={<CityMapPage />} />
-          <Route path="/citydetail/:id" element={<CityDetailPage />} />
+          <Route
+            path="/citydetail/:areaCode/:sigunguCode?"
+            element={<CityDetailPage />}
+          />
         </Route>
       </Routes>
     </BrowserRouter>
