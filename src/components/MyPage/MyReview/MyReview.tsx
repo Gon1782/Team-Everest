@@ -11,7 +11,7 @@ interface Props {
 const MyReview = ({ user }: Props) => {
   const myReview = user.MyReview?.filter(
     (review: EachReview) => review.isDelete === 'N',
-  );
+  ).reverse();
   const [idx, checkEnd, loadMore] = useLoadMore(myReview, 2);
   const checkMyReview = !!myReview?.length;
 

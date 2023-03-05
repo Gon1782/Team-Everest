@@ -1,4 +1,4 @@
-import { ModalProps } from '@/types/StyledType';
+import { ButtonProps, ModalProps } from '@/types/StyledType';
 import styled from 'styled-components';
 
 export const LoginTab = styled.form`
@@ -8,11 +8,11 @@ export const LoginTab = styled.form`
 `;
 
 export const LoginInputContainer = styled.div`
+  margin-top: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 50%;
 `;
 
 export const LoginInputBox = styled.div`
@@ -52,23 +52,58 @@ export const LoginBtnConatiner = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 3rem;
 `;
-export const LoginBtn = styled.button`
+export const LoginBtn = styled.button<ButtonProps>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
   width: 85%;
-  height: 50px;
-  font-size: 22px;
+  height: 40px;
+  font-size: 18px;
   border: none;
   border-radius: 30px;
-  color: white;
-  background-color: #0034b9;
+  color: ${(Props) => Props.color};
+  background-color: ${(Props) => Props.backColor};
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  & svg {
+    margin-right: 0.5rem;
+  }
+`;
+export const LoginOrBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 85%;
+  height: 80px;
+`;
+export const LoginLine = styled.span`
+  position: absolute;
+  display: block;
+  width: 85%;
+  height: 1px;
+  background-color: #707070;
+`;
+export const LoginOr = styled.div`
+  display: flex;
+  width: 150px;
+  justify-content: center;
+  background-color: #edf2ff;
+  z-index: 1;
 `;
 export const RegisterBtn = styled.div`
   cursor: pointer;
+  display: flex;
+  justify-content: flex-end;
+  width: 85%;
+  margin: 1rem auto;
   font-size: 1rem;
   background-color: transparent;
   border: none;
+  color: rgba(0, 0, 0, 50%);
+  &:hover {
+    color: black;
+  }
 `;
 export const SocialLoginBtnBox = styled.div`
   cursor: pointer;

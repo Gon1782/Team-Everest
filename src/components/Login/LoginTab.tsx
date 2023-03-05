@@ -69,23 +69,28 @@ const LoginTab = () => {
           onChange={pwChange}
           reset={resetPassword}
         />
+        <S.RegisterBtn onClick={() => openModal()}>비밀번호 찾기</S.RegisterBtn>
       </S.LoginInputContainer>
       <S.LoginBtnConatiner>
-        <S.LoginBtn tabIndex={3}>Log in</S.LoginBtn>
-        <S.RegisterBtn onClick={() => openModal()}>비밀번호 찾기</S.RegisterBtn>
-        <S.SocialLoginBtnBox>
-          <FcGoogle size={45} onClick={() => socialLogin(googleProvider)} />
-          <GrFacebook
-            size={45}
-            color={'#4267B2'}
-            onClick={() => socialLogin(facebookProvider)}
-          />
-          <GrTwitter
-            size={45}
-            color={'#1DA1F2'}
-            onClick={() => socialLogin(twitterProvider)}
-          />
-        </S.SocialLoginBtnBox>
+        <S.LoginBtn color="white" backColor="#0034B9">
+          로그인 하기
+        </S.LoginBtn>
+        <S.LoginOrBox>
+          <S.LoginLine />
+          <S.LoginOr>또는</S.LoginOr>
+        </S.LoginOrBox>
+        <S.LoginBtn
+          color="black"
+          backColor="transparent"
+          style={{ marginBottom: '1rem' }}
+        >
+          <FcGoogle size={24} onClick={() => socialLogin(googleProvider)} />
+          <span>Google 로그인</span>
+        </S.LoginBtn>
+        <S.LoginBtn color="white" backColor="#4267B2">
+          <GrFacebook onClick={() => socialLogin(facebookProvider)} />
+          <span>Facebook 로그인</span>
+        </S.LoginBtn>
       </S.LoginBtnConatiner>
     </S.LoginTab>
   );

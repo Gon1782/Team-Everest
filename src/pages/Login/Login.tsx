@@ -28,16 +28,16 @@ const Login = () => {
 
   return (
     <>
+      <ReactPlayer
+        className="login-player"
+        url={require('@/assets/Landing/Landing_video.mp4').default}
+        playing={true}
+        loop={true}
+        width={'100%'}
+        height={'auto'}
+        style={{ position: 'fixed' }}
+      />
       <S.LoginContainer>
-        <ReactPlayer
-          className="login-player"
-          url={require('@/assets/Landing/Landing_video.mp4').default}
-          playing={true}
-          loop={true}
-          width={'100%'}
-          height={'auto'}
-          style={{ position: 'absolute' }}
-        />
         <S.LoginBox>
           <S.LoginHeader>
             <S.LoginHeaderBtn
@@ -52,7 +52,7 @@ const Login = () => {
               onClick={() => toggleCheck()}
               disabled={checkLogin ? true : false}
             >
-              Log in
+              로그인
             </S.LoginHeaderBtn>
             <S.LoginHeaderBtn
               style={
@@ -66,7 +66,7 @@ const Login = () => {
               onClick={() => toggleCheck()}
               disabled={checkLogin ? false : true}
             >
-              Register
+              회원가입
             </S.LoginHeaderBtn>
           </S.LoginHeader>
           {checkLogin ? <LoginTab /> : <RegisterTab />}

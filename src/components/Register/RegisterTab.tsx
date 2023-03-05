@@ -101,7 +101,9 @@ const RegisterTab = () => {
         />
       </S.RegisterInputContainer>
       <S.LoginBtnConatiner>
-        <S.LoginBtn>Sign Up</S.LoginBtn>
+        <S.LoginBtn color="white" backColor="#0034B9">
+          Sign Up
+        </S.LoginBtn>
       </S.LoginBtnConatiner>
     </form>
   );

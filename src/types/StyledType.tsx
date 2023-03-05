@@ -8,3 +8,8 @@ export interface ModalProps {
 export interface BoxProps {
   opacity?: number;
 }
+
+export interface ButtonProps {
+  color: string;
+  backColor: string;
+}
