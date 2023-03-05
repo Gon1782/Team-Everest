@@ -32,7 +32,7 @@ export const getSimilar = async (pageNo: number, cat: string) => {
   const cat2 = cat.slice(0, 5);
 
   const { data } = await axios.get<DetailResponse>(
-    `${SERVER_URL}&listYN=Y&arrange=A&contentTypeId=&areaCode=&sigunguCode=&cat1=${cat1}&cat2=${cat2}&cat3=${cat}`,
+    `${SERVER_URL}&listYN=Y&arrange=C&contentTypeId=&areaCode=&sigunguCode=&cat1=${cat1}&cat2=${cat2}&cat3=${cat}`,
   );
   return data;
 };
@@ -83,7 +83,7 @@ export const getCityTourInfo = async (
   const SERVER_URL = baseURL('areaBasedList', 5, pageNo);
 
   const { data } = await axios.get<DetailResponse>(
-    `${SERVER_URL}&listYN=Y&arrange=A&contentTypeId=12&areaCode=${areacode}&sigunguCode=${sigunguCode}&cat1=&cat2=&cat3=`,
+    `${SERVER_URL}&listYN=Y&arrange=Q&contentTypeId=12&areaCode=${areacode}&sigunguCode=${sigunguCode}&cat1=&cat2=&cat3=`,
   );
 
   return data;

@@ -1,8 +1,9 @@
-import Router from './shared/Router';
+import { Suspense } from 'react';
 import { RecoilRoot } from 'recoil';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import Router from './shared/Router';
 import GlobalStyle from './styles/GlobalStyle';
-import { Suspense } from 'react';
+
 const queryClient = new QueryClient();
 
 const App = () => {

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const DetailContainer = styled.main`
   width: 100vw;
   max-width: 1460px;
-  margin: 1rem auto 0;
+  margin: 0 auto;
 `;
 
 export const DetailBtnBox = styled.div`

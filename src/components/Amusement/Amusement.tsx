@@ -66,7 +66,7 @@ const Amusement = ({ city }: Props) => {
           slideShadows: false,
           depth: 0,
         }}
-        loop={true}
+        loop={!!detailList && detailList.length >= 14 ? true : false}
         spaceBetween={70}
         slidesPerView={'auto'}
         autoplay={{
