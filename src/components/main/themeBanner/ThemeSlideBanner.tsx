@@ -102,11 +102,11 @@ const ThemeSlideBanner = () => {
             {filteredListItems.map((item) => (
               <SlideBanner key={item.id}>
                 <Link to={`/detail/${item.contentId}`}>
-                  {/* <ThemelistItemsImage
-                    src={item.url}
+                  <ThemelistItemsImage
+                    src={require(`@/assets/Main_Theme/${item.id}.jpg`).default}
                     alt={`slide banner ${item.id}`}
-                  /> */}
-                  <ThemeCard>{item.title}</ThemeCard>
+                  />
+                  {/* <ThemeCard>{item.title}</ThemeCard> */}
                 </Link>
               </SlideBanner>
             ))}
@@ -163,7 +163,7 @@ const ThemeHashTagCategory = styled.li`
 const ThemelistItems = styled.div`
   display: flex;
   width: 100%;
-  height: 600px;
+  height: 500px;
   cursor: pointer;
 `;
 
@@ -198,13 +198,13 @@ const SlideBannerWrapper = styled(Swiper)`
 
 const SlideBanner = styled(SwiperSlide)`
   width: 400px;
-  height: 600px;
+  height: 500px;
 `;
 
 const ThemelistItemsImage = styled.img`
   width: 100%;
-  height: 600px;
-  object-fit: cover;
+  height: 500px;
+  object-fit: fit;
   border-radius: 10px;
 `;
 

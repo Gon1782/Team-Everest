@@ -9,15 +9,20 @@ import CityInfoList from '@/components/CityInfoList/CityInfoList';
 import WeatherInfo from '@/components/CityInfoList/WeatherInfo';
 
 const CityDetailPage = () => {
+  const api = {
+    url: process.env.API_URL,
+    api_key: process.env.WEATHER_API_KEY,
+  };
+
   const navigate = useNavigate();
   const [areaInfo, setAreaInfo] = useRecoilState(CityAreaInfo);
   const { id } = useParams();
   const city = cityInfo.filter(({ areacode }) => areacode === id)[0];
-  // console.log('city', city);
+
   const fileNumber = cityInfo.findIndex(({ areacode }) => areacode === id) + 1;
 
   return (
-    <Style.Wrap>
+     <Style.Wrap>
       <img
         style={{
           display: 'block',

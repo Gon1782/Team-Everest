@@ -35,7 +35,7 @@ const CityInfoList = ({ id, city }: Props) => {
   }
 
   const filterdData = cityItem?.response.body.items.item;
-  // console.log('filterdData', filterdData);
+
 
   return (
     <S.Container>
