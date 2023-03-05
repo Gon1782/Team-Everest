@@ -62,21 +62,25 @@ const PlanScheduleList = ({
                   plan.schedule[scheduleDate].map((event: any, index) => {
                     // 선택한 관광지들
                     return (
-                      <>
-                        <Event index={index} item={event} />
+                      <EventItem>
+                        <Event
+                          index={index}
+                          item={event}
+                          scheduleDate={scheduleDate}
+                        />
                         <EventDropDown
                           index={index}
                           scheduleDate={scheduleDate}
                           eventRef={eventRef}
                         />
-                      </>
+                      </EventItem>
                     );
                   })
                 ) : (
-                  <>
-                    <div> 아직 여행 일정이 없어요 ! </div>
-                    <div>셰르파와 함께 여행 일정을 계획해보세요</div>
-                  </>
+                  <div style={{ color: 'grey' }}>
+                    아직 여행 일정이 없어요 !<br /> 셰르파와 함께 여행 일정을
+                    계획해보세요
+                  </div>
                 )}
               </PlanItem>
             </SlideBanner>
@@ -95,18 +99,23 @@ const PlanItemsSwiper = styled(Swiper)`
   min-height: 300px;
   height: auto;
 `;
-
+const EventItem = styled.div`
+  width: 100%;
+  padding: 14px;
+  border-bottom: 1px inset;
+`;
 const PlanItem = styled.li`
   width: 100%;
   min-height: 500px;
   height: auto;
   border-radius: 10px;
-  border: 1px solid #2c2c2c;
-  background-color: #fff;
+
+  background-color: #f1f6f9;
 `;
 
 const SlideBanner = styled(SwiperSlide)`
   width: 100%;
   min-height: 450px;
   height: auto;
+  border-radius: 5%;
 `;

@@ -1,19 +1,12 @@
-import React, { useState } from 'react';
-import * as Style from './CityMapPageStyled';
-import { useRecoilState } from 'recoil';
-import { useQuery } from 'react-query';
-import { useEffect } from 'react';
-import Sidebar from '@/components/Sidebar/Sidebar';
+import Sidebar from '@/components/Citymap/Sidebar/Sidebar';
 import Citymap from '@/components/Citymap/Citymap';
-import { cityInfo } from '@/common/utils/cityInfo';
-import { IoIosMenu } from 'react-icons/io';
+import * as S from './style/CityMapPageStyled';
 
 const CityMapPage = () => {
   return (
-    <Style.Wrap>
-      <Sidebar />
+    <S.Wrap>
       <Citymap />
-    </Style.Wrap>
+    </S.Wrap>
   );
 };
 

@@ -13,6 +13,7 @@ import {
   dateToObject,
   dateToString,
 } from './MyPlannerHandler';
+import styled from 'styled-components';
 
 const CalenderView = ({
   setEventRef,
@@ -81,7 +82,7 @@ const CalenderView = ({
   return (
     <>
       {isShowCalender && (
-        <Calendar
+        <CalendarCss
           // onChange={!authority.update ? setCalenderDate : () => {}}
           onChange={setCalenderDate}
           value={[
@@ -99,14 +100,10 @@ const CalenderView = ({
           selectRange={true}
         />
       )}
-
-      <div className="text-gray-500 mt-4"></div>
     </>
   );
 };
 
 export default CalenderView;
 
-// const Main = styled.div`
-//   width: 100%;
-// `;
+const CalendarCss = styled(Calendar)``;

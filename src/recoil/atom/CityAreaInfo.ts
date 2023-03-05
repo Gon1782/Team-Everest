@@ -4,7 +4,7 @@ import { atom } from 'recoil';
 export interface InfoType {
   areacode: string;
   engarea: string;
-  korarea: string;
+  name: string;
   description: string;
   hashtag: string[];
   tourcount: string;
@@ -15,12 +15,12 @@ export interface InfoType {
 
 export const CityAreaInfo = atom({
   key: 'cityAreaInfo',
-  default: <InfoType>{
+  default: {
     areacode: '',
     engarea: '',
-    korarea: '',
+    name: '',
     description: '',
-    hashtag: [],
+    hashtag: [''],
     tourcount: '',
     tourdate: '',
     spec: '',

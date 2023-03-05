@@ -34,6 +34,7 @@ const SelectBox = ({
 export default SelectBox;
 
 const Select = styled.select<{ width: string }>`
+  text-align: center;
   width: 100%;
   height: 40px;
   width: ${(props) => props.width};

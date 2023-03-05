@@ -1,32 +1,25 @@
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import {
-  NewPlanRecoil,
-  PlanType,
-  PickScheduleRecoil,
-  TourListRecoil,
-  MyWishList,
-} from '@/recoil/atom/MyPlan';
-import { useEffect, useRef, useState } from 'react';
-import { getTourList } from '@/common/api/tourApi';
+import { NewPlanRecoil, PlanType, MyWishList } from '@/recoil/atom/MyPlan';
+
 import styled from 'styled-components';
-
-const TourList = () => {
+import { PickScheduleType } from '@/recoil/atom/MyPlan';
+import { Item } from '@/types/DetailType';
+import { categoryKor } from '@/common/utils/cat3';
+const TourList = ({
+  list,
+  isShowMyWish,
+  setIsShowMyWish,
+  pickSchedule,
+}: {
+  list: Item[];
+  isShowMyWish: boolean;
+  setIsShowMyWish: React.Dispatch<React.SetStateAction<boolean>>;
+  pickSchedule: PickScheduleType;
+}) => {
   const setNewPlan = useSetRecoilState<PlanType>(NewPlanRecoil);
-
-  // 선택한 일정
-  const pickSchedule = useRecoilValue(PickScheduleRecoil);
-  // 보여줄 데이터
-  const [dataList, setDataList] = useState<any>([]);
-  // 관광지 데이터
-  const tourList = useRecoilValue(TourListRecoil);
-  //관광지 위시 리스트 데이터
-  const myWishList = useRecoilValue(MyWishList);
-  //관광지 위시 리스트만 보기
-  const [isShowMyWish, setIsShowMyWish] = useState(false);
 
   // 추가한 관광지 데이터를 선택한 일정 리스트에 담기
   const eventHandler = (item: any) => {
-    // if (window.confirm('이 관광지를 현재 일정에 추가하시겠습니까?')) {
     setNewPlan((prev: PlanType) => {
       const clonePrev = { ...prev.schedule }; // 기존 데이터 복사
       const cloneItem = { ...item };
@@ -49,22 +42,7 @@ const TourList = () => {
         schedule: { ...prev.schedule, ...newPlan },
       };
     });
-    // alert('완료되었습니다')
-    // }
   };
-
-  useEffect(() => {
-    if (isShowMyWish) {
-      setDataList(myWishList);
-    } else {
-      setDataList(tourList);
-    }
-  }, [isShowMyWish]);
-
-  useEffect(() => {
-    setDataList(tourList);
-    setIsShowMyWish(false);
-  }, [tourList]);
 
   return (
     <TourListContainer>
@@ -76,8 +54,8 @@ const TourList = () => {
         />
         <ShowMyWish>저장한 장소만 보기</ShowMyWish>
       </MyWish>
-      {!!dataList?.length ? (
-        dataList.map((item: any, index: number) => {
+      {!!list?.length &&
+        list.map((item: any, index: number) => {
           return (
             <SpotItem key={index}>
               {item.firstimage !== '' ? (
@@ -87,17 +65,15 @@ const TourList = () => {
               )}
               <SpotInfo>
                 <SpotTitle>{item.title}</SpotTitle>
-                <SpotAdress>{item.addr1}</SpotAdress>
+                <SpotEtc>{categoryKor[item.cat3]}</SpotEtc>
+                <SpotEtc>{item.addr1}</SpotEtc>
               </SpotInfo>
               <SpotSaveButton>
                 <SaveButton onClick={() => eventHandler(item)}>+</SaveButton>
               </SpotSaveButton>
             </SpotItem>
           );
-        })
-      ) : (
-        <>검색 결과</>
-      )}
+        })}
     </TourListContainer>
   );
 };
@@ -126,35 +102,42 @@ const CheckShowMyWish = styled.input`
 `;
 
 const SpotItem = styled.div`
-  height: 120px;
+  height: 110px;
   width: 100%;
-  border: 1px solid black;
   border-radius: 10px;
+
   margin: 15px 0;
   display: flex;
   overflow: hidden;
+  //box-shadow: 1px 1px 1px 1px #004a7c;
+  box-shadow: 2px 2px 2px 2px #999;
 `;
 
 const SpotImg = styled.img`
-  width: 25%;
+  width: 30%;
   height: 100%;
 `;
 
 const SpotInfo = styled.div`
-  width: 65%;
+  width: 55%;
   height: 100%;
-  display: inline-block;
+  display: inline-grid;
   padding: 5px 10px;
+  text-align: center;
+  align-items: center;
+  color: black;
 `;
 const SpotTitle = styled.div`
-  font-size: 25px;
+  font-size: 20px;
+  height: auto;
 `;
-const SpotAdress = styled.div`
-  font-size: 15px;
+const SpotEtc = styled.div`
+  font-size: 10px;
+  height: auto;
 `;
 
 const SpotSaveButton = styled.div`
-  width: auto;
+  width: 15%;
   height: 100%;
   margin: 0 auto;
   display: flex;
@@ -163,4 +146,5 @@ const SpotSaveButton = styled.div`
 
 const SaveButton = styled.button`
   background-color: white;
+  width: 100%;
 `;

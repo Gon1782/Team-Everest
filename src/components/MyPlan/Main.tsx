@@ -25,6 +25,8 @@ import {
   updatePlan,
 } from './MyPlannerHandler';
 import { PlanBtn } from './style/common';
+import { FaBookmark, FaRegBookmark } from 'react-icons/fa';
+import useModal from '@/hooks/useModal';
 const MyPlan = () => {
   const navigate = useNavigate();
 
@@ -34,10 +36,12 @@ const MyPlan = () => {
 
   const [eventRef, setEventRef] = useState<any>({});
   const [scheduleRef, setScheduleRef] = useState<any>({});
+  const [userDB, setUserDB] = useState<any>();
 
   const [loading, setLoading] = useState(true);
   const setMyWishList = useSetRecoilState(MyWishList);
   const [authority, setAuthority] = useRecoilState(Authority);
+  const [placeholder, setPlaceholder] = useState(false);
   const resetInitLocation = useResetRecoilState(InitLocation);
 
   const { planUniqueId, userId } = useParams() as {
@@ -52,8 +56,27 @@ const MyPlan = () => {
   const [plan, setPlan] = useRecoilState<PlanType>(NewPlanRecoil);
   //const resetPlan = useResetRecoilState(NewPlanRecoil);
   const [planName, setPlanName] = useState('');
+  //
 
-  const doubleCheck = (key: string) => {
+  const firstCheck = () => {
+    // 추가한 일정들이 있는지 확인
+    let eventCount = 0;
+    Object.values(plan.schedule).filter((item) => (eventCount += item.length));
+
+    if (!!!planName) {
+      alert('제목을 입력해주세요!');
+      return true;
+    }
+
+    if (!eventCount) {
+      alert('일정을 추가해주세요!');
+      return true;
+    }
+
+    return false;
+  };
+
+  const asking = (key: string) => {
     if (window.confirm(`해당 일정을 ${key} 하시겠습니까?`)) {
       return true;
     } else {
@@ -61,8 +84,9 @@ const MyPlan = () => {
     }
   };
   const clickAddPlan = async (isShow: boolean) => {
+    if (firstCheck()) return;
     try {
-      doubleCheck('저장')
+      asking('저장')
         ? await addPlan(plan, planName, uid, isShow, true).then(() => {
             alert('완료 되었습니다!');
             navigate('/my');
@@ -73,8 +97,9 @@ const MyPlan = () => {
     }
   };
   const clickUpdatePlan = async (isShow: boolean) => {
+    if (firstCheck()) return;
     try {
-      doubleCheck('수정')
+      asking('수정')
         ? await updatePlan(
             plan,
             planName,
@@ -93,7 +118,7 @@ const MyPlan = () => {
   };
   const clickBookMark = async () => {
     try {
-      doubleCheck('북마크')
+      asking('북마크')
         ? await saveOtherPlan(plan, planName, uid, userId, planUniqueId).then(
             () => {
               alert('완료 되었습니다!');
@@ -107,7 +132,7 @@ const MyPlan = () => {
   };
   const clickPopPlan = async () => {
     try {
-      doubleCheck('삭제')
+      asking('삭제')
         ? await popPlan(uid, planUniqueId).then(() => {
             alert('완료 되었습니다!');
             navigate('/my');
@@ -129,8 +154,9 @@ const MyPlan = () => {
 
       setPlan(plan);
       setPlanName(plan['name']);
-
+      setUserDB(userDB);
       setMyWishList(userDB['myWishPlace']);
+
       setAuthority({
         write: false,
         view: true,
@@ -173,7 +199,7 @@ const MyPlan = () => {
         isDelete: false,
         bookmarkCount: 0,
       });
-
+      setUserDB(null);
       setPlanName('');
       setAuthority({
         write: true,
@@ -194,25 +220,57 @@ const MyPlan = () => {
 
   return (
     <>
+      <>{isSidePageView && <SidePage />}</>
       <Main
-        // background={isSidePageView ? `rgba(0, 0, 0, 0.5)` : 'none'}
-        // visible={isSidePageView ? 'none' : 'auto'}
         style={{
-          //background: isSidePageView ? 'rgba(0, 0, 0, 0.5)' : 1,
+          // background: isSidePageView ? 'rgba(0, 0, 0, 0.618)' : 'none',
           opacity: isSidePageView ? 0.15 : 1,
           pointerEvents: isSidePageView ? 'none' : 'auto',
         }}
       >
         <MyPlanContainer>
+          {!!userDB && (
+            <div
+              style={{
+                width: '100%',
+                display: 'flex',
+                justifyContent: 'center',
+                marginTop: 30,
+                alignItems: 'center',
+              }}
+            >
+              <div
+                style={{
+                  borderRadius: '50%',
+                  border: '0px solid',
+                  overflow: 'hidden',
+                  width: 60,
+                  height: 60,
+                }}
+              >
+                <img
+                  src={userDB.photoURL}
+                  style={{ objectFit: 'cover', width: 60, height: 60 }}
+                />
+              </div>
+              <p style={{ color: 'black', fontWeight: 100 }}>
+                {userDB.displayName}
+              </p>
+            </div>
+          )}
           {authority.write ? ( // 일정 만들때
             <PlanTitleSection>
               <PlanTitleInput
                 type="text"
                 onChange={(e) => setPlanName(e.target.value)}
+                onFocus={() => setPlaceholder(true)}
+                onBlur={() => setPlaceholder(false)}
                 placeholder={
                   authority.write
                     ? authority.update
                       ? planName
+                      : placeholder
+                      ? ''
                       : '제목을 입력해주세요'
                     : planName
                 }
@@ -221,16 +279,29 @@ const MyPlan = () => {
           ) : (
             <PlanTitleSection>
               <PlanTitle>{planName}</PlanTitle>
+
               {!!uid && userId !== uid && (
-                <button onClick={() => clickBookMark()}>일정 저장하기</button>
+                <>
+                  <FaBookmark
+                    onClick={() => clickBookMark()}
+                    style={{ cursor: 'pointer' }}
+                    color="red"
+                  />
+                </>
               )}
             </PlanTitleSection>
           )}
           <PlanDateSection>
             <StartEndDate />
+            <PlanMapSection>
+              <CalenderView
+                setEventRef={setEventRef}
+                setScheduleRef={setScheduleRef}
+              />
+            </PlanMapSection>
             <MyPlanButtonContainer>
               {authority.write ? (
-                <>
+                <div style={{ margin: '40px 0' }}>
                   {authority.update ? (
                     <>
                       <PlanBtn
@@ -262,49 +333,39 @@ const MyPlan = () => {
                       </PlanBtn>
                     </>
                   )}
-                </>
+                </div>
               ) : (
                 userId === uid && (
-                  <>
+                  <div style={{ margin: '40px 0' }}>
                     <PlanBtn
                       onClick={() =>
                         setAuthority({ write: true, view: false, update: true })
                       }
-                      color={'gray'}
+                      color={'dbe2ef'}
                     >
                       수정하기
                     </PlanBtn>
-                    <PlanBtn onClick={() => clickPopPlan()} color={'gray'}>
+                    <PlanBtn onClick={() => clickPopPlan()} color={'dbe2ef'}>
                       삭제하기
                     </PlanBtn>
-                  </>
+                  </div>
                 )
               )}
             </MyPlanButtonContainer>
           </PlanDateSection>
-
-          <PlanMapSection>
-            <CalenderView
-              setEventRef={setEventRef}
-              setScheduleRef={setScheduleRef}
-            />
-          </PlanMapSection>
           <EventMap />
           <PlanScheduleList eventRef={eventRef} scheduleRef={scheduleRef} />
         </MyPlanContainer>
       </Main>
-      <>{isSidePageView && <SidePage />}</>
     </>
   );
 };
 
 export default MyPlan;
-const Main = styled.div`
-  //<{ background: string; visible: string }>
-`;
+const Main = styled.div``;
 
 const MyPlanContainer = styled.div`
-  width: 50%;
+  width: 40%;
   height: 100%;
   padding: 2rem;
 
@@ -314,26 +375,27 @@ const MyPlanContainer = styled.div`
   justify-content: center;
   align-items: center;
   gap: 1rem;
+  background-color: white;
 `;
 
 const PlanTitleSection = styled.div`
   width: 100%;
   height: 10px;
-  margin: 20px 0 50px 0;
-
-  /* margin-bottom: 50px; */
+  margin: 40px 0 100px 0;
+  text-align: center;
 `;
 
 const PlanDateSection = styled.div`
   width: 100%;
   height: 30px;
   justify-content: space-between;
-  margin-bottom: 30px;
-  display: flex;
+  /* margin-bottom: 20px; */
+  display: contents;
   align-items: center;
 `;
 
 const PlanMapSection = styled.div`
+  display: contents;
   width: 100%;
 `;
 
@@ -342,12 +404,14 @@ const PlanTitleInput = styled.input`
   height: 60px;
   font-size: 25px;
   border-bottom: 1px solid gray;
+  text-align: center;
+  outline: none;
 `;
 
 const PlanTitle = styled.p`
   width: 100%;
   height: 60px;
-  font-size: 25px;
+  font-size: 50px;
 `;
 
 const MyPlanButtonContainer = styled.div`
@@ -355,4 +419,68 @@ const MyPlanButtonContainer = styled.div`
 
   align-items: center;
   justify-content: end;
+  /* margin: 30px 0; */
+`;
+export const ProfileSection = styled.section`
+  width: 100%;
+  height: 675px;
+`;
+export const MyBackImage = styled.img`
+  position: relative;
+  width: 100%;
+  height: 450px;
+  background-color: gray;
+  border: none;
+  object-fit: cover;
+`;
+export const ProfileBox = styled.div`
+  display: flex;
+  align-items: flex-end;
+  max-width: 1344px;
+  height: 100%;
+  margin: auto;
+  position: absolute;
+`;
+export const ProfileImageBox = styled.div`
+  width: 350px;
+  height: 400px;
+`;
+export const ProfileImage = styled.img`
+  width: 350px;
+  height: 350px;
+  border-radius: 20px;
+  background-color: blue;
+  z-index: 1;
+`;
+export const BtnBox = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  height: 50px;
+`;
+export const ProfileLabel = styled.label`
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  color: black;
+  background-color: transparent;
+  font-size: 1.5rem;
+`;
+export const ProfileBtn = styled.button`
+  cursor: pointer;
+  color: black;
+  background-color: transparent;
+  border: none;
+  width: 50%;
+  font-size: 1.5rem;
+  padding: 0;
+`;
+export const ProfilInfoBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 194px;
+  font-size: 1.5rem;
 `;
