@@ -1,12 +1,10 @@
+import { useEffect, useRef } from 'react';
 import { FaArrowLeft } from 'react-icons/fa';
 import { areaCode, AreaCode, oneCity } from '@/common/utils/areaCode/areaCode';
 import { cityInfo } from '@/common/utils/cityInfo';
 import { markerSelector, sideMenuSelector } from '@/common/utils/selector';
-import * as Style from './style/SidebarStyle';
 import { Markers } from '@/hooks/useCityMarkers';
-import { CityAreaInfo } from '@/recoil/atom/CityAreaInfo';
-import { useRecoilState } from 'recoil';
-import { useEffect, useRef } from 'react';
+import * as S from './style/SidebarStyle';
 
 interface Props {
   areacode: string;
@@ -66,36 +64,31 @@ const Sidebar = ({
   }, [areacode]);
 
   return (
-    <Style.Wrap ref={menuRef}>
-      <Style.IconWrap onClick={chosen.onClick}>
+    <S.Wrap ref={menuRef}>
+      <S.IconWrap onClick={chosen.onClick}>
         <FaArrowLeft size={25}></FaArrowLeft>
-        <Style.Text>{chosen.text}</Style.Text>
-      </Style.IconWrap>
+        <S.Text>{chosen.text}</S.Text>
+      </S.IconWrap>
       {array.map((data, index) => {
         return (
-          <Style.ItemWrap
+          <S.ItemWrap
             key={index}
-            onClick={() => (!!areacode ? siGunGu(index) : getDo(index))}
+            onClick={() => (!!sigungu.length ? siGunGu(index) : getDo(index))}
           >
-            <Style.ImageWrap>
-              <img
-                style={{
-                  width: '100px',
-                  height: '100px',
-                  borderRadius: '5px',
-                }}
+            <S.ImageWrap>
+              <S.SideBarImage
                 src={
-                  !!areacode
+                  !!sigungu.length
                     ? ''
                     : require(`@/assets/CityImage/${index + 1}.jpg`).default
                 }
               />
-            </Style.ImageWrap>
-            <Style.title>{data.name}</Style.title>
-          </Style.ItemWrap>
+            </S.ImageWrap>
+            <S.title>{data.name}</S.title>
+          </S.ItemWrap>
         );
       })}
-    </Style.Wrap>
+    </S.Wrap>
   );
 };
 

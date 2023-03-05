@@ -6,6 +6,17 @@ export const Wrap = styled.section`
   /* padding-top: 50px; */
 `;
 
+export const CityDetailImg = styled.img`
+  display: block;
+  width: 100%;
+  height: 450px;
+  background-image: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.5),
+    rgba(0, 0, 0, 0.5)
+  );
+`;
+
 // 날씨 관련 스타일
 export const WeatherWrap = styled.section`
   display: flex;
@@ -16,7 +27,7 @@ export const WeatherWrap = styled.section`
 export const Introduce = styled.section`
   display: flex;
   justify-content: center;
-  margin: 20px 0;
-  font-size: 25px;
+  margin: 80px 0 64px;
+  font-size: 50px;
   font-weight: 700;
 `;

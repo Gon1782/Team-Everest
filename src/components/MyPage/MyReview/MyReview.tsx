@@ -1,10 +1,11 @@
 import useLoadMore from '@/hooks/useLoadMore';
-import { Document, EachReview } from '@/types/DetailType';
+import { EachReview } from '@/types/DetailType';
+import { UserData } from '@/types/UserType';
 import MyReviewBox from './MyReviewBox';
 import * as S from './style/MyReviewStyled';
 
 interface Props {
-  user: Document;
+  user: UserData;
 }
 
 const MyReview = ({ user }: Props) => {

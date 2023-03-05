@@ -101,6 +101,7 @@ const TopCityCategories = styled.div`
 `;
 
 const TopCityItem = styled.div`
+  cursor: pointer;
   position: relative;
   display: flex;
   justify-content: center;

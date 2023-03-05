@@ -5,3 +5,6 @@ export interface ModalProps {
   height: string;
   gap?: string;
 }
+export interface BoxProps {
+  opacity?: number;
+}

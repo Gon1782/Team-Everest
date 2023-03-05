@@ -8,9 +8,10 @@ import Drizzle from '@/assets/Weather/drizzle.png';
 import Snow from '@/assets/Weather/snow.png';
 import Thunderstorm from '@/assets/Weather/thunderstorm.png';
 import styled from 'styled-components';
+import { City } from '@/types/CityType';
 
 interface Props {
-  city: any;
+  city: City;
 }
 
 // 날씨 아이콘
@@ -51,7 +52,7 @@ const WeatherInfo = ({ city }: Props) => {
   };
 
   // 날씨 api 요청 (기온 단위 변경)
-  const getWeather = async (lat: number, lon: number) => {
+  const getWeather = async (lat: string, lon: string) => {
     let url = `${apiUrl}lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`;
     let response = await axios.get(url);
     console.log('response', response);
@@ -60,8 +61,10 @@ const WeatherInfo = ({ city }: Props) => {
   };
 
   useEffect(() => {
-    getCityLocation();
-  }, []);
+    if (!!city) {
+      getWeather(city?.mapy.toFixed(5), city?.mapx.toFixed(5));
+    }
+  }, [city]);
 
   return (
     <Container>

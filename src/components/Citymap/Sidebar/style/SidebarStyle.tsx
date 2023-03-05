@@ -57,3 +57,8 @@ export const title = styled.span`
   font-weight: 700;
   font-size: 18px;
 `;
+export const SideBarImage = styled.img`
+  width: 100px;
+  height: 100px;
+  border-radius: 5px;
+`;
