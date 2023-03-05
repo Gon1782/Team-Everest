@@ -7,7 +7,7 @@ export const LoginContainer = styled.main`
   position: fixed;
   width: 100vw;
   height: 100vh;
-  background-color: lightgray;
+  background-color: rgba(0, 0, 0, 0.3);
   overflow-y: hidden;
 `;
 export const LoginBox = styled.section`

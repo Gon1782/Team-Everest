@@ -22,7 +22,15 @@ const LoginInput = ({ name, value, check, onChange, reset }: Props) => {
           type: 'text',
           name: 'email',
           title: 'E-Mail',
-          warning: '※ 이메일 형식에 맞게 입력해주세요.',
+          warning: (
+            <S.Warning
+              style={{
+                visibility: check ? 'hidden' : 'visible',
+              }}
+            >
+              ※ 이메일 형식에 맞게 입력해주세요.
+            </S.Warning>
+          ),
           button: (
             <S.InputBtn onClick={() => reset()}>
               <AiOutlineClose size={24} />
@@ -34,7 +42,7 @@ const LoginInput = ({ name, value, check, onChange, reset }: Props) => {
           type: visible ? 'text' : 'password',
           name: 'password',
           title: 'Password',
-          warning: '※ 비밀번호를 확인해주세요',
+          warning: '',
           button: (
             <>
               <S.InputBtn
@@ -78,13 +86,7 @@ const LoginInput = ({ name, value, check, onChange, reset }: Props) => {
         />
         {chosen.button}
       </S.LoginInputBox>
-      <S.Warning
-        style={{
-          visibility: check ? 'hidden' : 'visible',
-        }}
-      >
-        {chosen.warning}
-      </S.Warning>
+      {chosen.warning}
     </>
   );
 };
