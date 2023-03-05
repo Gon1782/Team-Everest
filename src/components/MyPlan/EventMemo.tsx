@@ -25,5 +25,7 @@ export default EventMemo;
 
 const MemoInput = styled.input`
   text-align: center;
-  margin-bottom: 30px;
+
+  border-radius: 10px;
+  outline: none;
 `;

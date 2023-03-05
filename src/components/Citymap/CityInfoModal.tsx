@@ -76,7 +76,7 @@ const CityInfoModal = ({
             </S.StyleButton>
             <S.StyleButton
               onClick={() => {
-                navigate('/planner/:userId/:planUniqueId');
+                navigate('/planner/my/write');
               }}
             >
               일정 만들기

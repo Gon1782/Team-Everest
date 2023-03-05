@@ -179,7 +179,7 @@ const EventDropDown = ({
             )
           }
         >
-          저장
+          👌
         </TimeMemoSaveBtn>
       </EventTimeMemoSetDrop>
     </>
@@ -200,11 +200,14 @@ const EventTimeMemoSetDrop = styled.div`
   width: 80%;
 `;
 
-const TimeMemoSaveBtn = styled.button``;
+const TimeMemoSaveBtn = styled.button`
+  background-color: #f1f6f9;
+  color: gray;
+`;
 const EventTimeMemoSetBtn = styled.button`
   width: 100%;
   height: 20px;
-  font-size: 5px;
+  font-size: 6px;
   font-weight: 400;
-  background-color: white;
+  background-color: #f1f6f9;
 `;

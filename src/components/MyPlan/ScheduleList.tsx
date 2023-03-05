@@ -11,6 +11,7 @@ import 'swiper/css';
 import 'swiper/css/scrollbar';
 import Draggable from 'react-draggable';
 import quartersToMonths from 'date-fns/quartersToMonths';
+import { backgroundClip } from 'html2canvas/dist/types/css/property-descriptors/background-clip';
 
 const PlanScheduleList = ({
   eventRef,
@@ -51,6 +52,14 @@ const PlanScheduleList = ({
           return (
             <SlideBanner>
               <PlanItem>
+                <div
+                  style={{
+                    width: '100%',
+                    backgroundColor: '#2196F3',
+                    borderRadius: 40,
+                    height: 30,
+                  }}
+                ></div>
                 <ScheduleDate // Day1 |20xx-몇월-며칠
                   planSchedule={planSchedule}
                   index={index}

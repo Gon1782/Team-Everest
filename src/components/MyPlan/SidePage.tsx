@@ -7,6 +7,7 @@ import { getSpot, getTourList } from '@/common/api/tourApi';
 import SelectBox from './SelectBox';
 import TourList from './TourList';
 import { MdOutlineAddLocation } from 'react-icons/md';
+import { GrClose } from 'react-icons/gr';
 import {
   TourListRecoil,
   PickScheduleRecoil,
@@ -16,6 +17,7 @@ import {
 import styled from 'styled-components';
 import { getUserDB } from '@/common/api/userApi';
 import { SlMagnifier } from 'react-icons/sl';
+import { BsFlagFill } from 'react-icons/bs';
 
 // 검색 할 수 있는 사이드페이지, 일정 추가 버튼 클릭시 생김
 const SidePage = () => {
@@ -91,13 +93,14 @@ const SidePage = () => {
     // setDataList(myWishList);
   }, [isShowMyWish]);
 
-  // wish 리스트 가져오기
+  // wish 리스트 가져오기, 언마운트시에 초기화
   useEffect(() => {
     getUserDB(uid).then((result: any) => {
       setMyWishList(result.myWishPlace);
     });
     return () => {
       setDataList([]);
+      setTourList([]);
       setPageNo(2);
     };
   }, []);
@@ -126,12 +129,12 @@ const SidePage = () => {
     <SidePageContainer ref={pageRef}>
       <ScheduleInfo>
         {pickSchedule.day} | ({pickSchedule.schedule})
-        <QuitButton onClick={() => setIsSidePageView(false)}>x</QuitButton>
+        <QuitButton onClick={() => setIsSidePageView(false)}>
+          <GrClose />
+        </QuitButton>
       </ScheduleInfo>
       <SelectBoxList>
-        <MdOutlineAddLocation
-          style={{ width: 20, height: 20 }}
-        ></MdOutlineAddLocation>
+        <BsFlagFill size={20} color={'#005691'} />
         <SelectBox
           onChangeHandler={(event: any) => setPickLocation(event.target.value)}
           dataList={location}
@@ -172,14 +175,17 @@ const SidePage = () => {
 export default SidePage;
 
 const SidePageContainer = styled.div`
-  width: 24%;
+  width: 25%;
   position: fixed;
   height: 100%;
-  left: 88%;
+  left: 87%;
   top: 55%;
   transform: translate(-50%, -50%);
   overflow: auto;
   padding: 10px 25px;
+  z-index: 999;
+  background-color: white;
+  border-left: 1px inset;
 `;
 const SearchingSection = styled.div`
   display: flex;

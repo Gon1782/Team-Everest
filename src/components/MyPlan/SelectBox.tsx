@@ -39,4 +39,5 @@ const Select = styled.select<{ width: string }>`
   height: 40px;
   width: ${(props) => props.width};
   border: 0px;
+  outline: none;
 `;

@@ -38,7 +38,7 @@ const EventMap = () => {
 
   return (
     <Wrap>
-      <Mapbox ref={mapRef} height={600}></Mapbox>
+      <Mapbox ref={mapRef} height={350}></Mapbox>
     </Wrap>
   );
 };

@@ -27,6 +27,7 @@ import {
 import { PlanBtn } from './style/common';
 import { FaBookmark, FaRegBookmark } from 'react-icons/fa';
 import useModal from '@/hooks/useModal';
+import { zIndex } from 'html2canvas/dist/types/css/property-descriptors/z-index';
 const MyPlan = () => {
   const navigate = useNavigate();
 
@@ -220,10 +221,10 @@ const MyPlan = () => {
 
   return (
     <>
-      <>{isSidePageView && <SidePage />}</>
+      {isSidePageView && <SidePage />}
       <Main
         style={{
-          // background: isSidePageView ? 'rgba(0, 0, 0, 0.618)' : 'none',
+          marginTop: '4%',
           opacity: isSidePageView ? 0.15 : 1,
           pointerEvents: isSidePageView ? 'none' : 'auto',
         }}
@@ -235,7 +236,7 @@ const MyPlan = () => {
                 width: '100%',
                 display: 'flex',
                 justifyContent: 'center',
-                marginTop: 30,
+
                 alignItems: 'center',
               }}
             >
@@ -258,6 +259,7 @@ const MyPlan = () => {
               </p>
             </div>
           )}
+
           {authority.write ? ( // 일정 만들때
             <PlanTitleSection>
               <PlanTitleInput
@@ -268,10 +270,10 @@ const MyPlan = () => {
                 placeholder={
                   authority.write
                     ? authority.update
-                      ? planName
-                      : placeholder
-                      ? ''
-                      : '제목을 입력해주세요'
+                      ? planName // 수정하기 눌렀을때 원래 제목 보여주기
+                      : placeholder // 일정 만들기 눌렀을때
+                      ? '' // 클릭시
+                      : '제목을 입력해주세요' // 클릭 안했을때
                     : planName
                 }
               />
@@ -362,10 +364,17 @@ const MyPlan = () => {
 };
 
 export default MyPlan;
-const Main = styled.div``;
+const Main = styled.div`
+  background: transparent;
+  border-color: transparent;
+
+  & > * {
+    background: rgba(0, 0, 0);
+  }
+`;
 
 const MyPlanContainer = styled.div`
-  width: 40%;
+  width: 45%;
   height: 100%;
   padding: 2rem;
 
@@ -380,14 +389,14 @@ const MyPlanContainer = styled.div`
 
 const PlanTitleSection = styled.div`
   width: 100%;
-  height: 10px;
-  margin: 40px 0 100px 0;
+  height: 80px;
+  margin: 10px 0 10px 0;
   text-align: center;
 `;
 
 const PlanDateSection = styled.div`
   width: 100%;
-  height: 30px;
+  height: 100%;
   justify-content: space-between;
   /* margin-bottom: 20px; */
   display: contents;
@@ -420,67 +429,4 @@ const MyPlanButtonContainer = styled.div`
   align-items: center;
   justify-content: end;
   /* margin: 30px 0; */
-`;
-export const ProfileSection = styled.section`
-  width: 100%;
-  height: 675px;
-`;
-export const MyBackImage = styled.img`
-  position: relative;
-  width: 100%;
-  height: 450px;
-  background-color: gray;
-  border: none;
-  object-fit: cover;
-`;
-export const ProfileBox = styled.div`
-  display: flex;
-  align-items: flex-end;
-  max-width: 1344px;
-  height: 100%;
-  margin: auto;
-  position: absolute;
-`;
-export const ProfileImageBox = styled.div`
-  width: 350px;
-  height: 400px;
-`;
-export const ProfileImage = styled.img`
-  width: 350px;
-  height: 350px;
-  border-radius: 20px;
-  background-color: blue;
-  z-index: 1;
-`;
-export const BtnBox = styled.div`
-  display: flex;
-  justify-content: space-evenly;
-  width: 100%;
-  height: 50px;
-`;
-export const ProfileLabel = styled.label`
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 50%;
-  color: black;
-  background-color: transparent;
-  font-size: 1.5rem;
-`;
-export const ProfileBtn = styled.button`
-  cursor: pointer;
-  color: black;
-  background-color: transparent;
-  border: none;
-  width: 50%;
-  font-size: 1.5rem;
-  padding: 0;
-`;
-export const ProfilInfoBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 194px;
-  font-size: 1.5rem;
 `;

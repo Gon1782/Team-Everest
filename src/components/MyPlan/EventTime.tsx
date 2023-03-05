@@ -29,7 +29,7 @@ const EventTime = ({
             return { ...prev, amPm: event.target.value };
           })
         }
-        width={20}
+        width={25}
         value={when.amPm}
       >
         <option key="오전" value="1">
@@ -76,15 +76,18 @@ export default EventTime;
 
 const PlanTimeMemoContainer = styled.div`
   width: 100%;
-  margin: 30px 0;
+
+  background-color: #f1f6f9;
 `;
 
 const TimeSelect = styled.select<{ width: number }>`
   width: ${(props) => props.width + '%'};
   border: 0px;
   text-align: center;
+  background-color: #f1f6f9;
 `;
 const MinuteInput = styled.input`
   width: 20%;
   text-align: center;
+  background-color: #f1f6f9;
 `;
