@@ -13,7 +13,7 @@ interface Props {
 }
 
 const CityInfoList = ({ city }: Props) => {
-  const RanNumber = 5;
+  const RanNumber = 1;
 
   const navigate = useNavigate();
 
@@ -34,7 +34,7 @@ const CityInfoList = ({ city }: Props) => {
     refetch();
   }, [city]);
 
-  if (isLoading) <div>로딩중</div>;
+  if (isLoading) return <div>로딩중</div>;
   if (isError) return <div>{error.message}</div>;
 
   const filterdData = cityItem?.response.body.items.item;

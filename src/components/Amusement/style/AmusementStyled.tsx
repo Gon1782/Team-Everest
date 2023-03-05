@@ -72,7 +72,7 @@ export const AmusePlace = styled.div`
 `;
 
 export const AmuseLocation = styled.span`
-  color: '#0034B9';
+  color: #0034b9;
   font-size: 14px;
 `;
 export const AmuseAddr = styled.span`

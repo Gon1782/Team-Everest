@@ -15,6 +15,7 @@ export const CityDetailImg = styled.img`
     rgba(0, 0, 0, 0.5),
     rgba(0, 0, 0, 0.5)
   );
+  object-fit: cover;
 `;
 
 // 날씨 관련 스타일

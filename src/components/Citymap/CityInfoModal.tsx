@@ -62,9 +62,11 @@ const CityInfoModal = ({
             {/* navigate 지정 */}
             <S.StyleButton
               onClick={() => {
-                navigate(
-                  `/citydetail/${areaInfo?.areaCode}/${areaInfo?.sigunguCode}`,
-                );
+                !!areaInfo?.sigunguCode
+                  ? navigate(
+                      `/citydetail/${areaInfo?.areaCode}/${areaInfo?.sigunguCode}`,
+                    )
+                  : navigate(`/citydetail/${areaInfo?.areaCode}`);
               }}
             >
               도시 상세보기
