@@ -20,6 +20,7 @@ const Landing = () => {
         width={'100%'}
         height={'auto'}
         playing={true} // 자동 재생 on
+        muted={true}
         loop={true}
         style={{ position: 'absolute' }}
       />
