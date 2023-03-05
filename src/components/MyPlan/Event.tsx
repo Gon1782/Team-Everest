@@ -8,6 +8,7 @@ import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { timeHandler } from './MyPlannerHandler';
 import styled from 'styled-components';
 import { FaRegTrashAlt } from 'react-icons/fa';
+import { BsFlagFill } from 'react-icons/bs';
 
 // 일정 데이터
 const Event = ({
@@ -52,7 +53,15 @@ const Event = ({
       >
         {/* 일정 순서 및 시간 */}
         <EventOrder>
-          <EventOrderNumber>{index + 1}</EventOrderNumber>
+          <EventOrderNumber>
+            <img
+              src={`https://img.icons8.com/color/48/null/${
+                index + 1
+              }-circle-c--v1.png`}
+              width="25"
+              height="25"
+            />
+          </EventOrderNumber>
           <EventTime>
             {item.when?.amPm === 1
               ? '오전'
@@ -65,6 +74,7 @@ const Event = ({
         {/* 일정 장소명 및 시간/메모 설정 영역 */}
         <EventInfo>
           <EventPlace>
+            <BsFlagFill size={12} color={'#EB455F'} />
             {item.title}
             {!!item.memo && <EventMemo>{item.memo}</EventMemo>}
           </EventPlace>
@@ -104,14 +114,7 @@ const EventOrder = styled.div`
 `;
 
 const EventOrderNumber = styled.div`
-  width: 20px;
-  height: 20px;
-  background-color: #b9b9b9;
-  border-radius: 100px;
-  font-size: 0.8rem;
-  text-align: center;
-  line-height: 20px;
-  margin-bottom: 5px;
+  //margin-bottom: 5px;
 `;
 
 const EventTime = styled.div`
@@ -138,7 +141,6 @@ const EventMemo = styled.div`
 const EventTimeMemoSet = styled.div`
   width: 20%;
   margin: 0 auto;
-  margin-bottom: 10px;
 `;
 
 // 삭제 버튼

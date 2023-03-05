@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { PickScheduleType } from '@/recoil/atom/MyPlan';
 import { Item } from '@/types/DetailType';
 import { categoryKor } from '@/common/utils/cat3';
+import { BsFlagFill } from 'react-icons/bs';
 const TourList = ({
   list,
   isShowMyWish,
@@ -46,12 +47,9 @@ const TourList = ({
 
   return (
     <TourListContainer>
-      <MyWish>
-        <CheckShowMyWish
-          type="checkbox"
-          checked={isShowMyWish}
-          onChange={() => setIsShowMyWish((prev) => !prev)}
-        />
+      <MyWish onClick={() => setIsShowMyWish((prev) => !prev)}>
+        <BsFlagFill size={20} color={'green'} />
+
         <ShowMyWish>저장한 장소만 보기</ShowMyWish>
       </MyWish>
       {!!list?.length &&
@@ -69,7 +67,9 @@ const TourList = ({
                 <SpotEtc>{item.addr1}</SpotEtc>
               </SpotInfo>
               <SpotSaveButton>
-                <SaveButton onClick={() => eventHandler(item)}>+</SaveButton>
+                <SaveButton onClick={() => eventHandler(item)}>
+                  <BsFlagFill size={20} color={'#8AB6D6'} />
+                </SaveButton>
               </SpotSaveButton>
             </SpotItem>
           );
@@ -84,6 +84,8 @@ const TourListContainer = styled.div``;
 const MyWish = styled.div`
   margin: 25px 0;
   display: flex;
+  cursor: pointer;
+  align-items: end;
 `;
 const ShowMyWish = styled.p`
   font-size: 15px;
@@ -102,7 +104,7 @@ const CheckShowMyWish = styled.input`
 `;
 
 const SpotItem = styled.div`
-  height: 110px;
+  height: 90px;
   width: 100%;
   border-radius: 10px;
 
@@ -128,7 +130,7 @@ const SpotInfo = styled.div`
   color: black;
 `;
 const SpotTitle = styled.div`
-  font-size: 20px;
+  font-size: 18px;
   height: auto;
 `;
 const SpotEtc = styled.div`

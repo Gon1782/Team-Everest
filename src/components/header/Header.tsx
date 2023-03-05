@@ -7,6 +7,7 @@ import { auth } from '../../common/api/firebase';
 import { onAuthStateChanged } from '@firebase/auth';
 import useModal from '@/hooks/useModal';
 import ScrollToTopBtn from '@/components/button/ScrollToTopBtn';
+import { VscAccount } from 'react-icons/vsc';
 
 const Header = () => {
   // 검색창 토글
@@ -59,8 +60,10 @@ const Header = () => {
         )}
         <Nav>
           <HeaderLogo>
-            {/* 로고 */}
-            <NavBarLink to="">Landing</NavBarLink>
+            <img
+              src={require('@/assets/Sharpa_block.jpg').default}
+              style={{ width: 40, height: 40, marginTop: 20 }}
+            />
           </HeaderLogo>
           <MenuSection onClick={() => closeModal()}>
             <NavBarLink to="/main">여행 시작하기</NavBarLink>
@@ -70,8 +73,15 @@ const Header = () => {
           </MenuSection>
           <SearchIcon onClick={() => modalOpen()} />
           <LogInButton onClick={LoginOutHandler}>
-            <LogoutText>{logoutText ? '로그인' : '로그아웃'}</LogoutText>
+            <div style={{ display: 'flex', alignItems: 'center', width: 95 }}>
+              <img
+                src={'https://img.icons8.com/windows/64/null/user.png'}
+                style={{ width: 30, height: 30 }}
+              />
+              <LogoutText>{logoutText ? '로그인' : '로그아웃'}</LogoutText>
+            </div>
           </LogInButton>
+
           <ScrollToTopBtn />
         </Nav>
       </HeaderContainer>
@@ -85,7 +95,7 @@ const HeaderContainer = styled.header`
   background-color: #fff;
   color: #151515;
   width: 100%;
-  height: 50px;
+  height: 70px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -99,7 +109,7 @@ const Nav = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  width: 50%;
   padding-left: 20px;
   padding-right: 20px;
   cursor: pointer;
@@ -121,7 +131,7 @@ const MenuSection = styled.div`
 const NavBarLink = styled(NavLink)`
   text-decoration: none;
   color: #151515;
-  font-size: 1rem;
+  font-size: 0.8rem;
 `;
 
 // 검색 아이콘 & 로그인
@@ -131,7 +141,7 @@ const SearchIcon = styled(FaSearch)``;
 // 로그인 버튼
 
 const LogInButton = styled.button`
-  width: 80px;
+  width: 100px;
   height: 30px;
   border: none;
   border-radius: 100px;

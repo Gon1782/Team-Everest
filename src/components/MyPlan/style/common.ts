@@ -9,7 +9,7 @@ export const PlanBtn = styled.button<{
   font-size: 0.75rem;
   /* background-color: #3f46ff;
   color: #f3f3f3; */
-  background-color: #dbe2ef; //${(props) => props.color};
-  color: black; //${(props) => props.color};
+  background-color: #f1f6f9; //${(props) => props.color};
+  color: gray; //${(props) => props.color};
   border-radius: 50px;
 `;

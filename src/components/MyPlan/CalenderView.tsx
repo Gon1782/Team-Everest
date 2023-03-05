@@ -82,7 +82,7 @@ const CalenderView = ({
   return (
     <>
       {isShowCalender && (
-        <CalendarCss
+        <Calendar
           // onChange={!authority.update ? setCalenderDate : () => {}}
           onChange={setCalenderDate}
           value={[
@@ -105,5 +105,3 @@ const CalenderView = ({
 };
 
 export default CalenderView;
-
-const CalendarCss = styled(Calendar)``;

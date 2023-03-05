@@ -45,7 +45,9 @@ const SimilarLandmark = ({ id, detailList, wishList }: Props) => {
         <S.LandmarkBox></S.LandmarkBox>
         <S.LandmarkBox></S.LandmarkBox>
         <S.LandmarkBox></S.LandmarkBox>
-        <S.SeeMore onClick={() => navigate('/myPlan')}>일정 만들기</S.SeeMore>
+        <S.SeeMore onClick={() => navigate('/planner/my/write')}>
+          일정 만들기
+        </S.SeeMore>
       </S.LandmarkContainer>
     );
 
@@ -68,7 +70,9 @@ const SimilarLandmark = ({ id, detailList, wishList }: Props) => {
           />
         );
       })}
-      <S.SeeMore onClick={() => navigate('/myPlan')}>일정 만들기</S.SeeMore>
+      <S.SeeMore onClick={() => navigate('/planner/my/write')}>
+        일정 만들기
+      </S.SeeMore>
     </S.LandmarkContainer>
   );
 };

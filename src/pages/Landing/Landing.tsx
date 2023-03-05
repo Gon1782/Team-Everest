@@ -7,7 +7,7 @@ const Landing = () => {
     <Container>
       <InfoSection>
         <Logo
-          src={require('@/assets/Landing/sherpa_logo.png').default}
+          src={require('@/assets/Sharpa_block.jpg').default}
           alt="slide banner4"
         />
         <LogoText>SHARPA</LogoText>
@@ -51,8 +51,9 @@ const InfoSection = styled.div`
 `;
 
 const Logo = styled.img`
-  width: 180px;
+  width: 110px;
   height: auto;
+  margin-bottom: 15px;
 `;
 
 const LogoText = styled.h1`

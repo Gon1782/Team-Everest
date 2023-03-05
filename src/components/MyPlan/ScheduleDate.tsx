@@ -9,6 +9,7 @@ import { useEffect, useRef } from 'react';
 import Draggable from 'react-draggable';
 import { useRecoilValue, useResetRecoilState, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
+import { BsFlagFill } from 'react-icons/bs';
 
 const ScheduleDate = ({
   planSchedule,
@@ -63,26 +64,21 @@ const ScheduleDate = ({
         // !!scheduleRef.current[index] ? (scheduleRef.current[index] = el) : false
         (scheduleRef.current[index] = el)
       }
+      style={{ display: 'block', margin: '10px 0 25px 0' }}
     >
       <PlanDateWrapper onClick={() => initMap(scheduleDate)}>
-        <div style={{ position: 'absolute', top: '8.5%', left: '39.5%' }}>
-          {/* <PlanDateCount>Day{index + 1} </PlanDateCount> */}
-          <img
-            src={`https://img.icons8.com/color/48/null/calendar-${
-              index + 1
-            }.png`}
-            width={50}
-            height={50}
-          ></img>
-          <PlanDate>{scheduleDate}</PlanDate>
-        </div>
-      </PlanDateWrapper>
+        <img
+          src={require('@/assets/Sharpa_block.jpg').default}
+          style={{ width: 40, height: 40 }}
+        />
 
+        <PlanDate>{scheduleDate}</PlanDate>
+      </PlanDateWrapper>
       {authority.write && (
-        <AddPlanBtnWapper>
-          <AddPlanBtn onClick={() => onChangeSidePage(index)}>
-            일정 추가
-          </AddPlanBtn>
+        <AddPlanBtnWapper onClick={() => onChangeSidePage(index)}>
+          <BsFlagFill size={12} color={'#EB455F'} />
+
+          <AddPlanBtn>일정 추가</AddPlanBtn>
         </AddPlanBtnWapper>
       )}
     </div>
@@ -92,14 +88,11 @@ const ScheduleDate = ({
 export default ScheduleDate;
 
 const PlanDateWrapper = styled.div`
-  width: 100px;
-  height: 100px;
+  width: 100%;
+  height: 60px;
   display: block;
   align-items: center;
-  margin: 30px auto;
   color: black;
-  background-color: white;
-  border-radius: 100px;
 `;
 
 // 일정의 일일 표기
@@ -115,20 +108,15 @@ const PlanDate = styled.p`
 
 // 일정 추가 버튼 영역
 const AddPlanBtnWapper = styled.div`
-  width: 100px;
-  margin: 0 auto;
-  text-align: center;
-  padding: 5px 8px;
-  margin: 0 auto 30px auto;
-  /* border-bottom: 1px inset; */
-  /* border-bottom: 1px solid #2c2c2c; */
+  width: 100%;
+  display: block;
+  cursor: pointer;
 `;
 
 const AddPlanBtn = styled.button`
-  width: 80px;
-  height: 28px;
   font-size: 0.75rem;
-  background-color: #3f72af;
-  color: #f3f3f3;
+  background-color: #f1f6f9;
+  color: grey;
+
   border-radius: 50px;
 `;
