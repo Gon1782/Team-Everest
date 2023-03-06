@@ -44,7 +44,7 @@ const ReviewForm = ({
       </S.InputFooter>
       <S.ImageBox>
         {image.map((image, i) => {
-          return <S.ModalImage src={image} key={i} />;
+          return <S.ModalImage src={image} key={i} alt="review" />;
         })}
       </S.ImageBox>
     </S.ReviewForm>

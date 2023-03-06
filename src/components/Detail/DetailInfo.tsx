@@ -94,7 +94,7 @@ const DetailInfo = ({ item, intro, wishList }: Props) => {
           </div>
         </S.DetailScore>
       </S.InfoBox>
-      <S.LandmarkImg src={img} />
+      <S.LandmarkImg src={img} alt="landmark" />
       <S.DetailOverview dangerouslySetInnerHTML={overview}></S.DetailOverview>
       <DetailMap x={item?.mapx} y={item?.mapy} />
       <S.LocationInfo>

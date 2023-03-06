@@ -38,7 +38,7 @@ const CityInfoModal = ({
       }}
     >
       <S.ModalBox>
-        <S.ModalImg src={areaInfo?.image} />
+        <S.ModalImg src={areaInfo?.image} alt="city" />
         <S.StyleContent>
           <S.StyleCityTitleEng>{areaInfo?.engarea}</S.StyleCityTitleEng>
           <S.StyleCityTitleKor>대한민국 {areaInfo?.name}</S.StyleCityTitleKor>

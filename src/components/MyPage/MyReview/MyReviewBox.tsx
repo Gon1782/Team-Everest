@@ -71,7 +71,7 @@ const MyReviewBox = ({ review }: Props) => {
         </S.MyReviewContentBox>
         <S.MyImageBox>
           {review.image.map((image: string, i: number) => {
-            return <ReviewImage src={image} key={i} />;
+            return <ReviewImage src={image} key={i} alt="review" />;
           })}
         </S.MyImageBox>
       </S.MyReviewInfoBox>

@@ -82,6 +82,7 @@ const Sidebar = ({
                     ? ''
                     : require(`@/assets/CityImage/${index + 1}.jpg`).default
                 }
+                alt="city"
               />
             </S.ImageWrap>
             <S.title>{data.name}</S.title>

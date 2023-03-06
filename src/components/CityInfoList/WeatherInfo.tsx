@@ -68,7 +68,7 @@ const WeatherInfo = ({ city }: Props) => {
 
   return (
     <Container>
-      <WeatherIcon src={weatherIcon[weatherName]} />
+      <WeatherIcon src={weatherIcon[weatherName]} alt="weather" />
       <WeatherName>{weatherKor[weatherName]}</WeatherName>
       <div>{temp}&#8451;</div>
     </Container>

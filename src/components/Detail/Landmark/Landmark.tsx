@@ -59,6 +59,7 @@ const Landmark = ({ landmark, wishList }: Props) => {
         onClick={() => {
           navigate(`/detail/${landmark.contentid}`);
         }}
+        alt="landmark"
       />
       <S.LandmarkBookmarkBox
         style={{ visibility: !!uid ? 'visible' : 'hidden' }}

@@ -21,7 +21,7 @@ const AmusementInfoBox = ({ item }: Props) => {
 
   return (
     <S.AmusementInfoBox onClick={() => navigate(`/detail/${item?.contentid}`)}>
-      <S.AmusementImg src={img} />
+      <S.AmusementImg src={img} alt="amusement" />
       <S.AmusementInfos>
         <S.AmusementTitle>{item?.title}</S.AmusementTitle>
         <S.AmuseCategory>

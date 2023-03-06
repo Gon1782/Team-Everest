@@ -85,7 +85,7 @@ const ReviewBox = ({ item, review }: Props) => {
         />
       )}
       <S.ReviewLeftBox onClick={() => navigate('/my', { state: review.uid })}>
-        <S.Profile src={profileImg} />
+        <S.Profile src={profileImg} alt="profile" />
         <S.ReviewNickname>{user?.displayName}</S.ReviewNickname>
         <div>
           {rating.map((x, i) =>
@@ -121,7 +121,7 @@ const ReviewBox = ({ item, review }: Props) => {
         <S.ReviewContent>{review.content}</S.ReviewContent>
         <S.ReviewImageBox>
           {review.image.map((image: string, i: number) => {
-            return <S.ReviewImage src={image} key={i} />;
+            return <S.ReviewImage src={image} key={i} alt="review" />;
           })}
         </S.ReviewImageBox>
       </S.ReviewContentBox>
