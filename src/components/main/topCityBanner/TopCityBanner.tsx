@@ -53,6 +53,14 @@ const TopCityBanner = () => {
       <TopCityCategories>
         {topCities.map((v: any, i: number) => (
           <TopCityItem key={i}>
+            <div
+              style={{
+                width: '100%',
+                height: '30px',
+                backgroundColor: 'black',
+                zIndex: '1',
+              }}
+            ></div>
             <TopCitySlogan>{v.slogan}</TopCitySlogan>
             <TopCityCategory
               onClick={() => {
@@ -73,15 +81,15 @@ export default TopCityBanner;
 
 // 인기도시
 const TopCityCategoryContainer = styled.section`
-  width: 60%;
-  height: 350px;
+  width: 65%;
+  height: 380px;
   padding: 2rem;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
+  gap: 1.2rem;
   margin-top: 80px;
 `;
 
@@ -101,21 +109,32 @@ const TopCityCategories = styled.div`
 `;
 
 const TopCityItem = styled.div`
-  cursor: pointer;
   position: relative;
   display: flex;
   justify-content: center;
-  /* align-items: center; */
   width: 100%;
   height: 100%;
+  transition: all 0.3s;
+  cursor: pointer;
+  &:hover {
+    transform: translateY(-5px);
+  }
 `;
 
 const TopCitySlogan = styled.p`
-  color: #fff;
+  color: #f2f2f2;
+  font-size: 1.16rem;
   font-weight: 600;
-  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
   position: absolute;
-  bottom: 20px;
+  width: 100%;
+  height: 60px;
+  bottom: 0px;
+  // gradient
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+  text-align: center;
+  line-height: 60px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
 `;
 
 const TopCityCategory = styled.img`

@@ -95,10 +95,13 @@ const BestTravelPlanTitle = styled.div`
   width: 100%;
   height: 100px;
   text-align: center;
+  border-top: 80px;
+  border-bottom: 48px;
 `;
 
 const BestTravelPlanCard = styled.div`
-  background-color: #dadada;
+  background-color: #112d4e;
+  color: #f2f2f2;
   border-radius: 20px;
   /* width: 250px; */
   width: 20%;
@@ -106,10 +109,10 @@ const BestTravelPlanCard = styled.div`
   margin: 0 10px 40px 10px;
   position: relative;
   overflow: hidden;
+  box-shadow: 13px 14px 25px -17px rgba(0, 0, 0, 0.47);
 `;
 
 const TravelPlaceMainImgWrapper = styled.div`
-  background-color: #b6b6b6;
   height: 60%;
 `;
 
@@ -132,7 +135,6 @@ const Wrapper = styled.div`
 const TravelPlaceReviewerImgWrapper = styled.div`
   width: 50px;
   height: 50px;
-  background-color: #383838;
   margin: auto;
   border-radius: 50%;
   overflow: hidden;
