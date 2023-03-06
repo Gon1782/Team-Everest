@@ -55,7 +55,7 @@ const PlanScheduleList = ({
                 <div
                   style={{
                     width: '100%',
-                    backgroundColor: '#2196F3',
+                    backgroundColor: '#004a7c',
                     borderRadius: 40,
                     height: 30,
                   }}
