@@ -13,7 +13,9 @@ html {
 
 /* ----------------------- */
 
-
+body {
+  font-family: 'Noto Sans', sans-serif;
+}
 
 h1 {
  font-size: 3.125rem;
@@ -21,6 +23,9 @@ h1 {
  font-family: 'S-CoreDream-7ExtraBold'
 }
 
+li {
+  font-family: 'S-CoreDream-7ExtraBold'
+}
 
 
 :root {

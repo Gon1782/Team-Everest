@@ -191,7 +191,7 @@ const ThemeHashtagCategories = styled.ul`
 `;
 
 const ThemeHashTagCategory = styled.li`
-  font-size: 1.8rem;
+  font-size: 2.2rem;
   font-weight: 900;
   color: #7b7b7b;
   :hover {
@@ -222,7 +222,7 @@ const ThemelistItemsTitle = styled.li`
   align-items: center;
   width: 100%;
   height: calc(100% / 6);
-  font-size: 1.4rem;
+  font-size: 1.8rem;
   font-weight: 600;
   padding: 30px;
   border-bottom: 1px solid #d7d7d7;
