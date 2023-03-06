@@ -164,7 +164,7 @@ const HandlerBtn = ({
             style={{ display: 'flex', cursor: 'pointer' }}
             onClick={() => clickBookMark()}
           >
-            <FaBookmark color="red" />
+            <FaBookmark color="#EB455F" />
             일정 추가하기
           </div>
         )

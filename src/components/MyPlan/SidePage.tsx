@@ -185,12 +185,12 @@ const SidePageContainer = styled.div`
   padding: 10px 25px;
   z-index: 999;
   background-color: white;
-  border-left: 1px inset;
+  border-left: 1px solid #e6e6e6;
 `;
 const SearchingSection = styled.div`
   display: flex;
   margin: 40px 0;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #e6e6e6;
   align-items: center;
 `;
 const SearchInput = styled.input<{ textAlign: string }>`
@@ -212,7 +212,7 @@ const ScheduleInfo = styled.div`
   color: gray;
   margin: 20px 0;
 
-  //border-bottom: 1px solid black;
+  border-bottom: 1px solid #e6e6e6;
   display: flex;
   justify-content: space-between;
 `;

@@ -180,4 +180,5 @@ const BookMarkCountNumber = styled.p`
 
 const BookMarkIcon = styled(FaBookmark)`
   margin-right: 10px;
+  color: #eb455f;
 `;

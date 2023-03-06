@@ -128,7 +128,7 @@ const MyPlan = () => {
       resetInitLocation();
     };
   }, [planUniqueId]);
-  if (loading) return <>로딩즁</>;
+  if (loading) return <></>;
 
   return (
     <>
@@ -292,7 +292,7 @@ const PlanTitleInput = styled.input`
   width: 80%;
   height: 60px;
   font-size: 25px;
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid #e6e6e6;
   text-align: center;
   outline: none;
 `;
@@ -300,7 +300,7 @@ const PlanTitleInput = styled.input`
 const PlanTitle = styled.p`
   width: 100%;
   height: 80px;
-  font-size: 85px;
+  font-size: 65px;
 `;
 
 const IconCircle = styled.div`
