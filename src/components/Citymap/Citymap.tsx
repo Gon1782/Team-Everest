@@ -1,16 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
-import { useSetRecoilState } from 'recoil';
 import { cityInfo } from '@/common/utils/cityInfo';
 import { oneCity } from '@/common/utils/areaCode/areaCode';
 import { markerSelector } from '@/common/utils/selector';
 import useCityMarkers from '@/hooks/useCityMarkers';
 import useMap from '@/hooks/useMap';
 import useModal from '@/hooks/useModal';
-import { CityAreaInfo } from '@/recoil/atom/CityAreaInfo';
 import CityInfoModal from './CityInfoModal';
 import Sidebar from './Sidebar/Sidebar';
 import * as S from './style/CitymapStyle';
-import { GwangYeokSi } from '@/common/utils/city';
 
 declare global {
   interface Window {
@@ -18,23 +15,10 @@ declare global {
   }
 }
 
-interface InfoType {
-  areacode: string;
-  engarea: string;
-  korarea: string;
-  description: string;
-  hashtag: string[];
-  tourcount: string;
-  tourdate: string;
-  spec: string;
-  jpgindex: number;
-}
-
 const { kakao } = window;
 
 const Citymap = () => {
   const mapRef = useRef(null);
-  const setAreaInfo = useSetRecoilState(CityAreaInfo);
 
   const area = { mapy: 37, mapx: 127, level: 13 };
 
