@@ -5,6 +5,8 @@ import {
   getAllPlanner,
   getUserPlanList,
 } from '@/common/api/plannerApi';
+import { areaCode } from '@/common/utils/areaCode/areaCode';
+import { PlanType } from '@/recoil/atom/MyPlan';
 import { doc, updateDoc } from 'firebase/firestore';
 
 interface ScheduleInfo {
@@ -107,6 +109,33 @@ export const scheduleHandler = (startDate: Date, endDate: Date): Date[] => {
   return scheduleList;
 };
 
+export const countAllCourse = (plan: PlanType) => {
+  const scheduleDate = Object.keys(plan.schedule);
+
+  let count = 0;
+  for (let i of scheduleDate) {
+    count += plan.schedule[i].length;
+  }
+  return count;
+};
+
+export const countMainArea = (plan: PlanType) => {
+  const scheduleData = Object.values(plan.schedule);
+  const countArr = new Array(areaCode.length).fill({ name: '', count: 0 });
+
+  for (let i in scheduleData) {
+    for (let j of scheduleData[i]) {
+      countArr[j['areacode'] - 1] = {
+        count: countArr[j['areacode'] - 1].count + 1,
+        name: areaCode[j['areacode'] - 1].name,
+      };
+    }
+  }
+  // const a = countArr.filter((item: any) => !!item.count);
+  // console.log(a);
+  return countArr.filter((item: any) => !!item.count);
+};
+
 export const addWishList = async (wishList: any, event: any, uid: any) => {
   await updateDoc(doc(db, 'users', uid), {
     myWishPlace: [...wishList, { ...event }],
@@ -122,7 +151,7 @@ export const popWishList = async (wishList: any, event: any, uid: any) => {
 };
 //일정 저장
 export const addPlan = async (
-  plan: any, // 만든 일정
+  plan: PlanType, // 만든 일정
   planName: string, // 만든 일정 이름
   uid: string, // 사용자 고유번호
   isShow: boolean, // 공개/비공개 처리
@@ -137,6 +166,8 @@ export const addPlan = async (
       name: planName,
       planUniqueId: planList['myPlanner'].length,
       isMine: isMine,
+      allCourseCount: countAllCourse(plan),
+      mainArea: countMainArea(plan),
     },
     ...planList['myPlanner'],
   ];
@@ -148,6 +179,8 @@ export const addPlan = async (
       planUniqueId: planList['myPlanner'].length,
       uid: uid,
       isShow: isShow,
+      allCourseCount: countAllCourse(plan),
+      mainArea: countMainArea(plan),
     },
   ];
 
@@ -168,7 +201,13 @@ export const updatePlan = async (
   const allPlanner: any = await getAllPlanner();
   const newMyPlanner = planList['myPlanner'].reduce((sum: any, item: any) => {
     if (parseInt(planUniqueId) === item['planUniqueId']) {
-      sum.push({ ...plan, name: planName, isMine: isMine });
+      sum.push({
+        ...plan,
+        name: planName,
+        isMine: isMine,
+        allCourseCount: countAllCourse(plan),
+        mainArea: countMainArea(plan),
+      });
     } else {
       sum.push(item);
     }
@@ -177,7 +216,14 @@ export const updatePlan = async (
 
   const newAllPlanner = allPlanner['items'].reduce((sum: any, item: any) => {
     if (item.planUniqueId === parseInt(planUniqueId) && item.uid === uid) {
-      sum.push({ ...plan, name: planName, uid: uid, isShow: isShow });
+      sum.push({
+        ...plan,
+        name: planName,
+        uid: uid,
+        isShow: isShow,
+        allCourseCount: countAllCourse(plan),
+        mainArea: countMainArea(plan),
+      });
     } else {
       sum.push(item);
     }
@@ -236,6 +282,7 @@ export const saveOtherPlan = async (
           bookmarkCount: item.bookmarkCount + 1,
           isShow: true,
           uid: userId,
+          allCourseCount: countAllCourse(plan),
         });
       } else {
         sum.push(item);

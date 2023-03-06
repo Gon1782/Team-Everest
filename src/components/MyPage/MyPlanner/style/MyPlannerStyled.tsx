@@ -32,6 +32,7 @@ export const MyPlannerBox = styled.div`
   background-color: lightgray;
   border-radius: 50%;
   margin-bottom: 20px;
+  position: 'relative';
 `;
 
 export const MyPlannerNone = styled.div`

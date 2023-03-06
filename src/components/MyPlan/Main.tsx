@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   Authority,
   InitLocation,
@@ -10,27 +10,20 @@ import {
 import { useRecoilState, useResetRecoilState, useSetRecoilState } from 'recoil';
 import CalenderView from './CalenderView';
 import { PlanType } from '@/recoil/atom/MyPlan';
-import StartEndDate from './StartEndDate';
+import DateAndArea from './DateAndArea';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import SidePage from './SidePage';
 import EventMap from './EventMap';
 import PlanScheduleList from './ScheduleList';
 import { getUserDB } from '@/common/api/userApi';
-import {
-  addPlan,
-  dateToString,
-  popPlan,
-  saveOtherPlan,
-  updatePlan,
-} from './MyPlannerHandler';
-import { PlanBtn } from './style/common';
-import { FaBookmark, FaRegBookmark } from 'react-icons/fa';
-import useModal from '@/hooks/useModal';
-import { zIndex } from 'html2canvas/dist/types/css/property-descriptors/z-index';
+import { BsCalendarCheck, BsFlagFill } from 'react-icons/bs';
+import { dateToString } from './MyPlannerHandler';
+import HandlerBtn from './HandlerBtn';
+import CityHashTag from './CityHashTag';
+
 const MyPlan = () => {
   const navigate = useNavigate();
-
   const sessionKey = `firebase:authUser:${process.env.FIREBASE_API_KEY}:[DEFAULT]`;
   const userItem = sessionStorage.getItem(sessionKey);
   const uid = !!userItem ? JSON.parse(userItem).uid : ''; // 드롭 다운 레퍼런스 객체, calenderView 컴포넌트에서 초기화함
@@ -59,91 +52,6 @@ const MyPlan = () => {
   const [planName, setPlanName] = useState('');
   //
 
-  const firstCheck = () => {
-    // 추가한 일정들이 있는지 확인
-    let eventCount = 0;
-    Object.values(plan.schedule).filter((item) => (eventCount += item.length));
-
-    if (!!!planName) {
-      alert('제목을 입력해주세요!');
-      return true;
-    }
-
-    if (!eventCount) {
-      alert('일정을 추가해주세요!');
-      return true;
-    }
-
-    return false;
-  };
-
-  const asking = (key: string) => {
-    if (window.confirm(`해당 일정을 ${key} 하시겠습니까?`)) {
-      return true;
-    } else {
-      return false;
-    }
-  };
-  const clickAddPlan = async (isShow: boolean) => {
-    if (firstCheck()) return;
-    try {
-      asking('저장')
-        ? await addPlan(plan, planName, uid, isShow, true).then(() => {
-            alert('완료 되었습니다!');
-            navigate('/my');
-          })
-        : alert('취소하셨습니다.');
-    } catch (e) {
-      alert('잠시 후에 시도해주세요');
-    }
-  };
-  const clickUpdatePlan = async (isShow: boolean) => {
-    if (firstCheck()) return;
-    try {
-      asking('수정')
-        ? await updatePlan(
-            plan,
-            planName,
-            uid,
-            planUniqueId,
-            isShow,
-            !!plan?.isMine,
-          ).then(() => {
-            alert('완료 되었습니다!');
-            navigate('/my');
-          })
-        : alert('취소하셨습니다.');
-    } catch (e) {
-      alert('잠시 후에 시도해주세요');
-    }
-  };
-  const clickBookMark = async () => {
-    try {
-      asking('북마크')
-        ? await saveOtherPlan(plan, planName, uid, userId, planUniqueId).then(
-            () => {
-              alert('완료 되었습니다!');
-              navigate('/my');
-            },
-          )
-        : alert('취소하셨습니다.');
-    } catch (e) {
-      alert('잠시 후에 시도해주세요');
-    }
-  };
-  const clickPopPlan = async () => {
-    try {
-      asking('삭제')
-        ? await popPlan(uid, planUniqueId).then(() => {
-            alert('완료 되었습니다!');
-            navigate('/my');
-          })
-        : alert('취소하셨습니다.');
-    } catch (e) {
-      alert('잠시 후에 시도해주세요');
-    }
-  };
-
   const getPlan = async (userUid: string) => {
     if (!!planUniqueId) {
       setLoading(true);
@@ -161,7 +69,7 @@ const MyPlan = () => {
       setAuthority({
         write: false,
         view: true,
-        update: false,
+        update: userId === uid ? true : false,
       });
       setLoading(false);
     }
@@ -199,6 +107,9 @@ const MyPlan = () => {
         planUniqueId: 0,
         isDelete: false,
         bookmarkCount: 0,
+        allCourseCount: 0,
+        totalSchedule: 0,
+        mainArea: [],
       });
       setUserDB(null);
       setPlanName('');
@@ -224,41 +135,45 @@ const MyPlan = () => {
       {isSidePageView && <SidePage />}
       <Main
         style={{
-          marginTop: '4%',
           opacity: isSidePageView ? 0.15 : 1,
           pointerEvents: isSidePageView ? 'none' : 'auto',
         }}
       >
         <MyPlanContainer>
-          {!!userDB && (
-            <div
-              style={{
-                width: '100%',
-                display: 'flex',
-                justifyContent: 'center',
-
-                alignItems: 'center',
-              }}
-            >
-              <div
-                style={{
-                  borderRadius: '50%',
-                  border: '0px solid',
-                  overflow: 'hidden',
-                  width: 60,
-                  height: 60,
-                }}
-              >
-                <img
-                  src={userDB.photoURL}
-                  style={{ objectFit: 'cover', width: 60, height: 60 }}
-                />
-              </div>
-              <p style={{ color: 'black', fontWeight: 100 }}>
-                {userDB.displayName}
-              </p>
-            </div>
-          )}
+          <ProfileAndButtonSection>
+            {authority.view && ( // 일정을 클릭하고 들어온 경우
+              <>
+                <ProfileBox>
+                  <Profile>
+                    <img
+                      src={userDB.photoURL}
+                      style={{ objectFit: 'cover', width: 60, height: 60 }}
+                    />
+                  </Profile>
+                  <ProfileName>{userDB.displayName}</ProfileName>
+                </ProfileBox>
+                {!!uid &&
+                  userId !== uid && ( // 클릭한 일정이 다른 사람 일정인 경우 [일정 저장하기] 버튼 생성
+                    <HandlerBtn
+                      userId={userId}
+                      uid={uid}
+                      plan={plan}
+                      planName={planName}
+                      planUniqueId={planUniqueId}
+                    />
+                  )}
+              </>
+            )}
+            {(authority.write || authority.update) && ( // 내 일정을 클릭한 경우(update), 일정 만들기(write)로 들어온 경우
+              <HandlerBtn
+                userId={userId}
+                uid={uid}
+                plan={plan}
+                planName={planName}
+                planUniqueId={planUniqueId}
+              />
+            )}
+          </ProfileAndButtonSection>
 
           {authority.write ? ( // 일정 만들때
             <PlanTitleSection>
@@ -281,80 +196,60 @@ const MyPlan = () => {
           ) : (
             <PlanTitleSection>
               <PlanTitle>{planName}</PlanTitle>
-
-              {!!uid && userId !== uid && (
-                <>
-                  <FaBookmark
-                    onClick={() => clickBookMark()}
-                    style={{ cursor: 'pointer' }}
-                    color="red"
-                  />
-                </>
-              )}
             </PlanTitleSection>
           )}
-          <PlanDateSection>
-            <StartEndDate />
-            <PlanMapSection>
-              <CalenderView
-                setEventRef={setEventRef}
-                setScheduleRef={setScheduleRef}
-              />
-            </PlanMapSection>
-            <MyPlanButtonContainer>
-              {authority.write ? (
-                <div style={{ margin: '40px 0' }}>
-                  {authority.update ? (
-                    <>
-                      <PlanBtn
-                        color={'gray'}
-                        onClick={() => clickUpdatePlan(false)}
-                      >
-                        임시저장
-                      </PlanBtn>
-                      <PlanBtn
-                        color={'gray'}
-                        onClick={() => clickUpdatePlan(true)}
-                      >
-                        발행
-                      </PlanBtn>
-                    </>
-                  ) : (
-                    <>
-                      <PlanBtn
-                        color={'gray'}
-                        onClick={() => clickAddPlan(false)}
-                      >
-                        임시저장
-                      </PlanBtn>
-                      <PlanBtn
-                        color={'gray'}
-                        onClick={() => clickAddPlan(true)}
-                      >
-                        발행
-                      </PlanBtn>
-                    </>
-                  )}
-                </div>
-              ) : (
-                userId === uid && (
-                  <div style={{ margin: '40px 0' }}>
-                    <PlanBtn
-                      onClick={() =>
-                        setAuthority({ write: true, view: false, update: true })
+
+          <DateAndArea />
+          {!authority.write && (
+            <>
+              <CityHashTagSection>
+                <CityHashTag plan={plan} />
+              </CityHashTagSection>
+              <PlanInfoSection>
+                <PlanCourseInfo>
+                  <IconCircle>
+                    <IconImage
+                      src={
+                        'https://img.icons8.com/pastel-glyph/64/004A7C/highway--v2.png'
                       }
-                      color={'dbe2ef'}
-                    >
-                      수정하기
-                    </PlanBtn>
-                    <PlanBtn onClick={() => clickPopPlan()} color={'dbe2ef'}>
-                      삭제하기
-                    </PlanBtn>
-                  </div>
-                )
-              )}
-            </MyPlanButtonContainer>
-          </PlanDateSection>
+                    />
+                  </IconCircle>
+                  <CourseInfo>
+                    <CourseExplain>가야 할 곳들</CourseExplain>
+                    <CourseCount>총 {plan.allCourseCount} 코스</CourseCount>
+                  </CourseInfo>
+                </PlanCourseInfo>
+                <PlanCourseInfo>
+                  <IconCircle>
+                    <BsCalendarCheck
+                      style={{
+                        width: 40,
+                        height: 40,
+                        position: 'absolute',
+                        left: '22%',
+                        top: '19%',
+                        color: '#004A7C',
+                      }}
+                    />
+                  </IconCircle>
+                  <CourseInfo>
+                    <CourseExplain> 일정</CourseExplain>
+                    <CourseCount>
+                      {plan.totalSchedule !== 0 && plan.totalSchedule === 1
+                        ? '당일치기'
+                        : `${plan.totalSchedule - 1}박 ${plan.totalSchedule}일`}
+                    </CourseCount>
+                  </CourseInfo>
+                </PlanCourseInfo>
+              </PlanInfoSection>
+            </>
+          )}
+
+          <CalenderView
+            setEventRef={setEventRef}
+            setScheduleRef={setScheduleRef}
+          />
+
           <EventMap />
           <PlanScheduleList eventRef={eventRef} scheduleRef={scheduleRef} />
         </MyPlanContainer>
@@ -389,23 +284,8 @@ const MyPlanContainer = styled.div`
 
 const PlanTitleSection = styled.div`
   width: 100%;
-  height: 80px;
-  margin: 10px 0 10px 0;
   text-align: center;
-`;
-
-const PlanDateSection = styled.div`
-  width: 100%;
-  height: 100%;
-  justify-content: space-between;
-  /* margin-bottom: 20px; */
-  display: contents;
-  align-items: center;
-`;
-
-const PlanMapSection = styled.div`
-  display: contents;
-  width: 100%;
+  height: 70px;
 `;
 
 const PlanTitleInput = styled.input`
@@ -419,14 +299,85 @@ const PlanTitleInput = styled.input`
 
 const PlanTitle = styled.p`
   width: 100%;
-  height: 60px;
-  font-size: 50px;
+  height: 80px;
+  font-size: 85px;
 `;
 
-const MyPlanButtonContainer = styled.div`
-  display: flex;
+const IconCircle = styled.div`
+  width: 70px;
+  height: 70px;
+  background-color: #e6e6e6;
+  border-radius: 50px;
+  font-size: 20px;
+  position: relative;
+`;
 
+const ProfileAndButtonSection = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: end;
-  /* margin: 30px 0; */
+`;
+
+const ProfileBox = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const Profile = styled.div`
+  border-radius: 50%;
+  border: 0px solid;
+  overflow: hidden;
+  width: 60px;
+  height: 60px;
+`;
+
+const ProfileName = styled.p`
+  color: black;
+  font-weight: 100px;
+`;
+
+const CityHashTagSection = styled.div`
+  display: inline-flex;
+  height: 140px;
+  text-align: center;
+`;
+const PlanInfoSection = styled.div`
+  display: flex;
+  height: 150px;
+  width: 100%;
+  justify-content: space-around;
+  border-top: 1px solid #e6e6e6;
+  border-bottom: 1px solid #e6e6e6;
+  margin-bottom: 80px;
+`;
+
+const PlanCourseInfo = styled.div`
+  display: flex;
+  width: 190px;
+  align-items: center;
+`;
+
+const IconImage = styled.img`
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  left: 22%;
+  top: 19%;
+`;
+
+const CourseInfo = styled.div`
+  width: 120px;
+  text-align: center;
+`;
+
+const CourseExplain = styled.p`
+  width: 120px;
+  text-align: center;
+`;
+
+const CourseCount = styled.p`
+  font-size: 22px;
+  color: #004a7c;
+  font-weight: 700;
 `;
