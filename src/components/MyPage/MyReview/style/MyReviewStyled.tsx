@@ -50,11 +50,6 @@ export const MyReview = styled.div`
   padding: 1rem;
   border-radius: 20px;
 `;
-export const MyReviewProfile = styled.img`
-  width: 3rem;
-  height: 3rem;
-  border-radius: 50%;
-`;
 export const MyReviewInfoBox = styled.div`
   display: flex;
   flex-direction: column;

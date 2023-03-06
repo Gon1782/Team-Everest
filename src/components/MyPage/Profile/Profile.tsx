@@ -88,7 +88,7 @@ const Profile = ({ user, LoginCheck, checkMy, getUser }: Props) => {
 
   return (
     <S.ProfileSection>
-      <S.MyBackImage src={backgroundImage} />
+      <S.MyBackImage src={backgroundImage} alt="back" />
       <S.BackBtnBox>
         <S.BackChangeBtn>이미지 변경하기</S.BackChangeBtn>
         <input
@@ -100,7 +100,7 @@ const Profile = ({ user, LoginCheck, checkMy, getUser }: Props) => {
       </S.BackBtnBox>
       <S.ProfileBox>
         <S.ProfileImageBox>
-          <S.ProfileImage src={profileImage} />
+          <S.ProfileImage src={profileImage} alt="profile" />
           <S.BtnBox style={{ visibility: check ? 'visible' : 'hidden' }}>
             <S.ProfileLabel>
               이미지 변경하기

@@ -31,7 +31,7 @@ const CityDetailPage = () => {
 
   return (
     <S.Wrap>
-      <S.CityDetailImg src={areaInfo.image} />
+      <S.CityDetailImg src={areaInfo.image} alt="city" />
       <S.WeatherWrap>
         <WeatherInfo city={areaInfo} />
       </S.WeatherWrap>

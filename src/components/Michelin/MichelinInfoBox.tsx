@@ -39,7 +39,7 @@ const MichelinInfoBox = ({ item }: Props) => {
 
   return (
     <S.MichelinInfoBox onClick={() => navigate(`/detail/${item?.contentid}`)}>
-      <S.MichelinImage src={img} />
+      <S.MichelinImage src={img} alt="michelin" />
       <S.MichelinInfo>
         <S.MichelinInfos>
           <S.MichelinPlace>
