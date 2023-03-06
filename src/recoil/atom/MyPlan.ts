@@ -9,9 +9,12 @@ export interface PlanType {
   endDate: { year: number; month: number; date: number; yyyymmdd: string };
   schedule: { [key: string]: [] };
   planUniqueId: 0;
-  isDelete: false;
+  isDelete: boolean;
   bookmarkCount: 0;
   isMine?: boolean;
+  allCourseCount: 0;
+  totalSchedule: 0;
+  mainArea: [];
 }
 
 export interface PickScheduleType {
@@ -40,6 +43,9 @@ export const NewPlanRecoil = atom({
     isDelete: false,
     planUniqueId: 0,
     bookmarkCount: 0,
+    allCourseCount: 0,
+    totalSchedule: 0,
+    mainArea: [],
   },
 });
 // 관광지 데이터

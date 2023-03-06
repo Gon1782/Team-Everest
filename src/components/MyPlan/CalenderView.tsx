@@ -73,6 +73,7 @@ const CalenderView = ({
         schedule: { ...planSchedule },
         startDate: dateToObject(calenderDate[0]),
         endDate: dateToObject(calenderDate[1]),
+        totalSchedule: newSchedule.length,
       };
     });
     setPickSchedule({ schedule: dateToString(calenderDate[0]), day: 'Day1' });
@@ -82,23 +83,25 @@ const CalenderView = ({
   return (
     <>
       {isShowCalender && (
-        <Calendar
-          // onChange={!authority.update ? setCalenderDate : () => {}}
-          onChange={setCalenderDate}
-          value={[
-            new Date(
-              newPlan.startDate['year'],
-              newPlan.startDate['month'],
-              newPlan.startDate['date'],
-            ),
-            new Date(
-              newPlan.endDate['year'],
-              newPlan.endDate['month'],
-              newPlan.endDate['date'],
-            ),
-          ]}
-          selectRange={true}
-        />
+        <div style={{ marginBottom: 40 }}>
+          <Calendar
+            // onChange={!authority.update ? setCalenderDate : () => {}}
+            onChange={setCalenderDate}
+            value={[
+              new Date(
+                newPlan.startDate['year'],
+                newPlan.startDate['month'],
+                newPlan.startDate['date'],
+              ),
+              new Date(
+                newPlan.endDate['year'],
+                newPlan.endDate['month'],
+                newPlan.endDate['date'],
+              ),
+            ]}
+            selectRange={true}
+          />
+        </div>
       )}
     </>
   );
