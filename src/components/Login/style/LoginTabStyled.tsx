@@ -15,7 +15,7 @@ export const LoginInputContainer = styled.div`
   justify-content: center;
 `;
 
-export const LoginInputBox = styled.div`
+export const LoginInputBox = styled.label`
   position: relative;
   display: flex;
   flex-direction: column;

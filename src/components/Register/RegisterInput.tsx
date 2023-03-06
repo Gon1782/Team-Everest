@@ -26,10 +26,6 @@ const RegisterInput = ({ name, value, check, dupCheck, onChange }: Props) => {
           value={value}
           onChange={(e) => onChange(e)}
         />
-        {/* 이메일 인증인데 추가할지 말지 모름 */}
-        {/* <InputBtn>
-            <AiOutlineCheck size={22} />
-          </InputBtn> */}
       </S.LoginInputBox>
       <S.Warning
         style={{
