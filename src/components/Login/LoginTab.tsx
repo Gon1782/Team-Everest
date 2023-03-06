@@ -80,15 +80,22 @@ const LoginTab = () => {
           <S.LoginOr>또는</S.LoginOr>
         </S.LoginOrBox>
         <S.LoginBtn
+          type="button"
           color="black"
           backColor="transparent"
           style={{ marginBottom: '1rem' }}
+          onClick={() => socialLogin(googleProvider)}
         >
-          <FcGoogle size={24} onClick={() => socialLogin(googleProvider)} />
+          <FcGoogle size={24} />
           <span>Google 로그인</span>
         </S.LoginBtn>
-        <S.LoginBtn color="white" backColor="#4267B2">
-          <GrFacebook onClick={() => socialLogin(facebookProvider)} />
+        <S.LoginBtn
+          type="button"
+          color="white"
+          backColor="#4267B2"
+          onClick={() => socialLogin(facebookProvider)}
+        >
+          <GrFacebook />
           <span>Facebook 로그인</span>
         </S.LoginBtn>
       </S.LoginBtnConatiner>
