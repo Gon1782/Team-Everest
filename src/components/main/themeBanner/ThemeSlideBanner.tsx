@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Navigation, Pagination, Autoplay } from 'swiper';
 // SwiperCore - 타입 지정시 필요함
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import 'swiper/css';
@@ -17,11 +17,21 @@ const ThemeSlideBanner = () => {
     useState<HashTagCategory | null>('# 이색 체험');
   // Swiper 구성요소 인스턴스 할당
   const [swiper, setSwiper] = useState<SwiperCore>();
-  const [value, setValue] = useState<any>();
+
+  // 테마 카테고리
+  const [activeCategory, setActiveCategory] = useState<string | null>(null);
+  // 테마 리스트
+  const [activeList, setActiveList] = useState<string | null>(null);
 
   // 카테고리 선택시 state 업데이트
   const categorySelectHandler = (category: HashTagCategory) => {
     setSelectedCategory(category);
+    setActiveCategory(category);
+  };
+
+  // 카테고리 선택시 state 업데이트
+  const listSelectHandler = (title: string) => {
+    const focus = title === activeList ? true : false;
   };
 
   // 선택한 카테고리와 같은 리스트 항목 보여주기
@@ -30,21 +40,26 @@ const ThemeSlideBanner = () => {
     : listItems;
 
   //  선택한 리스트 항목에 해당하는 슬라이드 배너로 포커스 이동해주기
-  const listClickHandler = (index: any) => {
+  const listClickHandler = (index: any, title: string) => {
     // console.log('item', item);
     const idx = index - 1;
     if (swiper) {
       swiper.slideTo(idx, 1000); //  해당 인덱스로 이동한다.
+      setActiveList(title);
     }
   };
-
+  {
+    /* 리팩토링 예정 */
+  }
   return (
     <ThemeContainer>
       <ThemeHashtagCategoriesWrapper>
         <ThemeCategoriesTitle>테마가 있는 명소</ThemeCategoriesTitle>
+
         <ThemeHashtagCategories>
           <ThemeHashTagCategory
             onClick={() => categorySelectHandler('# 이색 체험')}
+            style={activeCategory === '# 이색 체험' ? activeCategoryStyle : {}}
           >
             # 이색 체험
           </ThemeHashTagCategory>
@@ -52,16 +67,29 @@ const ThemeSlideBanner = () => {
             onClick={() =>
               categorySelectHandler('# 자연을 찾아 떠나는 자유여행')
             }
+            style={
+              activeCategory === '# 자연을 찾아 떠나는 자유여행'
+                ? activeCategoryStyle
+                : {}
+            }
           >
             # 자연을 찾아 떠나는 자유여행
           </ThemeHashTagCategory>
           <ThemeHashTagCategory
             onClick={() => categorySelectHandler('# 데이트 장소')}
+            style={
+              activeCategory === '# 데이트 장소' ? activeCategoryStyle : {}
+            }
           >
             # 데이트 장소
           </ThemeHashTagCategory>
           <ThemeHashTagCategory
             onClick={() => categorySelectHandler('# 국내에서 즐기는 해외여행')}
+            style={
+              activeCategory === '# 국내에서 즐기는 해외여행'
+                ? activeCategoryStyle
+                : {}
+            }
           >
             # 국내에서 즐기는 해외여행
           </ThemeHashTagCategory>
@@ -74,7 +102,8 @@ const ThemeSlideBanner = () => {
             {filteredListItems.map((item, index) => (
               <ThemelistItemsTitle
                 key={item.id}
-                onClick={() => listClickHandler(index)}
+                onClick={() => listClickHandler(index, item.title)}
+                style={activeList === item.title ? activeListStyle : {}}
               >
                 {item.title}
               </ThemelistItemsTitle>
@@ -86,7 +115,6 @@ const ThemeSlideBanner = () => {
           modules={[Navigation, Pagination, Autoplay]}
           // pagination={{ clickable: true }}
           navigation
-          // loop={true}
           spaceBetween={0}
           slidesPerView={3}
           observer={true}
@@ -119,15 +147,27 @@ const ThemeSlideBanner = () => {
 
 export default ThemeSlideBanner;
 
+// 스타일 객체
+const activeCategoryStyle = {
+  fontWeight: 'bold',
+  color: '#112D4E',
+};
+
+const activeListStyle = {
+  fontWeight: 'bold',
+  color: '#f2f2f2',
+  backgroundColor: '#2871A3',
+};
+
 // 테마 명소
 
 const ThemeContainer = styled.div`
   display: flex;
   flex-direction: column;
-  /* justify-content: center;
-  align-items: center; */
   width: 100%;
   position: relative;
+  margin-top: 80px;
+  /* margin-bottom: 64px; */
 `;
 
 // 해시 태그 카테고리
@@ -140,30 +180,30 @@ const ThemeHashtagCategoriesWrapper = styled.div`
   height: 200px;
 `;
 
-const ThemeCategoriesTitle = styled.h2`
-  font-size: 2.6rem;
-  font-weight: 900;
-  margin-bottom: 30px;
+const ThemeCategoriesTitle = styled.h1`
+  margin-bottom: 64px;
 `;
 
 const ThemeHashtagCategories = styled.ul`
   display: flex;
   gap: 40px;
+  margin-bottom: 48px;
 `;
 
 const ThemeHashTagCategory = styled.li`
-  font-size: 1.8rem;
+  font-size: 2.2rem;
   font-weight: 900;
-  cursor: pointer;
+  color: #7b7b7b;
   :hover {
-    color: #5a5a5a;
+    cursor: pointer;
+    color: #112d4e;
   }
 `;
 
 const ThemelistItems = styled.div`
   display: flex;
   width: 100%;
-  height: 500px;
+  height: 550px;
   cursor: pointer;
 `;
 
@@ -174,7 +214,7 @@ const ThemelistItemsTitleWrapper = styled.div`
 
 const ThemelistItemsTitles = styled.ul`
   height: 100%;
-  border-top: 1px solid #767676;
+  border-top: 1px solid #d7d7d7;
 `;
 
 const ThemelistItemsTitle = styled.li`
@@ -182,10 +222,15 @@ const ThemelistItemsTitle = styled.li`
   align-items: center;
   width: 100%;
   height: calc(100% / 6);
-  font-size: 1.4rem;
+  font-size: 1.8rem;
   font-weight: 600;
   padding: 30px;
-  border-bottom: 1px solid #767676;
+  border-bottom: 1px solid #d7d7d7;
+  transition: all 0.35s;
+  &:hover {
+    background-color: #2871a3;
+    color: #f2f2f2;
+  }
 `;
 
 // 이미지 리스트
@@ -197,21 +242,13 @@ const SlideBannerWrapper = styled(Swiper)`
 `;
 
 const SlideBanner = styled(SwiperSlide)`
-  width: 400px;
-  height: 500px;
+  width: 450 px;
+  height: 550px;
 `;
 
 const ThemelistItemsImage = styled.img`
   width: 100%;
-  height: 500px;
+  height: 550px;
   object-fit: fit;
-  border-radius: 10px;
-`;
-
-// 임시 이미지 카드
-const ThemeCard = styled.div`
-  background-color: #acace1;
-  width: 100%;
-  height: 600px;
   border-radius: 10px;
 `;
