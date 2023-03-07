@@ -81,7 +81,7 @@ export const ProfileLabel = styled.label`
   justify-content: center;
   align-items: center;
   background-color: transparent;
-  font-size: 20px;
+  font-size: 15px;
 `;
 export const ProfileBtn = styled.button`
   cursor: pointer;

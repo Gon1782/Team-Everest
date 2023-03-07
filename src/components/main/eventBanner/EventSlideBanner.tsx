@@ -25,7 +25,7 @@ const EventSlideBanner = () => {
         loop={true}
         observer={true}
         observeParents={true}
-        // autoHeight={true}
+        autoHeight={true}
         // 자동 높이 조절 -> 배너 사이즈 따라 체크하기
         resistance={false}
       >
@@ -80,8 +80,9 @@ export default EventSlideBanner;
 
 const SlideBanner = styled(SwiperSlide)`
   width: 100%;
-  height: 450px;
+  /* height: 450px; */
   img {
     width: 100%;
   }
+  top: 0;
 `;

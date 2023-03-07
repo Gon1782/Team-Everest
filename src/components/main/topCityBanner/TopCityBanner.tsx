@@ -36,7 +36,7 @@ const TopCityBanner = () => {
   // 시군구 코드 체크
   const checkNavigatePath = (v: any) => {
     if (v.areaCode && v.sigunguCode) {
-      return v.areaCode + v.sigunguCode;
+      return `${v.areaCode}/${v.sigunguCode}`;
     } else {
       return v.areaCode;
     }
@@ -53,14 +53,6 @@ const TopCityBanner = () => {
       <TopCityCategories>
         {topCities.map((v: any, i: number) => (
           <TopCityItem key={i}>
-            <div
-              style={{
-                width: '100%',
-                height: '30px',
-                backgroundColor: 'black',
-                zIndex: '1',
-              }}
-            ></div>
             <TopCitySlogan>{v.slogan}</TopCitySlogan>
             <TopCityCategory
               onClick={() => {
@@ -81,8 +73,8 @@ export default TopCityBanner;
 
 // 인기도시
 const TopCityCategoryContainer = styled.section`
-  width: 65%;
-  height: 380px;
+  width: 80%;
+  height: 400px;
   padding: 2rem;
   margin: 0 auto;
   display: flex;
@@ -94,7 +86,6 @@ const TopCityCategoryContainer = styled.section`
 `;
 
 const CategoriesTitle = styled.h1`
-  color: #0c0c0c;
   margin-bottom: 30px;
 `;
 
@@ -121,10 +112,11 @@ const TopCityItem = styled.div`
   }
 `;
 
-const TopCitySlogan = styled.p`
-  color: #f2f2f2;
-  font-size: 1.16rem;
+const TopCitySlogan = styled.div`
+  font-size: 1.1rem;
   font-weight: 600;
+  color: #f2f2f2;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
   position: absolute;
   width: 100%;
   height: 60px;
@@ -134,7 +126,6 @@ const TopCitySlogan = styled.p`
   border-bottom-left-radius: 15px;
   text-align: center;
   line-height: 60px;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
 `;
 
 const TopCityCategory = styled.img`

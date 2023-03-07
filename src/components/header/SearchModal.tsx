@@ -6,6 +6,7 @@ import useModal from '@/hooks/useModal';
 import styled from 'styled-components';
 import { AiOutlineClose } from 'react-icons/ai';
 import { FaSearch } from 'react-icons/fa';
+import { BiSearch } from 'react-icons/bi';
 import useDebounce from '../../hooks/useDebounce';
 
 export interface Props {
@@ -126,7 +127,7 @@ export default SearchModal;
 
 const SearchScreenWrapper = styled.div`
   position: fixed;
-  top: 70px;
+  top: 65px;
   left: 0;
   bottom: 0;
   right: 0;
@@ -138,7 +139,7 @@ const SearchScreenWrapper = styled.div`
 const SearchScreen = styled.div`
   width: 100%;
   height: 200px;
-  background-color: #256492;
+  background-color: ${(props) => props.theme.blue};
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -165,34 +166,34 @@ const SearchInput = styled.input`
   outline: none;
   width: 300px;
   background-color: transparent;
-  /* border-bottom: 1px solid white; */
   ::placeholder {
     color: rgba(255, 255, 255, 0.7);
   }
 `;
 
-const SearchIcon = styled(FaSearch)`
-  color: #d2d2d2;
-  /* cursor: pointer; */
+const SearchIcon = styled(BiSearch)`
+  color: ${(props) => props.theme.dimgrey};
+  font-size: 20px;
+  margin-bottom: -5px;
 `;
 
 const CloseIcon = styled(AiOutlineClose)`
   font-size: 20px;
   cursor: pointer;
+  &:hover {
+    background-color: ${(props) => props.theme.dimgrey};
+    color: ${(props) => props.theme.darkblue};
+  }
 `;
 
 // 자동완성 도시 태그
 
 const SearchCityWrapper = styled.div`
-  /* display: flex;
-  flex-direction: column; */
   height: auto;
   width: 326px;
-  /* background-color: red; */
 `;
 
 const CityItems = styled.ul`
-  /* height: 300px; */
   width: 100%;
 `;
 

@@ -197,7 +197,7 @@ const SearchInput = styled.input<{ textAlign: string }>`
   width: 100%;
   outline: none;
   text-align: ${(props) => props.textAlign};
-  font-size: 20px;
+  font-size: 15px;
   margin: 10px 0;
 `;
 const SelectBoxList = styled.div`
