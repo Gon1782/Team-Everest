@@ -20,7 +20,7 @@ const ReviewTags = ({ tags, tag, setTag }: Props) => {
     <ReivewTagContainer>
       <ReviewTagTitle>이 곳이 마음에 든다면,</ReviewTagTitle>
       <ReviewTagSubTitle>
-        카테고리를 선택해서 자세하게 알려주세요
+        좋았던 점들을 선택해서 공유해주세요!
       </ReviewTagSubTitle>
       <ReviewTagBox>
         <TagBox>
