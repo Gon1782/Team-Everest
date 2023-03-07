@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
+import { FaCamera, FaTrashAlt } from 'react-icons/fa';
 import { RiBallPenFill, RiCheckboxFill } from 'react-icons/ri';
 import { updateUserDB } from '@/common/api/userApi';
 import useInputs from '@/hooks/useInputs';
@@ -6,7 +7,8 @@ import useDefault from '@/hooks/useDefault';
 import useImageInput from '@/hooks/useImageInput';
 import { UserData } from '@/types/UserType';
 import * as S from './style/ProfileStyled';
-
+import useModal from '@/hooks/useModal';
+import ProfileImgDelete from './ProfileImgDelete';
 interface Props {
   user: UserData;
   LoginCheck: boolean;
@@ -19,10 +21,18 @@ const Profile = ({ user, LoginCheck, checkMy, getUser }: Props) => {
   const check = LoginCheck || checkMy;
 
   // 프로필 이미지
+  const [imgName, setImageName] = useState('profile');
   const [img, setImage] = useState(user.photoURL);
   const [backImg, setBackImage] = useState(user.backImage);
   const [profileImg, changeProfileImg, resetImg] = useImageInput('');
   const [backImage, changeBackImg, resetBackImg] = useImageInput('');
+
+  const [
+    deleteModal,
+    openDeleteModal,
+    closeDeleteModal,
+    closeDeleteModalIfClickOutside,
+  ] = useModal();
 
   // 프로필 닉네임 한줄소개 수정
   const [checkEdit, setEdit] = useState(false);
@@ -86,24 +96,46 @@ const Profile = ({ user, LoginCheck, checkMy, getUser }: Props) => {
   // 한줄 소개
   const introduce = !!user.introduce ? user.introduce : defaultIntro;
 
+  console.log(backgroundImage, defaultBackImage);
+
   return (
     <S.ProfileSection>
+      {deleteModal && (
+        <ProfileImgDelete
+          name={imgName}
+          setImage={setImage}
+          setBackImage={setBackImage}
+          updateImage={updateImage}
+          closeDeleteModal={closeDeleteModal}
+          closeDeleteModalIfClickOutside={closeDeleteModalIfClickOutside}
+        />
+      )}
       <S.MyBackImage src={backgroundImage} alt="back" />
       <S.BackBtnBox>
-        <S.BackChangeBtn>이미지 변경하기</S.BackChangeBtn>
-        <input
-          type="file"
-          accept="image/*"
-          style={{ display: 'none' }}
-          onChange={(e) => changeBackImg(e)}
-        />
+        <S.BackBtnCamera>
+          <FaCamera />
+          <input
+            type="file"
+            accept="image/*"
+            style={{ display: 'none' }}
+            onChange={(e) => changeBackImg(e)}
+          />
+        </S.BackBtnCamera>
+        <S.BackBtnDelete
+          onClick={() => {
+            setImageName('back');
+            openDeleteModal();
+          }}
+        >
+          <FaTrashAlt />
+        </S.BackBtnDelete>
       </S.BackBtnBox>
       <S.ProfileBox>
         <S.ProfileImageBox>
           <S.ProfileImage src={profileImage} alt="profile" />
-          <S.BtnBox style={{ visibility: check ? 'visible' : 'hidden' }}>
+          <S.ProfileBtnBox style={{ visibility: check ? 'visible' : 'hidden' }}>
             <S.ProfileLabel>
-              이미지 변경하기
+              <FaCamera />
               <input
                 type="file"
                 accept="image/*"
@@ -112,19 +144,28 @@ const Profile = ({ user, LoginCheck, checkMy, getUser }: Props) => {
               />
             </S.ProfileLabel>
             <S.ProfileBtn
-              onClick={() => updateImage('', { photoURL: '' }, setImage)}
+              onClick={() => {
+                setImageName('profile');
+                openDeleteModal();
+              }}
             >
-              이미지 삭제하기
+              <FaTrashAlt />
             </S.ProfileBtn>
-          </S.BtnBox>
+          </S.ProfileBtnBox>
         </S.ProfileImageBox>
         <S.ProfilInfoBox>
           <S.NicknameBox>
-            <span style={{ display: checkEdit ? 'none' : 'flex' }}>
+            <span
+              style={{
+                width: 140,
+                height: 48,
+                display: checkEdit ? 'none' : 'flex',
+              }}
+            >
               {user.displayName}
             </span>
             <RiBallPenFill
-              size={24}
+              size={30}
               onClick={() => setEdit(true)}
               style={{
                 display: checkEdit ? 'none' : 'flex',
@@ -134,12 +175,12 @@ const Profile = ({ user, LoginCheck, checkMy, getUser }: Props) => {
             <S.NickNameInput
               type="text"
               name="nickname"
+              maxLength={8}
               defaultValue={user.displayName}
               style={{ display: checkEdit ? 'flex' : 'none' }}
               onChange={(e) => onChangeMyInfo(e)}
             />
             <RiCheckboxFill
-              size={30}
               onClick={() => updateProfile()}
               style={{ display: checkEdit ? 'flex' : 'none' }}
             />
@@ -150,6 +191,7 @@ const Profile = ({ user, LoginCheck, checkMy, getUser }: Props) => {
           <S.ProfileInput
             type="text"
             name="intro"
+            maxLength={25}
             defaultValue={user.introduce}
             style={{ display: checkEdit ? 'block' : 'none' }}
             onChange={(e) => onChangeMyInfo(e)}
