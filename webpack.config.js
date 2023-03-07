@@ -13,20 +13,25 @@ module.exports = (env, argv) => {
   return {
     mode: prod ? 'production' : 'development',
     devtool: prod ? 'hidden-source-map' : 'eval',
+
     // 파일을 읽어들이기 시작하는 진입점 설정 , webpack은 js를 진입점으로 사용
     entry: './src/index.tsx',
     // 결과물(번들)을 반환하는 설정
     output: {
       path: path.join(__dirname, '/dist'),
       filename: '[name].js',
+      publicPath: '/',
     },
-    // 개발환경서버 포트 3000으로 변경.
     devServer: {
       port: 3000,
       hot: true,
+      historyApiFallback: true,
     },
     resolve: {
       extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      alias: {
+        '@': path.resolve(__dirname, './src/'),
+      },
     },
     //모듈에 적용할 여러가지 로더들과 그 옵션들을 추가하는 부분.
     // jsx,tsx,ts,js 해석을 위한 babel로더 설정
@@ -45,6 +50,14 @@ module.exports = (env, argv) => {
           test: /\.css$/i,
           use: ['style-loader', 'css-loader'],
         },
+        {
+          test: /\.(png|jpe?g|gif|webp|mp4)$/,
+          use: [
+            {
+              loader: 'file-loader',
+            },
+          ],
+        },
       ],
     },
     plugins: [
@@ -54,6 +67,7 @@ module.exports = (env, argv) => {
       new HtmlWebpackPlugin({
         // HTML 파일에 번들링 된 자바스크립트 파일을 삽입해주고 이 플러그인으로 빌드하면 HTML 파일로 아웃풋에 생성
         template: './public/index.html',
+        env: process.env,
         minify:
           process.env.NODE_ENV === 'production'
             ? {
