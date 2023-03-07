@@ -56,7 +56,7 @@ const EventTime = ({
           );
         })}
       </TimeSelect>
-      시
+      <EventFont>시</EventFont>
       <MinuteInput
         type="text"
         onChange={(event) =>
@@ -65,9 +65,9 @@ const EventTime = ({
           })
         }
         value={when.minute}
-        style={{ width: '28%' }}
+        style={{ width: '28%', fontFamily: 'emoji', fontSize: 14 }}
       />
-      분
+      <EventFont>분</EventFont>
     </PlanTimeMemoContainer>
   );
 };
@@ -76,8 +76,14 @@ export default EventTime;
 
 const PlanTimeMemoContainer = styled.div`
   width: 100%;
-
+  display: flex;
   background-color: #f1f6f9;
+  align-items: center;
+  /* & > p,
+  h1 {
+    font-size: 13px;
+    font-family: 'swiper-icons';
+  } */
 `;
 
 const TimeSelect = styled.select<{ width: number }>`
@@ -85,9 +91,15 @@ const TimeSelect = styled.select<{ width: number }>`
   border: 0px;
   text-align: center;
   background-color: #f1f6f9;
+  font-size: 14px;
 `;
 const MinuteInput = styled.input`
   width: 20%;
   text-align: center;
   background-color: #f1f6f9;
+`;
+
+const EventFont = styled.p`
+  font-size: 14px;
+  font-family: 'swiper-icons';
 `;

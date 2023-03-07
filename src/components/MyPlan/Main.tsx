@@ -146,7 +146,12 @@ const MyPlan = () => {
                 <ProfileBox>
                   <Profile>
                     <img
-                      src={userDB.photoURL}
+                      src={
+                        !!userDB?.photoURL
+                          ? userDB?.photoURL
+                          : require('@/assets/MyPage/defaultProfile.jpg')
+                              .default
+                      }
                       style={{ objectFit: 'cover', width: 60, height: 60 }}
                     />
                   </Profile>
