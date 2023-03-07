@@ -7,6 +7,7 @@ import { City } from '@/types/CityType';
 import { DetailResponse } from '@/types/DetailType';
 import AmusementInfoBox from './AmusementInfoBox';
 import * as S from './style/AmusementStyled';
+import Error from '../common/Error';
 
 interface Props {
   city: City;
@@ -40,6 +41,8 @@ const Amusement = ({ city }: Props) => {
       </S.AmusementInfoContainer>
     );
   if (isError) return <div>에러: {error.message}</div>;
+
+  if (!data?.response) return <Error />;
 
   const detailList = data?.response.body.items.item;
 

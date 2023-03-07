@@ -5,6 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { doc, onSnapshot } from 'firebase/firestore';
 import { getDetail, getDetailIntro } from '@/common/api/tourApi';
 import { db } from '@/common/api/firebase';
+import Error from '@/components/common/Error';
 import DetailInfo from '@/components/Detail/DetailInfo';
 import ReviewModal from '@/components/Detail/Review/ReviewModal';
 import Review from '@/components/Detail/Review/Review';
@@ -97,6 +98,8 @@ const DetailPage = () => {
       </div>
     );
   if (isError) return <div>에러: {error}</div>;
+
+  if (data.some((result) => !result?.response)) return <Error />;
 
   const detailList = !!data[0]?.response.body.items
     ? data[0].response.body.items.item[0]

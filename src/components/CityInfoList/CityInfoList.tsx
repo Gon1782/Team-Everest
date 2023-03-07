@@ -7,6 +7,7 @@ import { City } from '@/types/CityType';
 import { DetailResponse, Item } from '@/types/DetailType';
 import CityListItem from './CityListItem';
 import * as S from './style/CityInfoListStyled';
+import Error from '../common/Error';
 
 interface Props {
   city: City;
@@ -17,9 +18,6 @@ const CityInfoList = ({ city }: Props) => {
 
   const navigate = useNavigate();
 
-  // 이미지
-  const defaults = useDefault();
-  const { defaultImage } = defaults();
   const {
     isLoading,
     isError,
@@ -36,6 +34,8 @@ const CityInfoList = ({ city }: Props) => {
 
   if (isLoading) return <div>로딩중</div>;
   if (isError) return <div>{error.message}</div>;
+
+  if (!cityItem?.response) return <Error />;
 
   const filterdData = cityItem?.response.body.items.item;
 
@@ -56,13 +56,12 @@ const CityInfoList = ({ city }: Props) => {
           </S.Introduce>
         </S.SectionInfo>
         {filterdData?.map((data: Item, index: number) => {
-          const img = !!data?.firstimage ? data.firstimage : defaultImage;
           return (
             <S.ContentItemWrap
               key={index}
               onClick={() => navigate(`/detail/${data?.contentid}`)}
             >
-              <CityListItem item={data} img={img} />
+              <CityListItem item={data} />
             </S.ContentItemWrap>
           );
         })}

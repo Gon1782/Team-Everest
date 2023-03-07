@@ -6,6 +6,7 @@ import { category as category3 } from '@/common/utils/cat3';
 import { DetailResponse, Item } from '@/types/DetailType';
 import Landmark from './Landmark';
 import * as S from './style/LandmarkStyled';
+import Error from '@/components/common/Error';
 
 interface Props {
   detailList: Item;
@@ -19,7 +20,6 @@ const SimilarLandmark = ({ id, detailList, wishList }: Props) => {
   const [category, setCategory] = useState(detailList.cat3);
   const [pageNo, setPageNo] = useState(0);
 
-  // TiL
   useEffect(() => {
     const category = detailList.cat3;
     const pageNo = Math.floor(Math.random() * (category3[category] + 1));
@@ -53,6 +53,8 @@ const SimilarLandmark = ({ id, detailList, wishList }: Props) => {
 
   if (isError) return <div>에러: {error.message}</div>;
 
+  if (!data?.response) return <Error />;
+
   const Landmarks = data?.response.body.items?.item.filter(
     (list) => list.contentid !== id,
   );
@@ -70,9 +72,9 @@ const SimilarLandmark = ({ id, detailList, wishList }: Props) => {
           />
         );
       })}
-      <S.SeeMore onClick={() => navigate('/planner/my/write')}>
+      {/* <S.SeeMore onClick={() => navigate('/planner/my/write')}>
         일정 만들기
-      </S.SeeMore>
+      </S.SeeMore> */}
     </S.LandmarkContainer>
   );
 };

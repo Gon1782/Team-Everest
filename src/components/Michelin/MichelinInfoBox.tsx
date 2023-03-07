@@ -16,7 +16,9 @@ const MichelinInfoBox = ({ item }: Props) => {
   const navigate = useNavigate();
   const defaults = useDefault();
   const { defaultImage } = defaults();
-  const img = !!item?.firstimage ? item.firstimage : defaultImage;
+  const img = !!item?.firstimage
+    ? `https://${item.firstimage.slice(7)}`
+    : defaultImage;
 
   const getRating = async () => {
     const id = !!item ? item.contentid : '';

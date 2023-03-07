@@ -5,6 +5,7 @@ import { FaStar, FaRegStar } from 'react-icons/fa';
 import { DetailResponse, EachReview } from '@/types/DetailType';
 import { ReviewImage } from '@/components/Detail/Review/style/ReviewStyled';
 import * as S from './style/MyReviewStyled';
+import Error from '@/components/common/Error';
 
 interface Props {
   review: EachReview;
@@ -48,6 +49,8 @@ const MyReviewBox = ({ review }: Props) => {
       </S.MyReview>
     );
   if (isError) return <div>에러: {error.message}</div>;
+
+  if (!data?.response) return <Error />;
 
   const title = data?.response.body.items.item[0].title;
 

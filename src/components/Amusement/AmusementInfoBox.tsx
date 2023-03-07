@@ -15,7 +15,9 @@ const AmusementInfoBox = ({ item }: Props) => {
   const navigate = useNavigate();
   const defaults = useDefault();
   const { defaultImage } = defaults();
-  const img = !!item?.firstimage ? item.firstimage : defaultImage;
+  const img = !!item?.firstimage
+    ? `https://${item.firstimage.slice(7)}`
+    : defaultImage;
 
   const addr = !!item ? item.addr1.split(' ') : [];
 

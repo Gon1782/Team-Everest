@@ -22,7 +22,9 @@ const Landmark = ({ landmark, wishList }: Props) => {
   // 이미지
   const defaults = useDefault();
   const { defaultImage } = defaults();
-  const img = !!landmark.firstimage ? landmark.firstimage : defaultImage;
+  const img = !!landmark?.firstimage
+    ? `https://${landmark.firstimage.slice(7)}`
+    : defaultImage;
 
   // 북마크 여부만 확인
   const [bookMark, setBookMark] = useState(false);

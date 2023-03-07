@@ -64,7 +64,7 @@ const SidePage = () => {
       pickLocation !== '지역' &&
       pickTheme !== '카테고리'
     ) {
-      getTourList(pickLocation, pickTheme, String(pageNo)).then(
+      getTourList(pickLocation, pickTheme, pageNo).then(
         (result: DetailResponse) => {
           setDataList((prev) => {
             return prev.concat(result?.response.body.items.item);
