@@ -27,9 +27,7 @@ const MyPlanner = ({
   return (
     <S.MyPlannerSection>
       <S.MyPlannerTitle>내가 저장한 일정 리스트</S.MyPlannerTitle>
-      <S.MyPlannerContainer
-        style={{ overflowX: idx < 3 ? 'hidden' : 'scroll' }}
-      >
+      <S.MyPlannerContainer visible={idx > 3 ? 'visible' : 'hidden'}>
         {checkMyPlanner ? (
           myPlanner.map((item: any, index: number) => {
             if (index <= idx) {
@@ -38,7 +36,6 @@ const MyPlanner = ({
                   <FaBookmark
                     style={{
                       display: item['isMine'] ? 'none' : 'flex',
-                      position: 'absolute',
                     }}
                     color="#0A77D1"
                     size="20"
@@ -62,9 +59,7 @@ const MyPlanner = ({
           <S.MyPlannerNone>아직 일정이 없음 짜러가셈</S.MyPlannerNone>
         )}
         {!checkEnd && (
-          <S.MyPlannerBox onClick={() => ViewMore()}>
-            View More...
-          </S.MyPlannerBox>
+          <S.MyPlannerBox onClick={() => ViewMore()}>더 보기...</S.MyPlannerBox>
         )}
       </S.MyPlannerContainer>
     </S.MyPlannerSection>
