@@ -8,6 +8,7 @@ import { DetailResponse, Item } from '@/types/DetailType';
 import CityListItem from './CityListItem';
 import * as S from './style/CityInfoListStyled';
 import Error from '../common/Error';
+import ReactPlayer from 'react-player';
 
 interface Props {
   city: City;
@@ -41,7 +42,17 @@ const CityInfoList = ({ city }: Props) => {
 
   return (
     <S.Container>
-      <S.Video></S.Video>
+      <S.Video>
+        <ReactPlayer
+          className="City-player"
+          url={require('@/assets/CityImage/page_video.mp4').default} // 플레이어 url
+          width={'100%'}
+          height={'100%'}
+          playing={true} // 자동 재생 on
+          muted={true}
+          loop={true}
+        />
+      </S.Video>
       <S.ContentWrap>
         <S.SectionInfo>
           <S.Title>

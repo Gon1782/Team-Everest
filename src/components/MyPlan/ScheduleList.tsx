@@ -33,12 +33,6 @@ const PlanScheduleList = ({
     alert('s');
   };
 
-  // useEffect(() => {
-  //   if (scheduleRef.current?.length !== 0) {
-  //     console.log(scheduleRef.current[0]);
-  //   }
-  // }, [drag]);
-
   return (
     <PlanItemsSwiper
       modules={[Navigation, Pagination, Scrollbar]}
