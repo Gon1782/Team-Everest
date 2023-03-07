@@ -6,8 +6,12 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import 'swiper/css';
 import './EventSlideBanner.css';
+import { useEffect } from 'react';
 
 const EventSlideBanner = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       <Swiper

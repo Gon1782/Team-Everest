@@ -33,7 +33,7 @@ const MyReview = ({ user }: Props) => {
               return <MyReviewBox review={review} key={review.id} />;
           })
         ) : (
-          <S.MyReviewNone>아직 작성한 리뷰가 없어요 ㅠㅠ</S.MyReviewNone>
+          <S.MyReviewNone>아직 등록한 리뷰가 없어요.</S.MyReviewNone>
         )}
       </S.MyReviewContainer>
     </S.MyReviewSection>

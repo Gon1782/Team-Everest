@@ -36,6 +36,7 @@ export const MyReviewContainer = styled.div`
   row-gap: 1rem;
 `;
 export const MyReviewNone = styled.div`
+  grid-column: 1/ 4;
   display: flex;
   justify-content: center;
   align-items: center;

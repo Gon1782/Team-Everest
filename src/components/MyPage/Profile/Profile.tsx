@@ -17,6 +17,11 @@ interface Props {
 }
 
 const Profile = ({ user, LoginCheck, checkMy, getUser }: Props) => {
+  // Login 판별
+  const sessionKey = `firebase:authUser:${process.env.FIREBASE_API_KEY}:[DEFAULT]`;
+  const userItem = sessionStorage.getItem(sessionKey);
+  const uid = !!userItem ? JSON.parse(userItem).uid : '';
+
   // 마이페이지 수정가능 여부 확인
   const check = LoginCheck || checkMy;
 
@@ -48,13 +53,15 @@ const Profile = ({ user, LoginCheck, checkMy, getUser }: Props) => {
       return alert('닉네임이 너무 길어요\n닉네임은 9글자 미만까지 가능합니다.');
     if (!!myInfo.intro && myInfo.intro.length > 25)
       return alert('한줄 소개는 25자 까지 가능합니다.');
-    await updateUserDB(user.uid, {
-      displayName: myInfo.nickname,
-      introduce: myInfo.intro,
-    });
-    getUser(user.uid);
-    resetMyInfo();
-    setEdit(false);
+    if (uid === user.uid) {
+      await updateUserDB(user.uid, {
+        displayName: myInfo.nickname,
+        introduce: myInfo.intro,
+      });
+      getUser(user.uid);
+      resetMyInfo();
+      setEdit(false);
+    }
   }, [myInfo]);
 
   // Update UserDB 배경 사진
@@ -64,13 +71,19 @@ const Profile = ({ user, LoginCheck, checkMy, getUser }: Props) => {
       edit: { [key: string]: string },
       setImg: React.Dispatch<React.SetStateAction<string>>,
     ) => {
-      setImg(img);
-      await updateUserDB(user.uid, edit);
-      resetImg();
-      resetBackImg();
+      if (uid === user.uid) {
+        setImg(img);
+        await updateUserDB(user.uid, edit);
+        resetImg();
+        resetBackImg();
+      }
     },
     [],
   );
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   useEffect(() => {
     if (!!backImage) {
@@ -109,7 +122,7 @@ const Profile = ({ user, LoginCheck, checkMy, getUser }: Props) => {
         />
       )}
       <S.MyBackImage src={backgroundImage} alt="back" />
-      <S.BackBtnBox>
+      <S.BackBtnBox style={{ visibility: check ? 'visible' : 'hidden' }}>
         <S.BackBtnCamera>
           <FaCamera />
           <input
