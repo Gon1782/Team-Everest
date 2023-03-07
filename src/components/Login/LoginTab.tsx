@@ -13,6 +13,7 @@ import useSignIn from '@/hooks/useSignIn';
 import LoginInput from './LoginInput';
 import PasswordResetModal from './PasswordResetModal';
 import * as S from './style/LoginTabStyled';
+import { BsFacebook } from 'react-icons/bs';
 
 const googleProvider = new GoogleAuthProvider();
 const facebookProvider = new FacebookAuthProvider();
@@ -72,8 +73,12 @@ const LoginTab = () => {
         <S.RegisterBtn onClick={() => openModal()}>비밀번호 찾기</S.RegisterBtn>
       </S.LoginInputContainer>
       <S.LoginBtnConatiner>
-        <S.LoginBtn color="white" backColor="#0034B9">
-          로그인 하기
+        <S.LoginBtn color="white" backColor="#112D4E">
+          <S.SharpaLogo
+            src={require('@/assets/Logo/sharpa_favicon_03.png').default}
+            alt="셰르파 로고"
+          />
+          <span>로그인</span>
         </S.LoginBtn>
         <S.LoginOrBox>
           <S.LoginLine />
@@ -86,7 +91,7 @@ const LoginTab = () => {
           style={{ marginBottom: '1rem' }}
           onClick={() => socialLogin(googleProvider)}
         >
-          <FcGoogle size={24} />
+          <FcGoogle size={20} />
           <span>Google 로그인</span>
         </S.LoginBtn>
         <S.LoginBtn
@@ -95,7 +100,7 @@ const LoginTab = () => {
           backColor="#4267B2"
           onClick={() => socialLogin(facebookProvider)}
         >
-          <GrFacebook />
+          <BsFacebook size={20} />
           <span>Facebook 로그인</span>
         </S.LoginBtn>
       </S.LoginBtnConatiner>
