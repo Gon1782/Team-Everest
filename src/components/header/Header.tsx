@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { FaSearch } from 'react-icons/fa';
+import { BiSearch } from 'react-icons/bi';
 import SearchModal from './SearchModal';
 import { auth } from '../../common/api/firebase';
 import { onAuthStateChanged } from '@firebase/auth';
 import useModal from '@/hooks/useModal';
 import ScrollToTopBtn from '@/components/button/ScrollToTopBtn';
-import { VscAccount } from 'react-icons/vsc';
 
 const Header = () => {
   // 검색창 토글
@@ -61,27 +60,30 @@ const Header = () => {
         <Nav>
           <HeaderLogo onClick={() => navigate('/main')}>
             <img
-              src={require('@/assets/Sharpa_block.jpg').default}
-              style={{ width: 40, height: 40, marginTop: 20 }}
+              src={require('@/assets/Logo/sharpa_logo_02.png').default}
+              style={{ width: 100, height: 'auto', marginTop: 20 }}
             />
           </HeaderLogo>
           <MenuSection onClick={() => closeModal()}>
             <NavBarLink to="/main">여행 시작하기</NavBarLink>
+            &#183;
             <NavBarLink to="/citymap">지도로 이동하기</NavBarLink>
+            &#183;
             <NavBarLink to="/planner/my/write">일정 만들기</NavBarLink>
+            &#183;
             <NavBarLink to="my">마이페이지</NavBarLink>
           </MenuSection>
-          <SearchIcon onClick={() => modalOpen()} />
-          <LogInButton onClick={LoginOutHandler}>
-            <div style={{ display: 'flex', alignItems: 'center', width: 95 }}>
+          <RightSection>
+            <BiSearch size={20} onClick={() => modalOpen()} />
+
+            <LogInButton onClick={LoginOutHandler}>
               <img
                 src={'https://img.icons8.com/windows/64/null/user.png'}
-                style={{ width: 30, height: 30 }}
+                style={{ width: 20, height: 20 }}
               />
               <LogoutText>{logoutText ? '로그인' : '로그아웃'}</LogoutText>
-            </div>
-          </LogInButton>
-
+            </LogInButton>
+          </RightSection>
           <ScrollToTopBtn />
         </Nav>
       </HeaderContainer>
@@ -95,7 +97,7 @@ const HeaderContainer = styled.header`
   background-color: #fff;
   color: #151515;
   width: 100%;
-  height: 70px;
+  height: 65px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -107,9 +109,9 @@ const HeaderContainer = styled.header`
 
 const Nav = styled.nav`
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
-  width: 50%;
+  width: 80%;
   padding-left: 20px;
   padding-right: 20px;
   cursor: pointer;
@@ -124,31 +126,49 @@ const MenuSection = styled.div`
   justify-content: space-between;
   align-items: center;
   padding-left: 80px;
-  padding-right: 80px;
-  width: 70%;
+  width: 100%;
 `;
 
 const NavBarLink = styled(NavLink)`
+  width: 150px;
+  text-align: center;
   text-decoration: none;
-  color: #151515;
-  font-size: 0.8rem;
+  color: ${(props) => props.theme.black};
+  font-size: 1rem;
+  font-weight: 400;
+  padding: 25px 10px;
+  &:hover {
+    color: ${(props) => props.theme.blue};
+    border-bottom: 2px solid ${(props) => props.theme.blue};
+  }
 `;
-
-// 검색 아이콘 & 로그인
-
-const SearchIcon = styled(FaSearch)``;
 
 // 로그인 버튼
 
+const RightSection = styled.div`
+  width: 25%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
 const LogInButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100px;
   height: 30px;
   border: none;
   border-radius: 100px;
-  background-color: #d0d0d0;
-  color: #313131;
+  background-color: ${(props) => props.theme.white};
+  border: 1px solid ${(props) => props.theme.dimgrey};
+  color: ${(props) => props.theme.black};
   font-size: 0.8rem;
   cursor: pointer;
+  transition: all 0.3s;
+  &:hover {
+    background-color: ${(props) => props.theme.grey};
+  }
 `;
 
 const LogoutText = styled.p``;
