@@ -8,7 +8,7 @@ export const ProfileSection = styled.section`
 export const MyBackImage = styled.img`
   position: absolute;
   width: 100%;
-  height: 450px;
+  height: 270px;
   background-color: gray;
   border: none;
   object-fit: cover;
@@ -45,9 +45,9 @@ export const ProfileImageBox = styled.div`
 `;
 export const ProfileImage = styled.img`
   position: relative;
-  width: 350px;
-  height: 350px;
-  border-radius: 20px;
+  width: 250px;
+  height: 250px;
+  border-radius: 100%;
   background-color: blue;
   z-index: 1;
 `;
@@ -66,7 +66,7 @@ export const ProfileLabel = styled.label`
   width: 50%;
   color: #79808f;
   background-color: transparent;
-  font-size: 20px;
+  font-size: 15px;
 `;
 export const ProfileBtn = styled.button`
   cursor: pointer;
@@ -74,7 +74,7 @@ export const ProfileBtn = styled.button`
   background-color: transparent;
   border: none;
   width: 50%;
-  font-size: 20px;
+  font-size: 15px;
   padding: 0;
 `;
 export const ProfilInfoBox = styled.div`

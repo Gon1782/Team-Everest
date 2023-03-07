@@ -30,7 +30,7 @@ const EventMap = () => {
         setPolyLine(
           map,
           setMarker(myPlan.schedule[scheduleInfo.schedule], map, linePath),
-          '#EB455F',
+          '#EF4B27',
         );
       }
     });
@@ -61,7 +61,7 @@ export const CloneEventMap = ({
       const map = setMap(locationInfo, mapRef); //지도 생성 및 객체 리턴
 
       const linePath: any = [];
-      setPolyLine(map, setMarker(myPlan, map, linePath), '#EB455F');
+      setPolyLine(map, setMarker(myPlan, map, linePath), '#EF4B27');
     });
   }, []);
 
@@ -115,7 +115,7 @@ const setMarker = (plan: [], map: any, linePath: any[]): any[] => {
 
       image: new kakao.maps.MarkerImage(
         `https://img.icons8.com/ios-filled/50/004a7c/${index + 1}-circle.png`,
-        new kakao.maps.Size(35, 35),
+        new kakao.maps.Size(25, 25),
       ),
     });
 
