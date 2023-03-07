@@ -43,7 +43,11 @@ const CityInfoModal = ({
           <S.StyleCityTitleEng>{areaInfo?.engarea}</S.StyleCityTitleEng>
           <S.StyleCityTitleKor>대한민국 {areaInfo?.name}</S.StyleCityTitleKor>
           <S.StyleCityDescript>{areaInfo?.description}</S.StyleCityDescript>
-          <S.StyleCityHashtag>{areaInfo?.hashtag}</S.StyleCityHashtag>
+          <S.StyleCityHashtag>
+            {areaInfo?.hashtag.map((tag) => (
+              <div>{tag}</div>
+            ))}
+          </S.StyleCityHashtag>
           <S.StyleCityWrap>
             <S.StyleCityTourWrap>
               <S.TourName>관광명소</S.TourName>
@@ -71,13 +75,6 @@ const CityInfoModal = ({
             >
               도시 상세보기
             </S.StyleButton>
-            {/* <S.StyleButton
-              onClick={() => {
-                navigate('/planner/my/write');
-              }}
-            >
-              일정 만들기
-            </S.StyleButton> */}
           </S.StyleButtomWrap>
         </S.StyleContent>
       </S.ModalBox>
