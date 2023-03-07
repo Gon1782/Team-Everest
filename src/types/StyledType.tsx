@@ -13,3 +13,7 @@ export interface ButtonProps {
   color: string;
   backColor: string;
 }
+
+export interface VisibleProps {
+  visible: string;
+}

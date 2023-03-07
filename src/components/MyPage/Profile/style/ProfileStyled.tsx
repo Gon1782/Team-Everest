@@ -10,7 +10,7 @@ export const ProfileSection = styled.section`
 `;
 export const MyBackImage = styled.img`
   position: absolute;
-  width: 75%;
+  width: 100%;
   height: 300px;
   background-color: gray;
   border: none;
@@ -21,7 +21,7 @@ export const BackBtnBox = styled.div`
   justify-content: center;
   align-items: center;
   position: absolute;
-  right: 12.5%;
+  right: 0;
   bottom: 158px;
 `;
 export const BackBtnCamera = styled.label`

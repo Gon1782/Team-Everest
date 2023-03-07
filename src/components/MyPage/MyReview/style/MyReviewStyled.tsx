@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const MyReviewSection = styled.section`
-  max-width: 1344px;
+  width: 100%;
   margin: 3rem auto 0;
   padding: 0 0 1rem;
   border-radius: 20px;
@@ -14,7 +14,7 @@ export const MyReviewHeader = styled.header`
 
 export const MyReviewTitle = styled.header`
   width: 100%;
-  padding: 2rem;
+  padding: 2rem 0;
   font-size: 2rem;
 `;
 export const MyReviewLoadMore = styled.button`
@@ -30,10 +30,10 @@ export const MyReviewLoadMore = styled.button`
 `;
 export const MyReviewContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(388px, max-content));
-  grid-gap: 1rem;
-  justify-content: center;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
   width: 100%;
+  row-gap: 1rem;
 `;
 export const MyReviewNone = styled.div`
   display: flex;

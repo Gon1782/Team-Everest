@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 
 export const MyPageContainer = styled.main`
-  width: 100%;
+  width: 80%;
   height: 100%;
   background-color: white;
   padding: 0 0 3rem;
+  margin: 0 auto;
 `;
 
 export const Loading = styled.main`

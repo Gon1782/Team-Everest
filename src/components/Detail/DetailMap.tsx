@@ -22,11 +22,18 @@ const DetailMap = ({ x, y }: Props) => {
 
   useEffect(() => {
     if (map) {
+      // 마커 이미지의 이미지 주소
+      const imageSrc = require('@/assets/marker.png').default;
+      // 마커 이미지의 이미지 크기
+      const imageSize = new kakao.maps.Size(80, 80);
+
+      const image = new kakao.maps.MarkerImage(imageSrc, imageSize);
       const position = new kakao.maps.LatLng(area.mapy, area.mapx);
       // 마커 생성
       new kakao.maps.Marker({
         map,
         position,
+        image,
       });
     }
   }, [map]);

@@ -1,7 +1,8 @@
+import { VisibleProps } from '@/types/StyledType';
 import styled from 'styled-components';
 
 export const MyPlannerSection = styled.section`
-  max-width: 1344px;
+  width: 100%;
   margin: 3rem auto 0;
   padding: 0 0 1rem;
   border-radius: 20px;
@@ -9,16 +10,28 @@ export const MyPlannerSection = styled.section`
 
 export const MyPlannerTitle = styled.header`
   width: 100%;
-  padding: 2rem;
+  padding: 2rem 0;
   font-size: 2rem;
 `;
 
-export const MyPlannerContainer = styled.div`
+export const MyPlannerContainer = styled.div<VisibleProps>`
   display: flex;
-  width: 100%;
+  width: 90%;
+  margin: 0 auto;
   padding: 2rem;
   gap: 2rem;
   overflow-x: scroll;
+  &::-webkit-scrollbar {
+    width: 10px;
+    height: 8px;
+    border-radius: 6px;
+    background: #fff;
+    visibility: ${(props) => props.visible};
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #000;
+    border-radius: 6px;
+  }
 `;
 
 export const MyPlannerBox = styled.div`
@@ -27,8 +40,8 @@ export const MyPlannerBox = styled.div`
   justify-content: center;
   overflow: hidden;
   align-items: center;
-  min-width: 300px;
-  min-height: 300px;
+  width: 300px;
+  height: 300px;
   background-color: lightgray;
   border-radius: 50%;
   margin-bottom: 20px;
