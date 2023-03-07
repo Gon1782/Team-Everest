@@ -49,7 +49,7 @@ const TopButton = styled.button`
   width: 50px;
   height: 50px;
   position: fixed;
-  bottom: 20px;
+  bottom: 100px;
   right: 20px;
   z-index: 9999;
   background-color: cornflowerblue;

@@ -101,7 +101,6 @@ const HeaderContainer = styled.header`
   display: flex;
   align-items: center;
   justify-content: center;
-  /* position: sticky; */ // sticky로 하면 화면에 스크롤 생김
   position: sticky;
   top: 0;
   z-index: 999;
