@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getCities } from '@/common/api/cityApi';
+import CityInfo from '@/components/cityInfo/CityInfo';
 import Amusement from '@/components/Amusement/Amusement';
 import CityInfoList from '@/components/CityInfoList/CityInfoList';
 import WeatherInfo from '@/components/CityInfoList/WeatherInfo';
@@ -31,10 +32,11 @@ const CityDetailPage = () => {
 
   return (
     <S.Wrap>
-      <S.CityDetailImg src={areaInfo.image} alt="city" />
-      <S.WeatherWrap>
-        <WeatherInfo city={areaInfo} />
-      </S.WeatherWrap>
+      <CityInfo city={areaInfo} />
+      {/* <S.CityDetailImg src={areaInfo.image} alt="city" /> */}
+      {/* <S.WeatherWrap>
+
+      </S.WeatherWrap> */}
       <S.Introduce>{areaInfo.name}를 자세히 알려드릴게요!</S.Introduce>
       {/* 음식점 */}
       <Michelin city={areaInfo} />

@@ -49,7 +49,4 @@ const TopBanner = styled.div`
   background-color: #e3e3e3;
   align-items: center;
   display: flex;
-  /* @media screen and (max-width: 768px) {
-    display: none;
-  } */
 `;
