@@ -41,7 +41,6 @@ const ThemeSlideBanner = () => {
 
   //  선택한 리스트 항목에 해당하는 슬라이드 배너로 포커스 이동해주기
   const listClickHandler = (index: any, title: string) => {
-    // console.log('item', item);
     const idx = index - 1;
     if (swiper) {
       swiper.slideTo(idx, 1000); //  해당 인덱스로 이동한다.

@@ -44,8 +44,8 @@ const CityInfoModal = ({
           <S.StyleCityTitleKor>대한민국 {areaInfo?.name}</S.StyleCityTitleKor>
           <S.StyleCityDescript>{areaInfo?.description}</S.StyleCityDescript>
           <S.StyleCityHashtag>
-            {areaInfo?.hashtag.map((tag) => (
-              <div>{tag}</div>
+            {areaInfo?.hashtag.map((tag, i) => (
+              <div key={i}>{tag}</div>
             ))}
           </S.StyleCityHashtag>
           <S.StyleCityWrap>

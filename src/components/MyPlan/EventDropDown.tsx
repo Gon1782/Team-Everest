@@ -50,12 +50,6 @@ const EventDropDown = ({
       const updateEventList = eventList
         .reduce((sum: any, item: any, idx: number) => {
           if (eventIndex === idx) {
-            console.log({
-              amPm: Number(initEventWhen.amPm),
-              time: initEventWhen.hour * 60 + Number(initEventWhen.minute),
-              hour: initEventWhen.hour,
-              minute: initEventWhen.minute,
-            });
             sum.push({
               ...item,
               memo: initEventMemo,

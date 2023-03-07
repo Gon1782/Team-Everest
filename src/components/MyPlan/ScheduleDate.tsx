@@ -54,16 +54,11 @@ const ScheduleDate = ({
       return clonePrev;
     });
   };
-  useEffect(() => {
-    //console.log(scheduleRef.current[index]);
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <div
-      ref={(el) =>
-        // !!scheduleRef.current[index] ? (scheduleRef.current[index] = el) : false
-        (scheduleRef.current[index] = el)
-      }
+      ref={(el) => (scheduleRef.current[index] = el)}
       style={{ display: 'block', margin: '10px 0 25px 0' }}
     >
       <PlanDateWrapper onClick={() => initMap(scheduleDate)}>
