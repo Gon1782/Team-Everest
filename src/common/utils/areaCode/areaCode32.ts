@@ -5,6 +5,7 @@ export const areaCode32 = [
     name: '강릉시',
     mapx: 128.8758,
     mapy: 37.75218,
+    engName: 'Gangneung',
   },
   {
     rnum: 2,
@@ -12,6 +13,7 @@ export const areaCode32 = [
     name: '고성군',
     mapx: 128.4679,
     mapy: 38.38062,
+    engName: 'Goseong',
   },
   {
     rnum: 3,
@@ -19,6 +21,7 @@ export const areaCode32 = [
     name: '동해시',
     mapx: 129.1143,
     mapy: 37.52476,
+    engName: 'Donghae',
   },
   {
     rnum: 4,
@@ -26,6 +29,7 @@ export const areaCode32 = [
     name: '삼척시',
     mapx: 129.1651,
     mapy: 37.44994,
+    engName: 'Samcheok',
   },
   {
     rnum: 5,
@@ -33,6 +37,7 @@ export const areaCode32 = [
     name: '속초시',
     mapx: 128.5918,
     mapy: 38.20717,
+    engName: 'Sokcho',
   },
   {
     rnum: 6,
@@ -40,6 +45,7 @@ export const areaCode32 = [
     name: '양구군',
     mapx: 127.99,
     mapy: 38.10999,
+    engName: 'Yanggu',
   },
   {
     rnum: 7,
@@ -47,6 +53,7 @@ export const areaCode32 = [
     name: '양양군',
     mapx: 128.6191,
     mapy: 38.07549,
+    engName: 'Yangyang',
   },
   {
     rnum: 8,
@@ -54,6 +61,7 @@ export const areaCode32 = [
     name: '영월군',
     mapx: 128.4619,
     mapy: 37.18377,
+    engName: 'Yeongwol',
   },
   {
     rnum: 9,
@@ -61,6 +69,7 @@ export const areaCode32 = [
     name: '원주시',
     mapx: 127.92,
     mapy: 37.34232,
+    engName: 'Wonju',
   },
   {
     rnum: 10,
@@ -68,6 +77,7 @@ export const areaCode32 = [
     name: '인제군',
     mapx: 128.1704,
     mapy: 38.06973,
+    engName: 'Inje',
   },
   {
     rnum: 11,
@@ -75,6 +85,7 @@ export const areaCode32 = [
     name: '정선군',
     mapx: 128.6609,
     mapy: 37.38061,
+    engName: 'Jeongseon',
   },
   {
     rnum: 12,
@@ -82,6 +93,7 @@ export const areaCode32 = [
     name: '철원군',
     mapx: 127.3135,
     mapy: 38.14686,
+    engName: 'Cheorwon',
   },
   {
     rnum: 13,
@@ -89,6 +101,7 @@ export const areaCode32 = [
     name: '춘천시',
     mapx: 127.73,
     mapy: 37.88137,
+    engName: 'Chuncheon',
   },
   {
     rnum: 14,
@@ -96,6 +109,7 @@ export const areaCode32 = [
     name: '태백시',
     mapx: 128.9857,
     mapy: 37.16413,
+    engName: 'Taebaek',
   },
   {
     rnum: 15,
@@ -103,6 +117,7 @@ export const areaCode32 = [
     name: '평창군',
     mapx: 128.3902,
     mapy: 37.37077,
+    engName: 'Pyeongchang',
   },
   {
     rnum: 16,
@@ -110,6 +125,7 @@ export const areaCode32 = [
     name: '홍천군',
     mapx: 127.8885,
     mapy: 37.69721,
+    engName: 'Hongcheon',
   },
   {
     rnum: 17,
@@ -117,6 +133,7 @@ export const areaCode32 = [
     name: '화천군',
     mapx: 127.7082,
     mapy: 38.10618,
+    engName: 'Hwacheon',
   },
   {
     rnum: 18,
@@ -124,5 +141,6 @@ export const areaCode32 = [
     name: '횡성군',
     mapx: 127.985,
     mapy: 37.4918,
+    engName: 'Hoengseong',
   },
 ];

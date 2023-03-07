@@ -5,6 +5,7 @@ export const areaCode34 = [
     name: '공주시',
     mapx: 127.119,
     mapy: 36.44656,
+    engName: 'Gongju',
   },
   {
     rnum: 2,
@@ -12,6 +13,7 @@ export const areaCode34 = [
     name: '금산군',
     mapx: 127.4882,
     mapy: 36.10886,
+    engName: 'Geumsan',
   },
   {
     rnum: 3,
@@ -19,6 +21,7 @@ export const areaCode34 = [
     name: '논산시',
     mapx: 127.0986,
     mapy: 36.18724,
+    engName: 'Nonsan',
   },
   {
     rnum: 4,
@@ -26,6 +29,7 @@ export const areaCode34 = [
     name: '당진시',
     mapx: 126.6459,
     mapy: 36.88997,
+    engName: 'Dangjin',
   },
   {
     rnum: 5,
@@ -33,6 +37,7 @@ export const areaCode34 = [
     name: '보령시',
     mapx: 126.6128,
     mapy: 36.33345,
+    engName: 'Boryeong',
   },
   {
     rnum: 6,
@@ -40,6 +45,7 @@ export const areaCode34 = [
     name: '부여군',
     mapx: 126.9098,
     mapy: 36.27566,
+    engName: 'Buyeo',
   },
   {
     rnum: 7,
@@ -47,6 +53,7 @@ export const areaCode34 = [
     name: '서산시',
     mapx: 126.4503,
     mapy: 36.78492,
+    engName: 'Seosan',
   },
   {
     rnum: 8,
@@ -54,6 +61,7 @@ export const areaCode34 = [
     name: '서천군',
     mapx: 126.6917,
     mapy: 36.08029,
+    engName: 'Seocheon',
   },
   {
     rnum: 9,
@@ -61,6 +69,7 @@ export const areaCode34 = [
     name: '아산시',
     mapx: 127.0025,
     mapy: 36.79001,
+    engName: 'Asan',
   },
   {
     rnum: 10,
@@ -68,6 +77,7 @@ export const areaCode34 = [
     name: '예산군',
     mapx: 126.8447,
     mapy: 36.6809,
+    engName: 'Yesan',
   },
   {
     rnum: 11,
@@ -75,6 +85,7 @@ export const areaCode34 = [
     name: '천안시',
     mapx: 127.1139,
     mapy: 36.81515,
+    engName: 'Cheonan',
   },
   {
     rnum: 12,
@@ -82,6 +93,7 @@ export const areaCode34 = [
     name: '청양군',
     mapx: 126.8022,
     mapy: 36.45915,
+    engName: 'Cheongyang',
   },
   {
     rnum: 13,
@@ -89,6 +101,7 @@ export const areaCode34 = [
     name: '태안군',
     mapx: 126.2979,
     mapy: 36.74561,
+    engName: 'Taean',
   },
   {
     rnum: 14,
@@ -96,6 +109,7 @@ export const areaCode34 = [
     name: '홍성군',
     mapx: 126.6608,
     mapy: 36.60132,
+    engName: 'Hongseong',
   },
   {
     rnum: 15,
@@ -103,5 +117,6 @@ export const areaCode34 = [
     name: '계룡시',
     mapx: 36.27455,
     mapy: 36.27455,
+    engName: 'Gyeryong',
   },
 ];

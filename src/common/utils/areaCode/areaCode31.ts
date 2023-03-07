@@ -5,6 +5,7 @@ export const areaCode31 = [
     name: '가평군',
     mapx: 127.5095,
     mapy: 37.83151,
+    engName: 'Gapyeong',
   },
   {
     rnum: 2,
@@ -12,6 +13,7 @@ export const areaCode31 = [
     name: '고양시',
     mapx: 126.832,
     mapy: 37.6584,
+    engName: 'Goyang',
   },
   {
     rnum: 3,
@@ -19,6 +21,7 @@ export const areaCode31 = [
     name: '과천시',
     mapx: 126.9877,
     mapy: 37.4292,
+    engName: 'Gwacheon',
   },
   {
     rnum: 4,
@@ -26,6 +29,7 @@ export const areaCode31 = [
     name: '광명시',
     mapx: 126.8647,
     mapy: 37.47862,
+    engName: 'Gwangmyeong',
   },
   {
     rnum: 5,
@@ -33,6 +37,7 @@ export const areaCode31 = [
     name: '광주시',
     mapx: 127.255,
     mapy: 37.42943,
+    engName: 'Gwangju',
   },
   {
     rnum: 6,
@@ -40,6 +45,7 @@ export const areaCode31 = [
     name: '구리시',
     mapx: 127.1296,
     mapy: 37.59427,
+    engName: 'Guri',
   },
   {
     rnum: 7,
@@ -47,6 +53,7 @@ export const areaCode31 = [
     name: '군포시',
     mapx: 126.9353,
     mapy: 37.36152,
+    engName: 'Gunpo',
   },
   {
     rnum: 8,
@@ -54,6 +61,7 @@ export const areaCode31 = [
     name: '김포시',
     mapx: 126.7155,
     mapy: 37.61535,
+    engName: 'Gimpo',
   },
   {
     rnum: 9,
@@ -61,6 +69,7 @@ export const areaCode31 = [
     name: '남양주시',
     mapx: 127.2165,
     mapy: 37.63599,
+    engName: 'Namyangju',
   },
   {
     rnum: 10,
@@ -68,6 +77,7 @@ export const areaCode31 = [
     name: '동두천시',
     mapx: 127.0607,
     mapy: 37.90366,
+    engName: 'Dongducheon',
   },
   {
     rnum: 11,
@@ -75,6 +85,7 @@ export const areaCode31 = [
     name: '부천시',
     mapx: 126.766,
     mapy: 37.50359,
+    engName: 'Bucheon',
   },
   {
     rnum: 12,
@@ -82,6 +93,7 @@ export const areaCode31 = [
     name: '성남시',
     mapx: 127.1268,
     mapy: 37.42003,
+    engName: 'Seongnam',
   },
   {
     rnum: 13,
@@ -89,6 +101,7 @@ export const areaCode31 = [
     name: '수원시',
     mapx: 127.0286,
     mapy: 37.26348,
+    engName: 'Suwon',
   },
   {
     rnum: 14,
@@ -96,6 +109,7 @@ export const areaCode31 = [
     name: '시흥시',
     mapx: 126.8029,
     mapy: 37.38018,
+    engName: 'Siheung',
   },
   {
     rnum: 15,
@@ -103,6 +117,7 @@ export const areaCode31 = [
     name: '안산시',
     mapx: 126.8308,
     mapy: 37.32191,
+    engName: 'Ansan',
   },
   {
     rnum: 16,
@@ -110,6 +125,7 @@ export const areaCode31 = [
     name: '안성시',
     mapx: 127.2798,
     mapy: 37.00805,
+    engName: 'Anseong',
   },
   {
     rnum: 17,
@@ -117,6 +133,7 @@ export const areaCode31 = [
     name: '안양시',
     mapx: 126.9568,
     mapy: 37.39429,
+    engName: 'Anyang',
   },
   {
     rnum: 18,
@@ -124,6 +141,7 @@ export const areaCode31 = [
     name: '양주시',
     mapx: 127.0458,
     mapy: 37.78533,
+    engName: 'Yangju',
   },
   {
     rnum: 19,
@@ -131,6 +149,7 @@ export const areaCode31 = [
     name: '양평군',
     mapx: 127.4876,
     mapy: 37.49179,
+    engName: 'Yangpyeong',
   },
   {
     rnum: 20,
@@ -138,6 +157,7 @@ export const areaCode31 = [
     name: '여주시',
     mapx: 127.63635,
     mapy: 37.29791,
+    engName: 'Yeoju',
   },
   {
     rnum: 21,
@@ -145,6 +165,7 @@ export const areaCode31 = [
     name: '연천군',
     mapx: 127.0748,
     mapy: 38.09674,
+    engName: 'Yeoncheon',
   },
   {
     rnum: 22,
@@ -152,6 +173,7 @@ export const areaCode31 = [
     name: '오산시',
     mapx: 127.0775,
     mapy: 37.14989,
+    engName: 'Osan',
   },
   {
     rnum: 23,
@@ -159,6 +181,7 @@ export const areaCode31 = [
     name: '용인시',
     mapx: 127.1775,
     mapy: 37.24125,
+    engName: 'Yongin',
   },
   {
     rnum: 24,
@@ -166,6 +189,7 @@ export const areaCode31 = [
     name: '의왕시',
     mapx: 126.9683,
     mapy: 37.34489,
+    engName: 'Uiwang',
   },
   {
     rnum: 25,
@@ -173,6 +197,7 @@ export const areaCode31 = [
     name: '의정부시',
     mapx: 127.0338,
     mapy: 37.73808,
+    engName: 'Uijeongbu',
   },
   {
     rnum: 26,
@@ -180,6 +205,7 @@ export const areaCode31 = [
     name: '이천시',
     mapx: 127.435,
     mapy: 37.27234,
+    engName: 'Icheon',
   },
   {
     rnum: 27,
@@ -187,6 +213,7 @@ export const areaCode31 = [
     name: '파주시',
     mapx: 126.7799,
     mapy: 37.76019,
+    engName: 'Paju',
   },
   {
     rnum: 28,
@@ -194,6 +221,7 @@ export const areaCode31 = [
     name: '평택시',
     mapx: 127.1127,
     mapy: 36.99235,
+    engName: 'Pyeongtaek',
   },
   {
     rnum: 29,
@@ -201,6 +229,7 @@ export const areaCode31 = [
     name: '포천시',
     mapx: 127.2002,
     mapy: 37.89487,
+    engName: 'Pocheon',
   },
   {
     rnum: 30,
@@ -208,6 +237,7 @@ export const areaCode31 = [
     name: '하남시',
     mapx: 127.2149,
     mapy: 37.5393,
+    engName: 'Hanam',
   },
   {
     rnum: 31,
@@ -215,5 +245,6 @@ export const areaCode31 = [
     name: '화성시',
     mapx: 126.8314,
     mapy: 37.19957,
+    engName: 'Hwaseong',
   },
 ];

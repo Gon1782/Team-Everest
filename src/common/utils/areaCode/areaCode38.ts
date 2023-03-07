@@ -5,6 +5,7 @@ export const areaCode38 = [
     name: '강진군',
     mapx: 126.767213471898,
     mapy: 34.6420615268858,
+    engName: 'Gangjin',
   },
   {
     rnum: 2,
@@ -12,6 +13,7 @@ export const areaCode38 = [
     name: '고흥군',
     mapx: 127.284968746855,
     mapy: 34.6110820210903,
+    engName: 'Goheung',
   },
   {
     rnum: 3,
@@ -19,6 +21,7 @@ export const areaCode38 = [
     name: '곡성군',
     mapx: 127.291929639637,
     mapy: 35.2820258392354,
+    engName: 'Gokseong',
   },
   {
     rnum: 4,
@@ -26,6 +29,7 @@ export const areaCode38 = [
     name: '광양시',
     mapx: 127.695930772808,
     mapy: 34.9404252535168,
+    engName: 'Gwangyang',
   },
   {
     rnum: 5,
@@ -33,6 +37,7 @@ export const areaCode38 = [
     name: '구례군',
     mapx: 127.46270363657,
     mapy: 35.202496361707,
+    engName: 'Gurye',
   },
   {
     rnum: 6,
@@ -40,6 +45,7 @@ export const areaCode38 = [
     name: '나주시',
     mapx: 126.71082925505,
     mapy: 35.0158976865702,
+    engName: 'Naju',
   },
   {
     rnum: 7,
@@ -47,6 +53,7 @@ export const areaCode38 = [
     name: '담양군',
     mapx: 126.988210711052,
     mapy: 35.3212107735503,
+    engName: 'Damyang',
   },
   {
     rnum: 8,
@@ -54,6 +61,7 @@ export const areaCode38 = [
     name: '목포시',
     mapx: 126.392235351241,
     mapy: 34.8118309400519,
+    engName: 'Mokpo',
   },
   {
     rnum: 9,
@@ -61,6 +69,7 @@ export const areaCode38 = [
     name: '무안군',
     mapx: 126.384450031799,
     mapy: 34.7888170541041,
+    engName: 'Muan',
   },
   {
     rnum: 10,
@@ -68,6 +77,7 @@ export const areaCode38 = [
     name: '보성군',
     mapx: 127.079946438917,
     mapy: 34.7714427538727,
+    engName: 'Boseong',
   },
   {
     rnum: 11,
@@ -75,6 +85,7 @@ export const areaCode38 = [
     name: '순천시',
     mapx: 127.487382934915,
     mapy: 34.9506097806669,
+    engName: 'Suncheon',
   },
   {
     rnum: 12,
@@ -82,6 +93,7 @@ export const areaCode38 = [
     name: '신안군',
     mapx: 126.351614243402,
     mapy: 34.833553882858,
+    engName: 'Sinan',
   },
   {
     rnum: 13,
@@ -89,6 +101,7 @@ export const areaCode38 = [
     name: '여수시',
     mapx: 127.662331251572,
     mapy: 34.7604010648246,
+    engName: 'Yeosu',
   },
   {
     rnum: 14,
@@ -96,6 +109,7 @@ export const areaCode38 = [
     name: '영광군',
     mapx: 126.512013797425,
     mapy: 35.2771900332592,
+    engName: 'Yeonggwang',
   },
   {
     rnum: 15,
@@ -103,6 +117,7 @@ export const areaCode38 = [
     name: '영암군',
     mapx: 126.696762590551,
     mapy: 34.8000591144732,
+    engName: 'Yeongam',
   },
   {
     rnum: 16,
@@ -110,6 +125,7 @@ export const areaCode38 = [
     name: '완도군',
     mapx: 126.754998729552,
     mapy: 34.3109789170971,
+    engName: 'Wando',
   },
   {
     rnum: 17,
@@ -117,6 +133,7 @@ export const areaCode38 = [
     name: '장성군',
     mapx: 126.784918877012,
     mapy: 35.3018576771354,
+    engName: 'Jangseong',
   },
   {
     rnum: 18,
@@ -124,6 +141,7 @@ export const areaCode38 = [
     name: '장흥군',
     mapx: 126.907058431105,
     mapy: 34.6816120675641,
+    engName: 'Jangheung',
   },
   {
     rnum: 19,
@@ -131,6 +149,7 @@ export const areaCode38 = [
     name: '진도군',
     mapx: 126.263446186439,
     mapy: 34.486828620348,
+    engName: 'Jindo',
   },
   {
     rnum: 20,
@@ -138,6 +157,7 @@ export const areaCode38 = [
     name: '함평군',
     mapx: 126.516624840635,
     mapy: 35.0659111691242,
+    engName: 'Hampyeong',
   },
   {
     rnum: 21,
@@ -145,6 +165,7 @@ export const areaCode38 = [
     name: '해남군',
     mapx: 126.599270065365,
     mapy: 34.5735165884839,
+    engName: 'Haenam',
   },
   {
     rnum: 22,
@@ -152,5 +173,6 @@ export const areaCode38 = [
     name: '화순군',
     mapx: 126.986502436773,
     mapy: 35.0645119791204,
+    engName: 'Hwasun',
   },
 ];

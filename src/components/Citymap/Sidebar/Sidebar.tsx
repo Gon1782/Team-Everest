@@ -63,13 +63,16 @@ const Sidebar = ({
     menuRef.current?.scrollTo(0, 0);
   }, [areacode]);
 
+  console.log(sigungu);
+  console.log(cityInfo);
   return (
     <S.Wrap ref={menuRef}>
       <S.IconWrap onClick={chosen.onClick}>
         <FaArrowLeft size={25}></FaArrowLeft>
         <S.Text>{chosen.text}</S.Text>
       </S.IconWrap>
-      {array.map((data, index) => {
+      {array.map((data: any, index) => {
+        console.log(data);
         return (
           <S.ItemWrap
             key={index}
@@ -79,7 +82,8 @@ const Sidebar = ({
               <S.SideBarImage
                 src={
                   !!sigungu.length
-                    ? ''
+                    ? require(`@/assets/CountryImages/${data['engName']}.jpg`)
+                        .default
                     : require(`@/assets/CityImage/${index + 1}.jpg`).default
                 }
                 alt="city"

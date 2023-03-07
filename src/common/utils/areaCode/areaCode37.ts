@@ -5,6 +5,7 @@ export const areaCode37 = [
     name: '고창군',
     mapx: 126.702120365321,
     mapy: 35.4356982163483,
+    engName: 'Gochang',
   },
   {
     rnum: 2,
@@ -12,6 +13,7 @@ export const areaCode37 = [
     name: '군산시',
     mapx: 126.736840487468,
     mapy: 35.9674665619218,
+    engName: 'Gunsan',
   },
   {
     rnum: 3,
@@ -19,6 +21,7 @@ export const areaCode37 = [
     name: '김제시',
     mapx: 126.88064623757,
     mapy: 35.8035816671869,
+    engName: 'Gimje',
   },
   {
     rnum: 4,
@@ -26,6 +29,7 @@ export const areaCode37 = [
     name: '남원시',
     mapx: 127.390396427422,
     mapy: 35.4163627529983,
+    engName: 'Namwon',
   },
   {
     rnum: 5,
@@ -33,6 +37,7 @@ export const areaCode37 = [
     name: '무주군',
     mapx: 127.390396427422,
     mapy: 35.4163627529983,
+    engName: 'Muju',
   },
   {
     rnum: 6,
@@ -40,6 +45,7 @@ export const areaCode37 = [
     name: '부안군',
     mapx: 126.733011321782,
     mapy: 35.7316577924649,
+    engName: 'Buan',
   },
   {
     rnum: 7,
@@ -47,6 +53,7 @@ export const areaCode37 = [
     name: '순창군',
     mapx: 127.137364881069,
     mapy: 35.3744452332964,
+    engName: 'Sunchang',
   },
   {
     rnum: 8,
@@ -54,6 +61,7 @@ export const areaCode37 = [
     name: '완주군',
     mapx: 127.162119017463,
     mapy: 35.9048145963415,
+    engName: 'Wanju',
   },
   {
     rnum: 9,
@@ -61,6 +69,7 @@ export const areaCode37 = [
     name: '익산시',
     mapx: 126.957744486694,
     mapy: 35.9482628600199,
+    engName: 'Iksan',
   },
   {
     rnum: 10,
@@ -68,6 +77,7 @@ export const areaCode37 = [
     name: '임실군',
     mapx: 126.957744486694,
     mapy: 35.9482628600199,
+    engName: 'Imsil',
   },
   {
     rnum: 11,
@@ -75,6 +85,7 @@ export const areaCode37 = [
     name: '장수군',
     mapx: 127.52161241409,
     mapy: 35.6473551301164,
+    engName: 'Jangsu',
   },
   {
     rnum: 12,
@@ -82,6 +93,7 @@ export const areaCode37 = [
     name: '전주시',
     mapx: 127.148143800621,
     mapy: 35.8240731508775,
+    engName: 'Jeonju',
   },
   {
     rnum: 13,
@@ -89,6 +101,7 @@ export const areaCode37 = [
     name: '정읍시',
     mapx: 126.856005647439,
     mapy: 35.5698780259932,
+    engName: 'Jeongeup',
   },
   {
     rnum: 14,
@@ -96,5 +109,6 @@ export const areaCode37 = [
     name: '진안군',
     mapx: 127.424865465441,
     mapy: 35.7917723036092,
+    engName: 'Jinan',
   },
 ];
