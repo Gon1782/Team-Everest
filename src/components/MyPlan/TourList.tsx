@@ -57,7 +57,7 @@ const TourList = ({
           return (
             <SpotItem key={index}>
               {item.firstimage !== '' ? (
-                <SpotImg src={item.firstimage}></SpotImg>
+                <SpotImg src={`https://${item.firstimage.slice(7)}`}></SpotImg>
               ) : (
                 <SpotImg src={require('@/assets/marker.png').default}></SpotImg>
               )}

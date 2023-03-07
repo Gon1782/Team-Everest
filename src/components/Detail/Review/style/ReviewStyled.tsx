@@ -2,11 +2,24 @@ import { ModalProps } from '@/types/StyledType';
 import styled from 'styled-components';
 
 export const ReviewSection = styled.section`
-  width: 100%;
+  width: 100vw;
+  max-width: 1470px;
 `;
 
 export const ReviewContainer = styled.div`
   width: 100%;
+  height: 600px;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    width: 10px;
+    height: 8px;
+    border-radius: 6px;
+    background: #fff;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #000;
+    border-radius: 6px;
+  }
 `;
 
 export const LoadMoreBox = styled.div`

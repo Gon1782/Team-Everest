@@ -2,12 +2,13 @@ import styled from 'styled-components';
 
 export const LandmarkContainer = styled.section`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
-  width: 100%;
+  width: 60%;
   height: 70vh;
   padding: 0 0 3rem;
-  gap: 1rem;
+  margin: 0 auto;
+  gap: 2rem;
   color: white;
 `;
 export const LandmarkBox = styled.div`
@@ -59,7 +60,7 @@ export const LandmarkBookmarkBack = styled.div`
     cursor: pointer;
   }
 `;
-export const LandmarkTitle = styled.h1`
+export const LandmarkTitle = styled.h2`
   display: flex;
   justify-content: center;
   width: 100%;
@@ -68,4 +69,6 @@ export const LandmarkTitle = styled.h1`
   border-radius: 0 0 30px 30px;
   word-break: keep-all;
   text-align: center;
+  font-size: var(--font-regular);
+  font-weight: 900;
 `;

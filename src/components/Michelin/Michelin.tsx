@@ -5,6 +5,7 @@ import { City } from '@/types/CityType';
 import { DetailResponse } from '@/types/DetailType';
 import MichelinInfoBox from './MichelinInfoBox';
 import * as S from './style/MichelinStyled';
+import Error from '../common/Error';
 
 interface Props {
   city: City;
@@ -33,6 +34,8 @@ const Michelin = ({ city }: Props) => {
       </S.MichelinSection>
     );
   if (isError) return <div>에러: {error.message}</div>;
+
+  if (!data?.response) return <Error />;
 
   const detailList = data?.response.body.items.item;
 

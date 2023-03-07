@@ -28,7 +28,9 @@ const DetailInfo = ({ item, intro, wishList }: Props) => {
   // 이미지
   const defaults = useDefault();
   const { defaultImage } = defaults();
-  const img = !!item?.firstimage ? item.firstimage : defaultImage;
+  const img = !!item?.firstimage
+    ? `https://${item.firstimage.slice(7)}`
+    : defaultImage;
 
   // 관광지소개
   const overview = {
