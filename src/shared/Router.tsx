@@ -19,10 +19,10 @@ const Router = () => {
         <Route path="/" element={<Landing />} />
         <Route path="/citymap" element={<CityMapPage />} />
         <Route element={<Layout />}>
+          <Route path="/login" element={<Login />} />
           <Route path="/main" element={<MainPage />} />
           <Route path="/planner/:userId/:planUniqueId" element={<MyPlan />} />
           <Route path="/detail/:id" element={<DetailPage />} />
-          <Route path="/login" element={<Login />} />
           <Route path="/my" element={<Mypage />} />
           <Route path="/searcharea" element={<SearchArea />} />
           <Route

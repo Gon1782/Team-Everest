@@ -1,11 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useLocation } from 'react-router-dom';
 
 const Footer = () => {
+  const location = useLocation();
+
   return (
-    <Container>
-      <Text>copyrights 2023. all rights reserved by Team Everest</Text>
-    </Container>
+    <>
+      {location.pathname !== '/login' ? (
+        <Container>
+          <Text>copyrights 2023. all rights reserved by Team Everest</Text>
+        </Container>
+      ) : null}
+    </>
   );
 };
 
