@@ -28,9 +28,12 @@ export const Introduce = styled.div`
 export const Video = styled.div`
   width: 800px;
   height: 750px;
-  background-color: #e37f7f;
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
+  & video {
+    object-fit: cover;
+    border-radius: 0 20px 20px 0;
+  }
 `;
 
 export const ContentWrap = styled.div`

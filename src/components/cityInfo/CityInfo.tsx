@@ -1,7 +1,8 @@
-import React from 'react';
-import styled from 'styled-components';
-import { City } from '@/types/CityType';
+import { FaMapMarkerAlt, FaRegCalendarAlt } from 'react-icons/fa';
+import { MdLocalFlorist } from 'react-icons/md';
 import WeatherInfo from '../CityInfoList/WeatherInfo';
+import { City } from '@/types/CityType';
+import * as S from './style/CityInfoStyled';
 
 interface Props {
   city: City;
@@ -9,45 +10,43 @@ interface Props {
 
 const CityInfo = ({ city }: Props) => {
   return (
-    <Container>
-      <CitylImg src={city.image} alt="city" />
+    <S.Container>
+      <S.CityImgBox>
+        <S.CitylImg src={city.image} alt="city" />
+      </S.CityImgBox>
       {/* 우측 도시 정보 */}
-      <CityInfoWrapper>
-        <div>
-          <WeatherInfo city={city} />
+      <S.CityInfoWrapper>
+        <S.CityInfoHeader>
           <div>{city.engarea}</div>
-          <div>{city.name}</div>
-        </div>
-        <div>{city.hashtag}</div>
-        <div>{city.description}</div>
-      </CityInfoWrapper>
-    </Container>
+          <WeatherInfo city={city} />
+        </S.CityInfoHeader>
+        <h1>{city.name}</h1>
+        <S.CityHashtag>
+          {city.hashtag.map((tag, i) => (
+            <div key={i}>{tag}</div>
+          ))}
+        </S.CityHashtag>
+        <S.CityIntroBox>
+          <S.CityIntroTitle>
+            <FaMapMarkerAlt />
+            여행장소
+          </S.CityIntroTitle>
+          <S.CityIntroTitle>
+            <FaRegCalendarAlt />
+            여행시기
+          </S.CityIntroTitle>
+          <S.CityIntroTitle>
+            <MdLocalFlorist size={24} />
+            지역 특산물
+          </S.CityIntroTitle>
+          <div>{city.tourcount}</div>
+          <div>{city.tourdate}</div>
+          <div>{city.spec}</div>
+        </S.CityIntroBox>
+        <S.Citydesc>{city.description}</S.Citydesc>
+      </S.CityInfoWrapper>
+    </S.Container>
   );
 };
 
 export default CityInfo;
-
-const Container = styled.div`
-  margin: 0 auto;
-  width: 85%;
-  height: 450px;
-  background-color: ${(props) => props.theme.white};
-  border-radius: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0 35px;
-  gap: 30px;
-`;
-
-const CitylImg = styled.img`
-  width: 50%;
-  height: 85%;
-`;
-
-// 우측 도시 정보
-const CityInfoWrapper = styled.div`
-  width: 50%;
-  height: 85%;
-  background-color: skyblue;
-`;

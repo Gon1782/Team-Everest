@@ -78,12 +78,8 @@ const WeatherInfo = ({ city }: Props) => {
 export default WeatherInfo;
 
 const Container = styled.div`
-  width: 100%;
-  height: 50px;
   display: flex;
-  justify-content: flex-end;
   align-items: center;
-  padding-right: 40px;
 `;
 
 const WeatherIcon = styled.img`
