@@ -8,7 +8,7 @@ export const AmusementInfoContainer = styled.div`
   align-items: center;
   width: 100%;
   height: 889px;
-  background-color: #9db9ff;
+  background-color: #bcd7e9;
   gap: 3rem;
 `;
 export const AmusementInfoHeader = styled.header`

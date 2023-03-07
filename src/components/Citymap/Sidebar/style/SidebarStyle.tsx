@@ -10,10 +10,10 @@ export const Wrap = styled.section`
     width: 10px;
     height: 8px;
     border-radius: 6px;
-    background: #fff;
+    background: #e6e6e6;
   }
   &::-webkit-scrollbar-thumb {
-    background: #000;
+    background: #313131;
     border-radius: 6px;
   }
 `;
