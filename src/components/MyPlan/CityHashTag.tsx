@@ -3,12 +3,13 @@ import React from 'react';
 import { BsFlagFill } from 'react-icons/bs';
 
 const CityHashTag = ({ plan }: { plan: PlanType }) => {
+  //004A7C
   return (
     <>
       {plan?.mainArea.map((area: { name: number; count: number }) => {
         return (
           <div style={{ display: 'block' }}>
-            <BsFlagFill size={30} color={'#004A7C'} />
+            <BsFlagFill size={30} color={'#EF4B27'} />
             <div
               style={{
                 height: 25,

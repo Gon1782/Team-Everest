@@ -110,6 +110,7 @@ const BestTravelPlanCard = styled.div`
   position: relative;
   overflow: hidden;
   box-shadow: 13px 14px 25px -17px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
 `;
 
 const TravelPlaceMainImgWrapper = styled.div`

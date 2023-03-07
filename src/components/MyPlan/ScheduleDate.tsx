@@ -93,6 +93,7 @@ const PlanDateWrapper = styled.div`
   display: block;
   align-items: center;
   color: black;
+  cursor: pointer;
 `;
 
 // 일정의 일일 표기

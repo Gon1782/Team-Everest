@@ -9,8 +9,10 @@ import SearchArea from '@/pages/SearchArea';
 import CityMapPage from '@/pages/CityMap/CityMapPage';
 import Layout from '@/pages/Layout/Layout';
 import CityDetailPage from '@/pages/CityDetail/CityDetailPage';
-
+import NotFound from '@/pages/NotFound';
+import Error from '@/pages/Error';
 const Router = () => {
+  //  errorElement={<NotFound />}
   return (
     <BrowserRouter>
       <Routes>
@@ -27,6 +29,7 @@ const Router = () => {
             path="/citydetail/:areaCode/:sigunguCode?"
             element={<CityDetailPage />}
           />
+          <Route path="/*" element={<NotFound />} />
         </Route>
       </Routes>
     </BrowserRouter>

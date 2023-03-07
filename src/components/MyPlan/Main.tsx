@@ -134,10 +134,10 @@ const MyPlan = () => {
     <>
       {isSidePageView && <SidePage />}
       <Main
-        style={{
-          opacity: isSidePageView ? 0.15 : 1,
-          pointerEvents: isSidePageView ? 'none' : 'auto',
-        }}
+      // style={{
+      //   opacity: isSidePageView ? 0.15 : 1,
+      //   pointerEvents: isSidePageView ? 'none' : 'auto',
+      // }}
       >
         <MyPlanContainer>
           <ProfileAndButtonSection>
