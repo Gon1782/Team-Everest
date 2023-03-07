@@ -113,7 +113,6 @@ const ThemeSlideBanner = () => {
         {/* 우측 이미지 카드 리스트 */}
         <SlideBannerWrapper
           modules={[Navigation, Pagination, Autoplay]}
-          // pagination={{ clickable: true }}
           navigation
           spaceBetween={0}
           slidesPerView={3}
@@ -167,11 +166,16 @@ const ThemeContainer = styled.div`
   width: 100%;
   position: relative;
   margin-top: 80px;
-  /* margin-bottom: 64px; */
+  @media screen and (max-width: 1280px) {
+    width: 100%;
+    height: 400px;
+    margin-bottom: 200px;
+  }
 `;
 
 // 해시 태그 카테고리
 const ThemeHashtagCategoriesWrapper = styled.div`
+  width: 70%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -185,13 +189,15 @@ const ThemeCategoriesTitle = styled.h1`
 `;
 
 const ThemeHashtagCategories = styled.ul`
+  width: 80%;
   display: flex;
+  justify-content: space-around;
   gap: 40px;
   margin-bottom: 48px;
 `;
 
 const ThemeHashTagCategory = styled.li`
-  font-size: 2.2rem;
+  font-size: 1.5rem;
   font-weight: 900;
   color: #7b7b7b;
   :hover {
@@ -215,6 +221,10 @@ const ThemelistItemsTitleWrapper = styled.div`
 const ThemelistItemsTitles = styled.ul`
   height: 100%;
   border-top: 1px solid #d7d7d7;
+  @media screen and (max-width: 1280px) {
+    width: 100%;
+    height: 400px;
+  }
 `;
 
 const ThemelistItemsTitle = styled.li`
@@ -222,7 +232,7 @@ const ThemelistItemsTitle = styled.li`
   align-items: center;
   width: 100%;
   height: calc(100% / 6);
-  font-size: 1.8rem;
+  font-size: 1.4rem;
   font-weight: 600;
   padding: 30px;
   border-bottom: 1px solid #d7d7d7;
@@ -235,20 +245,30 @@ const ThemelistItemsTitle = styled.li`
 
 // 이미지 리스트
 
-const ThemelistItemsImages = styled.ul``;
+const ThemelistItemsImages = styled.ul`
+  /* width: 300%; */
+`;
 
 const SlideBannerWrapper = styled(Swiper)`
-  width: 220%;
+  width: 300%;
 `;
 
 const SlideBanner = styled(SwiperSlide)`
-  width: 450 px;
+  width: 100%;
   height: 550px;
+  @media screen and (max-width: 1280px) {
+    width: 100%;
+    height: 400px;
+  }
 `;
 
 const ThemelistItemsImage = styled.img`
   width: 100%;
   height: 550px;
-  object-fit: fit;
+  object-fit: cover;
   border-radius: 10px;
+  @media screen and (max-width: 1280px) {
+    width: 100%;
+    height: 400px;
+  }
 `;
