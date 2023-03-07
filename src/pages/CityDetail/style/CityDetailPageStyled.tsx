@@ -3,7 +3,8 @@ import styled from 'styled-components';
 export const Wrap = styled.section`
   width: 100%;
   height: 100%;
-  /* padding-top: 50px; */
+  padding-top: 50px;
+  background-color: ${(props) => props.theme.grey};
 `;
 
 export const CityDetailImg = styled.img`
