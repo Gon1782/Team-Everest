@@ -1,5 +1,5 @@
 import useMap from '@/hooks/useMap';
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, memo } from 'react';
 import styled from 'styled-components';
 
 const { kakao } = window;
@@ -41,7 +41,7 @@ const DetailMap = ({ x, y }: Props) => {
   return <Map ref={mapRef}>{x === '0' ? '위치정보가 없습니다 ㅠㅠ' : ''}</Map>;
 };
 
-export default DetailMap;
+export default memo(DetailMap);
 
 const Map = styled.div`
   display: flex;

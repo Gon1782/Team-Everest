@@ -42,7 +42,6 @@ export const ModalBox = styled.div`
   background: #fff;
   border-radius: 8px;
   transform: translate(-50%, -50%);
-
   display: flex;
   gap: 30px;
   align-items: center;
@@ -58,7 +57,7 @@ export const StyleContent = styled.div`
   width: 100%;
   max-width: 502px;
   height: inherit;
-  padding: 20px 20px;
+  padding: 20px 0;
 `;
 
 export const StyleCityTitleEng = styled.div`
@@ -94,16 +93,16 @@ export const StyleCityDescript = styled.div`
 `;
 
 export const StyleCityHashtag = styled.div`
+  display: flex;
+  gap: 1rem;
   margin-top: 2rem;
-  font-size: 14px;
-  font-weight: 700;
+  font-size: 16px;
 `;
 
 export const StyleCityWrap = styled.div`
   display: flex;
+  justify-content: space-evenly;
   margin-top: 25px;
-  gap: 60px;
-  justify-content: center;
 `;
 
 export const TourName = styled.div`
@@ -125,7 +124,6 @@ export const TourContent = styled.div`
 //버튼
 export const StyleButtomWrap = styled.div`
   display: flex;
-  gap: 30px;
   justify-content: center;
   align-items: center;
   margin-top: 30px;
