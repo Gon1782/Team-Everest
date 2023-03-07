@@ -7,10 +7,10 @@ const Landing = () => {
     <Container>
       <InfoSection>
         <Logo
-          src={require('@/assets/Sharpa_block.jpg').default}
+          src={require('@/assets/Logo/sharpa_logo_01.png').default}
           alt="slide banner4"
         />
-        <LogoText>SHARPA</LogoText>
+        {/* <LogoText>SHARPA</LogoText> */}
         <Title>여행 스케줄링 플래너</Title>
         <StartBtn to="/main">시작하기</StartBtn>
       </InfoSection>
@@ -52,7 +52,7 @@ const InfoSection = styled.div`
 `;
 
 const Logo = styled.img`
-  width: 110px;
+  width: 200px;
   height: auto;
   margin-bottom: 15px;
 `;

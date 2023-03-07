@@ -5,6 +5,7 @@ export const areaCode33 = [
     name: '괴산군',
     mapx: 127.7867,
     mapy: 36.81538,
+    engName: 'Goesan',
   },
   {
     rnum: 2,
@@ -12,6 +13,7 @@ export const areaCode33 = [
     name: '단양군',
     mapx: 128.3656,
     mapy: 36.98454,
+    engName: 'Danyang',
   },
   {
     rnum: 3,
@@ -19,6 +21,7 @@ export const areaCode33 = [
     name: '보은군',
     mapx: 127.7295,
     mapy: 36.48946,
+    engName: 'Boeun',
   },
   {
     rnum: 4,
@@ -26,6 +29,7 @@ export const areaCode33 = [
     name: '영동군',
     mapx: 127.7834,
     mapy: 36.17505,
+    engName: 'Yeongdong',
   },
   {
     rnum: 5,
@@ -33,6 +37,7 @@ export const areaCode33 = [
     name: '옥천군',
     mapx: 127.5714,
     mapy: 36.30644,
+    engName: 'Okcheon',
   },
   {
     rnum: 6,
@@ -40,6 +45,7 @@ export const areaCode33 = [
     name: '음성군',
     mapx: 127.6905,
     mapy: 36.94028,
+    engName: 'Eumseong',
   },
   {
     rnum: 7,
@@ -47,6 +53,7 @@ export const areaCode33 = [
     name: '제천시',
     mapx: 128.191,
     mapy: 37.13265,
+    engName: 'Jecheon',
   },
   {
     rnum: 8,
@@ -54,6 +61,7 @@ export const areaCode33 = [
     name: '진천군',
     mapx: 127.4356,
     mapy: 36.85542,
+    engName: 'Jincheon',
   },
   {
     rnum: 10,
@@ -61,6 +69,7 @@ export const areaCode33 = [
     name: '청주시',
     mapx: 127.489,
     mapy: 36.6425,
+    engName: 'Cheongju',
   },
   {
     rnum: 11,
@@ -68,6 +77,7 @@ export const areaCode33 = [
     name: '충주시',
     mapx: 127.926,
     mapy: 36.99111,
+    engName: 'Chungju',
   },
   {
     rnum: 12,
@@ -75,5 +85,6 @@ export const areaCode33 = [
     name: '증평군',
     mapx: 127.5815,
     mapy: 36.78535,
+    engName: 'Jeungpyeong',
   },
 ];

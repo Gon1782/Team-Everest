@@ -5,6 +5,7 @@ export const areaCode36 = [
     name: '거제시',
     mapx: 128.661640738569,
     mapy: 34.86787710926162,
+    engName: 'Geoje',
   },
   {
     rnum: 2,
@@ -12,6 +13,7 @@ export const areaCode36 = [
     name: '거창군',
     mapx: 127.908568182479,
     mapy: 35.68744332451116,
+    engName: 'Geochang',
   },
   {
     rnum: 3,
@@ -19,6 +21,7 @@ export const areaCode36 = [
     name: '고성군',
     mapx: 128.3217793772456,
     mapy: 34.972417435881106,
+    engName: 'Goseong',
   },
   {
     rnum: 4,
@@ -26,6 +29,7 @@ export const areaCode36 = [
     name: '김해시',
     mapx: 128.3217793772456,
     mapy: 34.972417435881106,
+    engName: 'Gimhae',
   },
   {
     rnum: 5,
@@ -33,6 +37,7 @@ export const areaCode36 = [
     name: '남해군',
     mapx: 127.89008154727463,
     mapy: 34.841938791199865,
+    engName: 'Namhae',
   },
   {
     rnum: 6,
@@ -40,6 +45,7 @@ export const areaCode36 = [
     name: '마산시',
     mapx: 128.47362793941556,
     mapy: 35.13592686088617,
+    engName: 'Masan',
   },
   {
     rnum: 7,
@@ -47,6 +53,7 @@ export const areaCode36 = [
     name: '밀양시',
     mapx: 128.75578659576675,
     mapy: 35.489184166525085,
+    engName: 'Miryang',
   },
   {
     rnum: 8,
@@ -54,6 +61,7 @@ export const areaCode36 = [
     name: '사천시',
     mapx: 128.06463440062754,
     mapy: 35.002921769028724,
+    engName: 'Sacheon',
   },
   {
     rnum: 9,
@@ -61,6 +69,7 @@ export const areaCode36 = [
     name: '산청군',
     mapx: 127.86991161566843,
     mapy: 35.41460885675558,
+    engName: 'Sancheong',
   },
   {
     rnum: 10,
@@ -68,6 +77,7 @@ export const areaCode36 = [
     name: '양산시',
     mapx: 129.0447519596272,
     mapy: 35.371594383243966,
+    engName: 'Yangsan',
   },
   {
     rnum: 11,
@@ -75,6 +85,7 @@ export const areaCode36 = [
     name: '의령군',
     mapx: 128.23770334067714,
     mapy: 35.32141784037815,
+    engName: 'Uiryeong',
   },
   {
     rnum: 12,
@@ -82,6 +93,7 @@ export const areaCode36 = [
     name: '진주시',
     mapx: 128.11456702856998,
     mapy: 35.14351117018165,
+    engName: 'Jinju',
   },
   {
     rnum: 13,
@@ -89,6 +101,7 @@ export const areaCode36 = [
     name: '진해시',
     mapx: 128.7699716287213,
     mapy: 35.13772793453488,
+    engName: 'Jinhae',
   },
   {
     rnum: 14,
@@ -96,6 +109,7 @@ export const areaCode36 = [
     name: '창녕군',
     mapx: 128.49373672645038,
     mapy: 35.542748488935636,
+    engName: 'Changnyeong',
   },
   {
     rnum: 15,
@@ -103,6 +117,7 @@ export const areaCode36 = [
     name: '창원시',
     mapx: 128.61506301395914,
     mapy: 35.22222890319479,
+    engName: 'Changwon',
   },
   {
     rnum: 16,
@@ -110,6 +125,7 @@ export const areaCode36 = [
     name: '통영시',
     mapx: 128.38252471209563,
     mapy: 34.85478759885709,
+    engName: 'Tongyeong',
   },
   {
     rnum: 17,
@@ -117,6 +133,7 @@ export const areaCode36 = [
     name: '하동군',
     mapx: 127.72525199124433,
     mapy: 35.07508059067749,
+    engName: 'Hadong',
   },
   {
     rnum: 18,
@@ -124,6 +141,7 @@ export const areaCode36 = [
     name: '함안군',
     mapx: 128.3930107676348,
     mapy: 35.26709504121093,
+    engName: 'Haman',
   },
   {
     rnum: 19,
@@ -131,6 +149,7 @@ export const areaCode36 = [
     name: '함양군',
     mapx: 127.73917656473043,
     mapy: 35.52723954985504,
+    engName: 'Hamyang',
   },
   {
     rnum: 20,
@@ -138,5 +157,6 @@ export const areaCode36 = [
     name: '합천군',
     mapx: 128.16313811078658,
     mapy: 35.56888597291058,
+    engName: 'Hapcheon',
   },
 ];
