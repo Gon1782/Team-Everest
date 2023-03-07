@@ -33,7 +33,7 @@ const LoginInput = ({ name, value, check, onChange, reset }: Props) => {
           ),
           button: (
             <S.InputBtn onClick={() => reset()}>
-              <AiOutlineClose size={24} />
+              <AiOutlineClose size={20} />
             </S.InputBtn>
           ),
         };
@@ -49,13 +49,13 @@ const LoginInput = ({ name, value, check, onChange, reset }: Props) => {
                 onClick={() => setVisible(true)}
                 style={{ display: visible ? 'none' : 'flex' }}
               >
-                <AiFillEye size={24} />
+                <AiFillEye size={20} />
               </S.InputBtn>
               <S.InputBtn
                 onClick={() => setVisible(false)}
                 style={{ display: visible ? 'flex' : 'none' }}
               >
-                <AiFillEyeInvisible size={24} />
+                <AiFillEyeInvisible size={20} />
               </S.InputBtn>
             </>
           ),

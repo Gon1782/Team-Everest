@@ -73,7 +73,7 @@ const Title = styled.h2`
 
 const StartBtn = styled(NavLink)`
   text-decoration: none;
-  background-color: #0034b9;
+  background-color: #112d4e;
   width: 150px;
   height: 50px;
   font-size: 1.2rem;

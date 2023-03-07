@@ -15,17 +15,21 @@ export const LoginBox = styled.section`
   width: 440px;
   height: 635px;
   border-radius: 30px;
-  background-color: #edf2ff;
+  background-color: #f9f7f7;
   z-index: 1;
+  padding: 1rem;
 `;
 export const LoginHeader = styled.header`
   display: flex;
-  padding: 1.5rem 2rem;
-  gap: 2rem;
+  /* gap: 2rem; */
+  padding: 1rem;
+  width: 100%;
 `;
 export const LoginHeaderBtn = styled.button`
-  background-color: #edf2ff;
+  width: 100%;
   border: none;
-  font-size: 24px;
-  color: #8a9ac3;
+  font-size: 1.25rem;
+  background-color: transparent;
+  border-bottom: 2px solid #bfbfbf;
+  padding-bottom: 10px;
 `;

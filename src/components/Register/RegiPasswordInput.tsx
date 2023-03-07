@@ -40,13 +40,13 @@ const RegiPasswordInput = ({
           style={{ display: pwVisible ? 'none' : 'flex' }}
           onClick={() => setVisible(true)}
         >
-          <AiFillEye size={24} />
+          <AiFillEye size={20} />
         </S.InputBtn>
         <S.InputBtn
           style={{ display: pwVisible ? 'flex' : 'none' }}
           onClick={() => setVisible(false)}
         >
-          <AiFillEyeInvisible size={24} />
+          <AiFillEyeInvisible size={20} />
         </S.InputBtn>
       </S.LoginInputBox>
       <S.Warning
@@ -69,13 +69,13 @@ const RegiPasswordInput = ({
           style={{ display: checkPwVisible ? 'none' : 'flex' }}
           onClick={() => setCheckVisible(true)}
         >
-          <AiFillEye size={24} />
+          <AiFillEye size={20} />
         </S.InputBtn>
         <S.InputBtn
           style={{ display: checkPwVisible ? 'flex' : 'none' }}
           onClick={() => setCheckVisible(false)}
         >
-          <AiFillEyeInvisible size={24} />
+          <AiFillEyeInvisible size={20} />
         </S.InputBtn>
       </S.PasswordCheckBox>
 
