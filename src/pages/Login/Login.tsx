@@ -44,8 +44,9 @@ const Login = () => {
               style={
                 checkLogin
                   ? {
-                      color: '#0034B9',
-                      borderBottom: '3px solid #0034B9',
+                      color: '#004A7C',
+                      fontWeight: 'bold',
+                      borderBottom: '2px solid #004A7C',
                     }
                   : { cursor: 'pointer' }
               }
@@ -58,8 +59,9 @@ const Login = () => {
               style={
                 !checkLogin
                   ? {
-                      color: '#0034B9',
-                      borderBottom: '3px solid #0034B9',
+                      color: '#004A7C',
+                      fontWeight: 'bold',
+                      borderBottom: '2px solid #004A7C',
                     }
                   : { cursor: 'pointer' }
               }

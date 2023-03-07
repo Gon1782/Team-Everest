@@ -14,10 +14,10 @@ export const ReviewContainer = styled.div`
     width: 10px;
     height: 8px;
     border-radius: 6px;
-    background: #fff;
+    background: #e6e6e6;
   }
   &::-webkit-scrollbar-thumb {
-    background: #000;
+    background: #313131;
     border-radius: 6px;
   }
 `;
@@ -40,7 +40,7 @@ export const Review = styled.div`
   min-height: 275px;
   padding: 1rem;
   margin: 1rem auto;
-  border: 1px solid #a1c2f3;
+  border: 1px solid #bcd7e9;
   border-radius: 30px;
   gap: 1rem;
 `;
@@ -285,7 +285,7 @@ export const ReviewBtn = styled.button`
   font-size: 1rem;
   border-radius: 30px;
   color: white;
-  background-color: #3f46ff;
+  background-color: #004a7c;
 `;
 
 export const HiddenInput = styled.input`
@@ -332,7 +332,7 @@ export const NoReviewBox = styled.div`
   margin: auto;
   border-radius: 30px;
   color: white;
-  background-color: #9db9ff;
+  background-color: #2871a3;
   font-size: 25px;
   text-align: center;
   line-height: 36px;

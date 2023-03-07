@@ -17,6 +17,16 @@ body {
   font-family: 'Noto Sans KR', sans-serif;
   transition: all 0.3s;
   color: #1d1d1d;
+  &::-webkit-scrollbar {
+    width: 10px;
+    height: 8px;
+    border-radius: 6px;
+    background: #e6e6e6;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #313131;
+    border-radius: 6px;
+  }
 }
 
 h1 {
@@ -59,6 +69,7 @@ p {
   font-size: 1rem;
 }
 
+
 li {
   font-family: 'S-CoreDream-7ExtraBold'
 }
@@ -71,7 +82,6 @@ li {
     font-weight: 100;
     font-style: normal;
 }
-
 @font-face {
     font-family: 'S-CoreDream';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-2ExtraLight.woff') format('woff');
@@ -123,6 +133,24 @@ li {
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'S-CoreDream';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-7ExtraBold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'S-CoreDream';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-8Heavy.woff') format('woff');
+    font-weight: 800;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'S-CoreDream';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-9Black.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+}
 
 
 

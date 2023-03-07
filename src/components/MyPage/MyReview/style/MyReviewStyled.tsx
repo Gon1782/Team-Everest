@@ -25,7 +25,7 @@ export const MyReviewLoadMore = styled.button`
   height: 57px;
   font-size: 20px;
   color: white;
-  background-color: #9db9ff;
+  background-color: #2871a3;
   border-radius: 30px;
 `;
 export const MyReviewContainer = styled.div`

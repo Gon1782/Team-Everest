@@ -107,7 +107,7 @@ const ReviewBox = ({ item, review }: Props) => {
           >
             <BsPencil
               onClick={() => openEditModal()}
-              color="#9DB9FF"
+              color="#2871A3"
               size={25}
             />
             <HiOutlineTrash onClick={() => openDeleteModal()} size={25} />

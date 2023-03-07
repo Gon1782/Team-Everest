@@ -29,7 +29,7 @@ export const LoginInput = styled.input`
   border: none;
   border-bottom: 1px solid black;
   font-size: 1rem;
-  background-color: #edf2ff;
+  background-color: transparent;
 `;
 export const InputBtn = styled.div`
   display: flex;
@@ -53,6 +53,11 @@ export const LoginBtnConatiner = styled.div`
   justify-content: center;
   align-items: center;
 `;
+export const SharpaLogo = styled.img`
+  color: #f2f2f2;
+  width: 18px;
+  margin-right: 10px;
+`;
 export const LoginBtn = styled.button<ButtonProps>`
   display: flex;
   justify-content: center;
@@ -69,6 +74,9 @@ export const LoginBtn = styled.button<ButtonProps>`
   & svg {
     margin-right: 0.5rem;
   }
+  &:hover {
+    box-shadow: 6px 6px 14px -8px rgba(0, 0, 0, 0.44);
+  }
 `;
 export const LoginOrBox = styled.div`
   display: flex;
@@ -82,14 +90,15 @@ export const LoginLine = styled.span`
   display: block;
   width: 85%;
   height: 1px;
-  background-color: #707070;
+  background-color: #acacac;
 `;
 export const LoginOr = styled.div`
   display: flex;
   width: 150px;
   justify-content: center;
-  background-color: #edf2ff;
+  background-color: #f9f7f7;
   z-index: 1;
+  color: #1d1d1d;
 `;
 export const RegisterBtn = styled.div`
   cursor: pointer;
@@ -119,12 +128,14 @@ export const RegisterInputContainer = styled.div`
 `;
 export const LoginTitle = styled.div`
   margin-bottom: 1rem;
-  font-size: 24px;
+  font-size: 20px;
+  font-weight: 500;
   color: rgba(0, 0, 0, 50%);
 `;
 export const RegisterTitle = styled.div`
   margin: 0.5rem 0;
-  font-size: 24px;
+  font-size: 20px;
+  font-weight: 500;
   color: rgba(0, 0, 0, 50%);
 `;
 
@@ -152,7 +163,7 @@ export const PasswordCheckInput = styled.input`
   border: none;
   border-bottom: 1px solid black;
   font-size: 1rem;
-  background-color: #edf2ff;
+  background-color: #f9f7f7;
 `;
 
 export const ModalContainer = styled.div`
