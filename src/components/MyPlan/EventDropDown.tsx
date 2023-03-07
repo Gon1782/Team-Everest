@@ -130,7 +130,6 @@ const EventDropDown = ({
     eventRef.current[date][index].style.display =
       isDisplay === 'none' ? 'block' : 'none';
     if (event['isSave'] === false || event['when']['time'] === 999) {
-      // if (event['isSave'] === false || event['when']['time'] === 999) {
       // 저장 여부
       setInitEventWhen({
         // 저장 안했으면 초기화

@@ -65,7 +65,7 @@ export const LandmarkTitle = styled.h2`
   justify-content: center;
   width: 100%;
   padding: 0.5rem;
-  background-color: #737373;
+  /* background-color: #737373; */
   border-radius: 0 0 30px 30px;
   word-break: keep-all;
   text-align: center;

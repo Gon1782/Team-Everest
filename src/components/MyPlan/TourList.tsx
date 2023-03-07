@@ -54,25 +54,33 @@ const TourList = ({
       </MyWish>
       {!!list?.length &&
         list.map((item: any, index: number) => {
-          return (
-            <SpotItem key={index}>
-              {item.firstimage !== '' ? (
-                <SpotImg src={`https://${item.firstimage.slice(7)}`}></SpotImg>
-              ) : (
-                <SpotImg src={require('@/assets/marker.png').default}></SpotImg>
-              )}
-              <SpotInfo>
-                <SpotTitle>{item.title}</SpotTitle>
-                <SpotEtc>{categoryKor[item.cat3]}</SpotEtc>
-                <SpotEtc>{item.addr1}</SpotEtc>
-              </SpotInfo>
-              <SpotSaveButton>
-                <SaveButton onClick={() => eventHandler(item)}>
-                  <BsFlagFill size={20} color={'#8AB6D6'} />
-                </SaveButton>
-              </SpotSaveButton>
-            </SpotItem>
-          );
+          if (!!item) {
+            return (
+              <SpotItem key={index}>
+                {!!item.firstimage ? (
+                  <SpotImg
+                    src={`https://${item.firstimage.slice(7)}`}
+                  ></SpotImg>
+                ) : (
+                  <SpotImg
+                    src={require('@/assets/noimage.jpg').default}
+                  ></SpotImg>
+                )}
+                <SpotInfo>
+                  <SpotTitle>{item.title}</SpotTitle>
+                  <SpotEtc>{categoryKor[item.cat3]}</SpotEtc>
+                  <SpotEtc>{item.addr1}</SpotEtc>
+                </SpotInfo>
+                <SpotSaveButton>
+                  <SaveButton onClick={() => eventHandler(item)}>
+                    <BsFlagFill size={20} color={'#8AB6D6'} />
+                  </SaveButton>
+                </SpotSaveButton>
+              </SpotItem>
+            );
+          } else {
+            <div style={{ height: 200 }}>마지막 검색 결과 입니다</div>;
+          }
         })}
     </TourListContainer>
   );

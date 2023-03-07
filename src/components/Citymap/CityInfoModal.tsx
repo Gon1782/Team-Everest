@@ -71,13 +71,13 @@ const CityInfoModal = ({
             >
               도시 상세보기
             </S.StyleButton>
-            <S.StyleButton
+            {/* <S.StyleButton
               onClick={() => {
                 navigate('/planner/my/write');
               }}
             >
               일정 만들기
-            </S.StyleButton>
+            </S.StyleButton> */}
           </S.StyleButtomWrap>
         </S.StyleContent>
       </S.ModalBox>
