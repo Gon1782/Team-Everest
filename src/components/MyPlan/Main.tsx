@@ -143,7 +143,7 @@ const MyPlan = () => {
           <ProfileAndButtonSection>
             {authority.view && ( // 일정을 클릭하고 들어온 경우
               <>
-                <ProfileBox>
+                <ProfileBox onClick={() => navigate('/my', { state: userId })}>
                   <Profile>
                     <img
                       src={
@@ -325,6 +325,7 @@ const ProfileAndButtonSection = styled.div`
 `;
 
 const ProfileBox = styled.div`
+  cursor: pointer;
   display: flex;
   align-items: center;
 `;
