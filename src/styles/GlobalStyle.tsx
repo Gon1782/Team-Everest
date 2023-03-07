@@ -17,6 +17,16 @@ body {
   font-family: 'Noto Sans KR', sans-serif;
   transition: all 0.3s;
   color: #1d1d1d;
+  &::-webkit-scrollbar {
+    width: 10px;
+    height: 8px;
+    border-radius: 6px;
+    background: #e6e6e6;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #313131;
+    border-radius: 6px;
+  }
 }
 
 h1 {

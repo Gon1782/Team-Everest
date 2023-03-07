@@ -19,7 +19,7 @@ export const ReviewBtn = styled.button`
   border: none;
   border-radius: 30px;
   color: white;
-  background-color: #3f46ff;
+  background-color: #004a7c;
 `;
 
 export const DetailSection = styled.section`
