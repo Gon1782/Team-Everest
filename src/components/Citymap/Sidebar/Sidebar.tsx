@@ -63,8 +63,6 @@ const Sidebar = ({
     menuRef.current?.scrollTo(0, 0);
   }, [areacode]);
 
-  console.log(sigungu);
-  console.log(cityInfo);
   return (
     <S.Wrap ref={menuRef}>
       <S.IconWrap onClick={chosen.onClick}>
@@ -72,7 +70,6 @@ const Sidebar = ({
         <S.Text>{chosen.text}</S.Text>
       </S.IconWrap>
       {array.map((data: any, index) => {
-        console.log(data);
         return (
           <S.ItemWrap
             key={index}

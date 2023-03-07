@@ -55,7 +55,6 @@ const WeatherInfo = ({ city }: Props) => {
   const getWeather = async (lat: string, lon: string) => {
     let url = `${apiUrl}lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`;
     let response = await axios.get(url);
-    console.log('response', response);
     setWeatherName(response?.data.weather[0].main);
     setTemp(response?.data.main.temp);
   };

@@ -61,7 +61,6 @@ export const dateConvert = (scheduleInfo: ScheduleInfo): any => {
 };
 
 export const timeHandler = (when: { time: number }): any => {
-  // console.log(when?.time);
   if (when?.time === 999) return '--:--';
 
   const floorForHour = Math.floor(when.time / 60);
@@ -131,8 +130,6 @@ export const countMainArea = (plan: PlanType) => {
       };
     }
   }
-  // const a = countArr.filter((item: any) => !!item.count);
-  // console.log(a);
   return countArr.filter((item: any) => !!item.count);
 };
 
