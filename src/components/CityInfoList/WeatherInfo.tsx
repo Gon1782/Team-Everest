@@ -67,9 +67,11 @@ const WeatherInfo = ({ city }: Props) => {
 
   return (
     <Container>
-      <WeatherIcon src={weatherIcon[weatherName]} alt="weather" />
-      <WeatherName>{weatherKor[weatherName]}</WeatherName>
-      <div>{temp}&#8451;</div>
+      <>
+        <WeatherIcon src={weatherIcon[weatherName]} alt="weather" />
+        <WeatherName>{weatherKor[weatherName]}</WeatherName>
+        <WeatherTemp>{temp}&#8451;</WeatherTemp>
+      </>
     </Container>
   );
 };
@@ -79,6 +81,13 @@ export default WeatherInfo;
 const Container = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
+  background-color: ${(props) => props.theme.grey};
+  width: 155px;
+  height: 32px;
+  border-radius: 100px;
+  padding-left: 8px;
+  padding-right: 8px;
 `;
 
 const WeatherIcon = styled.img`
@@ -89,4 +98,9 @@ const WeatherIcon = styled.img`
 
 const WeatherName = styled.p`
   margin-right: 8px;
+  font-weight: 500;
+`;
+
+const WeatherTemp = styled.p`
+  font-size: 0.875rem;
 `;

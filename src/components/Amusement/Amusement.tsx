@@ -76,7 +76,7 @@ const Amusement = ({ city }: Props) => {
           delay: 3000,
           disableOnInteraction: false,
         }}
-        style={{ height: 497, borderRadius: 30 }}
+        style={{ height: 497, borderRadius: 30, marginBottom: 80 }}
         speed={1500}
       >
         {detailList?.map((x) => {

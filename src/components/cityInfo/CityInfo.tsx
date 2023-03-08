@@ -17,7 +17,7 @@ const CityInfo = ({ city }: Props) => {
       {/* 우측 도시 정보 */}
       <S.CityInfoWrapper>
         <S.CityInfoHeader>
-          <div>{city.engarea}</div>
+          <S.CityEngName>{city.engarea}</S.CityEngName>
           <WeatherInfo city={city} />
         </S.CityInfoHeader>
         <h1>{city.name}</h1>
@@ -28,20 +28,20 @@ const CityInfo = ({ city }: Props) => {
         </S.CityHashtag>
         <S.CityIntroBox>
           <S.CityIntroTitle>
-            <FaMapMarkerAlt />
-            여행장소
+            <FaMapMarkerAlt size={20} />
+            <S.CityIntroTitleTxt>여행장소</S.CityIntroTitleTxt>
           </S.CityIntroTitle>
           <S.CityIntroTitle>
-            <FaRegCalendarAlt />
-            여행시기
+            <FaRegCalendarAlt size={20} />
+            <S.CityIntroTitleTxt>여행시기</S.CityIntroTitleTxt>
           </S.CityIntroTitle>
           <S.CityIntroTitle>
-            <MdLocalFlorist size={24} />
-            지역 특산물
+            <MdLocalFlorist size={22} />
+            <S.CityIntroTitleTxt>지역 특산물</S.CityIntroTitleTxt>
           </S.CityIntroTitle>
-          <div>{city.tourcount}</div>
-          <div>{city.tourdate}</div>
-          <div>{city.spec}</div>
+          <S.CityIntroContent>{city.tourcount}</S.CityIntroContent>
+          <S.CityIntroContent>{city.tourdate}</S.CityIntroContent>
+          <S.CityIntroContent>{city.spec}</S.CityIntroContent>
         </S.CityIntroBox>
         <S.Citydesc>{city.description}</S.Citydesc>
       </S.CityInfoWrapper>
