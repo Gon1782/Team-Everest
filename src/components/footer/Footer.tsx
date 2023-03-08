@@ -9,7 +9,6 @@ const Footer = () => {
     <>
       {location.pathname !== '/login' ? (
         <Container>
-          <div style={{ width: '100', height: '100' }}></div>
           <Text>copyrights 2023. all rights reserved by Team Everest</Text>
         </Container>
       ) : null}
