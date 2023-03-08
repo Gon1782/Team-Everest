@@ -27,7 +27,7 @@ const ReviewStars = ({ rating, setRating, click }: Props) => {
           return (
             <FaStar
               key={idx}
-              size={50}
+              size={30}
               onClick={() => handleStarClick(num)}
               onMouseEnter={() => setHovered(num)}
               onMouseLeave={() => setHovered(0)}

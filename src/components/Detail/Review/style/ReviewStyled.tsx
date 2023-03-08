@@ -147,15 +147,16 @@ export const StarBox = styled.div`
   display: flex;
   justify-content: center;
   gap: 0.5rem;
+  margin-top: 10px;
   & svg {
-    color: lightgray;
+    color: ${(props) => props.theme.dimgrey};
     cursor: pointer;
   }
   & svg:hover {
-    color: #0034b9;
+    color: ${(props) => props.theme.blue};
   }
   .blueStar {
-    color: #0034b9;
+    color: ${(props) => props.theme.blue};
   }
 `;
 
@@ -164,7 +165,7 @@ export const ReviewForm = styled.div`
   flex-direction: column;
   align-items: center;
   width: 90%;
-  margin: 1rem auto 0;
+  margin: 0 auto;
   & svg {
     cursor: pointer;
     left: 0;
@@ -177,21 +178,29 @@ export const ImageInput = styled.label`
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid black;
-  border-radius: 10px;
+  border: 1px solid ${(props) => props.theme.grey};
+  border-radius: 100px;
   margin: 0 0 1rem;
-  padding: 0.5rem;
+  padding: 0.3rem 0.8rem;
   gap: 1rem;
+  margin-top: 20px;
 `;
 
 export const InputArea = styled.textarea`
   width: 90%;
-  height: 180px;
-  background-color: lightgray;
+  height: 120px;
+  background-color: ${(props) => props.theme.grey};
   padding: 1rem;
   border: none;
   border-radius: 20px;
   resize: none;
+  font-family: 'Noto Sans KR', sans-serif;
+  ::placeholder {
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+`;
+export const ImageInputTxt = styled.p`
+  color: ${(props) => props.theme.darkgrey};
 `;
 
 export const InputFooter = styled.div`
@@ -248,6 +257,8 @@ export const ReviewName = styled.div`
   display: flex;
   flex-direction: column;
   line-height: 20px;
+  font-weight: 500;
+  font-size: 18px;
 `;
 
 export const ReviewLeftBox = styled.div`
@@ -269,28 +280,31 @@ export const StarContainer = styled.div`
   padding: 1.5rem 0;
 `;
 
-export const ReviewModalTitle = styled.div`
+export const ReviewModalTitle = styled.p`
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  font-size: 27px;
-  margin: 1rem 0 0;
+  /* margin-top: 10px; */
+  font-size: 1.375rem;
+  font-weight: 600;
 `;
 
 export const ReviewModalBtnBox = styled.div`
   display: flex;
   justify-content: flex-end;
   width: 95%;
-  margin: 1rem 0;
+  margin-left: 1rem;
+  margin-bottom: 1.5rem;
 `;
 
 export const ReviewBtn = styled.button`
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
+  padding: 0.3rem 0.8rem;
+  font-size: 14px;
   border-radius: 30px;
   color: white;
   background-color: #004a7c;
+  margin-top: 10px;
 `;
 
 export const HiddenInput = styled.input`
@@ -308,9 +322,9 @@ export const CloseBtn = styled.div`
 export const StarTitle = styled.span`
   font-size: 20px;
 `;
-export const StarInfo = styled.span`
-  font-size: 20px;
-  color: #202020;
+export const StarInfo = styled.h4`
+  margin-top: 30px;
+  font-weight: 500;
 `;
 export const StarRating = styled.span`
   font-size: 3rem;
