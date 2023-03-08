@@ -1,3 +1,4 @@
+import { BsJustify } from 'react-icons/bs';
 import styled from 'styled-components';
 
 export const DetailContainer = styled.main`
@@ -19,7 +20,7 @@ export const ReviewBtn = styled.button`
   border: none;
   border-radius: 30px;
   color: white;
-  background-color: #004a7c;
+  background-color: ${(props) => props.theme.blue};
 `;
 
 export const DetailSection = styled.section`
@@ -27,6 +28,7 @@ export const DetailSection = styled.section`
   flex-direction: column;
   align-items: center;
   gap: 1rem;
+  width: 100%;
 `;
 
 export const LandmarkImg = styled.img`
@@ -37,11 +39,8 @@ export const LandmarkImg = styled.img`
 `;
 
 export const InfoBox = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 3fr 1fr;
-  justify-content: center;
-  justify-items: center;
-  align-items: center;
+  display: flex;
+  flex-direction: column;
   width: 100%;
   height: 25%;
   gap: 1rem;
@@ -51,6 +50,7 @@ export const InfoBox = styled.div`
 export const DetailTitle = styled.h1`
   font-size: 3rem;
   font-weight: bold;
+  text-align: center;
 `;
 
 export const DetailScore = styled.div`
@@ -65,6 +65,9 @@ export const DetailScore = styled.div`
 export const DetailRatingBox = styled.span`
   display: flex;
   gap: 0.2rem;
+  font-size: 20px;
+  line-height: 22px;
+  color: ${(props) => props.theme.black};
 `;
 export const SmallTitle = styled.h4`
   display: flex;
@@ -72,24 +75,21 @@ export const SmallTitle = styled.h4`
   gap: 1rem;
   margin: 1rem auto 1rem 0;
   font-size: 1rem;
-  font-weight: bold;
+  font-weight: 600;
 `;
-
 export const LocationInfo = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, minmax(2rem, auto));
   width: 100%;
   height: 100%;
-  gap: 1rem;
   font-size: 1rem;
   line-height: 2rem;
+  margin-bottom: 80px;
 `;
-
 export const LandMarkInfo = styled.span`
   font-weight: normal;
 `;
-
 export const DetailOverview = styled.div`
   width: 1024px;
   min-height: 200px;
@@ -97,14 +97,13 @@ export const DetailOverview = styled.div`
   text-align: center;
   margin: 2rem 0;
 `;
-
-export const DetailSubTitle = styled.h1`
+export const DetailSubTitle = styled.h2`
   display: flex;
   justify-content: center;
   width: 100%;
   margin: 2rem 0;
-  font-size: 3rem;
-  font-weight: bold;
+  margin-top: 80px;
+  margin-bottom: 48px;
 `;
 
 export const DetailReviewTitle = styled.div`

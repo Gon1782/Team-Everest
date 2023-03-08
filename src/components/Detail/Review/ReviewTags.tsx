@@ -30,7 +30,7 @@ const ReviewTags = ({ tags, tag, setTag }: Props) => {
               <Tag
                 onClick={() => (check ? removeTag(x) : addTag(x))}
                 style={{
-                  backgroundColor: check ? '#0034B9' : 'lightgray',
+                  backgroundColor: check ? '#004A7C' : 'lightgray',
                   color: check ? 'white' : 'black',
                 }}
                 key={i}
@@ -53,19 +53,19 @@ export const ReivewTagContainer = styled.div`
   justify-content: center;
   align-items: center;
   padding: 1.5rem;
-  background-color: #f8fbff;
+  background-color: ${(props) => props.theme.grey};
 `;
 
 export const ReviewTagTitle = styled.span`
   font-size: 27px;
   font-weight: 600;
-  color: #202020;
+  color: ${(props) => props.theme.black};
   line-height: 28px;
 `;
 
 export const ReviewTagSubTitle = styled.span`
   font-size: 27px;
-  color: #666666;
+  color: ${(props) => props.theme.darkgrey};
   line-height: 28px;
 `;
 
@@ -92,7 +92,7 @@ export const Tag = styled.div`
   justify-content: center;
   align-items: center;
   width: 155px;
-  height: 46px;
+  height: 42px;
   background-color: lightgray;
   border-radius: 30px;
 `;
