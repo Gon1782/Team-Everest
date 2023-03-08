@@ -42,6 +42,7 @@ const Michelin = ({ city }: Props) => {
   return (
     <S.MichelinSection>
       <S.MichelinTitle>여행에서 맛집이 빠질수 없죠 !</S.MichelinTitle>
+      <S.Introduce>{city.name}의 맛집을 알려드릴게요!</S.Introduce>
       <S.MichelinInfoContainer>
         {detailList?.map((x) => {
           return <MichelinInfoBox item={x} key={x.contentid} />;

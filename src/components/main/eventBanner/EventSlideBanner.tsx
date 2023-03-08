@@ -14,7 +14,7 @@ const EventSlideBanner = () => {
   }, []);
   return (
     <>
-      <Swiper
+      <SlideWrapper
         // install Swiper modules
         modules={[Navigation, Pagination, Autoplay]}
         pagination={{ clickable: true }}
@@ -75,18 +75,26 @@ const EventSlideBanner = () => {
           </Link>
           　
         </SlideBanner>
-      </Swiper>
+      </SlideWrapper>
     </>
   );
 };
 
 export default EventSlideBanner;
 
+const SlideWrapper = styled(Swiper)`
+  width: 100%;
+  height: 450px;
+`;
+
 const SlideBanner = styled(SwiperSlide)`
   width: 100%;
-  /* height: 450px; */
   img {
     width: 100%;
+  }
+  a {
+    width: 100%;
+    height: 450px;
   }
   top: 0;
 `;

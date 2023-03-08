@@ -55,11 +55,11 @@ const MichelinInfoBox = ({ item }: Props) => {
           <S.MichelinRatingDiv>
             {rating.map((x, i) => {
               if (x) {
-                return <FaStar color="#0039CB" size={24} key={i} />;
+                return <FaStar color="#2871A3" size={24} key={i} />;
               } else {
                 if (rating[i - 1] && ratingScore !== Math.floor(ratingScore))
-                  return <FaStarHalfAlt color="#0039CB" size={24} key={i} />;
-                return <FaRegStar color="#0039CB" size={24} key={i} />;
+                  return <FaStarHalfAlt color="#2871A3" size={20} key={i} />;
+                return <FaRegStar color="#2871A3" size={20} key={i} />;
               }
             })}
           </S.MichelinRatingDiv>

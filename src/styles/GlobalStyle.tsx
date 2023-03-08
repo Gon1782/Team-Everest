@@ -30,27 +30,31 @@ body {
 }
 
 h1 {
-  font-size: 3.125rem;
+  font-size: 2.6rem;
   font-weight: 700;
   font-family: 'S-CoreDream';
+  color: #1d1d1d;
 }
 
 h2 {
-  font-size: 2.8rem;
+  font-size: 2.4rem;
   font-weight: 600;
   font-family: 'S-CoreDream';
+  color: #1d1d1d;
 }
 
 h3 {
-  font-size: 2.6rem;
+  font-size: 2rem;
   font-weight: 500;
   font-family: 'S-CoreDream';
+  color: #1d1d1d;
 }
 
 h4 {
-  font-size: 1.375rem;
+  font-size: 1.6rem;
   font-weight: 400;
   font-family: 'S-CoreDream';
+  color: #1d1d1d;
 }
 
 h5 {

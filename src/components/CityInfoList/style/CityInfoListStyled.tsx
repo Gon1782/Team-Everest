@@ -13,16 +13,15 @@ export const SectionInfo = styled.div`
   width: 100%;
 `;
 
-export const Title = styled.h1`
-  line-height: 3.5rem;
-  margin-bottom: 40px;
-  font-size: 3.125rem;
+export const Title = styled.h2`
+  line-height: 55px;
 `;
 
-export const Introduce = styled.div`
-  line-height: 2rem;
-  margin-bottom: 80px;
-  font-size: 1.688rem;
+export const Introduce = styled.h5`
+  line-height: 30px;
+  font-weight: 300;
+  margin-top: 25px;
+  margin-bottom: 48px;
 `;
 
 export const Video = styled.div`
@@ -30,6 +29,7 @@ export const Video = styled.div`
   height: 750px;
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
+  box-shadow: 13px 14px 25px -17px rgba(0, 0, 0, 0.15);
   & video {
     object-fit: cover;
     border-radius: 0 20px 20px 0;
@@ -58,24 +58,26 @@ export const Image = styled.img`
 export const ContentInfoWrap = styled.div`
   width: 435px;
   height: 250px;
-  border: 1px solid lightgrey;
+  /* border: 1px solid ${(props) => props.theme.dimgrey}; */
   border-radius: 20px;
   gap: 30px;
   padding: 30px 25px;
+  background-color: ${(props) => props.theme.white};
+  box-shadow: 13px 14px 25px -17px rgba(0, 0, 0, 0.15);
 `;
 
-export const TourName = styled.h2`
-  font-size: 27px;
+export const TourName = styled.h4`
   font-weight: 600;
   margin-bottom: 20px;
-  color: #222222;
   word-break: keep-all;
+  line-height: 35px;
 `;
 
 export const TourAddr = styled.p`
   margin-bottom: 1.375rem;
-  font-size: 20px;
-  color: #222222;
+  color: ${(props) => props.theme.darkgrey};
+  word-break: keep-all;
+  font-size: 14px;
 `;
 
 export const TopSection = styled.div`
@@ -88,11 +90,11 @@ export const TourCat = styled.span`
   display: inline-block;
   min-width: 95px;
   height: 35px;
-  background-color: #5690c7;
+  background-color: ${(props) => props.theme.blue};
   color: #f2f2f2;
   padding: 8px 10px;
   border-radius: 20px;
-  font-size: 1.125rem;
+  font-size: 1rem;
   text-align: center;
   line-height: 1rem;
 `;

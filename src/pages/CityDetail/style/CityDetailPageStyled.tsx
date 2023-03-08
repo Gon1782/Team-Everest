@@ -21,11 +21,3 @@ export const WeatherWrap = styled.section`
   justify-content: center;
   margin: 20px 0;
 `;
-
-export const Introduce = styled.section`
-  display: flex;
-  justify-content: center;
-  margin: 80px 0 64px;
-  font-size: 50px;
-  font-weight: 700;
-`;

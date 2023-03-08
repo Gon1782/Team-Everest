@@ -5,13 +5,21 @@ export const MichelinSection = styled.section`
   width: 100%;
   margin: 0 auto 80px;
 `;
-export const MichelinTitle = styled.h2`
+
+export const Introduce = styled.h2`
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  margin-bottom: 64px;
+  /* font-size: 50px; */
+  font-weight: 700;
+`;
+export const MichelinTitle = styled.h4`
   display: flex;
   justify-content: center;
   width: 100%;
-  font-size: 2rem;
-  margin: 0 0 3rem;
 `;
+
 export const MichelinInfoBox = styled.div`
   cursor: pointer;
   width: 302px;
@@ -22,7 +30,7 @@ export const MichelinImage = styled.img`
   width: 302px;
   height: 226px;
   background-color: lightgray;
-  border-radius: 30px;
+  border-radius: 15px;
   object-fit: cover;
 `;
 export const MichelinInfo = styled.div`
@@ -39,37 +47,39 @@ export const MichelinInfos = styled.div`
   flex-direction: column;
   width: 95%;
   height: 171px;
-  padding: 1rem;
+  padding: 15px;
   margin: 0 auto;
   gap: 1rem;
   background-color: white;
-  border-radius: 30px;
+  border-radius: 15px;
+  box-shadow: 13px 14px 25px -17px rgba(0, 0, 0, 0.28);
 `;
 export const MichelinPlace = styled.div`
   display: flex;
   gap: 0.5rem;
 `;
-export const MichelinLocation = styled.span`
-  color: #0034b9;
-  font-size: 14px;
+export const MichelinLocation = styled.p`
+  color: ${(props) => props.theme.blue};
+  font-size: 15px;
 `;
-export const MichelinAddr = styled.span`
-  color: '#5A5A5A';
+export const MichelinAddr = styled.p`
+  color: ${(props) => props.theme.darkgrey};
   word-break: 'keep-all';
-  font-size: 14px;
+  font-size: 15px;
 `;
-export const MichelinInfoTitle = styled.span`
-  font-size: 25px;
+export const MichelinInfoTitle = styled.h5`
+  font-weight: 600;
 `;
-export const MichelinCategory = styled.span`
-  color: #535353;
-  font-size: 18px;
+export const MichelinCategory = styled.h6`
+  color: ${(props) => props.theme.darkgrey};
+  font-size: 1rem;
+  font-weight: 300;
 `;
 export const MichelinRatingDiv = styled.div`
   display: flex;
-  gap: 1rem;
+  gap: 0.4rem;
 `;
-export const MichelinRating = styled.span`
+export const MichelinRating = styled.p`
   border-top: 1px solid black;
 `;
 export const MichelinInfoContainer = styled.div`
