@@ -19,7 +19,9 @@ const ThemeSlideBanner = () => {
   const [swiper, setSwiper] = useState<SwiperCore>();
 
   // 테마 카테고리
-  const [activeCategory, setActiveCategory] = useState<string | null>(null);
+  const [activeCategory, setActiveCategory] = useState<string | null>(
+    '# 이색 체험',
+  );
   // 테마 리스트
   const [activeList, setActiveList] = useState<string | null>(null);
 
@@ -113,7 +115,7 @@ const ThemeSlideBanner = () => {
         <SlideBannerWrapper
           modules={[Navigation, Pagination, Autoplay]}
           navigation
-          spaceBetween={0}
+          spaceBetween={20}
           slidesPerView={3}
           observer={true}
           observeParents={true}
@@ -132,7 +134,6 @@ const ThemeSlideBanner = () => {
                     src={require(`@/assets/Main_Theme/${item.id}.jpg`).default}
                     alt={`slide banner ${item.id}`}
                   />
-                  {/* <ThemeCard>{item.title}</ThemeCard> */}
                 </Link>
               </SlideBanner>
             ))}
@@ -208,7 +209,7 @@ const ThemeHashTagCategory = styled.li`
 const ThemelistItems = styled.div`
   display: flex;
   width: 100%;
-  height: 550px;
+  height: 560px;
   cursor: pointer;
 `;
 
@@ -220,10 +221,6 @@ const ThemelistItemsTitleWrapper = styled.div`
 const ThemelistItemsTitles = styled.ul`
   height: 100%;
   border-top: 1px solid #d7d7d7;
-  @media screen and (max-width: 1280px) {
-    width: 100%;
-    height: 400px;
-  }
 `;
 
 const ThemelistItemsTitle = styled.li`
@@ -245,25 +242,23 @@ const ThemelistItemsTitle = styled.li`
 // 이미지 리스트
 
 const ThemelistItemsImages = styled.ul`
-  /* width: 300%; */
+  width: 250%;
 `;
 
 const SlideBannerWrapper = styled(Swiper)`
-  width: 300%;
+  width: 250%;
 `;
 
 const SlideBanner = styled(SwiperSlide)`
-  width: 100%;
-  height: 550px;
-  @media screen and (max-width: 1280px) {
-    width: 100%;
-    height: 400px;
-  }
+  /* width: 100%; */
+  width: 420px;
+  height: 560px;
 `;
 
 const ThemelistItemsImage = styled.img`
-  width: 100%;
-  height: 550px;
+  /* width: 100%; */
+  width: 420px;
+  height: 560px;
   object-fit: cover;
   border-radius: 10px;
   @media screen and (max-width: 1280px) {
