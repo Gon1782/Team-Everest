@@ -32,12 +32,8 @@ const CityDetailPage = () => {
 
   return (
     <S.Wrap>
+      {/* 도시 정보 */}
       <CityInfo city={areaInfo} />
-      {/* <S.CityDetailImg src={areaInfo.image} alt="city" /> */}
-      {/* <S.WeatherWrap>
-
-      </S.WeatherWrap> */}
-      <S.Introduce>{areaInfo.name}를 자세히 알려드릴게요!</S.Introduce>
       {/* 음식점 */}
       <Michelin city={areaInfo} />
       {/* 레포츠 */}

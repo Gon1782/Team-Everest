@@ -9,34 +9,33 @@ export const AmusementInfoContainer = styled.div`
   width: 100%;
   height: 889px;
   background-color: #bcd7e9;
-  gap: 3rem;
 `;
 export const AmusementInfoHeader = styled.header`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 0.5rem;
+  margin-top: 80px;
+  margin-bottom: 48px;
 `;
-export const AmusementInfoSubHeader = styled.h3`
-  color: #002074;
-  font-size: 23px;
+export const AmusementInfoSubHeader = styled.h4`
+  color: ${(props) => props.theme.navy};
 `;
 export const AmusementInfoTitle = styled.h2`
-  color: #202020;
-  font-size: 35px;
-  line-height: 40px;
+  margin-top: 25px;
+  line-height: 55px;
+  text-align: center;
 `;
 export const AmusementInfoBox = styled.div`
   cursor: pointer;
   width: 100%;
   height: 100%;
-  border-radius: 30px;
+  border-radius: 20px;
 `;
 export const AmusementImg = styled.img`
   width: 100%;
-  height: 257px;
-  border-radius: 30px 30px 0 0;
+  height: 320px;
+  border-radius: 20px 20px 0 0;
 `;
 export const AmusementInfos = styled.div`
   display: flex;
@@ -44,19 +43,21 @@ export const AmusementInfos = styled.div`
   justify-content: center;
   align-items: flex-start;
   width: 100%;
-  height: 240px;
-  padding: 0 0.75rem;
+  height: 160px;
+  padding-left: 10px;
+  padding-right: 10px;
   gap: 1rem;
   background-color: white;
-  border-radius: 30px;
+  border-radius: 20px;
 `;
-export const AmusementTitle = styled.span`
-  font-size: 25;
+export const AmusementTitle = styled.h5`
   word-break: 'keep-all';
+  font-weight: 600;
 `;
-export const AmuseCategory = styled.span`
-  color: #535353;
-  font-size: 18;
+export const AmuseCategory = styled.h6`
+  color: ${(props) => props.theme.darkgrey};
+  font-size: 1rem;
+  font-weight: 300;
 `;
 export const AmuseRating = styled.div`
   display: flex;
@@ -72,19 +73,20 @@ export const AmusePlace = styled.div`
 `;
 
 export const AmuseLocation = styled.span`
-  color: #0034b9;
+  color: ${(props) => props.theme.blue};
   font-size: 14px;
 `;
 export const AmuseAddr = styled.span`
-  color: #5a5a5a;
+  color: ${(props) => props.theme.darkgrey};
   word-break: keep-all;
   font-size: 14px;
 `;
 export const SwiperSlideStyle = styled(SwiperSlide)`
   width: 320px;
-  height: 500px;
-  border-radius: 30px;
+  height: 460px;
+  border-radius: 20px;
   opacity: 0.6;
+  box-shadow: 13px 14px 25px -17px rgba(0, 0, 0, 0.28);
   &.swiper-slide-prev {
     opacity: 0.9;
   }
