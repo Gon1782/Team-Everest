@@ -10,6 +10,7 @@ export const ReviewContainer = styled.div`
   width: 100%;
   height: 600px;
   overflow-y: scroll;
+  margin-bottom: 30px;
   &::-webkit-scrollbar {
     width: 10px;
     height: 8px;
@@ -37,7 +38,7 @@ export const LoadMore = styled.button`
 export const Review = styled.div`
   display: flex;
   width: 80%;
-  min-height: 275px;
+  /* min-height: 275px; */
   padding: 1rem;
   margin: 1rem auto;
   border: 1px solid #bcd7e9;
@@ -68,11 +69,14 @@ export const ReviewSpace = styled.div`
   justify-content: space-between;
   font-size: 1rem;
   font-weight: bold;
+  padding-right: 20px;
 `;
 
 export const ReviewContent = styled.div`
   min-height: 70px;
-  font-size: 22px;
+  font-size: 18px;
+  line-height: 23px;
+  word-break: break-all;
 `;
 
 export const ReviewImageBox = styled.div`
@@ -82,16 +86,16 @@ export const ReviewImageBox = styled.div`
 `;
 
 export const ReviewCreatedAt = styled.span`
-  color: gray;
+  color: #606060;
   font-size: 14px;
 `;
 
-export const ReviewNickname = styled.span`
+export const ReviewNickname = styled.h6`
   cursor: pointer;
-  font-size: 28px;
-  color: #535353;
+  font-weight: 500;
+  color: ${(props) => props.theme.black};
   &:hover {
-    color: lightgray;
+    color: ${(props) => props.theme.darkgrey};
   }
 `;
 
@@ -253,6 +257,7 @@ export const ReviewLeftBox = styled.div`
   width: 285px;
   height: 100%;
   gap: 1rem;
+  margin: auto;
 `;
 
 export const StarContainer = styled.div`
@@ -314,9 +319,9 @@ export const ReviewTag = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0.5rem 1rem;
+  padding: 0.3rem 0.8rem;
   color: white;
-  background-color: #0034b9;
+  background-color: ${(props) => props.theme.blue};
   border-radius: 30px;
 `;
 export const ReviewTagsBox = styled.div`

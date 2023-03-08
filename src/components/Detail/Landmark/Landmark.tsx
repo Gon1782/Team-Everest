@@ -69,7 +69,7 @@ const Landmark = ({ landmark, wishList }: Props) => {
         <S.LandmarkBookmarkBack>
           <FaRegBookmark
             onClick={() => handlerWishList()}
-            size={24}
+            size={20}
             style={{
               display: bookMark ? 'none' : 'flex',
             }}
@@ -80,7 +80,7 @@ const Landmark = ({ landmark, wishList }: Props) => {
             style={{
               display: bookMark ? 'flex' : 'none',
             }}
-            color="red"
+            color="#EF4B27"
           />
         </S.LandmarkBookmarkBack>
       </S.LandmarkBookmarkBox>

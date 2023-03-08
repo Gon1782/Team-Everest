@@ -7,7 +7,9 @@ const theme = {
   skyblue: '#BCD7E9',
   dimgrey: '#D8D2CB',
   darkgrey: '#333333',
+  mediumgrey: '#D8D2CB',
   grey: '#F9F7F7',
+  red: '#EF4B27',
 };
 
 // 스타일 컴포넌트에서 사용할 때
