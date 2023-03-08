@@ -90,9 +90,9 @@ const ReviewBox = ({ item, review }: Props) => {
         <div>
           {rating.map((x, i) =>
             x ? (
-              <FaStar color="#0039CB" size={24} key={i} />
+              <FaStar color="#2871A3" size={20} key={i} />
             ) : (
-              <FaRegStar color="#0039CB" size={24} key={i} />
+              <FaRegStar color="#2871A3" size={20} key={i} />
             ),
           )}
         </div>
@@ -108,9 +108,13 @@ const ReviewBox = ({ item, review }: Props) => {
             <BsPencil
               onClick={() => openEditModal()}
               color="#2871A3"
-              size={25}
+              size={20}
             />
-            <HiOutlineTrash onClick={() => openDeleteModal()} size={25} />
+            <HiOutlineTrash
+              onClick={() => openDeleteModal()}
+              color="#1d1d1d"
+              size={22}
+            />
           </S.ReviewBtnBox>
         </S.ReviewSpace>
         <S.ReviewTagsBox>

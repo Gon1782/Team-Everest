@@ -94,7 +94,7 @@ const ReviewModal = ({
   return (
     <S.ModalContainer onClick={(e) => closeModalIfClickOutside(e)}>
       <S.ModalBox
-        width="1200px"
+        width="1000px"
         height="900px"
         gap="0"
         onSubmit={type === 'post' ? (e) => addReview(e) : (e) => editReview(e)}

@@ -10,6 +10,7 @@ export const LandmarkContainer = styled.section`
   margin: 0 auto;
   gap: 2rem;
   color: white;
+  margin-bottom: 64px;
 `;
 export const LandmarkBox = styled.div`
   cursor: pointer;
@@ -17,8 +18,9 @@ export const LandmarkBox = styled.div`
   display: flex;
   width: 100%;
   height: 100%;
-  border-radius: 30px;
+  border-radius: 20px;
   background-color: #737373;
+  box-shadow: 13px 14px 20px -17px rgba(0, 0, 0, 0.2);
 `;
 export const SeeMore = styled.div`
   cursor: pointer;
@@ -27,7 +29,7 @@ export const SeeMore = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 30px;
+  border-radius: 20px;
   background-color: #737373;
   font-size: 3rem;
 `;
@@ -35,7 +37,7 @@ export const LandmarkImg = styled.img`
   position: absolute;
   width: 100%;
   height: 100%;
-  border-radius: 30px;
+  border-radius: 20px;
   object-fit: cover;
 `;
 export const LandmarkInfo = styled.div`
@@ -54,21 +56,24 @@ export const LandmarkBookmarkBox = styled.div`
 export const LandmarkBookmarkBack = styled.div`
   margin: 1rem;
   padding: 0.5rem;
-  background-color: #737373;
+  /* background-color: ${(props) => props.theme.dimgrey}; */
+  background-color: rgba(216, 210, 203, 0.7);
   border-radius: 50%;
   & svg {
     cursor: pointer;
   }
 `;
-export const LandmarkTitle = styled.h2`
+export const LandmarkTitle = styled.h5`
   display: flex;
   justify-content: center;
+  align-items: center;
   width: 100%;
+  height: 18%;
   padding: 0.5rem;
-  /* background-color: #737373; */
-  border-radius: 0 0 30px 30px;
+  background-color: rgba(238, 238, 238, 0.7);
+  color: ${(props) => props.theme.black};
+  border-radius: 0 0 20px 20px;
   word-break: keep-all;
+  font-weight: 600;
   text-align: center;
-  font-size: var(--font-regular);
-  font-weight: 900;
 `;
