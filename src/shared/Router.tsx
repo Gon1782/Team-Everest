@@ -2,11 +2,11 @@ import { lazy } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Landing from '@/pages/Landing/Landing';
 import Layout from '@/pages/Layout/Layout';
+import MainPage from '@/pages/Main/MainPage';
+import CityDetailPage from '@/pages/CityDetail/CityDetailPage';
 
 const DetailPage = lazy(() => import('@/pages/Detail/DetailPage'));
-const MainPage = lazy(() => import('@/pages/Main/MainPage'));
 const CityMapPage = lazy(() => import('@/pages/CityMap/CityMapPage'));
-const CityDetailPage = lazy(() => import('@/pages/CityDetail/CityDetailPage'));
 const Mypage = lazy(() => import('@/pages/Mypage/Mypage'));
 const Login = lazy(() => import('@/pages/Login/Login'));
 const SearchArea = lazy(() => import('@/pages/SearchArea'));
