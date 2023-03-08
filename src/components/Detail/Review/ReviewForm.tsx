@@ -21,7 +21,7 @@ const ReviewForm = ({
   return (
     <S.ReviewForm>
       <S.ImageInput>
-        <FaCamera size={24} />
+        <FaCamera size={20} />
         <S.HiddenInput
           onChange={(e) => {
             onChangeImage(e);
@@ -29,7 +29,7 @@ const ReviewForm = ({
           type="file"
           accept="image/*"
         />
-        <div>사진추가</div>
+        <S.ImageInputTxt>사진추가</S.ImageInputTxt>
       </S.ImageInput>
       <S.InputArea
         maxLength={500}
