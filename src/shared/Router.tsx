@@ -1,18 +1,19 @@
+import { lazy } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Landing from '@/pages/Landing/Landing';
-import DetailPage from '@/pages/Detail/DetailPage';
-import MainPage from '@/pages/Main/MainPage';
-import MyPlan from '@/components/MyPlan/Main';
-import Mypage from '@/pages/Mypage/Mypage';
-import Login from '@/pages/Login/Login';
-import SearchArea from '@/pages/SearchArea';
-import CityMapPage from '@/pages/CityMap/CityMapPage';
 import Layout from '@/pages/Layout/Layout';
+import MainPage from '@/pages/Main/MainPage';
 import CityDetailPage from '@/pages/CityDetail/CityDetailPage';
-import NotFound from '@/pages/NotFound';
-import Error from '@/pages/Error';
+
+const DetailPage = lazy(() => import('@/pages/Detail/DetailPage'));
+const CityMapPage = lazy(() => import('@/pages/CityMap/CityMapPage'));
+const Mypage = lazy(() => import('@/pages/Mypage/Mypage'));
+const Login = lazy(() => import('@/pages/Login/Login'));
+const SearchArea = lazy(() => import('@/pages/SearchArea'));
+const MyPlan = lazy(() => import('@/components/MyPlan/Main'));
+const NotFound = lazy(() => import('@/pages/NotFound'));
+
 const Router = () => {
-  //  errorElement={<NotFound />}
   return (
     <BrowserRouter>
       <Routes>
