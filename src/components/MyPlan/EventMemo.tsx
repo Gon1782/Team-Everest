@@ -13,9 +13,10 @@ const EventMemo = ({ memo, setMemo }: { memo: string; setMemo: any }) => {
     <div style={{ width: '100%' }}>
       <MemoInput
         style={{ width: '80%', resize: 'none', marginTop: '5px', fontSize: 14 }}
-        placeholder="메모할 내용을 적으세요"
+        placeholder="메모할 내용을 10자내로 적으세요"
         onChange={(e) => setMemo(e.target.value)}
         value={`${memo}`}
+        maxLength={10}
       />
     </div>
   );

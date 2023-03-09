@@ -119,6 +119,6 @@ const PlanItem = styled.li`
 const SlideBanner = styled(SwiperSlide)`
   width: 100%;
   min-height: 450px;
-  height: auto;
+  height: 100%;
   border-radius: 5%;
 `;
