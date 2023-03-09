@@ -168,7 +168,7 @@ const Profile = ({ user, LoginCheck, checkMy, getUser }: Props) => {
           <S.NicknameBox>
             <span
               style={{
-                width: 140,
+                width: 'auto',
                 height: 48,
                 display: checkEdit ? 'none' : 'flex',
               }}
