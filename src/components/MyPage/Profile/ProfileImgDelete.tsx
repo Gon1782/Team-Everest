@@ -35,8 +35,10 @@ const ProfileImgDelete = ({
       <S.ModalBox width="600px" height="300px" jc="space-evenly" ai="center">
         <S.DeleteTitle>정말로 삭제하시겠습니까?</S.DeleteTitle>
         <S.DeleteBtnBox>
-          <S.DeleteBtn>취소</S.DeleteBtn>
-          <S.DeleteBtn color="red" onClick={() => deleteImage()}>
+          <S.DeleteBtn color="lightgray" onClick={() => closeDeleteModal()}>
+            취소
+          </S.DeleteBtn>
+          <S.DeleteBtn color="#EF4B27" onClick={() => deleteImage()}>
             삭제
           </S.DeleteBtn>
         </S.DeleteBtnBox>
