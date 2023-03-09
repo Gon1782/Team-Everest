@@ -17,7 +17,7 @@ const useCityMarkers = () => {
 
   const newMarker = (type: string, array: AreaCode[]) => {
     // 마커 이미지의 이미지 주소
-    let imageSrc = require('@/assets/marker.png').default;
+    let imageSrc = require('@/assets/marker2.webp').default;
     // 마커 이미지의 이미지 크기
     let imageSize = new kakao.maps.Size(60, 60);
 
