@@ -111,6 +111,11 @@ const BestTravelPlanCard = styled.div`
   overflow: hidden;
   box-shadow: 13px 14px 25px -17px rgba(0, 0, 0, 0.4);
   cursor: pointer;
+
+  &:hover {
+    transform: scale(1.05);
+    transition: 0.5s;
+  }
 `;
 
 const TravelPlaceMainImgWrapper = styled.div`
@@ -149,6 +154,7 @@ const TravelPlaceReviewerImg = styled.img`
 
 const TravelPlaceName = styled.h4`
   font-size: 1.2rem;
+  color: white;
 `;
 
 // const TravelPlaceSubImgWrapper = styled.div`
