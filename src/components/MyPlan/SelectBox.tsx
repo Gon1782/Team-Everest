@@ -19,11 +19,9 @@ const SelectBox = ({
         {dataList.length &&
           dataList.map((item: any, index: number) => {
             return (
-              <>
-                <option value={item['code']} key={index}>
-                  {item?.name}
-                </option>
-              </>
+              <option value={item['code']} key={index}>
+                {item?.name}
+              </option>
             );
           })}
       </Select>
