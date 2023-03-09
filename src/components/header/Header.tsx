@@ -79,7 +79,7 @@ const Header = () => {
             <LogInButton onClick={LoginOutHandler}>
               <img
                 src={'https://img.icons8.com/windows/64/null/user.png'}
-                style={{ width: 20, height: 20 }}
+                style={{ width: 20, height: 20, marginRight: '5' }}
               />
               <LogoutText>{logoutText ? '로그인' : '로그아웃'}</LogoutText>
             </LogInButton>
@@ -161,8 +161,6 @@ const LogInButton = styled.button`
   border-radius: 100px;
   background-color: ${(props) => props.theme.white};
   border: 1px solid ${(props) => props.theme.dimgrey};
-  color: ${(props) => props.theme.black};
-  font-size: 0.8rem;
   cursor: pointer;
   transition: all 0.3s;
   &:hover {
@@ -170,4 +168,7 @@ const LogInButton = styled.button`
   }
 `;
 
-const LogoutText = styled.p``;
+const LogoutText = styled.p`
+  color: ${(props) => props.theme.darkgrey};
+  font-size: 0.8rem;
+`;

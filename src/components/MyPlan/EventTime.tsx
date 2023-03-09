@@ -45,7 +45,7 @@ const EventTime = ({
             return { ...prev, hour: event.target.value };
           })
         }
-        width={30}
+        width={20}
         value={when.hour}
       >
         {hourList.map((item: number) => {
@@ -65,7 +65,7 @@ const EventTime = ({
           })
         }
         value={when.minute}
-        style={{ width: '28%', fontFamily: 'emoji', fontSize: 14 }}
+        style={{}}
       />
       <EventFont>분</EventFont>
     </PlanTimeMemoContainer>
@@ -79,6 +79,8 @@ const PlanTimeMemoContainer = styled.div`
   display: flex;
   background-color: #f1f6f9;
   align-items: center;
+  justify-content: center;
+  margin-top: 5px;
   /* & > p,
   h1 {
     font-size: 13px;
@@ -94,7 +96,10 @@ const TimeSelect = styled.select<{ width: number }>`
   font-size: 14px;
 `;
 const MinuteInput = styled.input`
-  width: 20%;
+  width: 10%;
+  font-family: 'emoji';
+  font-size: 14px;
+  margin-left: 5px;
   text-align: center;
   background-color: #f1f6f9;
 `;

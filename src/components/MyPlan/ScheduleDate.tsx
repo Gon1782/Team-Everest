@@ -64,7 +64,7 @@ const ScheduleDate = ({
       <PlanDateWrapper onClick={() => initMap(scheduleDate)}>
         <img
           src={require('@/assets/marker2.webp').default}
-          style={{ width: 40, height: 40 }}
+          style={{ width: 35, height: 35, marginBottom: '6px' }}
         />
 
         <PlanDate>{scheduleDate}</PlanDate>
@@ -104,15 +104,25 @@ const PlanDate = styled.p`
 
 // 일정 추가 버튼 영역
 const AddPlanBtnWapper = styled.div`
-  width: 100%;
-  display: block;
+  width: 90px;
+  height: 22px;
+  /* display: block; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100px;
+  margin: 0 auto;
+  margin-top: 8px;
   cursor: pointer;
+  transition: all 0.3s;
+  &:hover {
+    background-color: ${(props) => props.theme.white};
+    border-radius: 100px;
+  }
 `;
 
 const AddPlanBtn = styled.button`
   font-size: 0.75rem;
-  background-color: #f1f6f9;
+  background-color: transparent;
   color: grey;
-
-  border-radius: 50px;
 `;
