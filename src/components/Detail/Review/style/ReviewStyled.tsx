@@ -174,6 +174,12 @@ export const ReviewForm = styled.div`
   }
 `;
 
+export const ReviewPhotoRef = styled.span`
+  margin-top: 10px;
+  color: ${(props) => props.theme.darkgrey};
+  font-size: 14px;
+`;
+
 export const ImageInput = styled.label`
   display: flex;
   justify-content: center;
@@ -303,12 +309,17 @@ export const ReviewModalBtnBox = styled.div`
 `;
 
 export const ReviewBtn = styled.button`
-  padding: 0.3rem 0.8rem;
+  padding: 0.5rem 0.8rem;
   font-size: 14px;
   border-radius: 30px;
   color: white;
-  background-color: #004a7c;
   margin-top: 10px;
+  color: ${(props) => props.theme.white};
+  background-color: ${(props) => props.theme.blue};
+  transition: all 0.3s;
+  &:hover {
+    background-color: ${(props) => props.theme.navy};
+  }
 `;
 
 export const HiddenInput = styled.input`
@@ -354,9 +365,9 @@ export const NoReviewBox = styled.div`
   height: 275px;
   margin: auto;
   border-radius: 30px;
-  color: white;
-  background-color: #2871a3;
-  font-size: 25px;
+  color: ${(props) => props.theme.white};
+  background-color: ${(props) => props.theme.mediumgrey};
+  font-size: 22px;
   text-align: center;
   line-height: 36px;
 `;

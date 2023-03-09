@@ -21,7 +21,7 @@ const ReviewForm = ({
   const check = image.length >= 3;
   return (
     <S.ReviewForm>
-      <span>사진추가는 최대 3개까지 가능합니다.</span>
+      <S.ReviewPhotoRef>사진추가는 최대 3개까지 가능합니다.</S.ReviewPhotoRef>
       <S.ImageInput
         style={{
           cursor: check ? 'not-allowed' : 'pointer',
