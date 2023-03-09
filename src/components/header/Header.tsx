@@ -60,7 +60,7 @@ const Header = () => {
         <Nav>
           <HeaderLogo onClick={() => navigate('/main')}>
             <img
-              src={require('@/assets/Logo/sharpa_logo_02.png').default}
+              src={require('@/assets/Logo/sharpa_logo_02.webp').default}
               style={{ width: 100, height: 'auto', marginTop: 20 }}
             />
           </HeaderLogo>

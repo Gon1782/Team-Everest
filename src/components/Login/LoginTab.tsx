@@ -75,7 +75,7 @@ const LoginTab = () => {
       <S.LoginBtnConatiner>
         <S.LoginBtn color="white" backColor="#112D4E">
           <S.SharpaLogo
-            src={require('@/assets/Logo/sharpa_favicon_03.png').default}
+            src={require('@/assets/Logo/sharpa_favicon_03.webp').default}
             alt="셰르파 로고"
           />
           <span>로그인</span>

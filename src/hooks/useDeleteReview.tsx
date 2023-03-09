@@ -1,15 +1,22 @@
 import { useCallback, useEffect, useState } from 'react';
-import { useRecoilValue } from 'recoil';
-import { updateReview } from '@/common/api/reviewApi';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { getReview, updateReview } from '@/common/api/reviewApi';
 import { getUserDB, updateUserDB } from '@/common/api/userApi';
 import { DetailList } from '@/recoil/atom/Detail';
 import { EachReview } from '@/types/DetailType';
 import { getCities, updateCities } from '@/common/api/cityApi';
+import { reviewsForm } from '@/common/utils/forms';
 
 const useDeleteReview = (id: string, closeModal: () => void) => {
-  const list = useRecoilValue(DetailList);
+  const [list, setList] = useRecoilState(DetailList);
   const reviews = list.review;
   const review = reviews.filter((review) => review.id === id)[0];
+
+  const getReviews = async () => {
+    await getReview(review.contentId)
+      .then((res = reviewsForm) => setList(res))
+      .catch((error) => console.log(error.message));
+  };
 
   const sessionKey = `firebase:authUser:${process.env.FIREBASE_API_KEY}:[DEFAULT]`;
   const userItem = sessionStorage.getItem(sessionKey);
@@ -67,6 +74,7 @@ const useDeleteReview = (id: string, closeModal: () => void) => {
 
     closeModal();
     await updateReview(review.contentId, newList);
+    getReviews();
     await updateUserDB(review.uid, { ...user, MyReview: newMyReviews });
     const city = await getCities(list.areacode, list.sigungucode);
     if (!!city)

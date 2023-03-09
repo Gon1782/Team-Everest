@@ -21,7 +21,7 @@ const CheckDelete = ({ id, closeModal, closeModalIfClickOutside }: Props) => {
           <S.DeleteBtn color="lightgray" onClick={() => closeModal()}>
             취소
           </S.DeleteBtn>
-          <S.DeleteBtn color="red" onClick={() => deleteReview()}>
+          <S.DeleteBtn color="#EF4B27" onClick={() => deleteReview()}>
             삭제
           </S.DeleteBtn>
         </S.DeleteBtnBox>

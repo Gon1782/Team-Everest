@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Wrap = styled.section`
-  min-width: 18rem;
+  min-width: 21rem;
   z-index: 20;
   background-color: #fff;
   height: 100%;
@@ -58,7 +58,8 @@ export const title = styled.span`
   font-size: 18px;
 `;
 export const SideBarImage = styled.img`
-  width: 100px;
+  width: 150px;
   height: 100px;
   border-radius: 5px;
+  object-fit: cover;
 `;

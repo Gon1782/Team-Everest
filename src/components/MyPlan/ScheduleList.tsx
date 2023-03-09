@@ -44,7 +44,7 @@ const PlanScheduleList = ({
       {!!planSchedule?.length &&
         planSchedule.map((scheduleDate: any, index: number) => {
           return (
-            <SlideBanner>
+            <SlideBanner key={index}>
               <PlanItem>
                 <div
                   style={{
@@ -65,7 +65,7 @@ const PlanScheduleList = ({
                   plan.schedule[scheduleDate].map((event: any, index) => {
                     // 선택한 관광지들
                     return (
-                      <EventItem>
+                      <EventItem key={index}>
                         <Event
                           index={index}
                           item={event}
@@ -119,6 +119,6 @@ const PlanItem = styled.li`
 const SlideBanner = styled(SwiperSlide)`
   width: 100%;
   min-height: 450px;
-  height: auto;
+  height: 100%;
   border-radius: 5%;
 `;

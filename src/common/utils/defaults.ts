@@ -1,7 +1,7 @@
-export const defaultImage = require('@/assets/noimage.jpg').default;
-export const defaultImage2 = require('@/assets/noimage2.jpg').default;
+export const defaultImage = require('@/assets/noimage.webp').default;
+export const defaultImage2 = require('@/assets/noimage2.webp').default;
 export const defaultProfile =
-  require('@/assets/MyPage/defaultProfile.jpg').default;
+  require('@/assets/MyPage/defaultProfile.webp').default;
 export const defaultIntro = '소개가 없습니다 작성해주세요';
 
 export const placeHolder =

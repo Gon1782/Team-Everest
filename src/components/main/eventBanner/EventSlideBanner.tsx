@@ -39,7 +39,7 @@ const EventSlideBanner = () => {
             target="_blank"
           >
             <img
-              src={require('@/assets/Main_Event/event_banner_01.jpg').default}
+              src={require('@/assets/Main_Event/event_banner_01.webp').default}
               alt="진해 군항제"
             />
           </Link>
@@ -48,7 +48,7 @@ const EventSlideBanner = () => {
         <SlideBanner>
           <Link to="http://www.koreaflowerpark.com/" target="_blank">
             <img
-              src={require('@/assets/Main_Event/event_banner_02.jpg').default}
+              src={require('@/assets/Main_Event/event_banner_02.webp').default}
               alt="태안 세계튤립꽃박람회"
             />
           </Link>
@@ -60,7 +60,7 @@ const EventSlideBanner = () => {
             target="_blank"
           >
             <img
-              src={require('@/assets/Main_Event/event_banner_03.jpg').default}
+              src={require('@/assets/Main_Event/event_banner_03.webp').default}
               alt="오색별빛정원전"
             />
           </Link>
@@ -69,7 +69,7 @@ const EventSlideBanner = () => {
         <SlideBanner>
           <Link to="https://korearf.kpipa.or.kr/" target="_blank">
             <img
-              src={require('@/assets/Main_Event/event_banner_04.jpg').default}
+              src={require('@/assets/Main_Event/event_banner_04.webp').default}
               alt="대한민국 독서대전"
             />
           </Link>

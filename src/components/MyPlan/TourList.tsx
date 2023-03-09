@@ -57,17 +57,38 @@ const TourList = ({
           if (!!item) {
             return (
               <SpotItem key={index}>
+                {/* <div
+                  style={{
+                    width: '30%',
+                    textAlign: 'center',
+                    margin: 'auto',
+                    display: 'block',
+                  }}
+                > */}
                 {!!item.firstimage ? (
                   <SpotImg
+                    onClick={() =>
+                      window.open(`/detail/${item.contentid}`, '_blank')
+                    }
                     src={`https://${item.firstimage.slice(7)}`}
                   ></SpotImg>
                 ) : (
                   <SpotImg
-                    src={require('@/assets/noimage.jpg').default}
+                    onClick={() =>
+                      window.open(`/detail/${item.contentid}`, '_blank')
+                    }
+                    src={require('@/assets/marker_S.webp').default}
                   ></SpotImg>
                 )}
+                {/* </div> */}
                 <SpotInfo>
-                  <SpotTitle>{item.title}</SpotTitle>
+                  <SpotTitle
+                    onClick={() =>
+                      window.open(`/detail/${item.contentid}`, '_blank')
+                    }
+                  >
+                    {item.title}
+                  </SpotTitle>
                   <SpotEtc>{categoryKor[item.cat3]}</SpotEtc>
                   <SpotEtc>{item.addr1}</SpotEtc>
                 </SpotInfo>
@@ -125,7 +146,9 @@ const SpotItem = styled.div`
 
 const SpotImg = styled.img`
   width: 30%;
-  height: 100%;
+
+  /* height: 100%; */
+  cursor: pointer;
 `;
 
 const SpotInfo = styled.div`
@@ -140,6 +163,7 @@ const SpotInfo = styled.div`
 const SpotTitle = styled.div`
   font-size: 18px;
   height: auto;
+  cursor: pointer;
 `;
 const SpotEtc = styled.div`
   font-size: 10px;

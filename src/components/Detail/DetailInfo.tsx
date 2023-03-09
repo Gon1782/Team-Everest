@@ -7,6 +7,7 @@ import { Item } from '@/types/DetailType';
 import DetailMap from './DetailMap';
 import { addWishList, popWishList } from '../MyPlan/MyPlannerHandler';
 import * as S from '@/pages/Detail/style/DetailStyled';
+
 interface Props {
   item?: Item;
   intro?: Item;
@@ -76,11 +77,9 @@ const DetailInfo = ({ item, intro, wishList }: Props) => {
   return (
     <S.DetailSection>
       <S.InfoBox>
-        <div></div>
-        <S.DetailTitle>{item?.title ? item.title : '관광지'}</S.DetailTitle>
         <S.DetailScore>
           <S.DetailRatingBox>
-            <FaStar color="#0039CB" />
+            <FaStar color="#2871A3" size={22} />
             {rating}
           </S.DetailRatingBox>
           <div style={{ display: !!uid ? 'flex' : 'none', cursor: 'pointer' }}>
@@ -91,10 +90,12 @@ const DetailInfo = ({ item, intro, wishList }: Props) => {
             <FaBookmark
               onClick={() => handlerWishList()}
               style={{ display: bookMark ? 'flex' : 'none' }}
-              color="red"
+              color="#EF4B27"
+              size={18}
             />
           </div>
         </S.DetailScore>
+        <S.DetailTitle>{item?.title ? item.title : '관광지'}</S.DetailTitle>
       </S.InfoBox>
       <S.LandmarkImg src={img} alt="landmark" />
       <S.DetailOverview dangerouslySetInnerHTML={overview}></S.DetailOverview>
@@ -105,7 +106,8 @@ const DetailInfo = ({ item, intro, wishList }: Props) => {
           <S.LandMarkInfo dangerouslySetInnerHTML={homepage}></S.LandMarkInfo>
         </S.SmallTitle>
         <S.SmallTitle style={{ display: !!item?.addr1 ? 'flex' : 'none' }}>
-          주소 <S.LandMarkInfo>{item?.addr1}</S.LandMarkInfo>
+          주소
+          <S.LandMarkInfo>{item?.addr1}</S.LandMarkInfo>
         </S.SmallTitle>
         <S.SmallTitle
           style={{ display: !!intro?.infocenter ? 'flex' : 'none' }}

@@ -1,17 +1,20 @@
-import { Document } from '@/types/DetailType';
-import {
-  doc,
-  getDoc,
-  setDoc,
-  updateDoc,
-} from 'firebase/firestore';
+import { Document, Reviews } from '@/types/DetailType';
+import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
 import { db } from './firebase';
 
 export const getReview = async (id: string) => {
   try {
     const docRef = doc(db, 'reviews', id);
     const get = await getDoc(docRef);
-    return get.data();
+    const reviews: Reviews = {
+      ratingCount: get.data()?.ratingCount,
+      review: get.data()?.review,
+      tagCount: get.data()?.tagCount,
+      totalRating: get.data()?.totalRating,
+      areacode: get.data()?.areacode,
+      sigungucode: get.data()?.sigungucode,
+    };
+    return reviews;
   } catch (error) {
     if (error instanceof Error) {
       console.log(error.message);

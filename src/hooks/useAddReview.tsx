@@ -1,11 +1,12 @@
 import { useEffect, useState, useCallback } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { getDate } from '@/common/utils/getDate';
-import { postReview, updateReview } from '@/common/api/reviewApi';
+import { getReview, postReview, updateReview } from '@/common/api/reviewApi';
 import { getUserDB, updateUserDB } from '@/common/api/userApi';
 import { uuidv4 } from '@firebase/util';
 import { DetailList } from '@/recoil/atom/Detail';
 import { getCities, updateCities } from '@/common/api/cityApi';
+import { reviewsForm } from '@/common/utils/forms';
 
 const useAddReview = (
   areacode: string,
@@ -19,7 +20,7 @@ const useAddReview = (
   reset: () => void,
   closeModal: () => void,
 ) => {
-  const list = useRecoilValue(DetailList);
+  const [list, setList] = useRecoilState(DetailList);
   // 로그인 여부 확인
   const sessionKey = `firebase:authUser:${process.env.FIREBASE_API_KEY}:[DEFAULT]`;
   const userItem = sessionStorage.getItem(sessionKey);
@@ -27,6 +28,12 @@ const useAddReview = (
 
   // 시간
   const [date, time] = getDate();
+
+  const getReviews = async () => {
+    await getReview(contentId)
+      .then((res = reviewsForm) => setList(res))
+      .catch((error) => console.log(error.message));
+  };
 
   // 태그 카운팅
   const [newTags, setNewTags] = useState(list.tagCount);
@@ -111,6 +118,7 @@ const useAddReview = (
     // 첫 리뷰 일때 setDoc 두번째 리뷰부터 업데이트
     if (!list.review) await postReview(contentId, newReviewData);
     else await updateReview(contentId, newReviewData);
+    getReviews();
 
     // UserDB update
     const user = await getUserDB(uid);

@@ -46,7 +46,7 @@ const SidePage = () => {
 
   // 키워드 검색하여 관광지 검색하기
   const searching = async () => {
-    const { response } = await getSpot(keyword);
+    const { response } = await getSpot(keyword, 10, 1);
     setDataList(response.body.items.item);
     setTourList(response.body.items.item);
     setIsShowMyWish(false);

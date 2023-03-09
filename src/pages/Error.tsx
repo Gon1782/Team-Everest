@@ -6,7 +6,7 @@ const Error = () => {
   const navigate = useNavigate();
   return (
     <ErrorSection>
-      <ErrorImage src={require('@/assets/404_page.jpg').default} />
+      <ErrorImage src={require('@/assets/404_page.webp').default} />
       <ErrorAlarm>
         <ErrorAlarmText>잠시후에 이용해주세요!</ErrorAlarmText>
         <ErrorNavBtn onClick={() => navigate('/main')}>

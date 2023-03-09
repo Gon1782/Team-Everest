@@ -6,7 +6,7 @@ const NotFound = () => {
   const navigate = useNavigate();
   return (
     <NotFountSection>
-      <NotFoundImage src={require('@/assets/404_page.jpg').default} />
+      <NotFoundImage src={require('@/assets/404_page.webp').default} />
       <NotFoundAlarm>
         <NotFoundAlarmText>길을 잃었어요!</NotFoundAlarmText>
         <NotFoundNavBtn onClick={() => navigate('/main')}>

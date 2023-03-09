@@ -7,7 +7,7 @@ export const AmusementInfoContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 889px;
+  height: 800px;
   background-color: #bcd7e9;
 `;
 export const AmusementInfoHeader = styled.header`
@@ -34,8 +34,9 @@ export const AmusementInfoBox = styled.div`
 `;
 export const AmusementImg = styled.img`
   width: 100%;
-  height: 320px;
+  max-height: 213px;
   border-radius: 20px 20px 0 0;
+  object-fit: cover;
 `;
 export const AmusementInfos = styled.div`
   display: flex;
@@ -51,7 +52,7 @@ export const AmusementInfos = styled.div`
   border-radius: 20px;
 `;
 export const AmusementTitle = styled.h5`
-  word-break: 'keep-all';
+  word-break: keep-all;
   font-weight: 600;
 `;
 export const AmuseCategory = styled.h6`
@@ -83,7 +84,7 @@ export const AmuseAddr = styled.span`
 `;
 export const SwiperSlideStyle = styled(SwiperSlide)`
   width: 320px;
-  height: 460px;
+  height: 380px;
   border-radius: 20px;
   opacity: 0.6;
   box-shadow: 13px 14px 25px -17px rgba(0, 0, 0, 0.28);
