@@ -5,6 +5,7 @@ export const MyReviewSection = styled.section`
   margin: 3rem auto 0;
   padding: 0 0 1rem;
   border-radius: 20px;
+  position: relative;
 `;
 export const MyReviewHeader = styled.header`
   display: flex;
@@ -29,6 +30,10 @@ export const MyReviewLoadMore = styled.button`
   color: white;
   background-color: #2871a3;
   border-radius: 30px;
+  margin-bottom: 20px;
+  position: absolute;
+  right: 0;
+  top: 0;
 `;
 export const MyReviewContainer = styled.div`
   display: grid;

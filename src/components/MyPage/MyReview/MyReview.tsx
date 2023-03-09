@@ -19,13 +19,13 @@ const MyReview = ({ user }: Props) => {
     <S.MyReviewSection>
       <S.MyReviewHeader>
         <S.MyReviewTitle>나의 리뷰 리스트</S.MyReviewTitle>
-        <S.MyReviewLoadMore
-          style={{ visibility: checkEnd ? 'hidden' : 'visible' }}
-          onClick={() => loadMore()}
-        >
-          더보기
-        </S.MyReviewLoadMore>
       </S.MyReviewHeader>
+      <S.MyReviewLoadMore
+        style={{ visibility: checkEnd ? 'hidden' : 'visible' }}
+        onClick={() => loadMore()}
+      >
+        더보기
+      </S.MyReviewLoadMore>
       <S.MyReviewContainer>
         {checkMyReview ? (
           myReview.map((review: EachReview, i: number) => {
