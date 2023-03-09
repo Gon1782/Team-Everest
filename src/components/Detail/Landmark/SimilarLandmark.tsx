@@ -6,7 +6,7 @@ import { category as category3 } from '@/common/utils/cat3';
 import { DetailResponse, Item } from '@/types/DetailType';
 import Landmark from './Landmark';
 import * as S from './style/LandmarkStyled';
-import Error from '@/components/common/Error';
+import Error from '@/components/Common/Error';
 
 interface Props {
   detailList: Item;

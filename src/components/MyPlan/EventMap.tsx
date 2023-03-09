@@ -111,6 +111,7 @@ const setMarker = (plan: [], map: any, linePath: any[]): any[] => {
   const bounds = new kakao.maps.LatLngBounds();
 
   plan?.map((item: any, index: number) => {
+    console.log(item);
     // 좌표 담아서 선 그려야함
     linePath.push(new kakao.maps.LatLng(item.mapy, item.mapx));
     // 마커 생성
