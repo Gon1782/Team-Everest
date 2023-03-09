@@ -5,8 +5,8 @@ Sharpa는 사용자들에게 다양한 관광지와 행사 정보를 제공하�
 
 또한, 가고 싶지만 여러 환경으로 인해 못가는 경우를 대비하여 <br />
 사용자에게 해당 관광지와 가장 유사한 다른 관광지 추천 기능도 있으며,<br />
-관광지 정보를 저장 할 수 있는 북마킹 기능,<br />
-저장한 정보를 일정에 추가 할 수 있는 기능도 제공하고 있습니다.<br />
+관광지 정보를 저장 할 수 있는 북마크 기능,<br />
+저장한 관광지 정보를 일정에 추가 할 수 있는 기능도 제공하고 있습니다.<br />
 
 [배포링크](https://www.sharpa.co.kr/)
 <br />
@@ -81,7 +81,7 @@ Sharpa는 사용자들에게 다양한 관광지와 행사 정보를 제공하�
 
 ### Client
 
-`react` , `react-router` , `recoil` , `axios` , `styled-component`
+`react` , `react-router` , `recoil` , `axios` , `styled-component` , `TypeScript`
 
 ### Server
 
