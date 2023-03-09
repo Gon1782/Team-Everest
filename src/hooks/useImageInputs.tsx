@@ -1,20 +1,18 @@
 import { useCallback, useState } from 'react';
+import { resizeFile } from './useImageInput';
 
 // 이미지 여러개일때 인풋
 const useImageInputs = (initialArray: string[]) => {
   const [image, setImage] = useState(initialArray);
 
   const onImageChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
+    async (e: React.ChangeEvent<HTMLInputElement>) => {
       if (e.target.files !== null) {
         const file = e.target.files[0];
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onloadend = () => {
-          if (typeof reader.result === 'string') {
-            setImage([...image, reader.result]);
-          }
-        };
+        const newImage = await resizeFile(file);
+        if (typeof newImage === 'string') {
+          setImage([...image, newImage]);
+        }
       }
     },
     [image],

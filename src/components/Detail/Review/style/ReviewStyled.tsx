@@ -8,7 +8,7 @@ export const ReviewSection = styled.section`
 
 export const ReviewContainer = styled.div`
   width: 100%;
-  height: 600px;
+  max-height: 600px;
   overflow-y: scroll;
   margin-bottom: 30px;
   &::-webkit-scrollbar {
@@ -229,6 +229,7 @@ export const ModalImage = styled.img`
   width: 10rem;
   height: 6rem;
   margin: 0 1rem 0 0;
+  object-fit: cover;
 `;
 
 export const DeleteTitle = styled.h2`

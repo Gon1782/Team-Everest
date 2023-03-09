@@ -1,15 +1,3 @@
-export const userDBform = {
-  uid: '',
-  email: '',
-  photoURL: '',
-  displayName: '',
-  introduce: '',
-  backImage: '',
-  myWishPlace: [],
-  MyReview: [],
-  myPlanner: [],
-};
-
 export const registerForm = {
   email: '',
   password: '',
@@ -30,6 +18,18 @@ export const reviewForm = {
   tag: [],
 };
 
+export const userDBform = {
+  uid: '',
+  email: '',
+  photoURL: '',
+  displayName: '',
+  introduce: '',
+  backImage: '',
+  myWishPlace: [],
+  MyReview: [],
+  myPlanner: [],
+};
+
 export const cityForm = {
   name: '',
   areaCode: '',
@@ -37,11 +37,20 @@ export const cityForm = {
   reviewCount: '',
   engarea: '',
   description: '',
-  hashtag: [''],
+  hashtag: [],
   tourcount: '',
   tourdate: '',
   spec: '',
   mapx: 0,
   mapy: 0,
   image: '',
+};
+
+export const reviewsForm = {
+  ratingCount: 0,
+  review: [],
+  tagCount: [],
+  totalRating: 0,
+  areacode: '',
+  sigungucode: '',
 };

@@ -7,7 +7,7 @@ const Landing = () => {
     <Container>
       <InfoSection>
         <Logo
-          src={require('@/assets/Logo/sharpa_logo_01.png').default}
+          src={require('@/assets/Logo/sharpa_logo_01.webp').default}
           alt="slide banner4"
         />
         {/* <LogoText>SHARPA</LogoText> */}
