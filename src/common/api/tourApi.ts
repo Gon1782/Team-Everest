@@ -91,8 +91,12 @@ export const getCityTourInfo = async (
   return data;
 };
 
-export const getSpot = async (spotName: string) => {
-  const SERVER_URL = baseURL('searchKeyword', 1, 1);
+export const getSpot = async (
+  spotName: string,
+  num: number,
+  pageNo: number,
+) => {
+  const SERVER_URL = baseURL('searchKeyword', num, pageNo);
 
   const { data } = await axios.get<DetailResponse>(
     `${SERVER_URL}&listYN=Y&keyword=${spotName}`,
