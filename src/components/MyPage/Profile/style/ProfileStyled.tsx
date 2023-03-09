@@ -1,5 +1,6 @@
 import { ModalProps } from '@/types/StyledType';
 import styled from 'styled-components';
+import { RiBallPenFill, RiCheckboxFill } from 'react-icons/ri';
 
 export const ProfileSection = styled.section`
   display: flex;
@@ -31,9 +32,13 @@ export const BackBtnCamera = styled.label`
   align-items: center;
   width: 30px;
   height: 30px;
-  background-color: lightgray;
+  background-color: rgba(255, 255, 255, 0.6);
   border-radius: 50%;
-  font-size: 22px;
+  font-size: 16px;
+  color: ${(props) => props.theme.darkgrey};
+  &:hover {
+    background-color: ${(props) => props.theme.grey};
+  }
 `;
 export const BackBtnDelete = styled.div`
   cursor: pointer;
@@ -42,10 +47,14 @@ export const BackBtnDelete = styled.div`
   align-items: center;
   width: 30px;
   height: 30px;
-  background-color: lightgray;
+  background-color: rgba(255, 255, 255, 0.6);
   border-radius: 50%;
-  font-size: 22px;
+  font-size: 16px;
+  color: ${(props) => props.theme.darkgrey};
   margin: 1rem;
+  &:hover {
+    background-color: ${(props) => props.theme.grey};
+  }
 `;
 export const ProfileBox = styled.div`
   display: flex;
@@ -72,7 +81,7 @@ export const ProfileBtnBox = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: 2rem;
+  gap: 0.8rem;
   margin: auto;
 `;
 export const ProfileLabel = styled.label`
@@ -82,13 +91,27 @@ export const ProfileLabel = styled.label`
   align-items: center;
   background-color: transparent;
   font-size: 15px;
+  color: ${(props) => props.theme.darkgrey};
+  width: 30px;
+  height: 30px;
+  border-radius: 100px;
+  &:hover {
+    background-color: ${(props) => props.theme.grey};
+  }
 `;
 export const ProfileBtn = styled.button`
   cursor: pointer;
   background-color: transparent;
   border: none;
-  font-size: 20px;
+  font-size: 16px;
+  color: ${(props) => props.theme.darkgrey};
+  width: 30px;
+  height: 30px;
+  border-radius: 100px;
   padding: 0;
+  &:hover {
+    background-color: ${(props) => props.theme.grey};
+  }
 `;
 export const ProfilInfoBox = styled.div`
   display: flex;
@@ -102,10 +125,31 @@ export const NicknameBox = styled.div`
   display: flex;
   align-items: center;
   margin: 0 1rem;
+  margin-bottom: 1rem;
   gap: 1rem;
   & svg {
     cursor: pointer;
   }
+`;
+export const Nickname = styled.div`
+  font-size: 2rem;
+`;
+export const EditIconLabel = styled.label`
+  cursor: pointer;
+  margin-top: 5px;
+  width: 35px;
+  height: 35px;
+  border-radius: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &:hover {
+    background-color: ${(props) => props.theme.grey};
+  }
+`;
+export const EditIcon = styled(RiBallPenFill)`
+  font-size: 22px;
+  color: ${(props) => props.theme.blue};
 `;
 export const MyText = styled.span`
   font-size: 20px;
