@@ -79,9 +79,9 @@ const Sidebar = ({
               <S.SideBarImage
                 src={
                   !!sigungu.length
-                    ? require(`@/assets/CountryImages/${data['engName']}.jpg`)
+                    ? require(`@/assets/CountryImages/${data['engName']}.webp`)
                         .default
-                    : require(`@/assets/CityImage/${index + 1}.jpg`).default
+                    : require(`@/assets/CityImage/${index + 1}.webp`).default
                 }
                 alt="city"
               />

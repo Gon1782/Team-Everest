@@ -21,6 +21,8 @@ const CityInfoModal = ({
   const navigate = useNavigate();
   const [areaInfo, setAreaInfo] = useState<City>();
 
+  console.log(areaCode, sigunguCode);
+
   const getCity = async () => {
     await getCities(areaCode, sigunguCode)
       .then((res) => setAreaInfo(res))

@@ -77,7 +77,7 @@ const TourList = ({
                     onClick={() =>
                       window.open(`/detail/${item.contentid}`, '_blank')
                     }
-                    src={require('@/assets/marker_S.jpg').default}
+                    src={require('@/assets/marker_S.webp').default}
                   ></SpotImg>
                 )}
                 {/* </div> */}

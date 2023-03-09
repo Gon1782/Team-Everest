@@ -77,7 +77,6 @@ const Event = ({
         {/* 일정 장소명 및 시간/메모 설정 영역 */}
         <EventInfo>
           <EventPlace>
-            <BsFlagFill size={12} color={'#EB455F'} />
             <button
               style={{ backgroundColor: '#f1f6f9' }}
               onClick={() => window.open(`/detail/${item.contentid}`, '_blank')}
@@ -95,6 +94,11 @@ const Event = ({
                 popEvent(scheduleDate, index, newPlan.schedule[scheduleDate])
               }
             ></DeleteIcon>
+          </EventTimeMemoSet>
+        )}
+        {authority.view && (
+          <EventTimeMemoSet>
+            <BsFlagFill size={15} color={'#EB455F'} />
           </EventTimeMemoSet>
         )}
       </Eventcontainer>

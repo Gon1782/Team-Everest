@@ -1,6 +1,7 @@
 import { atom } from 'recoil';
+import { Reviews } from '@/types/DetailType';
 
-export const DetailList = atom({
+export const DetailList = atom<Reviews>({
   key: 'detail',
   default: {
     ratingCount: 0,

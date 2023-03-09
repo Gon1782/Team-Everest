@@ -21,7 +21,7 @@ export const areaCode35 = [
     name: '고령군',
     mapx: 128.30596687099205,
     mapy: 35.73483199086841,
-    engName: 'Golyeong',
+    engName: 'Goryeong',
   },
   {
     rnum: 4,

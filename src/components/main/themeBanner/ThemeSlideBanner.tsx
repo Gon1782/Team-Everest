@@ -131,7 +131,7 @@ const ThemeSlideBanner = () => {
               <SlideBanner key={item.id}>
                 <Link to={`/detail/${item.contentId}`}>
                   <ThemelistItemsImage
-                    src={require(`@/assets/Main_Theme/${item.id}.jpg`).default}
+                    src={require(`@/assets/Main_Theme/${item.id}.webp`).default}
                     alt={`slide banner ${item.id}`}
                   />
                 </Link>
