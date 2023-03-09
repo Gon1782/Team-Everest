@@ -187,4 +187,10 @@ export const PlanBtn = styled.button<{
   background-color: #f1f6f9; //${(props) => props.color};
   color: gray; //${(props) => props.color};
   border-radius: 50px;
+  margin-left: 10px;
+  transition: all 0.3s;
+  &:hover {
+    background-color: ${(props) => props.theme.skyblue};
+    color: ${(props) => props.theme.darkgrey};
+  }
 `;

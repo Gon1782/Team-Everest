@@ -30,6 +30,6 @@ export const LoginHeaderBtn = styled.button`
   border: none;
   font-size: 1.25rem;
   background-color: transparent;
-  border-bottom: 2px solid #bfbfbf;
+  border-bottom: 2px solid ${(props) => props.theme.mediumgrey};
   padding-bottom: 10px;
 `;

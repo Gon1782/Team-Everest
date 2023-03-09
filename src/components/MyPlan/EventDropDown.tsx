@@ -145,7 +145,7 @@ const EventDropDown = ({
           <EventTimeMemoSetBtn
             onClick={() => showDropDownPage(scheduleDate, index)}
           >
-            시간/메모 설정
+            시간 / 메모 설정
           </EventTimeMemoSetBtn>
         </EventTimeMemoSet>
       )}

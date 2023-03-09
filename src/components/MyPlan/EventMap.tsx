@@ -145,5 +145,5 @@ export const Mapbox = styled.div<{ height: number; visible?: string }>`
   height: ${(props) => props.height + 'px'};
   pointer-events: ${(props) => props?.visible};
   object-fit: cover;
-  border-radius: 2%;
+  border-radius: 10px;
 `;

@@ -119,6 +119,8 @@ const MyWish = styled.div`
 const ShowMyWish = styled.p`
   font-size: 15px;
   color: gray;
+  margin-left: 6px;
+  line-height: 20px;
 `;
 const CheckShowMyWish = styled.input`
   border-radius: 40%;
@@ -141,7 +143,7 @@ const SpotItem = styled.div`
   display: flex;
   overflow: hidden;
   //box-shadow: 1px 1px 1px 1px #004a7c;
-  box-shadow: 2px 2px 2px 2px #999;
+  box-shadow: 6px 6px 14px -3px rgba(0, 0, 0, 0.15);
 `;
 
 const SpotImg = styled.img`
@@ -161,13 +163,17 @@ const SpotInfo = styled.div`
   color: black;
 `;
 const SpotTitle = styled.div`
-  font-size: 18px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
   height: auto;
   cursor: pointer;
 `;
+
 const SpotEtc = styled.div`
   font-size: 10px;
   height: auto;
+  line-height: 14px;
 `;
 
 const SpotSaveButton = styled.div`

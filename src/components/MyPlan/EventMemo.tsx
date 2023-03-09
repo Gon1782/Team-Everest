@@ -10,23 +10,36 @@ import styled from 'styled-components';
 
 const EventMemo = ({ memo, setMemo }: { memo: string; setMemo: any }) => {
   return (
-    <div style={{ width: '100%' }}>
+    <MemoInputWrapper>
       <MemoInput
-        style={{ width: '80%', resize: 'none', marginTop: '5px', fontSize: 14 }}
-        placeholder="메모할 내용을 10자내로 적으세요"
+        placeholder="메모할 내용을 10자내로 적으세요."
         onChange={(e) => setMemo(e.target.value)}
         value={`${memo}`}
         maxLength={10}
       />
-    </div>
+    </MemoInputWrapper>
   );
 };
 
 export default EventMemo;
 
+const MemoInputWrapper = styled.div`
+  width: 100%;
+  margin-top: 5px;
+  margin-bottom: 5px;
+`;
+
 const MemoInput = styled.input`
+  width: 80%;
+  height: 24px;
+  padding: 5px;
+  margin-top: 5px;
+  font-size: 14px;
   text-align: center;
   font-family: 'emoji';
   border-radius: 10px;
   outline: none;
+  ::placeholder {
+    font-size: 14px;
+  }
 `;
