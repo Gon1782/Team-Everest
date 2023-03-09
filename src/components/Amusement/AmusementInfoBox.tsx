@@ -1,10 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import useDefault from '@/hooks/useDefault';
 import { Item } from '@/types/DetailType';
-import { useEffect, useState } from 'react';
-import { getReview } from '@/common/api/reviewApi';
 import { categoryKor } from '@/common/utils/cat3';
-import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa';
 import * as S from './style/AmusementStyled';
 
 interface Props {

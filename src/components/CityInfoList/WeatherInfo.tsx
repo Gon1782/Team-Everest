@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { weartherApi } from '@/common/api/weatherApi';
-import Clouds from '@/assets/Weather/cloud.png';
-import Clear from '@/assets/Weather/clear.png';
-import Rain from '@/assets/Weather/rain.png';
-import Drizzle from '@/assets/Weather/drizzle.png';
-import Snow from '@/assets/Weather/snow.png';
-import Thunderstorm from '@/assets/Weather/thunderstorm.png';
+import Clouds from '@/assets/Weather/cloud.webp';
+import Clear from '@/assets/Weather/clear.webp';
+import Rain from '@/assets/Weather/rain.webp';
+import Drizzle from '@/assets/Weather/drizzle.webp';
+import Snow from '@/assets/Weather/snow.webp';
+import Thunderstorm from '@/assets/Weather/thunderstorm.webp';
 import styled from 'styled-components';
 import { City } from '@/types/CityType';
 

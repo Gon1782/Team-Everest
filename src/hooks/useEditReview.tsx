@@ -1,10 +1,10 @@
 import { useState, useEffect, useCallback } from 'react';
-import { useRecoilValue } from 'recoil';
-import { updateReview } from '@/common/api/reviewApi';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { getReview, updateReview } from '@/common/api/reviewApi';
 import { getUserDB, updateUserDB } from '@/common/api/userApi';
 import { DetailList } from '@/recoil/atom/Detail';
 import { EachReview } from '@/types/DetailType';
-import { reviewForm } from '@/common/utils/forms';
+import { reviewForm, reviewsForm } from '@/common/utils/forms';
 
 const useEditReview = (
   type: string,
@@ -17,11 +17,17 @@ const useEditReview = (
   closeModal: () => void,
 ) => {
   // 리뷰
-  const list = useRecoilValue(DetailList);
+  const [list, setList] = useRecoilState(DetailList);
   const reviews = list.review;
   const review = !!reviews
     ? reviews.filter((review) => review.id === reviewId)[0]
     : reviewForm;
+
+  const getReviews = async () => {
+    await getReview(review.contentId)
+      .then((res = reviewsForm) => setList(res))
+      .catch((error) => console.log(error.message));
+  };
 
   // UID
   const sessionKey = `firebase:authUser:${process.env.FIREBASE_API_KEY}:[DEFAULT]`;
@@ -108,6 +114,7 @@ const useEditReview = (
 
     closeModal();
     await updateReview(review.contentId, newList);
+    getReviews();
     await updateUserDB(review.uid, { ...user, MyReview: newMyReviews });
     reset();
   };

@@ -63,7 +63,7 @@ const ScheduleDate = ({
     >
       <PlanDateWrapper onClick={() => initMap(scheduleDate)}>
         <img
-          src={require('@/assets/marker2.png').default}
+          src={require('@/assets/marker2.webp').default}
           style={{ width: 40, height: 40 }}
         />
 

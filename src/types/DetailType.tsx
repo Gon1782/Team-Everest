@@ -21,6 +21,9 @@ export interface Reviews {
   ratingCount: number;
   review: EachReview[];
   totalRating: number;
+  tagCount: { name: string; count: number }[];
+  areacode: string;
+  sigungucode: string;
 }
 
 export interface EachReview {

@@ -47,7 +47,7 @@ const BestTravelPlan = () => {
                         <TravelPlaceReviewerImgWrapper>
                           <TravelPlaceReviewerImg
                             src={
-                              require('@/assets/MyPage/defaultProfile.jpg')
+                              require('@/assets/MyPage/defaultProfile.webp')
                                 .default
                             }
                             alt=""
