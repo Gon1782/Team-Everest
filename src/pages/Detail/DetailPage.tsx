@@ -2,9 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { useQueries, useQueryClient } from 'react-query';
 import { useSetRecoilState } from 'recoil';
 import { useNavigate, useParams } from 'react-router-dom';
-import { doc, onSnapshot } from 'firebase/firestore';
 import { getDetail, getDetailIntro } from '@/common/api/tourApi';
-import { db } from '@/common/api/firebase';
 import Error from '@/components/common/Error';
 import DetailInfo from '@/components/Detail/DetailInfo';
 import ReviewModal from '@/components/Detail/Review/ReviewModal';
@@ -13,6 +11,8 @@ import SimilarLandmark from '@/components/Detail/Landmark/SimilarLandmark';
 import useModal from '@/hooks/useModal';
 import { DetailList } from '@/recoil/atom/Detail';
 import * as S from './style/DetailStyled';
+import { getReview } from '@/common/api/reviewApi';
+import { reviewsForm } from '@/common/utils/forms';
 
 const DetailPage = () => {
   const navigate = useNavigate();
@@ -42,24 +42,16 @@ const DetailPage = () => {
   // 리뷰 불러오기
   const setList = useSetRecoilState(DetailList);
 
-  useEffect(() => {
-    onSnapshot(doc(db, 'reviews', `${id}`), (doc) => {
-      const newList = {
-        ratingCount: doc.data()?.ratingCount,
-        review: doc.data()?.review,
-        totalRating: doc.data()?.totalRating,
-        areacode: doc.data()?.areacode,
-        sigungucode: doc.data()?.sigungucode,
-        tagCount: doc.data()?.tagCount,
-      };
-      setList(newList);
-    });
-
-    if (!!uid) {
-      onSnapshot(doc(db, 'users', uid), (doc) => {
-        setWishList(doc.data()?.myWishPlace);
-      });
+  const getReviews = async () => {
+    if (!!id) {
+      await getReview(id)
+        .then((res = reviewsForm) => setList(res))
+        .catch((error) => console.log(error.message));
     }
+  };
+
+  useEffect(() => {
+    getReviews();
   }, [id]);
 
   // GET API

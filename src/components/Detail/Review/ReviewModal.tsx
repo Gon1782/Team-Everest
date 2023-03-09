@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 import {
   areaSelector,
@@ -14,6 +14,11 @@ import ReviewStars from './ReviewStars';
 import ReviewForm from './ReviewForm';
 import * as S from './style/ReviewStyled';
 import ReviewTags from './ReviewTags';
+import { useSetRecoilState } from 'recoil';
+import { DetailList } from '@/recoil/atom/Detail';
+import { getReview } from '@/common/api/reviewApi';
+import { reviewsForm } from '@/common/utils/forms';
+import { usePrompt } from '@/hooks/useConfirmExit';
 
 interface Props {
   type: string;
@@ -58,8 +63,6 @@ const ReviewModal = ({
   const [tag, setTag] = useState(chosen.tags);
   const tags = tagSelector(item.cat2);
 
-  useEffect(() => {}, [tag]);
-
   // 리셋
   const reset = () => {
     setRating(0);
@@ -90,6 +93,12 @@ const ReviewModal = ({
     reset,
     closeModal,
   );
+
+  useEffect(() => {
+    return () => {
+      window.confirm('really?');
+    };
+  }, [closeModal]);
 
   return (
     <S.ModalContainer onClick={(e) => closeModalIfClickOutside(e)}>

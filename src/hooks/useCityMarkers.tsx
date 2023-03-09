@@ -17,15 +17,15 @@ const useCityMarkers = () => {
 
   const newMarker = (type: string, array: AreaCode[]) => {
     // 마커 이미지의 이미지 주소
-    let imageSrc = require('@/assets/marker2.webp').default;
+    const imageSrc = require('@/assets/marker2.webp').default;
     // 마커 이미지의 이미지 크기
-    let imageSize = new kakao.maps.Size(60, 60);
+    const imageSize = new kakao.maps.Size(40, 40);
 
     const markers = [];
     const overlays = [];
     for (let i = 0; i < array.length; i++) {
       // 마커 이미지를 생성합니다
-      let markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+      const markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
 
       const content = `
         <div class="customoverlay" style="background-color :#fff; width: auto; height: auto; padding: 2px; border-radius: 5px; border: 1px solid #1753a5;">
@@ -44,7 +44,7 @@ const useCityMarkers = () => {
         position: new kakao.maps.LatLng(array[i].mapy, array[i].mapx),
         content,
         title: array[i].name,
-        image: markerImage,
+        yAnchor: -0.1,
       });
       markers.push(marker);
       overlays.push(overlay);

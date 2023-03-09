@@ -149,7 +149,7 @@ const MyPlan = () => {
                       src={
                         !!userDB?.photoURL
                           ? userDB?.photoURL
-                          : require('@/assets/MyPage/defaultProfile.jpg')
+                          : require('@/assets/MyPage/defaultProfile.webp')
                               .default
                       }
                       style={{ objectFit: 'cover', width: 60, height: 60 }}
