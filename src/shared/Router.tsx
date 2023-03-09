@@ -10,7 +10,7 @@ const CityMapPage = lazy(() => import('@/pages/CityMap/CityMapPage'));
 const Mypage = lazy(() => import('@/pages/Mypage/Mypage'));
 const Login = lazy(() => import('@/pages/Login/Login'));
 const SearchArea = lazy(() => import('@/pages/SearchArea'));
-const MyPlan = lazy(() => import('@/components/MyPlan/Main'));
+const MyPlanner = lazy(() => import('@/pages/Myplanner/MyPlanner'));
 const NotFound = lazy(() => import('@/pages/NotFound'));
 
 const Router = () => {
@@ -22,7 +22,10 @@ const Router = () => {
         <Route element={<Layout />}>
           <Route path="/login" element={<Login />} />
           <Route path="/main" element={<MainPage />} />
-          <Route path="/planner/:userId/:planUniqueId" element={<MyPlan />} />
+          <Route
+            path="/planner/:userId/:planUniqueId"
+            element={<MyPlanner />}
+          />
           <Route path="/detail/:id" element={<DetailPage />} />
           <Route path="/my" element={<Mypage />} />
           <Route path="/searcharea" element={<SearchArea />} />

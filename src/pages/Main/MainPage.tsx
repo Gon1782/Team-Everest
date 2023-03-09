@@ -1,8 +1,8 @@
-import EventSlideBanner from '@/components/main/eventBanner/EventSlideBanner';
-import ThemeSlideBanner from '@/components/main/themeBanner/ThemeSlideBanner';
+import EventSlideBanner from '@/components/Main/eventBanner/EventSlideBanner';
+import ThemeSlideBanner from '@/components/Main/themeBanner/ThemeSlideBanner';
 import styled from 'styled-components';
-import BestTravelPlan from '@/components/main/bestTravelPlan/BestTravelPlan';
-import TopCityBanner from '@/components/main/topCityBanner/TopCityBanner';
+import BestTravelPlan from '@/components/Main/bestTravelPlan/BestTravelPlan';
+import TopCityBanner from '@/components/Main/topCityBanner/TopCityBanner';
 
 const MainPage = () => {
   // FB 도시 DB 업로드

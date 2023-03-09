@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getCities } from '@/common/api/cityApi';
-import CityInfo from '@/components/cityInfo/CityInfo';
+import CityInfo from '@/components/CityInfo/CityInfo';
 import Amusement from '@/components/Amusement/Amusement';
 import CityInfoList from '@/components/CityInfoList/CityInfoList';
 import WeatherInfo from '@/components/CityInfoList/WeatherInfo';

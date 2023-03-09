@@ -7,7 +7,7 @@ import { City } from '@/types/CityType';
 import { DetailResponse } from '@/types/DetailType';
 import AmusementInfoBox from './AmusementInfoBox';
 import * as S from './style/AmusementStyled';
-import Error from '../common/Error';
+import Error from '../Common/Error';
 
 interface Props {
   city: City;
