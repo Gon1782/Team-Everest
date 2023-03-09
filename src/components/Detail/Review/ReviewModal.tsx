@@ -94,14 +94,8 @@ const ReviewModal = ({
     closeModal,
   );
 
-  useEffect(() => {
-    return () => {
-      window.confirm('really?');
-    };
-  }, [closeModal]);
-
   return (
-    <S.ModalContainer onClick={(e) => closeModalIfClickOutside(e)}>
+    <S.ModalContainer>
       <S.ModalBox
         width="1000px"
         height="900px"

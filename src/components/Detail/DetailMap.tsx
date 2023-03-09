@@ -25,7 +25,7 @@ const DetailMap = ({ x, y }: Props) => {
       // 마커 이미지의 이미지 주소
       const imageSrc = require('@/assets/marker2.webp').default;
       // 마커 이미지의 이미지 크기
-      const imageSize = new kakao.maps.Size(80, 80);
+      const imageSize = new kakao.maps.Size(40, 40);
 
       const image = new kakao.maps.MarkerImage(imageSrc, imageSize);
       const position = new kakao.maps.LatLng(area.mapy, area.mapx);
