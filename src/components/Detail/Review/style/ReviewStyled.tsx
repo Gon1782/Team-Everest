@@ -62,6 +62,7 @@ export const ReviewContentBox = styled.div`
 export const ReviewImage = styled.img`
   width: 10rem;
   height: 6rem;
+  object-fit: cover;
 `;
 
 export const ReviewSpace = styled.div`
@@ -174,7 +175,6 @@ export const ReviewForm = styled.div`
 `;
 
 export const ImageInput = styled.label`
-  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -184,6 +184,9 @@ export const ImageInput = styled.label`
   padding: 0.3rem 0.8rem;
   gap: 1rem;
   margin-top: 20px;
+  & svg {
+    cursor: inherit;
+  }
 `;
 
 export const InputArea = styled.textarea`

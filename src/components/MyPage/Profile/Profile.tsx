@@ -59,7 +59,6 @@ const Profile = ({ user, LoginCheck, checkMy, getUser }: Props) => {
         introduce: myInfo.intro,
       });
       getUser(user.uid);
-      resetMyInfo();
       setEdit(false);
     }
   }, [myInfo]);
@@ -108,6 +107,8 @@ const Profile = ({ user, LoginCheck, checkMy, getUser }: Props) => {
 
   // 한줄 소개
   const introduce = !!user.introduce ? user.introduce : defaultIntro;
+
+  console.log(myInfo);
 
   return (
     <S.ProfileSection>

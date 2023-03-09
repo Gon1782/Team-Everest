@@ -1,4 +1,4 @@
-import { useReducer, useCallback } from 'react';
+import { useReducer } from 'react';
 
 export interface State {
   [key: string]: string;
@@ -32,17 +32,16 @@ const useInputs = (initialState: State) => {
   // 액션
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const onChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      const { name, value } = e.target;
-      dispatch({ type: 'CHANGE_INPUT', name: name, value: value });
-    },
-    [],
-  );
+  const onChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    const { name, value } = e.target;
+    dispatch({ type: 'CHANGE_INPUT', name: name, value: value });
+  };
 
-  const reset = useCallback(() => {
+  const reset = () => {
     dispatch({ type: 'CHANGE_RESET' });
-  }, []);
+  };
 
   return [state, onChange, reset] as const;
 };
