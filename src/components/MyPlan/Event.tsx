@@ -9,6 +9,7 @@ import { timeHandler } from './MyPlannerHandler';
 import styled from 'styled-components';
 import { FaRegTrashAlt } from 'react-icons/fa';
 import { BsFlagFill } from 'react-icons/bs';
+import { useNavigate } from 'react-router-dom';
 
 // 일정 데이터
 const Event = ({
@@ -23,6 +24,7 @@ const Event = ({
   const setInitLocation = useSetRecoilState(InitLocation);
   const [newPlan, setNewPlan] = useRecoilState<PlanType>(NewPlanRecoil);
   const authority = useRecoilValue(Authority);
+  const navigate = useNavigate();
 
   // 일정 삭제
   const popEvent = (date: string, eventIndex: number, eventList: []) => {
@@ -76,7 +78,13 @@ const Event = ({
         <EventInfo>
           <EventPlace>
             <BsFlagFill size={12} color={'#EB455F'} />
-            {item.title}
+            <button
+              style={{ backgroundColor: '#f1f6f9' }}
+              onClick={() => window.open(`/detail/${item.contentid}`, '_blank')}
+            >
+              {item.title}
+            </button>
+
             {!!item.memo && <EventMemo>{item.memo}</EventMemo>}
           </EventPlace>
         </EventInfo>
@@ -138,6 +146,7 @@ const EventPlace = styled.div`
 
 const EventMemo = styled.div`
   font-weight: 100;
+  font-size: 14px;
 `;
 const EventTimeMemoSet = styled.div`
   width: 20%;
