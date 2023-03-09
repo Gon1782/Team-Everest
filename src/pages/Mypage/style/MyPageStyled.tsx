@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const MyPageContainer = styled.main`
   width: 80%;
+  /* width: 80%; */
   height: 100%;
   background-color: white;
   padding: 0 0 3rem;

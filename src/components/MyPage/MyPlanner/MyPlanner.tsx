@@ -32,13 +32,11 @@ const MyPlanner = ({
           myPlanner.map((item: any, index: number) => {
             if (index <= idx) {
               return (
-                <div style={{ textAlign: 'center' }}>
-                  <FaBookmark
+                <div style={{ textAlign: 'center', position: 'relative' }}>
+                  <S.BookMarkIcon
                     style={{
                       display: item['isMine'] ? 'none' : 'flex',
                     }}
-                    color="#0A77D1"
-                    size="20"
                   />
                   <S.MyPlannerBox
                     key={item.name}

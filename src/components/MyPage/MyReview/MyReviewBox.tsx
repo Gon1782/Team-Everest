@@ -57,13 +57,13 @@ const MyReviewBox = ({ review }: Props) => {
   return (
     <S.MyReview onClick={() => goToDetail()}>
       <S.MyReviewInfoBox>
-        <span>{title}</span>
+        <S.MyReviewInfoTitle>{title}</S.MyReviewInfoTitle>
         <S.MyReviewRatingBox>
           {rating.map((x, i) =>
             x ? (
-              <FaStar color="#0039CB" size={24} key={i} />
+              <FaStar color="#2871A3" size={22} key={i} />
             ) : (
-              <FaRegStar color="#0039CB" size={24} key={i} />
+              <FaRegStar color="#2871A3" size={22} key={i} />
             ),
           )}
         </S.MyReviewRatingBox>

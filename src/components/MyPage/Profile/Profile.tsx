@@ -166,23 +166,22 @@ const Profile = ({ user, LoginCheck, checkMy, getUser }: Props) => {
         </S.ProfileImageBox>
         <S.ProfilInfoBox>
           <S.NicknameBox>
-            <span
+            <S.Nickname
               style={{
-                width: 140,
-                height: 48,
                 display: checkEdit ? 'none' : 'flex',
               }}
             >
               {user.displayName}
-            </span>
-            <RiBallPenFill
-              size={30}
-              onClick={() => setEdit(true)}
-              style={{
-                display: checkEdit ? 'none' : 'flex',
-                visibility: check ? 'visible' : 'hidden',
-              }}
-            />
+            </S.Nickname>
+            <S.EditIconLabel>
+              <S.EditIcon
+                onClick={() => setEdit(true)}
+                style={{
+                  display: checkEdit ? 'none' : 'flex',
+                  visibility: check ? 'visible' : 'hidden',
+                }}
+              />
+            </S.EditIconLabel>
             <S.NickNameInput
               type="text"
               name="nickname"
