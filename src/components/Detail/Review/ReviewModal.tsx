@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 import {
   areaSelector,
@@ -14,11 +14,6 @@ import ReviewStars from './ReviewStars';
 import ReviewForm from './ReviewForm';
 import * as S from './style/ReviewStyled';
 import ReviewTags from './ReviewTags';
-import { useSetRecoilState } from 'recoil';
-import { DetailList } from '@/recoil/atom/Detail';
-import { getReview } from '@/common/api/reviewApi';
-import { reviewsForm } from '@/common/utils/forms';
-import { usePrompt } from '@/hooks/useConfirmExit';
 
 interface Props {
   type: string;
@@ -30,13 +25,7 @@ interface Props {
   review?: EachReview;
 }
 
-const ReviewModal = ({
-  type,
-  item,
-  review,
-  closeModal,
-  closeModalIfClickOutside,
-}: Props) => {
+const ReviewModal = ({ type, item, review, closeModal }: Props) => {
   // 수정 전 값들 불러오기
   const reviewId = !!review?.id ? review.id : '';
   const reviewContent = !!review?.content ? review.content : '';
@@ -59,7 +48,9 @@ const ReviewModal = ({
 
   // 인풋
   const [content, onChangeContent, resetContent] = useInput(chosen.content);
-  const [image, onChangeImage, resetImage] = useImageInputs(chosen.image);
+  const [image, onChangeImage, removeImage, resetImage] = useImageInputs(
+    chosen.image,
+  );
   const [tag, setTag] = useState(chosen.tags);
   const tags = tagSelector(item.cat2);
 
@@ -128,6 +119,7 @@ const ReviewModal = ({
           image={image}
           onChangeContent={onChangeContent}
           onChangeImage={onChangeImage}
+          removeImage={removeImage}
         />
         <S.ReviewModalBtnBox>
           <S.ReviewBtn>등록하기</S.ReviewBtn>

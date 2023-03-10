@@ -158,17 +158,6 @@ const TravelPlaceName = styled.h4`
   color: ${(props) => props.theme.darkgrey};
 `;
 
-// const TravelPlaceSubImgWrapper = styled.div`
-//   background-color: #9b6969;
-//   height: 60%;
-// `;
-
-// const TravelPlaceSubImg = styled.img`
-//   width: 100%;
-//   height: 100%;
-//   object-fit: cover;
-// `;
-
 const TravelPlanInfo = styled.div`
   display: flex;
   justify-content: space-between;

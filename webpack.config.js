@@ -51,7 +51,7 @@ module.exports = (env, argv) => {
           use: ['style-loader', 'css-loader'],
         },
         {
-          test: /\.(png|jpe?g|gif|webp|mp4)$/,
+          test: /\.(png|jpe?g|gif|webp|mp4|webm)$/,
           use: [
             {
               loader: 'file-loader',

@@ -5,6 +5,9 @@ import { getUserDB, updateUserDB } from '@/common/api/userApi';
 import { DetailList } from '@/recoil/atom/Detail';
 import { EachReview } from '@/types/DetailType';
 import { reviewForm, reviewsForm } from '@/common/utils/forms';
+import { storage } from '@/common/api/firebase';
+import { ref, uploadString, getDownloadURL } from '@firebase/storage';
+import { uuidv4 } from '@firebase/util';
 
 const useEditReview = (
   type: string,
@@ -76,6 +79,17 @@ const useEditReview = (
       }
     }, [tag]);
   }
+
+  const uploadImage = async (images: string[]) => {
+    const uploadedImage: string[] = [];
+    for (const image of images) {
+      const imgRef = ref(storage, `image/${review.contentId}/${uuidv4()}`);
+      const response = await uploadString(imgRef, image, 'data_url');
+      const downloadUrl = await getDownloadURL(response.ref);
+      uploadedImage.push(downloadUrl);
+    }
+    return uploadedImage;
+  };
 
   // 리뷰 수정
   const editReview = async (e: React.FormEvent<HTMLFormElement>) => {

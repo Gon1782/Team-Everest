@@ -1,6 +1,7 @@
-import { placeHolder } from '@/common/utils/defaults';
 import React from 'react';
 import { FaCamera } from 'react-icons/fa';
+import { IoIosRemoveCircle } from 'react-icons/io';
+import { placeHolder } from '@/common/utils/defaults';
 import * as S from './style/ReviewStyled';
 
 interface Props {
@@ -10,6 +11,7 @@ interface Props {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => void;
   onChangeImage: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  removeImage: (chosenImage: string) => void;
 }
 
 const ReviewForm = ({
@@ -17,6 +19,7 @@ const ReviewForm = ({
   image,
   onChangeContent,
   onChangeImage,
+  removeImage,
 }: Props) => {
   const check = image.length >= 3;
   return (
@@ -54,7 +57,14 @@ const ReviewForm = ({
       </S.InputFooter>
       <S.ImageBox>
         {image.map((image, i) => {
-          return <S.ModalImage src={image} key={i} alt="review" />;
+          return (
+            <S.ModalImageBox key={i}>
+              <S.RemoveBtn onClick={() => removeImage(image)}>
+                <IoIosRemoveCircle />
+              </S.RemoveBtn>
+              <S.ModalImage src={image} alt="review" />;
+            </S.ModalImageBox>
+          );
         })}
       </S.ImageBox>
     </S.ReviewForm>

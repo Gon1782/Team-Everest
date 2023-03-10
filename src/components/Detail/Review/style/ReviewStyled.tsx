@@ -234,6 +234,25 @@ export const ImageBox = styled.div`
   }
 `;
 
+export const ModalImageBox = styled.div`
+  position: relative;
+  width: 10rem;
+  height: 6rem;
+  margin: 0 1rem 0 0;
+  object-fit: cover;
+`;
+export const RemoveBtn = styled.div`
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
+  & svg {
+    background-color: white;
+    border-radius: 50%;
+    font-size: 1.25rem;
+    color: ${(props) => props.theme.red};
+  }
+`;
 export const ModalImage = styled.img`
   width: 10rem;
   height: 6rem;
