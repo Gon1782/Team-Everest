@@ -124,6 +124,7 @@ export const Authority = atom({
     write: true,
     view: true,
     update: true,
+    updatingStart: true,
   },
 });
 
