@@ -20,6 +20,7 @@ const RegisterInput = ({ name, value, check, dupCheck, onChange }: Props) => {
         <S.RegisterTitle>{chosen.title}</S.RegisterTitle>
         <S.MoreInfo>{chosen.info}</S.MoreInfo>
         <S.LoginInput
+          maxLength={32}
           tabIndex={chosen.tabIndex}
           type="text"
           name={name}

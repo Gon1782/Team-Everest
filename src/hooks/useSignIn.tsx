@@ -43,7 +43,7 @@ const useSignIn = (email: string, password: string, reset: () => void) => {
   };
 
   // 소셜 로그인
-  const social = useCallback((provider: Provider) => {
+  const social = (provider: Provider) => {
     signInWithPopup(auth, provider)
       .then(async (res) => {
         navigate(-1);
@@ -56,14 +56,16 @@ const useSignIn = (email: string, password: string, reset: () => void) => {
           photoURL: res.user.photoURL,
           email: res.user.email,
         };
-        if (!data) postUserDB(res.user.uid, newData);
+        if (!data?.uid) {
+          postUserDB(res.user.uid, newData);
+        }
       })
       .catch((error) => {
         console.log(error.message);
       });
-  }, []);
+  };
 
-  const socialLogin = useCallback((provider: Provider) => {
+  const socialLogin = (provider: Provider) => {
     setPersistence(auth, browserSessionPersistence)
       .then(() => {
         social(provider);
@@ -71,7 +73,7 @@ const useSignIn = (email: string, password: string, reset: () => void) => {
       .catch((error) => {
         console.log(error.message);
       });
-  }, []);
+  };
 
   return [emailLogin, socialLogin] as const;
 };

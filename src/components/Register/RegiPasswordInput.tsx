@@ -29,6 +29,7 @@ const RegiPasswordInput = ({
           특수문자가 포함된 8자 이상의 비밀번호로 설정해 주세요.
         </S.MoreInfo>
         <S.LoginInput
+          maxLength={32}
           tabIndex={2}
           type={pwVisible ? 'text' : 'password'}
           name="password"
@@ -58,6 +59,7 @@ const RegiPasswordInput = ({
       </S.Warning>
       <S.PasswordCheckBox>
         <S.PasswordCheckInput
+          maxLength={16}
           tabIndex={3}
           type={checkPwVisible ? 'text' : 'password'}
           name="checkPassword"

@@ -78,6 +78,7 @@ const LoginInput = ({ name, value, check, onChange, reset }: Props) => {
       <S.LoginInputBox>
         <S.LoginTitle>{chosen.title}</S.LoginTitle>
         <S.LoginInput
+          maxLength={32}
           tabIndex={1}
           type={chosen.type}
           name={name}
