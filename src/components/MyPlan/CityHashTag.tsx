@@ -12,10 +12,11 @@ const CityHashTag = ({ plan }: { plan: PlanType }) => {
             <BsFlagFill size={30} color={'#EF4B27'} />
             <div
               style={{
-                height: 25,
+                height: '30px',
                 backgroundColor: '#e6e6e6',
                 borderRadius: 50,
-                padding: '6% 0',
+                padding: '0.4rem 0.5rem',
+                lineHeight: '1rem',
               }}
             >
               <p
@@ -23,6 +24,7 @@ const CityHashTag = ({ plan }: { plan: PlanType }) => {
                   width: 85,
                   color: '#004A7C',
                   fontSize: 15,
+                  fontWeight: 500,
                 }}
               >
                 #{area.name}

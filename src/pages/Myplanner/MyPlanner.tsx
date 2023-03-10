@@ -153,7 +153,7 @@ const MyPlanner = () => {
                           : require('@/assets/MyPage/defaultProfile.webp')
                               .default
                       }
-                      style={{ objectFit: 'cover', width: 60, height: 60 }}
+                      style={{ objectFit: 'cover', width: 50, height: 50 }}
                     />
                   </Profile>
                   <ProfileName>{userDB.displayName}</ProfileName>
@@ -229,12 +229,9 @@ const MyPlanner = () => {
                   <IconCircle>
                     <BsCalendarCheck
                       style={{
-                        width: 40,
-                        height: 40,
-                        position: 'absolute',
-                        left: '22%',
-                        top: '19%',
                         color: '#004A7C',
+                        width: '24px',
+                        height: 'auto',
                       }}
                     />
                   </IconCircle>
@@ -306,16 +303,21 @@ const PlanTitleInput = styled.input`
 const PlanTitle = styled.p`
   width: 100%;
   height: 80px;
-  font-size: 65px;
+  font-size: 2.8rem;
+  margin-top: 20px;
 `;
 
 const IconCircle = styled.div`
-  width: 70px;
-  height: 70px;
+  width: 60px;
+  height: 60px;
   background-color: #e6e6e6;
   border-radius: 50px;
   font-size: 20px;
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
 `;
 
 const ProfileAndButtonSection = styled.div`
@@ -335,13 +337,14 @@ const Profile = styled.div`
   border-radius: 50%;
   border: 0px solid;
   overflow: hidden;
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
+  margin-right: 8px;
 `;
 
 const ProfileName = styled.p`
-  color: black;
-  font-weight: 100px;
+  color: ${(props) => props.theme.black};
+  font-weight: 400;
 `;
 
 const CityHashTagSection = styled.div`
@@ -351,12 +354,12 @@ const CityHashTagSection = styled.div`
 `;
 const PlanInfoSection = styled.div`
   display: flex;
-  height: 150px;
+  height: 135px;
   width: 100%;
   justify-content: space-around;
   border-top: 1px solid #e6e6e6;
   border-bottom: 1px solid #e6e6e6;
-  margin-bottom: 80px;
+  margin-bottom: 64px;
 `;
 
 const PlanCourseInfo = styled.div`
@@ -366,25 +369,28 @@ const PlanCourseInfo = styled.div`
 `;
 
 const IconImage = styled.img`
-  width: 40px;
-  height: 40px;
+  width: 26px;
+  height: auto;
   position: absolute;
-  left: 22%;
-  top: 19%;
 `;
 
 const CourseInfo = styled.div`
   width: 120px;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 `;
 
 const CourseExplain = styled.p`
   width: 120px;
-  text-align: center;
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: ${(props) => props.theme.darkgrey};
+  /* text-align: center; */
 `;
 
 const CourseCount = styled.p`
-  font-size: 22px;
+  font-size: 20px;
   color: #004a7c;
   font-weight: 700;
 `;

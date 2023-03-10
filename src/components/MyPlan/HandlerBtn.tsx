@@ -160,13 +160,10 @@ const HandlerBtn = ({
         // 다른 유저 일정 볼때
         authority.view &&
         userId !== uid && (
-          <div
-            style={{ display: 'flex', cursor: 'pointer' }}
-            onClick={() => clickBookMark()}
-          >
+          <PlanBookmark onClick={() => clickBookMark()}>
             <FaBookmark color="#EB455F" />
-            일정 추가하기
-          </div>
+            <PlanBookmarkTxt>일정 추가하기</PlanBookmarkTxt>
+          </PlanBookmark>
         )
       )}
     </>
@@ -193,4 +190,24 @@ export const PlanBtn = styled.button<{
     background-color: ${(props) => props.theme.skyblue};
     color: ${(props) => props.theme.darkgrey};
   }
+`;
+
+const PlanBookmark = styled.div`
+  width: 140px;
+  height: 30px;
+  display: flex;
+  padding: 0.3rem 0.5rem;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100px;
+  cursor: pointer;
+  gap: 8px;
+  transition: all 0.3s;
+  &:hover {
+    background-color: ${(props) => props.theme.grey};
+  }
+`;
+
+const PlanBookmarkTxt = styled.p`
+  font-weight: 400;
 `;

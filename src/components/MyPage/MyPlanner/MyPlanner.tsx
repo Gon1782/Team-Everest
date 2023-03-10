@@ -52,13 +52,13 @@ const MyPlanner = ({
                       height={300}
                     ></CloneEventMap>
                   </S.MyPlannerBox>
-                  <span>{item?.name}</span>
+                  <S.MyPlannerName>{item?.name}</S.MyPlannerName>
                 </div>
               );
             }
           })
         ) : (
-          <S.MyPlannerNone>아직 일정이 없음 짜러가셈</S.MyPlannerNone>
+          <S.MyPlannerNone>아직 저장한 일정이 없습니다.</S.MyPlannerNone>
         )}
         {!checkEnd && (
           <S.MyPlannerViewMore onClick={() => ViewMore()}>
