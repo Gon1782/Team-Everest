@@ -67,6 +67,11 @@ export const MyPlannerBox = styled.div`
   }
 `;
 
+export const MyPlannerName = styled.span`
+  font-size: 1.125rem;
+  font-weight: 500;
+`;
+
 export const MyPlannerViewMore = styled.div`
   cursor: pointer;
   display: flex;
