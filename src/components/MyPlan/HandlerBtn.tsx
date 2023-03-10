@@ -1,5 +1,6 @@
+import { usePrompt } from '@/hooks/useConfirmExit';
 import { Authority, PlanType } from '@/recoil/atom/MyPlan';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaBookmark } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
@@ -25,6 +26,7 @@ const HandlerBtn = ({
   planUniqueId: string;
 }) => {
   const [authority, setAuthority] = useRecoilState(Authority);
+  const [isDoSomething, setIsdoSomething] = useState(false);
   const navigate = useNavigate();
   const firstCheck = () => {
     // 추가한 일정들이 있는지 확인
@@ -59,7 +61,9 @@ const HandlerBtn = ({
             alert('완료 되었습니다!');
             navigate('/my');
           })
-        : alert('취소하셨습니다.');
+        : () => {
+            alert('취소하셨습니다.');
+          };
     } catch (e) {
       alert('잠시 후에 시도해주세요');
     }
@@ -111,6 +115,18 @@ const HandlerBtn = ({
     }
   };
 
+  // useEffect(() => {
+  //   return () => {
+  //     if (!window.confirm('페이지를 이동하시겠습니까?')) {
+  //       alert('ss');
+  //       navigate(-1);
+  //     }
+  //   };
+  // }, []);
+  // if (!authority.view) {
+  //   usePrompt('페이지를 이동하시겠습니까?');
+  // }
+
   return (
     <>
       {authority.write ? (
@@ -146,6 +162,7 @@ const HandlerBtn = ({
                 write: true,
                 view: false,
                 update: true,
+                updatingStart: true,
               })
             }
             color={'dbe2ef'}

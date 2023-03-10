@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import {
   Authority,
   InitLocation,
@@ -21,6 +21,7 @@ import { BsCalendarCheck, BsFlagFill } from 'react-icons/bs';
 import { dateToString } from '@/components/MyPlan/MyPlannerHandler';
 import HandlerBtn from '@/components/MyPlan/HandlerBtn';
 import CityHashTag from '@/components/MyPlan/CityHashTag';
+import { usePrompt } from '@/hooks/useConfirmExit';
 
 const MyPlanner = () => {
   const navigate = useNavigate();
@@ -46,6 +47,7 @@ const MyPlanner = () => {
 
   const [isSidePageView, setIsSidePageView] = useRecoilState(IsSidePageView);
   const [_, setIsCalenderView] = useRecoilState(IsCalenderView);
+  const [checkSignUp, setCheckSignUp] = useState(false);
 
   // 이 페이지에서 생성한 플랜
   const [plan, setPlan] = useRecoilState<PlanType>(NewPlanRecoil);
@@ -71,6 +73,7 @@ const MyPlanner = () => {
         write: false,
         view: true,
         update: userId === uid ? true : false,
+        updatingStart: false,
       });
       setLoading(false);
     }
@@ -118,6 +121,7 @@ const MyPlanner = () => {
         write: true,
         view: false,
         update: false,
+        updatingStart: true,
       });
 
       setLoading(false);
@@ -129,6 +133,7 @@ const MyPlanner = () => {
       resetInitLocation();
     };
   }, [planUniqueId]);
+
   if (loading) return <></>;
 
   return (

@@ -27,10 +27,11 @@ const Event = ({
   const navigate = useNavigate();
 
   // 일정 삭제
-  const popEvent = (date: string, eventIndex: number, eventList: []) => {
+  const popEvent = (date: string, eventIndex: number, eventList: any[]) => {
     const newEventList = eventList.filter((_, index) => index !== eventIndex);
     const updateSchedule: any = {};
     updateSchedule[date] = newEventList;
+    // updateSchedule[date] = newEventList;
 
     setNewPlan((prev) => {
       return {

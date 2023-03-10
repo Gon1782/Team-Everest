@@ -1,4 +1,4 @@
-import { RefObject, useEffect, useRef, useState } from 'react';
+import { RefObject, useEffect, useRef } from 'react';
 import { useRecoilValue } from 'recoil';
 import {
   InitLocation,
@@ -17,14 +17,14 @@ declare global {
 const { kakao } = window;
 
 const EventMap = () => {
-  const [map, setMap] = useState(null);
   const myPlan = useRecoilValue(NewPlanRecoil);
   const scheduleInfo = useRecoilValue(PickScheduleRecoil);
   const locationInfo = useRecoilValue(InitLocation);
-  const mapRef = useRef(null);
+  const mapRef: any = useRef();
 
   useEffect(() => {
-    if (map) {
+    kakao.maps.load(function () {
+      const map = setMap(locationInfo, mapRef); //지도 생성 및 객체 리턴
       const linePath: any = [];
       if (!!myPlan.schedule[scheduleInfo.schedule]?.length) {
         setPolyLine(
@@ -33,14 +33,8 @@ const EventMap = () => {
           '#EF4B27',
         );
       }
-      setMap(map);
-    }
+    });
   }, [locationInfo, myPlan, scheduleInfo]);
-
-  // 초기화
-  useEffect(() => {
-    setMap(setNewMap(locationInfo, mapRef));
-  }, []);
 
   return (
     <Wrap>
@@ -63,12 +57,12 @@ export const CloneEventMap = ({
   const locationInfo = useRecoilValue(InitLocation);
   const mapRef: any = useRef();
   useEffect(() => {
-    // kakao.maps.load(() => {
-    const map = setNewMap(locationInfo, mapRef); //지도 생성 및 객체 리턴
+    kakao.maps.load(() => {
+      const map = setMap(locationInfo, mapRef); //지도 생성 및 객체 리턴
 
-    const linePath: any = [];
-    setPolyLine(map, setMarker(myPlan, map, linePath), '#EF4B27');
-    // });
+      const linePath: any = [];
+      setPolyLine(map, setMarker(myPlan, map, linePath), '#EF4B27');
+    });
   }, []);
 
   return (
@@ -78,7 +72,7 @@ export const CloneEventMap = ({
   );
 };
 
-const setNewMap = (
+const setMap = (
   locationInfo: {
     x: number;
     y: number;
@@ -111,7 +105,6 @@ const setMarker = (plan: [], map: any, linePath: any[]): any[] => {
   const bounds = new kakao.maps.LatLngBounds();
 
   plan?.map((item: any, index: number) => {
-    console.log(item);
     // 좌표 담아서 선 그려야함
     linePath.push(new kakao.maps.LatLng(item.mapy, item.mapx));
     // 마커 생성
