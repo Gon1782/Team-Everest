@@ -30,7 +30,7 @@ const Login = () => {
     <>
       <ReactPlayer
         className="login-player"
-        url={require('@/assets/Landing/Landing_video.mp4').default}
+        url={require('@/assets/Landing/Landing_video.webm').default}
         playing={true}
         loop={true}
         width={'100%'}

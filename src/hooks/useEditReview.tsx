@@ -5,6 +5,9 @@ import { getUserDB, updateUserDB } from '@/common/api/userApi';
 import { DetailList } from '@/recoil/atom/Detail';
 import { EachReview } from '@/types/DetailType';
 import { reviewForm, reviewsForm } from '@/common/utils/forms';
+import { storage } from '@/common/api/firebase';
+import { ref, uploadString, getDownloadURL } from '@firebase/storage';
+import { uuidv4 } from '@firebase/util';
 
 const useEditReview = (
   type: string,
@@ -77,16 +80,18 @@ const useEditReview = (
     }, [tag]);
   }
 
-  // 리뷰 수정
-  const editReview = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const uploadImage = async (images: string[]) => {
+    const uploadedImage: string[] = [...images];
+    for (const image of images) {
+      const imgRef = ref(storage, `image/${review.contentId}/${uuidv4()}`);
+      const response = await uploadString(imgRef, image, 'data_url');
+      const downloadUrl = await getDownloadURL(response.ref);
+      uploadedImage.push(downloadUrl);
+    }
+    return uploadedImage;
+  };
 
-    if (uid !== review.uid)
-      return alert('다른 사람의 게시글을 수정할 수 없습니다.');
-    if (!content) return alert('리뷰 내용을 입력해주세요.');
-    if (!rating) return alert('별점을 등록해 주세요.');
-    if (content.length > 500) return alert('500자 미만으로 작성해주세요');
-
+  const edit = async (image: string[]) => {
     const user = await getUserDB(review.uid);
     const myReviews = user?.MyReview;
 
@@ -112,11 +117,28 @@ const useEditReview = (
       }
     });
 
-    closeModal();
     await updateReview(review.contentId, newList);
     getReviews();
     await updateUserDB(review.uid, { ...user, MyReview: newMyReviews });
     reset();
+  };
+
+  // 리뷰 수정
+  const editReview = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (uid !== review.uid)
+      return alert('다른 사람의 게시글을 수정할 수 없습니다.');
+    if (!content) return alert('리뷰 내용을 입력해주세요.');
+    if (!rating) return alert('별점을 등록해 주세요.');
+    if (content.length > 500) return alert('500자 미만으로 작성해주세요');
+
+    uploadImage(image)
+      .then((res) => {
+        edit(res);
+        closeModal();
+      })
+      .catch((error) => console.log(error.message));
   };
 
   return editReview;

@@ -16,7 +16,7 @@ const Landing = () => {
       </InfoSection>
       <ReactPlayer
         className="react-player"
-        url={require('@/assets/Landing/Landing_video.mp4').default} // 플레이어 url
+        url={require('@/assets/Landing/Landing_video.webm').default} // 플레이어 url
         width={'100%'}
         height={'auto'}
         playing={true} // 자동 재생 on
