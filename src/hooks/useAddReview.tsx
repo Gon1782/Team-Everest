@@ -124,7 +124,6 @@ const useAddReview = (
     if (!list.review) await postReview(contentId, newReviewData);
     else await updateReview(contentId, newReviewData);
     getReviews();
-    closeModal();
 
     // UserDB update
     const user = await getUserDB(uid);
@@ -148,9 +147,8 @@ const useAddReview = (
     if (content.length > 500) return;
     uploadImage(image)
       .then((res) => {
-        if (!!res.length) {
-          add(res);
-        }
+        add(res);
+        closeModal();
       })
       .catch((error) => console.log(error.messages));
   };
