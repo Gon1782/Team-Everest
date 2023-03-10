@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback } from 'react';
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { getDate } from '@/common/utils/getDate';
 import { getReview, postReview, updateReview } from '@/common/api/reviewApi';
 import { getUserDB, updateUserDB } from '@/common/api/userApi';
@@ -7,6 +7,8 @@ import { uuidv4 } from '@firebase/util';
 import { DetailList } from '@/recoil/atom/Detail';
 import { getCities, updateCities } from '@/common/api/cityApi';
 import { reviewsForm } from '@/common/utils/forms';
+import { storage } from '@/common/api/firebase';
+import { ref, uploadString, getDownloadURL } from '@firebase/storage';
 
 const useAddReview = (
   areacode: string,
@@ -87,20 +89,24 @@ const useAddReview = (
     }
   }, [tag]);
 
-  // 리뷰 등록
-  const addReview = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const uploadImage = async (images: string[]) => {
+    const uploadedImage: string[] = [];
+    for (const image of images) {
+      const imgRef = ref(storage, `image/${contentId}/${uuidv4()}`);
+      const response = await uploadString(imgRef, image, 'data_url');
+      const downloadUrl = await getDownloadURL(response.ref);
+      uploadedImage.push(downloadUrl);
+    }
+    return uploadedImage;
+  };
 
-    if (!content) return alert('리뷰 내용을 입력해주세요.');
-    if (!rating) return alert('별점을 등록해 주세요.');
-    if (content.length > 500) return;
-
+  const add = async (images: string[]) => {
     const newReview = {
       rating,
       content,
       createdAt: `${date} ${time}`,
       id: uuidv4(),
-      image,
+      image: images,
       contentId,
       tag,
       uid,
@@ -114,7 +120,6 @@ const useAddReview = (
       totalRating: !!list.totalRating ? list.totalRating + rating : rating,
       tagCount: newTags,
     };
-    closeModal();
     // 첫 리뷰 일때 setDoc 두번째 리뷰부터 업데이트
     if (!list.review) await postReview(contentId, newReviewData);
     else await updateReview(contentId, newReviewData);
@@ -127,11 +132,25 @@ const useAddReview = (
     });
 
     const city = await getCities(areacode, sigungucode);
+    const engarea = !!city ? city.engarea.split('-')[0] : '';
     if (!!city)
-      await updateCities(city.engarea, {
+      await updateCities(engarea, {
         reviewCount: `${Number(city.reviewCount) + 1}`,
       });
-    reset();
+  };
+
+  // 리뷰 등록
+  const addReview = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!content) return alert('리뷰 내용을 입력해주세요.');
+    if (!rating) return alert('별점을 등록해 주세요.');
+    if (content.length > 500) return;
+    uploadImage(image)
+      .then((res) => {
+        add(res);
+        closeModal();
+      })
+      .catch((error) => console.log(error.messages));
   };
 
   return addReview;

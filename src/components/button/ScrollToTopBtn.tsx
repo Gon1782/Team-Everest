@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { BiArrowToTop } from 'react-icons/bi';
 
 const ScrollToTopBtn: React.FC = () => {
   const [showTopButton, setShowTopButton] = useState(false);
@@ -36,7 +37,7 @@ const ScrollToTopBtn: React.FC = () => {
     <>
       {showTopButton && (
         <TopButton onClick={scrollToTopBtnHandler}>
-          <p>Top</p>
+          <BiArrowToTop size={22} />
         </TopButton>
       )}
     </>
@@ -49,16 +50,16 @@ const TopButton = styled.button`
   width: 50px;
   height: 50px;
   position: fixed;
-  bottom: 100px;
+  bottom: 20px;
   right: 20px;
   z-index: 9999;
-  background-color: cornflowerblue;
-  color: #fff;
+  background-color: ${(props) => props.theme.white};
+  color: #6b6b6b;
   border-radius: 50%;
   transition: all 0.3s ease-in-out;
-
+  box-shadow: 6px 6px 14px -3px rgba(0, 0, 0, 0.15);
   &:hover {
-    background-color: #4d77c6;
+    background-color: ${(props) => props.theme.grey};
   }
 
   p {

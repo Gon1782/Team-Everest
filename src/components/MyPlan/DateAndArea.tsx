@@ -18,12 +18,27 @@ const DateAndArea = () => {
     <PlanDate>
       {authority.write ? (
         <>
-          <img
-            src={'https://img.icons8.com/color/48/null/calendar--v1.png'}
+          <div
+            style={{
+              display: 'flex',
+              width: 110,
+              margin: '0 auto',
+              alignItems: 'center',
+              cursor: 'pointer',
+            }}
             onClick={() => setIsShowCalender((prev) => !prev)}
-            style={{ cursor: 'pointer', width: 30, height: 30 }}
-          />
-
+          >
+            <img
+              src={'https://img.icons8.com/color/48/null/calendar--v1.png'}
+              style={{
+                cursor: 'pointer',
+                width: 30,
+                height: 30,
+                marginRight: 5,
+              }}
+            />
+            <p style={{ color: '##333333' }}>날짜 입력</p>
+          </div>
           <Date>
             {myPlan?.startDate['yyyymmdd']} - {myPlan?.endDate['yyyymmdd']}
           </Date>
@@ -59,6 +74,7 @@ const PlanDate = styled.div`
 `;
 const Date = styled.p`
   font-size: 22px;
+  margin-top: 12px;
   color: gray;
 `;
 const showCalender = styled.button`

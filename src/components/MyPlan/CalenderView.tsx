@@ -83,7 +83,7 @@ const CalenderView = ({
   return (
     <>
       {isShowCalender && (
-        <div style={{ marginBottom: 40 }}>
+        <div style={{ marginBottom: 25 }}>
           <Calendar
             // onChange={!authority.update ? setCalenderDate : () => {}}
             onChange={setCalenderDate}

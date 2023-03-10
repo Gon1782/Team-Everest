@@ -5,6 +5,7 @@ import useLoadMore from '@/hooks/useLoadMore';
 import { CloneEventMap } from '@/components/MyPlan/EventMap';
 import { FaBookmark } from 'react-icons/fa';
 import { UserData } from '@/types/UserType';
+import styled from 'styled-components';
 
 const MyPlanner = ({
   user,
@@ -27,12 +28,15 @@ const MyPlanner = ({
   return (
     <S.MyPlannerSection>
       <S.MyPlannerTitle>내가 저장한 일정 리스트</S.MyPlannerTitle>
-      <S.MyPlannerContainer visible={idx > 3 ? 'visible' : 'hidden'}>
+      <S.MyPlannerContainer visible={'visible'}>
         {checkMyPlanner ? (
           myPlanner.map((item: any, index: number) => {
             if (index <= idx) {
               return (
-                <div style={{ textAlign: 'center', position: 'relative' }}>
+                <div
+                  key={index}
+                  style={{ textAlign: 'center', position: 'relative' }}
+                >
                   <S.BookMarkIcon
                     style={{
                       display: item['isMine'] ? 'none' : 'flex',
@@ -48,16 +52,18 @@ const MyPlanner = ({
                       height={300}
                     ></CloneEventMap>
                   </S.MyPlannerBox>
-                  <span>{item?.name}</span>
+                  <S.MyPlannerName>{item?.name}</S.MyPlannerName>
                 </div>
               );
             }
           })
         ) : (
-          <S.MyPlannerNone>아직 일정이 없음 짜러가셈</S.MyPlannerNone>
+          <S.MyPlannerNone>아직 저장한 일정이 없습니다.</S.MyPlannerNone>
         )}
         {!checkEnd && (
-          <S.MyPlannerBox onClick={() => ViewMore()}>더 보기...</S.MyPlannerBox>
+          <S.MyPlannerViewMore onClick={() => ViewMore()}>
+            더 보기...
+          </S.MyPlannerViewMore>
         )}
       </S.MyPlannerContainer>
     </S.MyPlannerSection>

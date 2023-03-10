@@ -45,7 +45,7 @@ const CityInfoList = ({ city }: Props) => {
       <S.Video>
         <ReactPlayer
           className="City-player"
-          url={require('@/assets/CityImage/page_video.mp4').default} // 플레이어 url
+          url={require('@/assets/CityImage/page_video.webm').default} // 플레이어 url
           width={'100%'}
           height={'100%'}
           playing={true} // 자동 재생 on

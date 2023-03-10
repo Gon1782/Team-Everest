@@ -27,10 +27,11 @@ const Event = ({
   const navigate = useNavigate();
 
   // 일정 삭제
-  const popEvent = (date: string, eventIndex: number, eventList: []) => {
+  const popEvent = (date: string, eventIndex: number, eventList: any[]) => {
     const newEventList = eventList.filter((_, index) => index !== eventIndex);
     const updateSchedule: any = {};
     updateSchedule[date] = newEventList;
+    // updateSchedule[date] = newEventList;
 
     setNewPlan((prev) => {
       return {
@@ -118,6 +119,7 @@ const Eventcontainer = styled.div`
 const EventOrder = styled.div`
   /* background-color: #d5d5d5; */
   width: 20%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -127,11 +129,11 @@ const EventOrder = styled.div`
 `;
 
 const EventOrderNumber = styled.div`
-  //margin-bottom: 5px;
+  margin-bottom: 3px;
 `;
 
 const EventTime = styled.div`
-  font-size: 0.8rem;
+  font-size: 0.7rem;
 `;
 
 // 일정 장소명 및 시간/메모 설정 영역

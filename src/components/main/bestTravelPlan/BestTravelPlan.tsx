@@ -100,8 +100,9 @@ const BestTravelPlanTitle = styled.div`
 `;
 
 const BestTravelPlanCard = styled.div`
-  background-color: #112d4e;
-  color: #f2f2f2;
+  /* background-color: #112d4e; */
+  background-color: ${(props) => props.theme.white};
+  color: ${(props) => props.theme.darkgrey};
   border-radius: 20px;
   /* width: 250px; */
   width: 20%;
@@ -154,19 +155,8 @@ const TravelPlaceReviewerImg = styled.img`
 
 const TravelPlaceName = styled.h4`
   font-size: 1.2rem;
-  color: white;
+  color: ${(props) => props.theme.darkgrey};
 `;
-
-// const TravelPlaceSubImgWrapper = styled.div`
-//   background-color: #9b6969;
-//   height: 60%;
-// `;
-
-// const TravelPlaceSubImg = styled.img`
-//   width: 100%;
-//   height: 100%;
-//   object-fit: cover;
-// `;
 
 const TravelPlanInfo = styled.div`
   display: flex;
@@ -185,9 +175,11 @@ const BookMarkCount = styled.div`
 
 const BookMarkCountNumber = styled.p`
   font-size: 1.1rem;
+  line-height: 1.1rem;
 `;
 
 const BookMarkIcon = styled(FaBookmark)`
   margin-right: 10px;
+  padding: 2px;
   color: #eb455f;
 `;

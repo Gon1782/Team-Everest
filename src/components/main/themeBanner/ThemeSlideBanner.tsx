@@ -14,13 +14,13 @@ import './ThemeSlideBanner.css';
 const ThemeSlideBanner = () => {
   // 선택 카테고리 state - 선택한 카테고리 없을 시 첫 번째 태그 리스트 보임
   const [selectedCategory, setSelectedCategory] =
-    useState<HashTagCategory | null>('# 이색 체험');
+    useState<HashTagCategory | null>('#이색 체험');
   // Swiper 구성요소 인스턴스 할당
   const [swiper, setSwiper] = useState<SwiperCore>();
 
   // 테마 카테고리
   const [activeCategory, setActiveCategory] = useState<string | null>(
-    '# 이색 체험',
+    '#이색 체험',
   );
   // 테마 리스트
   const [activeList, setActiveList] = useState<string | null>(null);
@@ -59,40 +59,38 @@ const ThemeSlideBanner = () => {
 
         <ThemeHashtagCategories>
           <ThemeHashTagCategory
-            onClick={() => categorySelectHandler('# 이색 체험')}
-            style={activeCategory === '# 이색 체험' ? activeCategoryStyle : {}}
+            onClick={() => categorySelectHandler('#이색 체험')}
+            style={activeCategory === '#이색 체험' ? activeCategoryStyle : {}}
           >
-            # 이색 체험
+            #이색 체험
           </ThemeHashTagCategory>
           <ThemeHashTagCategory
             onClick={() =>
-              categorySelectHandler('# 자연을 찾아 떠나는 자유여행')
+              categorySelectHandler('#자연을 찾아 떠나는 자유여행')
             }
             style={
-              activeCategory === '# 자연을 찾아 떠나는 자유여행'
+              activeCategory === '#자연을 찾아 떠나는 자유여행'
                 ? activeCategoryStyle
                 : {}
             }
           >
-            # 자연을 찾아 떠나는 자유여행
+            #자연을 찾아 떠나는 자유여행
           </ThemeHashTagCategory>
           <ThemeHashTagCategory
-            onClick={() => categorySelectHandler('# 데이트 장소')}
-            style={
-              activeCategory === '# 데이트 장소' ? activeCategoryStyle : {}
-            }
+            onClick={() => categorySelectHandler('#데이트 장소')}
+            style={activeCategory === '#데이트 장소' ? activeCategoryStyle : {}}
           >
-            # 데이트 장소
+            #데이트 장소
           </ThemeHashTagCategory>
           <ThemeHashTagCategory
-            onClick={() => categorySelectHandler('# 국내에서 즐기는 해외여행')}
+            onClick={() => categorySelectHandler('#국내에서 즐기는 해외여행')}
             style={
               activeCategory === '# 국내에서 즐기는 해외여행'
                 ? activeCategoryStyle
                 : {}
             }
           >
-            # 국내에서 즐기는 해외여행
+            #국내에서 즐기는 해외여행
           </ThemeHashTagCategory>
         </ThemeHashtagCategories>
       </ThemeHashtagCategoriesWrapper>
@@ -149,11 +147,10 @@ export default ThemeSlideBanner;
 // 스타일 객체
 const activeCategoryStyle = {
   fontWeight: 'bold',
-  color: '#112D4E',
+  color: '#2871A3',
 };
 
 const activeListStyle = {
-  fontWeight: 'bold',
   color: '#f2f2f2',
   backgroundColor: '#2871A3',
 };
@@ -192,17 +189,18 @@ const ThemeHashtagCategories = styled.ul`
   width: 80%;
   display: flex;
   justify-content: space-around;
-  gap: 40px;
+  gap: 30px;
   margin-bottom: 48px;
 `;
 
 const ThemeHashTagCategory = styled.li`
-  font-size: 1.5rem;
+  font-size: 1.8rem;
+  word-break: break-all;
   font-weight: 900;
   color: #7b7b7b;
   :hover {
     cursor: pointer;
-    color: #112d4e;
+    color: #2871a3;
   }
 `;
 

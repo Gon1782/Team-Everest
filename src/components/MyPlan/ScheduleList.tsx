@@ -80,7 +80,13 @@ const PlanScheduleList = ({
                     );
                   })
                 ) : (
-                  <div style={{ color: 'grey' }}>
+                  <div
+                    style={{
+                      color: 'grey',
+                      fontSize: '16px',
+                      lineHeight: '1.5',
+                    }}
+                  >
                     아직 여행 일정이 없어요 !<br /> 셰르파와 함께 여행 일정을
                     계획해보세요
                   </div>

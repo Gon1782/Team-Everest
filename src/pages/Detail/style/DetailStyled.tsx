@@ -15,12 +15,16 @@ export const DetailBtnBox = styled.div`
 
 export const ReviewBtn = styled.button`
   cursor: pointer;
-  width: 11rem;
-  height: 3rem;
+  width: 120px;
+  height: 2.5rem;
   border: none;
   border-radius: 30px;
-  color: white;
+  color: ${(props) => props.theme.white};
   background-color: ${(props) => props.theme.blue};
+  transition: all 0.3s;
+  &:hover {
+    background-color: ${(props) => props.theme.navy};
+  }
 `;
 
 export const DetailSection = styled.section`

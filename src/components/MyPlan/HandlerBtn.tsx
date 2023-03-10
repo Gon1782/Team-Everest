@@ -1,5 +1,6 @@
+import { usePrompt } from '@/hooks/useConfirmExit';
 import { Authority, PlanType } from '@/recoil/atom/MyPlan';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaBookmark } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
@@ -25,6 +26,7 @@ const HandlerBtn = ({
   planUniqueId: string;
 }) => {
   const [authority, setAuthority] = useRecoilState(Authority);
+  const [isDoSomething, setIsdoSomething] = useState(false);
   const navigate = useNavigate();
   const firstCheck = () => {
     // 추가한 일정들이 있는지 확인
@@ -59,7 +61,9 @@ const HandlerBtn = ({
             alert('완료 되었습니다!');
             navigate('/my');
           })
-        : alert('취소하셨습니다.');
+        : () => {
+            alert('취소하셨습니다.');
+          };
     } catch (e) {
       alert('잠시 후에 시도해주세요');
     }
@@ -111,6 +115,18 @@ const HandlerBtn = ({
     }
   };
 
+  // useEffect(() => {
+  //   return () => {
+  //     if (!window.confirm('페이지를 이동하시겠습니까?')) {
+  //       alert('ss');
+  //       navigate(-1);
+  //     }
+  //   };
+  // }, []);
+  // if (!authority.view) {
+  //   usePrompt('페이지를 이동하시겠습니까?');
+  // }
+
   return (
     <>
       {authority.write ? (
@@ -146,6 +162,7 @@ const HandlerBtn = ({
                 write: true,
                 view: false,
                 update: true,
+                updatingStart: true,
               })
             }
             color={'dbe2ef'}
@@ -160,13 +177,10 @@ const HandlerBtn = ({
         // 다른 유저 일정 볼때
         authority.view &&
         userId !== uid && (
-          <div
-            style={{ display: 'flex', cursor: 'pointer' }}
-            onClick={() => clickBookMark()}
-          >
+          <PlanBookmark onClick={() => clickBookMark()}>
             <FaBookmark color="#EB455F" />
-            일정 추가하기
-          </div>
+            <PlanBookmarkTxt>일정 추가하기</PlanBookmarkTxt>
+          </PlanBookmark>
         )
       )}
     </>
@@ -187,4 +201,30 @@ export const PlanBtn = styled.button<{
   background-color: #f1f6f9; //${(props) => props.color};
   color: gray; //${(props) => props.color};
   border-radius: 50px;
+  margin-left: 10px;
+  transition: all 0.3s;
+  &:hover {
+    background-color: ${(props) => props.theme.skyblue};
+    color: ${(props) => props.theme.darkgrey};
+  }
+`;
+
+const PlanBookmark = styled.div`
+  width: 140px;
+  height: 30px;
+  display: flex;
+  padding: 0.3rem 0.5rem;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100px;
+  cursor: pointer;
+  gap: 8px;
+  transition: all 0.3s;
+  &:hover {
+    background-color: ${(props) => props.theme.grey};
+  }
+`;
+
+const PlanBookmarkTxt = styled.p`
+  font-weight: 400;
 `;

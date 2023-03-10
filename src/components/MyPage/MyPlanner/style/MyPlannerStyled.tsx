@@ -20,7 +20,7 @@ export const MyPlannerTitle = styled.h3`
 
 export const MyPlannerContainer = styled.div<VisibleProps>`
   display: flex;
-  width: 90%;
+  width: 91%;
   margin: 0 auto;
   padding: 2rem;
   gap: 2rem;
@@ -58,6 +58,31 @@ export const MyPlannerBox = styled.div`
   border-radius: 50%;
   margin-bottom: 20px;
   position: 'relative';
+  transition: all 0.3s;
+  font-weight: 400;
+  font-size: 1.175rem;
+  &:hover {
+    background-color: ${(props) => props.theme.mediumgrey};
+    color: #333333c2;
+  }
+`;
+
+export const MyPlannerName = styled.span`
+  font-size: 1.125rem;
+  font-weight: 500;
+`;
+
+export const MyPlannerViewMore = styled.div`
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 300px;
+  height: 300px;
+  background-color: #333333c2;
+  color: ${(props) => props.theme.grey};
+  border-radius: 50%;
+  margin-bottom: 20px;
   transition: all 0.3s;
   font-weight: 400;
   font-size: 1.175rem;

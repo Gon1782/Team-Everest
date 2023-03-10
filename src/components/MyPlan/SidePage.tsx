@@ -176,10 +176,12 @@ export default SidePage;
 
 const SidePageContainer = styled.div`
   width: 25%;
+  height: 100%;
   position: fixed;
   height: 100%;
-  left: 87%;
-  top: 55%;
+  left: 88%;
+  top: 57%;
+  /* right: 0; */
   transform: translate(-50%, -50%);
   overflow: auto;
   padding: 10px 25px;
@@ -208,9 +210,10 @@ const SelectBoxList = styled.div`
 
 const ScheduleInfo = styled.div`
   top: 5%;
-  font-size: 20px;
+  font-size: 18px;
   color: gray;
   margin: 20px 0;
+  padding: 10px;
 
   border-bottom: 1px solid #e6e6e6;
   display: flex;

@@ -30,7 +30,7 @@ const Login = () => {
     <>
       <ReactPlayer
         className="login-player"
-        url={require('@/assets/Landing/Landing_video.mp4').default}
+        url={require('@/assets/Landing/Landing_video.webm').default}
         playing={true}
         loop={true}
         width={'100%'}
@@ -48,7 +48,7 @@ const Login = () => {
                       fontWeight: 'bold',
                       borderBottom: '2px solid #004A7C',
                     }
-                  : { cursor: 'pointer' }
+                  : { cursor: 'pointer', color: '#BBB8B5' }
               }
               onClick={() => toggleCheck()}
               disabled={checkLogin ? true : false}
@@ -63,7 +63,7 @@ const Login = () => {
                       fontWeight: 'bold',
                       borderBottom: '2px solid #004A7C',
                     }
-                  : { cursor: 'pointer' }
+                  : { cursor: 'pointer', color: '#BBB8B5' }
               }
               onClick={() => toggleCheck()}
               disabled={checkLogin ? false : true}
