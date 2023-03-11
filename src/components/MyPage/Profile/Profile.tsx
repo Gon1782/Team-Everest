@@ -108,8 +108,6 @@ const Profile = ({ user, LoginCheck, checkMy, getUser }: Props) => {
   // 한줄 소개
   const introduce = !!user.introduce ? user.introduce : defaultIntro;
 
-  console.log(myInfo);
-
   return (
     <S.ProfileSection>
       {deleteModal && (
