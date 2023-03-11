@@ -74,8 +74,9 @@ const Header = () => {
             <NavBarLink to="my">마이페이지</NavBarLink>
           </MenuSection>
           <RightSection>
-            <BiSearch size={20} onClick={() => modalOpen()} />
-
+            <SearchIconWrapper onClick={() => modalOpen()}>
+              <SearchIcon />
+            </SearchIconWrapper>
             <LogInButton onClick={LoginOutHandler}>
               <img
                 src={'https://img.icons8.com/windows/64/null/user.png'}
@@ -84,7 +85,7 @@ const Header = () => {
               <LogoutText>{logoutText ? '로그인' : '로그아웃'}</LogoutText>
             </LogInButton>
           </RightSection>
-          <ScrollToTopBtn />
+          {/* <ScrollToTopBtn /> */}
         </Nav>
       </HeaderContainer>
     </>
@@ -113,7 +114,6 @@ const Nav = styled.nav`
   width: 80%;
   padding-left: 20px;
   padding-right: 20px;
-  cursor: pointer;
 `;
 
 const HeaderLogo = styled.div`
@@ -136,6 +136,7 @@ const NavBarLink = styled(NavLink)`
   font-size: 1rem;
   font-weight: 400;
   padding: 25px 10px;
+  cursor: pointer;
   &:hover {
     color: ${(props) => props.theme.blue};
     border-bottom: 2px solid ${(props) => props.theme.blue};
@@ -149,6 +150,25 @@ const RightSection = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+`;
+
+const SearchIconWrapper = styled.div`
+  width: 40px;
+  height: 65px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+  &:hover {
+    color: ${(props) => props.theme.blue};
+    border-bottom: 2px solid ${(props) => props.theme.blue};
+  }
+`;
+
+const SearchIcon = styled(BiSearch)`
+  width: 20px;
+  height: auto;
 `;
 
 const LogInButton = styled.button`
