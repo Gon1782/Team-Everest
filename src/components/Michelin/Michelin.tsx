@@ -5,7 +5,7 @@ import { City } from '@/types/CityType';
 import { DetailResponse } from '@/types/DetailType';
 import MichelinInfoBox from './MichelinInfoBox';
 import * as S from './style/MichelinStyled';
-import Error from '../Common/Error';
+import Error from '../common/Error';
 
 interface Props {
   city: City;

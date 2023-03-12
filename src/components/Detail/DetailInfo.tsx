@@ -70,6 +70,7 @@ const DetailInfo = ({ item, intro, wishList }: Props) => {
     const isGet = wishList?.filter(
       (wishItem: Item) => wishItem.contentid === item?.contentid,
     ).length;
+
     !!isGet ? setBookMark(true) : setBookMark(false);
   }, [wishList]);
 
