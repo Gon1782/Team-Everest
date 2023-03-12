@@ -17,7 +17,7 @@ const App = () => {
           <Suspense
             fallback={
               <div style={{ width: '100%', height: '120%' }}>
-                <div></div>
+                <div>Loading...</div>
               </div>
             }
           >

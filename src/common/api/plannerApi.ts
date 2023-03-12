@@ -8,7 +8,7 @@ export const getAllPlanner = async () => {
   return data.data();
 };
 
-export const getUserInfo = async (uid: string) => {
+export const getUserPlanList = async (uid: string) => {
   const docRef = doc(db, 'users', uid);
   const data = await getDoc(docRef);
   return data.data();
