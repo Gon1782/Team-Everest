@@ -3,7 +3,7 @@ import {
   updateAllPlannerDB,
   updateUserDB,
   getAllPlanner,
-  getUserPlanList,
+  getUserInfo,
 } from '@/common/api/plannerApi';
 import { areaCode } from '@/common/utils/areaCode/areaCode';
 import { PlanType } from '@/recoil/atom/MyPlan';
@@ -154,7 +154,7 @@ export const addPlan = async (
   isShow: boolean, // 공개/비공개 처리
   isMine: boolean, // 내가만든건지 /북마크한 일정인지 확인
 ) => {
-  const planList: any = await getUserPlanList(uid);
+  const planList: any = await getUserInfo(uid);
   const allPlanner: any = await getAllPlanner();
 
   const newMyPlanner = [
@@ -194,7 +194,7 @@ export const updatePlan = async (
   isShow: boolean, // 공개/비공개 처리
   isMine: boolean,
 ) => {
-  const planList: any = await getUserPlanList(uid);
+  const planList: any = await getUserInfo(uid);
   const allPlanner: any = await getAllPlanner();
   const newMyPlanner = planList['myPlanner'].reduce((sum: any, item: any) => {
     if (parseInt(planUniqueId) === item['planUniqueId']) {
@@ -233,7 +233,7 @@ export const updatePlan = async (
 
 // 일정 삭제
 export const popPlan = async (uid: string, planUniqueId: string) => {
-  const planList: any = await getUserPlanList(uid);
+  const planList: any = await getUserInfo(uid);
   const allPlanner: any = await getAllPlanner();
 
   const newMyPlanner = planList['myPlanner'].reduce((sum: any, item: any) => {
