@@ -5,7 +5,7 @@ import { FaStar, FaRegStar } from 'react-icons/fa';
 import { DetailResponse, EachReview } from '@/types/DetailType';
 import { ReviewImage } from '@/components/Detail/Review/style/ReviewStyled';
 import * as S from './style/MyReviewStyled';
-import Error from '@/components/common/Error';
+import Error from '@/components/Common/Error';
 
 interface Props {
   review: EachReview;
