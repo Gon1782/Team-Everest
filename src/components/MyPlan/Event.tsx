@@ -58,11 +58,11 @@ const Event = ({
         <EventOrder>
           <EventOrderNumber>
             <img
-              src={`https://img.icons8.com/ios-filled/50/004a7c/${
+              src={`https://img.icons8.com/ios-filled/50/004A7C/${
                 index + 1
-              }-circle.png`}
-              width="25"
-              height="25"
+              }.png`}
+              width="30"
+              height="30"
               color="#004A7C"
             />
           </EventOrderNumber>
