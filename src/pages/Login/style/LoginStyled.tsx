@@ -12,7 +12,7 @@ export const LoginContainer = styled.main`
 `;
 export const LoginBox = styled.section`
   position: relative;
-  width: 440px;
+  width: 460px;
   height: 635px;
   border-radius: 30px;
   background-color: #f9f7f7;
