@@ -25,7 +25,9 @@ const RegiPasswordInput = ({
     <>
       <S.LoginInputBox>
         <S.RegisterTitle>Password</S.RegisterTitle>
-        <S.MoreInfo>8자 이상의 영문, 숫자, 특수문자를 사용하세요.</S.MoreInfo>
+        <S.MoreInfo>
+          8자 이상의 영문+숫자+특수문자 조합을 사용해주세요.
+        </S.MoreInfo>
         <S.LoginInput
           tabIndex={2}
           type={pwVisible ? 'text' : 'password'}
