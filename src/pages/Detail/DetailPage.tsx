@@ -3,7 +3,7 @@ import { useQueries, useQueryClient } from 'react-query';
 import { useSetRecoilState } from 'recoil';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getDetail, getDetailIntro } from '@/common/api/tourApi';
-import Error from '@/components/Common/Error';
+import Error from '@/components/common/Error';
 import DetailInfo from '@/components/Detail/DetailInfo';
 import ReviewModal from '@/components/Detail/Review/ReviewModal';
 import Review from '@/components/Detail/Review/Review';

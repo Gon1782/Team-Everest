@@ -7,7 +7,7 @@ import { City } from '@/types/CityType';
 import { DetailResponse, Item } from '@/types/DetailType';
 import CityListItem from './CityListItem';
 import * as S from './style/CityInfoListStyled';
-import Error from '../Common/Error';
+import Error from '../common/Error';
 import ReactPlayer from 'react-player';
 
 interface Props {
