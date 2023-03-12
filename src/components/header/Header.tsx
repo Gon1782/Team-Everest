@@ -6,7 +6,7 @@ import SearchModal from './SearchModal';
 import { auth } from '../../common/api/firebase';
 import { onAuthStateChanged } from '@firebase/auth';
 import useModal from '@/hooks/useModal';
-import ScrollToTopBtn from '@/components/Button/ScrollToTopBtn';
+import ScrollToTopBtn from '@/components/button/ScrollToTopBtn';
 
 const Header = () => {
   // 검색창 토글
