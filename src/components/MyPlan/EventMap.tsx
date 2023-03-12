@@ -114,8 +114,8 @@ const setMarker = (plan: [], map: any, linePath: any[]): any[] => {
       position: new kakao.maps.LatLng(item.mapy, item.mapx),
 
       image: new kakao.maps.MarkerImage(
-        `https://img.icons8.com/ios-filled/50/004a7c/${index + 1}-circle.png`,
-        new kakao.maps.Size(25, 25),
+        `https://img.icons8.com/ios-filled/50/004A7C/${index + 1}.png`,
+        new kakao.maps.Size(35, 35),
       ),
     });
 

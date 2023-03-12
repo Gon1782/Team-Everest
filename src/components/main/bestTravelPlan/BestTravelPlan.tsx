@@ -67,7 +67,7 @@ const BestTravelPlan = () => {
                   );
                 }
               })
-              .slice(0, 15)}
+              .slice(0, 30)}
           </>
         ) : (
           <>베스트 일정이 아직 없어요!</>
