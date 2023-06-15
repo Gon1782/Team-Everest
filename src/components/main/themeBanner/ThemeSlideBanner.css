@@ -54,6 +54,10 @@
   color: #112d4e;
 }
 
+.swiper-button-disabled {
+  visibility: hidden;
+}
+
 /* .swiper-pagination-bullet {
   background-color: #797979;
 } */

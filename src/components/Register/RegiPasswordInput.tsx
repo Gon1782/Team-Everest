@@ -26,7 +26,7 @@ const RegiPasswordInput = ({
       <S.LoginInputBox>
         <S.RegisterTitle>Password</S.RegisterTitle>
         <S.MoreInfo>
-          특수문자가 포함된 8자 이상의 비밀번호로 설정해 주세요.
+          8자 이상의 영문+숫자+특수문자 조합을 사용해주세요.
         </S.MoreInfo>
         <S.LoginInput
           maxLength={32}

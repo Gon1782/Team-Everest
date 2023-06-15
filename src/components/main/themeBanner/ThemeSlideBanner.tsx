@@ -3,7 +3,7 @@ import { listItems } from '../../../common/utils/themeInfo';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore, { Navigation, Pagination, Autoplay } from 'swiper';
+import SwiperCore, { Navigation, Pagination } from 'swiper';
 // SwiperCore - 타입 지정시 필요함
 import styled, { css } from 'styled-components';
 import 'swiper/css/pagination';
@@ -52,6 +52,7 @@ const ThemeSlideBanner = () => {
   {
     /* 리팩토링 예정 */
   }
+
   return (
     <ThemeContainer>
       <ThemeHashtagCategoriesWrapper>
@@ -111,7 +112,7 @@ const ThemeSlideBanner = () => {
         </ThemelistItemsTitleWrapper>
         {/* 우측 이미지 카드 리스트 */}
         <SlideBannerWrapper
-          modules={[Navigation, Pagination, Autoplay]}
+          modules={[Navigation, Pagination]}
           navigation
           spaceBetween={20}
           slidesPerView={3}

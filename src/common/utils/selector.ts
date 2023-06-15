@@ -48,6 +48,7 @@ export const modalSelector = (
   }
 };
 
+// 회원가입 선택자
 export const registerSelector = (name: string, dupCheck: boolean) => {
   switch (true) {
     case name === 'email':
@@ -80,6 +81,8 @@ export const registerSelector = (name: string, dupCheck: boolean) => {
   }
 };
 
+// 리뷰
+// 지역
 export const areaSelector = (areacode: string, sigungucode: string) => {
   switch (true) {
     case oneCity.includes(areacode):
@@ -91,6 +94,7 @@ export const areaSelector = (areacode: string, sigungucode: string) => {
   }
 };
 
+// 태그
 export const tagSelector = (categoryCode: string) => {
   const bigCategory = categoryCode.slice(0, 3);
   switch (true) {
@@ -123,6 +127,8 @@ export const tagSelector = (categoryCode: string) => {
   }
 };
 
+// 지도페이지
+// 마커
 export const markerSelector = (areaCode: string) => {
   switch (true) {
     case areaCode === '31':
@@ -146,6 +152,7 @@ export const markerSelector = (areaCode: string) => {
   }
 };
 
+// 사이드바
 export const sideMenuSelector = (areacode: string, fn: () => void) => {
   const navigate = useNavigate()
     switch (true) {
