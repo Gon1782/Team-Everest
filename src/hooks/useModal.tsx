@@ -1,10 +1,7 @@
 import { useState, useCallback, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
 
 const useModal = () => {
   const [modal, setModal] = useState(false);
-  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-  const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
 
   const openModal = useCallback(() => {
     setModal(true);
@@ -22,6 +19,10 @@ const useModal = () => {
     },
     [],
   );
+
+  // 모달 시 스크롤 방지
+  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
 
   const disableScroll = () => {
     window.onscroll = () => {
