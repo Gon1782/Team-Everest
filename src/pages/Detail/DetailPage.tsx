@@ -101,8 +101,6 @@ const DetailPage = () => {
     );
   if (isError) return <div>에러: {error}</div>;
 
-  console.log(data);
-
   if (data.some((result) => !result?.response)) return <Error />;
 
   const detailList = !!data[0]?.response.body.items
