@@ -39,17 +39,8 @@ const WeatherInfo = ({ city }: Props) => {
   const apiUrl = `${weartherApi.url}`;
   // 날씨이름
   const [weatherName, setWeatherName] = useState('');
-  // 최저, 최고 기온
+  // 기온
   const [temp, setTemp] = useState<number>();
-
-  // 위치로 날씨 불러오기
-  const getCityLocation = () => {
-    navigator.geolocation.getCurrentPosition(() => {
-      let lat = city?.mapy.toFixed(5);
-      let lon = city?.mapx.toFixed(5);
-      getWeather(lat, lon);
-    });
-  };
 
   // 날씨 api 요청 (기온 단위 변경)
   const getWeather = async (lat: string, lon: string) => {
@@ -59,6 +50,7 @@ const WeatherInfo = ({ city }: Props) => {
     setTemp(response?.data.main.temp);
   };
 
+  // 위치로 날씨 불러오기
   useEffect(() => {
     if (!!city) {
       getWeather(city?.mapy.toFixed(5), city?.mapx.toFixed(5));
@@ -68,9 +60,15 @@ const WeatherInfo = ({ city }: Props) => {
   return (
     <Container>
       <>
-        <WeatherIcon src={weatherIcon[weatherName]} alt="weather" />
-        <WeatherName>{weatherKor[weatherName]}</WeatherName>
-        <WeatherTemp>{temp}&#8451;</WeatherTemp>
+        {weatherName ? (
+          <>
+            <WeatherIcon src={weatherIcon[weatherName]} alt="weather" />
+            <WeatherName>{weatherKor[weatherName]}</WeatherName>
+            <WeatherTemp>{temp}&#8451;</WeatherTemp>
+          </>
+        ) : (
+          <span>-</span>
+        )}
       </>
     </Container>
   );
