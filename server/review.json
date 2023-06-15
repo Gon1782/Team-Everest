@@ -4,6 +4,8 @@
       "contentid": {
         "totalRating": 0,
         "ratingCount": 0,
+        "areaCode": 0,
+        "sigunguCode": 0,
         "review": [
           {
             "uid": "",
@@ -13,7 +15,18 @@
             "title": "",
             "content": "",
             "createdAt": "",
-            "isDelete": "N"
+            "isDelete": "N",
+            "tag": ["", ""]
+          }
+        ],
+        "tagCount": [
+          {
+            "count": 0,
+            "name": ""
+          },
+          {
+            "count": 0,
+            "name": ""
           }
         ]
       }

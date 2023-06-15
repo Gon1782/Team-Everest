@@ -3,12 +3,13 @@
     {
       "uid": "",
       "id": "",
-      "image": ["",""],
       "rating": 0,
+      "image": ["", ""],
+      "title": "",
       "content": "",
-      "contentId": "",
       "createdAt": "",
-      "isDelete": ""
+      "isDelete": "N",
+      "tag": ["", ""]
     }
   ]
 }

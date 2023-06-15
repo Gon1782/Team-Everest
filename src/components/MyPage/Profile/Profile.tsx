@@ -41,7 +41,7 @@ const Profile = ({ user, LoginCheck, checkMy, getUser }: Props) => {
 
   // 프로필 닉네임 한줄소개 수정
   const [checkEdit, setEdit] = useState(false);
-  const [myInfo, onChangeMyInfo, resetMyInfo] = useInputs({
+  const [myInfo, onChangeMyInfo] = useInputs({
     nickname: user.displayName,
     intro: user.introduce,
   });
@@ -107,8 +107,6 @@ const Profile = ({ user, LoginCheck, checkMy, getUser }: Props) => {
 
   // 한줄 소개
   const introduce = !!user.introduce ? user.introduce : defaultIntro;
-
-  console.log(myInfo);
 
   return (
     <S.ProfileSection>
@@ -176,14 +174,14 @@ const Profile = ({ user, LoginCheck, checkMy, getUser }: Props) => {
             >
               {user.displayName}
             </S.Nickname>
-            <S.EditIconLabel>
-              <S.EditIcon
-                onClick={() => setEdit(true)}
-                style={{
-                  display: checkEdit ? 'none' : 'flex',
-                  visibility: check ? 'visible' : 'hidden',
-                }}
-              />
+            <S.EditIconLabel
+              onClick={() => setEdit(true)}
+              style={{
+                display: checkEdit ? 'none' : 'flex',
+                visibility: check ? 'visible' : 'hidden',
+              }}
+            >
+              <S.EditIcon />
             </S.EditIconLabel>
             <S.NickNameInput
               type="text"
